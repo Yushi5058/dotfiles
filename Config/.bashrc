@@ -9,7 +9,7 @@ export OSH='/home/yushi_61/.oh-my-bash'
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="font"
+OSH_THEME="powerline"
 
 # Uncomment the following line to use case-sensitive completion.
 # OMB_CASE_SENSITIVE="true"
@@ -22,7 +22,7 @@ OSH_THEME="font"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_OSH_DAYS=13
+ export UPDATE_OSH_DAYS=15
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -31,7 +31,7 @@ OSH_THEME="font"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
