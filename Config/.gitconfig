@@ -17,6 +17,7 @@
     oldHighlight = "red bold 52"
     newNormal = "green bold"
     newHighlight = "green bold 22"
+
     [commit]
   gpgsign = true
 
@@ -43,5 +44,5 @@
     rebase = true
 
 [credential]
-	helper = cache --timeout=36000
+    helper = cache --timeout=36000
 
