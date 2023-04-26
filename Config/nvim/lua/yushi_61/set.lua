@@ -35,5 +35,5 @@ vim.opt.clipboard = 'unnamed'
 
 
 -- Sort files and directories in ascending order
-vim.g.netrw_sort_sequence = '[\\/],$,*'
+vim.g.netrw_sort_sequence = '[\\/],\\.\\+,\\,,h,n,s,[^\\/]+,$'
 
