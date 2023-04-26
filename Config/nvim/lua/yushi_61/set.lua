@@ -33,9 +33,7 @@ vim.opt.colorcolumn = "80"
 -- Set clipboard provider to system clipboard
 vim.opt.clipboard = 'unnamed'
 
-require('autocmds').define_augroups({
-  netrw_sort_by_time = {
-    { 'FileType', 'netrw', 'let g:netrw_sort_by_time = -1' }
-  }
-})
+
+-- Sort files and directories in ascending order
+vim.g.netrw_sort_sequence = '[\\/],$,*'
 
