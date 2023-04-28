@@ -35,9 +35,6 @@ return require('packer').startup(function(use)
 
     use { "catppuccin/nvim", as = "catppuccin" }
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use "terrortylor/nvim-comment"
-    require('nvim_comment').setup()
-
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
     use("theprimeagen/refactoring.nvim")
