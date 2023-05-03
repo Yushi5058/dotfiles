@@ -1,4 +1,9 @@
 
+eval "$(starship init bash)"
+
+PS1='\u@\h:\w\$ '
+
+
 blk='\[\033[01;30m\]'   # Black
 red='\[\033[01;31m\]'   # Red
 grn='\[\033[01;32m\]'   # Green
