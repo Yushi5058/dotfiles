@@ -1,5 +1,7 @@
 [core]
     editor = "nvim"
+    excludesfile = /home/yushi_61/.gitignore
+
 [color]
     ui = true
     status = auto
@@ -9,7 +11,7 @@
 [user]
     name = Yushi_61
     email = 108335997+Yushi5058@users.noreply.github.com
-	signingkey = 9069B2AA32A92C79
+    signingkey = 9069B2AA32A92C79
 [github]
     user = Yushi5058
 [color "diff-highlight"]
