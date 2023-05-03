@@ -31,8 +31,13 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 -- Set clipboard provider to system clipboard
-vim.opt.clipboard = 'unnamed'
+local clipboard = vim.fn.getreg('+')
+clipboard = clipboard .. ',unnamedplus'
+clipboard = clipboard .. ',unnamed'
+clipboard = clipboard .. ',unnamed,unnamedplus'
+clipboard = clipboard .. ',wl-copy'
 
+vim.fn.setreg('+', clipboard)
 
 -- Sort files and directories in ascending order
 vim.g.netrw_sort_sequence = '[\\/],\\.,\\+,\\,,h,n,s,[^\\/]+,$'
