@@ -1,5 +1,4 @@
 
-eval "$(starship init bash)"
 
 PS1='\u@\h:\w\$ '
 
