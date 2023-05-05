@@ -11,17 +11,15 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-
-
 return require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+    use ("wbthomason/packer.nvim")
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use({
+    use {
         "folke/trouble.nvim",
         config = function()
             require("trouble").setup {
@@ -31,15 +29,15 @@ return require('packer').startup(function(use)
                 -- refer to the configuration section below
             }
         end
-    })
+    }
 
     use { "catppuccin/nvim", as = "catppuccin" }
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use('nvim-treesitter/playground')
-    use('theprimeagen/harpoon')
+    use("nvim-treesitter/nvim-treesitter", { run = ':TSUpdate' })
+    use("nvim-treesitter/playground")
+    use("theprimeagen/harpoon")
     use("theprimeagen/refactoring.nvim")
-    use('mbbill/undotree')
-    use('tpope/vim-fugitive')
+    use("mbbill/undotree")
+    use("tpope/vim-fugitive")
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
@@ -80,6 +78,7 @@ return require('packer').startup(function(use)
     use("alvan/vim-closetag")
     use("folke/zen-mode.nvim")
     use("wakatime/vim-wakatime")
+    use("andweeb/presence.nvim")
 
 
     -- Automatically set up your configuration after cloning packer.nvim
