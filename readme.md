@@ -9,6 +9,9 @@ changes over times.
 
 # Usage 
 
+ps : These dotfiles work on **Fedora 38 KDE Edition. I don't know if it will 
+also work for other distributions**
+
 If you would like to use my configuration, there are some requirements to make 
 it work as expected.
 
