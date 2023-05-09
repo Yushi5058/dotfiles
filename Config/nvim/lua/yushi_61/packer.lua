@@ -12,7 +12,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
-    use ("wbthomason/packer.nvim")
+    use("wbthomason/packer.nvim")
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -31,13 +31,15 @@ return require('packer').startup(function(use)
         end
     }
 
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use({
+        "neanias/everforest-nvim",
+    })
     use("nvim-treesitter/nvim-treesitter", { run = ':TSUpdate' })
     use("nvim-treesitter/playground")
     use("theprimeagen/harpoon")
-    use("theprimeagen/refactoring.nvim")
     use("mbbill/undotree")
     use("tpope/vim-fugitive")
+    use("tpope/vim-commentary")
     use {
         'lewis6991/gitsigns.nvim',
         config = function()
@@ -50,6 +52,9 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use('neovim/nvim-lspconfig')
+    use('jose-elias-alvarez/null-ls.nvim')
+    use('MunifTanjim/prettier.nvim')
     use("nvim-treesitter/nvim-treesitter-context")
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -59,6 +64,7 @@ return require('packer').startup(function(use)
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },
+            {'onsails/lspkind-nvim'},
 
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
@@ -73,13 +79,25 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-    use("eandrju/cellular-automaton.nvim")
-    use("jiangmiao/auto-pairs")
-    use("alvan/vim-closetag")
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     use("folke/zen-mode.nvim")
     use("wakatime/vim-wakatime")
     use("andweeb/presence.nvim")
-
+    use("NvChad/nvim-colorizer.lua")
+    use {
+    "jcdickinson/codeium.nvim",
+    requires = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
+    },
+    config = function()
+        require("codeium").setup({
+        })
+    end
+}
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
