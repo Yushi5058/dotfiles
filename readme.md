@@ -3,21 +3,26 @@ Hello everyone,
 This is my dotfiles configuration, please do not copy it unless you know what
 each line of code does mean.
 
-I am actually experiencing this .dotfiles thing, so any feedback on my work
-will be greatly appreciated. 
+I am currently experiencing as a poweruser, configuration and customization
+may change depending on my workflow. Expect to see this repository has many
+changes over times.
 
 # Usage 
 
-If you would like to use my configuration, that I don't recommend if you 
-are searching for a good and featureful / updated one, you just have to clone 
-this repository and copy / paste it in you .config files.
+If you would like to use my configuration, there are some requirements to make 
+it work as expected.
 
-# Contact 
+- Install oh-my-bash framework [here](https://ohmybash.nntoan.com/)
+- Install kitty terminal [here](https://sw.kovidgoyal.net/kitty/binary/)
+- Install tmux [here](https://github.com/tmux/tmux/wiki/Installing)
+- Install hack nerdfont [here](https://www.nerdfonts.com/font-downloads)
 
-For feedback & issues, don't hesitate to open pull requests or issues.
-You can also contact me [here](yushi_61@proton.me) or in 
-[discord](discord.com/users/1071758711330193478)
+*ps : I used Hack font in my kitty.conf file configuration. If you would like
+another font (Firacode for example), then download FiraCode NerdFont and move
+the files in fonts config file location and change the name in kitty.conf from
+Hack to FiraCode*
 
+If you want to get the latest updates of the repo, don't forget to star it.
 
 Thanks for reading,
 Yushi
