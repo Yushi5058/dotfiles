@@ -19,6 +19,7 @@ it work as expected.
 - Install kitty terminal [here](https://sw.kovidgoyal.net/kitty/binary/)
 - Install tmux [here](https://github.com/tmux/tmux/wiki/Installing)
 - Install hack nerdfont [here](https://www.nerdfonts.com/font-downloads)
+- Install npm, ripgrep, node js
 
 *ps : I used Hack font in my kitty.conf file configuration. If you would like
 another font (Firacode for example), then download FiraCode NerdFont and move
