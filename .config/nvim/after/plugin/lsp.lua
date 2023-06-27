@@ -3,7 +3,6 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 lsp.ensure_installed({
     'cssls',
-    'eslint',
     'html',
     'lua_ls',
     'tsserver',
@@ -17,47 +16,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
-})
-
-cmp.setup({
-    sources = {
-        { name = "codeium" }
-    },
-    formatting = {
-        format = require('lspkind').cmp_format({
-            mode = "symbol",
-            maxwidth = 50,
-            ellipsis_char = '...',
-            symbol_map = {
-                Codeium = "",
-                Text = "󰉿",
-                Method = "󰆧",
-                Function = "󰊕",
-                Constructor = "",
-                Field = "󰜢",
-                Variable = "󰀫",
-                Class = "󰠱",
-                Interface = "",
-                Module = "",
-                Property = "󰜢",
-                Unit = "󰑭",
-                Value = "󰎠",
-                Enum = "",
-                Keyword = "󰌋",
-                Snippet = "",
-                Color = "󰏘",
-                File = "󰈙",
-                Reference = "󰈇",
-                Folder = "󰉋",
-                EnumMember = "",
-                Constant = "󰏿",
-                Struct = "󰙅",
-                Event = "",
-                Operator = "󰆕",
-                TypeParameter = "",
-            }
-        })
-    }
 })
 
 lsp.set_preferences({
