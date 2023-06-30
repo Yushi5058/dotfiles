@@ -1,6 +1,6 @@
 [core]
     editor = "nvim"
-    excludesfile = /home/yushi_61/.gitignore
+    excludesfile = /home/yushi/.gitignore
 
 [color]
     ui = true
@@ -9,9 +9,9 @@
     branch = auto
     grep = auto
 [user]
-    name = Yushi_61
+    name = Yushi
     email = 108335997+Yushi5058@users.noreply.github.com
-    signingkey = 9069B2AA32A92C79
+    signingkey = 1FA650CB92A28B95
 [github]
     user = Yushi5058
 [color "diff-highlight"]
