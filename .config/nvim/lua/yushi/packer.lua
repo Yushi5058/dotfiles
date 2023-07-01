@@ -13,6 +13,13 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  use({
+  "neanias/everforest-nvim",
+  -- Optional; default configuration will be used if setup isn't called.
+  config = function()
+    require("everforest").setup()
+  end,
+})
   use("tpope/vim-commentary")
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
