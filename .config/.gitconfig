@@ -1,5 +1,5 @@
 [core]
-    editor = "nvim"
+	editor = nvim
     excludesfile = /home/yushi/.gitignore
 
 [color]
@@ -9,9 +9,9 @@
     branch = auto
     grep = auto
 [user]
-    name = Yushi
-    email = 108335997+Yushi5058@users.noreply.github.com
-	signingkey = /home/yushi/.ssh/id_rsa.pub
+	name = Yushi
+	email = yushi_61@proton.me
+	signingkey = A3B5A828AC810F45
 [github]
     user = Yushi5058
 [color "diff-highlight"]
@@ -22,10 +22,6 @@
 
     [commit]
 	gpgsign = true
-
-[gpg]
-	format = ssh
-
 [format]
 	pretty = %Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset
 [help]
