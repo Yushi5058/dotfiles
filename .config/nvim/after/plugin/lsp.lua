@@ -3,11 +3,19 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
+
 })
 
 -- Fix Undefined global 'vim'
-lsp.nvim_workspace()
+lsp.configure('lua-language-server', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
 
 
 local cmp = require('cmp')
@@ -56,4 +64,3 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
-

@@ -1,31 +1,14 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
-local packer_bootstrap = ensure_packer()
+vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use({
-  "neanias/everforest-nvim",
-  -- Optional; default configuration will be used if setup isn't called.
-  config = function()
-    require("everforest").setup()
-  end,
-})
-  use("tpope/vim-commentary")
+ use 'wbthomason/packer.nvim'
+
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+
   use({
       "folke/trouble.nvim",
       config = function()
@@ -37,18 +20,17 @@ return require('packer').startup(function(use)
           }
       end
   })
-  use {
-			'nvim-treesitter/nvim-treesitter',
-			run = function()
-				local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-				ts_update()
-			end,}
+
+
+  use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
   use("nvim-treesitter/playground")
   use("theprimeagen/harpoon")
+  use("theprimeagen/refactoring.nvim")
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
   use("nvim-treesitter/nvim-treesitter-context");
-  use 'andweeb/presence.nvim'
+  use "folke/tokyonight.nvim"
+
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
@@ -71,8 +53,7 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+
   use("folke/zen-mode.nvim")
-  if packer_bootstrap then
-    require('packer').sync()
-  end
+  use 'andweeb/presence.nvim'
 end)

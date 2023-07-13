@@ -1,5 +1,5 @@
-require("yushi.set")
-require("yushi.remap")
+require('yushi.set')
+require('yushi.remap')
 
 local augroup = vim.api.nvim_create_augroup
 local YushiGroup = augroup('Yushi', {})
@@ -23,7 +23,7 @@ autocmd('TextYankPost', {
 })
 
 autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
+    group = YushiGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
