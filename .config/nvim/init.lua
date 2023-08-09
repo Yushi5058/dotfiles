@@ -1,2 +1,3 @@
-require('yushi')
-vim.env.SSH_AUTH_SOCK = vim.env.HOME .. '/run/user/1000/gnupg/S.gpg-agent.ssh'
+require("core.options")
+require("core.keymaps")
+require("core.plugins")
