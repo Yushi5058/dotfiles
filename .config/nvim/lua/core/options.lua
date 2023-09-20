@@ -20,4 +20,4 @@ vim.wo.number = true
 
 
 vim.cmd([[set clipboard+=unnamedplus]])
-
+vim.cmd [[ set noswapfile ]]
