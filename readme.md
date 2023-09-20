@@ -9,38 +9,37 @@ changes over times.
 
 # Usage
 
-ps : These dotfiles work on **Debian 12. I don't know if it will
-also work for other distributions**
+ps : These dotfiles work on **Fedora 38**. I don't know if it will
+also work for other distributions.
 
 If you would like to use my configuration, there are some requirements to make
 it work as expected.
 
 - Install kitty terminal [here](https://sw.kovidgoyal.net/kitty/binary/)
-- Install tmux [here](https://github.com/tmux/tmux/wiki/Installing)
-- Install hack nerdfont [here](https://www.nerdfonts.com/font-downloads)
-- Install npm, ripgrep, node js
-- Configure ssh key for github authentification and gpg for signing commits
-- Install nunito font for personal use, italic one
+- Install tmux [here](https://github.com/tmux/tmux/wiki/Installing) { Optional: I'm not currently using tmux in my workflow.}
+- Install CaskaydiaCove NerdFont [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip), 
+ [preview](https://www.programmingfonts.org/#cascadia-code)
+- Install nodejs (npm included) and ripgrep (installed on most linux distros)
+- Install packer plugin manager (not bootstrapping because I have some problems with it) [here](https://github.com/wbthomason/packer.nvim)
+- Configure ssh key for github authentification [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- Catpuccin kde theme [here](https://github.com/catppuccin/kde), make sure to have lightly installed [here](https://github.com/Luwx/Lightly)
+*Note*: I use Frappé theme and sapphire accent
+- For icons, install tela icon theme [here](https://github.com/vinceliuice/Tela-icon-theme). 
+*Note*: I use tela dark icon theme
 
 # Notes
-- I installed neovim from the releases page on github because the apt installer
-hasn't the lastest version release, so I can avoid potential breakes and bugs.
-- I also stored my ssh and gpg keyphrase in Kwallet so I don't have to do
-over again. It's so annoying, but we do with what we have.
-- Overall debian apt installer might not have the latest versions of the requirements
-made above so be sure to verify the version of each one and install the lastest
-from the releases pages of their website or github repo to avoid bugs.
+- I changed from debian to fedora again for personal preference and because fedora has much more stable apps than debian does. I also didn't change the base font (Noto Sans) for my linux workflow. 
+- I changed from hack NerdFont to CaskaydiaCove NerdFont for much more readibility
+- I don't use gpg for verifying and signing commits anymore, for the moment as I don't really need to. Maybe I will have another opinion about it in the future
+- My entire workflow system is based on the catpuccin theme for personal preference and because I like it
+- Fonts downloaded must be copied to `$HOME/usr/share/fonts`
 - The repo is having many changes over time depending on my workflow.
 
-*ps : I used Hack font in my kitty.conf file configuration. If you would like
-another font (Firacode for example), then download FiraCode NerdFont and move
-the files in fonts config file location and change the name in kitty.conf from
-Hack to FiraCode*
 
 If you want to get the latest updates of the repo, don't forget to star it.
 
 Thanks for reading,
 Yushi
 
-last edit : 07/02/2023 - July, 2nd.
+last edit : 09/20/2023 - September 20th.
 
