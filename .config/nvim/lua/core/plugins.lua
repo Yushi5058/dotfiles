@@ -2,6 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  use 'caenrique/buffer-term.nvim'
   use { "catppuccin/nvim", as = "catppuccin" }
   use 'wakatime/vim-wakatime'
   use 'nvim-tree/nvim-web-devicons'
