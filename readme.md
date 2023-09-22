@@ -20,6 +20,7 @@ it work as expected.
 - Install CaskaydiaCove NerdFont [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip), 
  [preview](https://www.programmingfonts.org/#cascadia-code)
 - Install nodejs (npm included) and ripgrep (installed on most linux distros)
+- Install fd-finder [here](https://github.com/sharkdp/fd)
 - Install packer plugin manager (not bootstrapping because I have some problems with it) [here](https://github.com/wbthomason/packer.nvim)
 - Configure ssh key for github authentification [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 - Catpuccin kde theme [here](https://github.com/catppuccin/kde), make sure to have lightly installed [here](https://github.com/Luwx/Lightly)
