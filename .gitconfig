@@ -1,6 +1,6 @@
 [core]
 	editor = nvim
-    excludesfile = /home/yushi/.gitignore
+    excludesfile = $HOME/.gitignore
 
 [color]
     ui = true
@@ -11,7 +11,6 @@
 [user]
 	name = Yushi
 	email = yushi_61@proton.me
-	signingkey = A3B5A828AC810F45
 [github]
     user = Yushi5058
 [color "diff-highlight"]
@@ -20,8 +19,6 @@
     newNormal = "green bold"
     newHighlight = "green bold 22"
 
-    [commit]
-	gpgsign = true
 [format]
 	pretty = %Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset
 [help]
@@ -43,4 +40,3 @@
 
 [credential]
 	helper = cache --timeout=36000
-

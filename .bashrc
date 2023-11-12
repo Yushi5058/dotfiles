@@ -6,10 +6,11 @@ alias gc="git commit -m"
 alias gps="git push origin main"
 alias gi="git init"
 alias ga="git add"
-alias ls="ls --color=auto"
+alias ls="ls --color=auto" || "ls -a --color=auto"
 alias ll="ls -alh"
 alias c="clear"
 alias home="cd"
+alias vim="nvim"
 
 
 export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
