@@ -28,15 +28,8 @@ it work as expected.
 
 # Notes
 - The fonts files must be copied to $HOME/usr/share/fonts path to be used.
-- I will stick with fedora because it serves me more on my workflow and everyday
-use than Arch Linux. No need to be in arch to be a poweruser on Linux.
-- I'm still figuring out how to use keybindings on plasma for better workflow.
-
-# To-Do
-- make lsp work perfectly for every file extension
-- make telescope work
-- migrating from packer to lazy plugin manager
-- get used to fish shell
+- Will I use a tiling window manager on plasma kde or change completely to arch ??
+I don't know but I'm tempted ..
 
 
 If you want to get the latest updates of the repo, don't forget to star it.
