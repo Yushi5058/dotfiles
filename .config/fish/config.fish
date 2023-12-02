@@ -1,5 +1,7 @@
-export CLICOLOR=1
-export LANG="en_US.UTF-8"
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
 
 alias gs="git status"
 alias gc="git commit -m"
@@ -13,6 +15,3 @@ alias home="cd"
 alias vim="nvim"
 
 
-export PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-export EDITOR="nvim"
-export SVN_EDITOR="nvim"
