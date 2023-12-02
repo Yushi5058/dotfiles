@@ -1,33 +1,33 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
-	use { "catppuccin/nvim", as = "catppuccin" }
-	use 'xiyaowong/transparent.nvim'
-	use 'wakatime/vim-wakatime'
+
+
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use { "catppuccin/nvim", as = "catppuccin" }
+	use "wakatime/vim-wakatime"
 	use "lukas-reineke/indent-blankline.nvim"
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
-	use 'tpope/vim-commentary'
-	use 'lewis6991/gitsigns.nvim'
-	use 'tpope/vim-fugitive'
-	use 'nvim-lua/plenary.nvim'
-    use 'github/copilot.vim'
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+	use "tpope/vim-commentary"
+	use "lewis6991/gitsigns.nvim"
+	use "tpope/vim-fugitive"
+    use "github/copilot.vim"
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+    use "nvim-treesitter/playground"
 	use {
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		requires = { {"nvim-lua/plenary.nvim"} }
 	}
-	--   use 'andweeb/presence.nvim'
 	use "j-hui/fidget.nvim"
-	use('mbbill/undotree')
+	use "mbbill/undotree"
 	use "folke/neodev.nvim"
 	use {
 		"windwp/nvim-autopairs",
@@ -47,14 +47,12 @@ return require('packer').startup(function(use)
 		  {'hrsh7th/cmp-buffer'},
 		  {'hrsh7th/cmp-path'},
 		  {'hrsh7th/cmp-nvim-lsp'},
-                  {'hrsh7th/cmp-cmdline'},
-
 			-- Snippets
 			{'L3MON4D3/LuaSnip'},
 			{'saadparwaiz1/cmp_luasnip'},
 		}
 	}
-	use("theprimeagen/refactoring.nvim")
+	use "theprimeagen/refactoring.nvim"
 	use({
 		"folke/trouble.nvim",
 		config = function()
@@ -62,9 +60,11 @@ return require('packer').startup(function(use)
 				icons = false,
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
+    			-- refer to the configuration section below
 			}
-			use {
+        end
+    })
+			use ({
 				"folke/which-key.nvim",
 				config = function()
 					vim.o.timeout = true
@@ -75,8 +75,6 @@ return require('packer').startup(function(use)
 						-- refer to the configuration section below
 					}
 				end
-			}
-		end
 	})
 
 end)
