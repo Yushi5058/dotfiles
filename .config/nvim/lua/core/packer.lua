@@ -1,5 +1,16 @@
-vim.cmd.packadd('packer.nvim')
+-- Install packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
 
+local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
@@ -42,43 +53,23 @@ return require('packer').startup(function(use)
 			{'williamboman/mason.nvim'},
 			{'williamboman/mason-lspconfig.nvim'},
 
-		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},
-		  {'hrsh7th/cmp-buffer'},
-		  {'hrsh7th/cmp-path'},
-		  {'hrsh7th/cmp-nvim-lsp'},
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'hrsh7th/cmp-nvim-lsp'},
 			-- Snippets
 			{'L3MON4D3/LuaSnip'},
 			{'saadparwaiz1/cmp_luasnip'},
 		}
 	}
 	use "theprimeagen/refactoring.nvim"
-	use({
-		"folke/trouble.nvim",
-		config = function()
-			require("trouble").setup {
-				icons = false,
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-    			-- refer to the configuration section below
-			}
-        end
-    })
-			use ({
-				"folke/which-key.nvim",
-				config = function()
-					vim.o.timeout = true
-					vim.o.timeoutlen = 500
-					require("which-key").setup {
-						-- your configuration comes here
-						-- or leave it empty to use the default settings
-						-- refer to the configuration section below
-					}
-				end
-	})
+	use "folke/trouble.nvim"
 
+
+-- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
-
-
-
-
