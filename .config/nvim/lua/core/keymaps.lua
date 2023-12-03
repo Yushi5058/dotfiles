@@ -44,3 +44,14 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
+-- select all
+map("n", "<C-a>", "gg<S-v>G")
+
+-- Delete a word backwards
+map("n", "dw", 'vb"_d')
+
+-- Disable arrow keys for navigation
+map({ "n", "v", "i", "c" }, "<up>", "<nop>")
+map({ "n", "v", "i", "c" }, "<down>", "<nop>")
+map({ "n", "v", "i", "c" }, "<left>", "<nop>")
+map({ "n", "v", "i", "c" }, "<right>", "<nop>")
