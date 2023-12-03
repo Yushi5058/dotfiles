@@ -1,7 +1,7 @@
 # Web development
 /node_modules
 /public/assets
-/dist
+/
 
 
 # Default rules for other technologies
