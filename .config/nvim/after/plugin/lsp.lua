@@ -3,13 +3,14 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
-    'lua_ls',
-    'html',
-    'cssls',
-    'vuels',
-    'clangd',
-    'tailwindcss',
+	'tsserver',
+	'lua_ls',
+	'html',
+	'cssls',
+	'volar',
+	'clangd',
+	'tailwindcss',
+	'eslint'
 })
 
 -- Fix Undefined global 'vim'
