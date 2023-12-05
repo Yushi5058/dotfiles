@@ -22,7 +22,7 @@ it work as expected.
  [preview](https://www.programmingfonts.org/#daddytimemono)
 - Install nodejs (npm included) and ripgrep (installed on most linux distros)
 - Install fd-finder [here](https://github.com/sharkdp/fd)
-- Install packer plugin manager (not bootstrapping because I have some problems with it) [here](https://github.com/wbthomason/packer.nvim)
+- Install packer plugin manager [here](https://github.com/wbthomason/packer.nvim)
 - Configure ssh key for github authentification [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 - Install fish, fisher, tide for shell configuration
 
