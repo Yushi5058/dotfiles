@@ -3,15 +3,18 @@ if status is-interactive
 end
 
 
+set fish_greeting ""
+
+
 alias gs="git status"
 alias gc="git commit -m"
-alias gps="git push origin main"
+alias gp="git push origin"
 alias gi="git init"
-alias ga="git add"
-alias ls="ls --color=auto" || "ls -a --color=auto"
-alias ll="ls -alh"
+alias ga="git add %"
+alias ls="eza -a --icons"
+alias ll="eza --icons -alh"
 alias c="clear"
-alias home="cd"
+alias home="cd ~"
 alias vim="nvim"
-
-
+alias cat="bat"
+alias htop="btop"
