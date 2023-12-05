@@ -25,6 +25,7 @@ it work as expected.
 - Install packer plugin manager [here](https://github.com/wbthomason/packer.nvim)
 - Configure ssh key for github authentification [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 - Install fish, fisher, tide for shell configuration
+- Install bat (replacement for cat), btop (much better than htop imo), and eza (ls replacement)
 
 # Notes
 - The fonts files must be copied to $HOME/usr/share/fonts path to be used.
