@@ -15,6 +15,20 @@ also work for other distributions.
 If you would like to use my configuration, there are some requirements to make
 it work as expected.
 
+- post-installation guide of fedora : {
+-> edit /etc/dnf/dnf.conf to add `max_parallel_downloads=10` and `fastestmirror=true`
+-> install rpm-fusion : `sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
+
+-> install multimedia plugins : `sudo dnf install vlc
+sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+
+sudo dnf install lame\* --exclude=lame-devel
+
+sudo dnf group upgrade --with-optional Multimedia`
+
+}
 - Install kitty terminal [here](https://sw.kovidgoyal.net/kitty/binary/)
 - Install CaskaydiaCove NerdFont [here](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip),
  [preview](https://www.programmingfonts.org/#cascadia-code)
@@ -24,17 +38,14 @@ it work as expected.
 - Install fd-finder [here](https://github.com/sharkdp/fd)
 - Install packer plugin manager [here](https://github.com/wbthomason/packer.nvim)
 - Configure ssh key for github authentification [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- Install fish, fisher, tide for shell configuration
-- Install bat (replacement for cat), btop (much better than htop imo), and eza (ls replacement)
-
-# Notes
+- Install fish
+- Install bat (replacement for cat), eza (replacement for ls), and btop (replacement for htop)
+- Switching desktop environments from gnome to kde with `dnf group install @kde-environment` and install switchdesk 
+- Upgrade to the latest release with `sudo dnf system-upgrade download --releasever=39` for fedora 39 for example
+- Touchpad enable tap-to-click and natural scrolling (invert scroll)
+- Connect to whatsapp web and discord, connect to mozilla account for firefox sync extensions
+- Activate night control 
+- Install spotify trough flatpak 
+- Don't forget to add flathub : `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
 - The fonts files must be copied to $HOME/usr/share/fonts path to be used.
-- Will I use a tiling window manager on plasma kde or change completely to arch ??
-I don't know but I'm tempted ..
-
-
-If you want to get the latest updates of the repo, don't forget to star it.
-
-Thanks for reading,
-Yushi
 
