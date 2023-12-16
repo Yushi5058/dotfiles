@@ -59,4 +59,7 @@ sudo dnf group upgrade --with-optional Multimedia
 - Install spotify trough flatpak 
 - Don't forget to add flathub : `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
 - The fonts files must be copied to $HOME/usr/share/fonts path to be used.
+- Install neovim from dnf, and neovim with npm `npm install -g neovim`
+- Install clang compiler for neovim treesitter `dnf install clang`
+- Install lazygit for neovim [here](https://github.com/jesseduffield/lazygit#installation)
 
