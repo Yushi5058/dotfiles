@@ -17,16 +17,24 @@ it work as expected.
 
 - post-installation guide of fedora : {
 -> edit /etc/dnf/dnf.conf to add `max_parallel_downloads=10` and `fastestmirror=true`
--> install rpm-fusion : `sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+
+-> install rpm-fusion : 
+```
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 
 sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
+```
 
--> install multimedia plugins : `sudo dnf install vlc
+-> install multimedia plugins : 
+```
+sudo dnf install vlc
 sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
 
 sudo dnf install lame\* --exclude=lame-devel
 
-sudo dnf group upgrade --with-optional Multimedia`
+sudo dnf group upgrade --with-optional Multimedia
+
+```
 
 }
 - Install kitty terminal [here](https://sw.kovidgoyal.net/kitty/binary/)
