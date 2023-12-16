@@ -15,7 +15,10 @@ also work for other distributions.
 If you would like to use my configuration, there are some requirements to make
 it work as expected.
 
-- post-installation guide of fedora : {
+- post-installation guide of fedora : 
+
+{
+
 -> edit /etc/dnf/dnf.conf to add `max_parallel_downloads=10` and `fastestmirror=true`
 
 -> install rpm-fusion : 
