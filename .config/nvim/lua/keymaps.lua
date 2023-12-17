@@ -5,8 +5,20 @@ local map = vim.keymap.set
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
--- Use netrw
-map('n', '<leader>pv', vim.cmd.Ex)
+-- use jk to exit insert mode
+map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+
+
+-- netrw file explorer
+map('n', '<leader>pv', ':Ex<CR>')
+
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
 
 
 -- Move to window using the <ctrl> hjkl keys
@@ -44,14 +56,12 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
+-- lazy
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
 -- select all
 map("n", "<C-a>", "gg<S-v>G")
 
 -- Delete a word backwards
 map("n", "dw", 'vb"_d')
 
--- Disable arrow keys for navigation
-map({ "n", "v", "i", "c" }, "<up>", "<nop>")
-map({ "n", "v", "i", "c" }, "<down>", "<nop>")
-map({ "n", "v", "i", "c" }, "<left>", "<nop>")
-map({ "n", "v", "i", "c" }, "<right>", "<nop>")
