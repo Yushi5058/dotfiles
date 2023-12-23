@@ -1,18 +1,20 @@
+# About the project
+
 -> _These are my dotfiles, don't use it unless you know what each line of code means._
 
-# Requirements
+## Requirements
 
 - Fedora 39 or insert last version
 
-# Usage
+## Usage
 
-## Post-installation guide
+### Post-installation guide
 
 ![dnf config](./assets/dnf.conf.png)
 ![rpm fusion](./assets/rpm_fusion.png)
 ![multimedia plugins](./assets/multimedia_plugins.png)
 
-## Apps
+### Apps
 
 ![apps](./assets/apps.png)
 
@@ -20,7 +22,7 @@
 - Install [getnf](https://github.com/ronniedroid/getnf) for nerd-fonts install easily.
 - Install [oh-my-zsh](https://ohmyz.sh/#install)
 
-## Utils
+### Utils
 
 - Configure [ssh-key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
   for github authentication.
@@ -28,6 +30,8 @@
 - Activate night control in settings.
 - Enable touchpad tap-to-click and natural scrolling in settings.
 
-# Note
+## Note
 
 The dotfiles are in constant change. Refer to commits for old configurations.
+nvim-config was brought thanks to folke's [lazyvim](https://www.lazyvim.org/)
+and devaslife's [dotfiles](https://github.com/craftzdog/dotfiles-public/)
