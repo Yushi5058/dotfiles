@@ -9,7 +9,7 @@
 ## Post-installation guide
 
 ![dnf config](./assets/dnf.conf.png)
-![rpm fusion](./assets/rpmfusion.png)
+![rpm fusion](./assets/rpm_fusion.png)
 ![multimedia plugins](./assets/multimedia_plugins.png)
 
 ## Apps
