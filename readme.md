@@ -1,6 +1,6 @@
 # About the project
 
-\__These are my dotfiles, don't use it unless you know what each line of code means._
+_These are my dotfiles, don't use it unless you know what each line of code means._
 
 ## Requirements
 
@@ -10,20 +10,21 @@
 - Wezterm, bat, eza, btop, neovim, clang
 - Spotify (flatpak), OBS-studio(rpm fusion), Min browser
 - Discord (flatpak)
+- Flameshot
 - Zsh shell with oh-my-zsh framework
 
 ## Usage
 
 ### Post-installation guide
 
-- edit /etc/dnf/dnf.conf\_
+_edit /etc/dnf/dnf.conf_
 
 ```bash
 max_parallels_downloads = 10
 fastestmirror = true
 ```
 
-- install rpm fusion free and non free\_
+_install rpm fusion free and non free_
 
 ```bash
 $ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -31,7 +32,7 @@ $ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-rele
 
 source: [here](https://rpmfusion.org/Configuration)
 
-- install multimedia plugins\_
+_install multimedia plugins_
 
 ```bash
 $ sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-plugin-libav --exclude=gstreamer1-plugins-bad-free-devel
@@ -45,7 +46,7 @@ $ sudo dnf install ffmpeg libavcodec-freeworld --best --allowerasing
 
 source: [here](https://docs.fedoraproject.org/en-US/quick-docs/installing-plugins-for-playing-movies-and-music/)
 
-- add flatpak's remote: flathub\_
+_add flatpak's remote: flathub_
 
 ```bash
 $ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
