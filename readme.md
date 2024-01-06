@@ -54,6 +54,12 @@ $ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub
 
 source: [here](https://flathub.org/setup/Fedora)
 
+_install kde plasma de-environment_
+
+```bash
+$ sudo dnf install @kde-desktop-environment
+```
+
 ### Apps
 
 - Install apps : Wezterm, btop, eza, bat, neovim, clang, obs-studio, min-browser,
