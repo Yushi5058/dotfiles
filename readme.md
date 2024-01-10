@@ -1,7 +1,7 @@
 # About the project
 
 _These are my dotfiles, don't use it unless you know what each line of code means._
-\_The dotfiles are managed by [chezmoi](chezmoi.io)
+_The dotfiles are managed by [chezmoi](chezmoi.io)_
 
 ## Requirements
 
