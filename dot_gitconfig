@@ -1,0 +1,42 @@
+[core]
+	editor = nvim
+    excludesfile = $HOME/.gitignore
+
+[color]
+    ui = true
+    status = auto
+    diff = auto
+    branch = auto
+    grep = auto
+[user]
+	name = Yushi
+	email = yushi_61@proton.me
+[github]
+    user = Yushi5058
+[color "diff-highlight"]
+    oldNormal = "red bold"
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
+
+[format]
+	pretty = %Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset
+[help]
+  autocorrect = 1
+
+[tig]
+	tab-size = 4
+	line-graphics = utf-8
+	main-view = line-number:no,interval=5 id:yes date:default author:full commit-title:yes,graph,refs,overflow=no
+	diff-highlight = true
+	mouse = true
+ [url "git@github.com:"]
+ 	insteadOf = https://github.com/
+[init]
+  defaultBranch = main
+
+[pull]
+    rebase = true
+
+[credential]
+	helper = cache --timeout=3600
