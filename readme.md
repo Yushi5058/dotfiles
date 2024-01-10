@@ -1,6 +1,7 @@
 # About the project
 
 _These are my dotfiles, don't use it unless you know what each line of code means._
+\_The dotfiles are managed by [chezmoi](chezmoi.io)
 
 ## Requirements
 
@@ -9,9 +10,10 @@ _These are my dotfiles, don't use it unless you know what each line of code mean
 - Multimedia plugins
 - Wezterm, bat, eza, btop, neovim, clang
 - Spotify (flatpak), OBS-studio(rpm fusion), Min browser
-- Discord (flatpak)
+- Discord (flatpak), Obsidian(flatpak)
 - Flameshot
 - Zsh shell with oh-my-zsh framework
+- xplr file explorer
 
 ## Usage
 
@@ -63,8 +65,8 @@ $ sudo dnf install @kde-desktop-environment
 ### Apps
 
 - Install apps : Wezterm, btop, eza, bat, neovim, clang, obs-studio, min-browser,
-  flameshot
-- Install flatpak apps: spotify
+  flameshot, xplr
+- Install flatpak apps: spotify, discord, obsidian
 - Install nodejs dependencies eg. neovim
 - Install oh-my-zsh framework [here](https://ohmyz.sh/#install)
 
