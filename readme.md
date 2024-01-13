@@ -13,7 +13,7 @@ _The dotfiles are managed by [chezmoi](https://www.chezmoi.io/)_
 - Spotify (flatpak), OBS-studio(rpm fusion), Min browser
 - Discord (flatpak), Obsidian(flatpak)
 - Flameshot
-- Zsh shell with oh-my-zsh framework
+- Zsh shell with zap plugin manager and starship prompt
 - xplr file explorer
 
 ## Usage
@@ -69,7 +69,7 @@ $ sudo dnf install @kde-desktop-environment
   flameshot, xplr
 - Install flatpak apps: spotify, discord, obsidian
 - Install nodejs dependencies eg. neovim
-- Install oh-my-zsh framework [here](https://ohmyz.sh/#install)
+- Install zap zsh plugin manager and starship prompt
 
 ### Utils
 
