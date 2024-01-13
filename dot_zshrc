@@ -10,3 +10,12 @@ autoload -Uz compinit
 compinit
 
 eval "$(starship init zsh)"
+
+
+alias c="clear"
+alias cat="bat"
+alias htop="btop"
+alias vim="nvim"
+alias home="cd"
+alias update="sudo dnf update -y"
+alias fupdate="flatpak update -y"
