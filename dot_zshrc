@@ -1,3 +1,16 @@
+# If you come from bash you might have to change your $PATH.
+ export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+
+# make nvim the default editor : 
+ export EDITOR=nvim
+
+
+# detect chezmoi
+ export CHEZMOI=$HOME/bin/chezmoi
+
+
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
@@ -19,6 +32,11 @@ alias htop="btop"
 alias vim="nvim"
 alias home="cd"
 alias update="sudo dnf update -y"
+alias fupdate="flatpak update -y"
+alias gcc="git commit -m"
+alias gs="git status"
+alias gp="git push origin main"
+alias ga="git add"
 
 eval "$(starship init zsh)"
 
