@@ -25,6 +25,21 @@ autoload -Uz compinit
 compinit
 
 
+# Custom ys-style prompt
+ys_prompt() {
+  local user_prompt="%n" # username
+  local host_prompt="%m" # hostname
+  local dir_prompt="%2~" # current directory, shortened to 2 segments
+  local git_prompt="%F{yellow}%$(git_prompt_info)%f" # Git prompt
+  local prompt_char="%F{cyan}%B❯%b%f " # prompt character
+
+  PROMPT="${user_prompt}@${host_prompt}:${dir_prompt}${git_prompt}${prompt_char}"
+}
+
+# Set the prompt
+ys_prompt
+
+
 # aliases
 alias c="clear"
 alias cat="bat"
