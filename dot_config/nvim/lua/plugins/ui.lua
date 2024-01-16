@@ -42,4 +42,10 @@ return {
     },
   },
   keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+}, {
+  "gelguy/wilder.nvim",
+  config = function()
+    local wilder = require("wilder")
+    wilder.setup({ modes = { ":", "/", "?" } })
+  end,
 }
