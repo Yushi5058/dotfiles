@@ -6,6 +6,9 @@ local keymap = vim.keymap
 -- Escape visual / insert mode
 keymap.set({ "i", "v" }, "jk", "<Esc>")
 
+-- Netrw file explorer
+keymap.set("n", "<leader>pv", "<cmd>Ex<cr>")
+
 -- Move line up/down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
