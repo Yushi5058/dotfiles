@@ -1,61 +1,86 @@
 return {
-  -- animate cursor
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      opts.scroll = {
-        enable = false,
-      }
-    end,
-  },
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = function(_, opts)
-      local logo = [[
-██╗   ██╗██╗   ██╗███████╗██╗  ██╗██╗
-╚██╗ ██╔╝██║   ██║██╔════╝██║  ██║██║
- ╚████╔╝ ██║   ██║███████╗███████║██║
-  ╚██╔╝  ██║   ██║╚════██║██╔══██║██║
-   ██║   ╚██████╔╝███████║██║  ██║██║
-   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝
-
-]]
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
-    end,
-  },
-}, {
-  "rcarriga/nvim-notify",
-  opts = {
-    timeout = 5000,
-  },
-}, {
-  "folke/zen-mode.nvim",
-  cmd = "ZenMode",
-  opts = {
-    plugins = {
-      gitsigns = true,
-      tmux = true,
-      kitty = { enabled = false, font = "+2" },
-    },
-  },
-  keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-}, {
-  "gelguy/wilder.nvim",
-  config = function()
-    local wilder = require("wilder")
-    wilder.setup({ modes = { ":", "/", "?" } })
-    wilder.set_option("pipeline", {
-      wilder.branch(wilder.cmdline_pipeline(), wilder.search_pipeline()),
-    })
-
-    wilder.set_option(
-      "renderer",
-      wilder.wildmenu_renderer({
-        highlighter = wilder.basic_highlighter(),
-      })
-    )
-  end,
+	{
+		"echasnovski/mini.nvim",
+		version = false,
+		config = function()
+			require("mini.cursorword").setup()
+			require("mini.indentscope").setup()
+			require("mini.pairs").setup()
+			require("mini.surround").setup()
+		end,
+	},
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					theme = "catppuccin",
+					component_separators = "|",
+					section_separators = "",
+				},
+			})
+		end,
+	},
+	{
+		"folke/neodev.nvim",
+		opts = {},
+		config = function()
+			require("neodev").setup()
+		end,
+	},
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
+		config = function()
+			require("dressing").setup()
+		end,
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		config = function()
+			vim.keymap.set("n", "<leader>xq", function()
+				require("trouble").toggle("quickfix")
+			end)
+		end,
+	},
+	{
+		"jiaoshijie/undotree",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = true,
+		keys = { -- load the plugin only when using it's keybinding:
+			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+		},
+	},
+	{
+		-- amongst your other plugins
+		{
+			"akinsho/toggleterm.nvim",
+			version = "*",
+			config = function()
+				require("toggleterm").setup()
+				vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>")
+			end,
+		},
+	},
 }
