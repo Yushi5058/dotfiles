@@ -17,7 +17,7 @@ return {
 			"nvim-treesitter",
 		},
 		opts = {
-			dir = "~/Documents/Obsidian",
+			dir = "~/Obsidian Vault/",
 			completion = {
 				nvim_cmp = true,
 			},
