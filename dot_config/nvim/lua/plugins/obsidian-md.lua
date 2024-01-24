@@ -8,6 +8,7 @@ return {
 			{ "<c-o>", "<cmd>ObsidianOpen<cr>" },
 			{ "<c-n>", "<cmd>ObsidianNew<cr>" },
 			{ "<leader>fo", "<cmd>ObsidianSearch<cr>" },
+			{ "<leader>fs", "<cmd>ObsidianQuickSwitch<cr>" },
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
