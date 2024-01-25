@@ -7,7 +7,7 @@ return {
 	config = function()
 		require("oil").setup({
 
-			use_default_keymaps = false,
+			use_default_keymaps = true,
 			view_options = {
 				-- Show files and directories that start with "."
 				show_hidden = true,
