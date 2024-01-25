@@ -81,4 +81,5 @@ $ sudo dnf install @kde-desktop-environment
 
 ## Note
 
-The dotfiles are in constant change.
+* The dotfiles are in constant change. (WIP)
+* I will probably us Endeavour OS in the future.
