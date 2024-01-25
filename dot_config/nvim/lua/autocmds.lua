@@ -26,3 +26,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.conceallevel = 1
 	end,
 })
+
+-- Remove colorcolumn when oil is enabled
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "oil",
+	callback = function()
+		vim.opt_local.colorcolumn = ""
+	end,
+})
