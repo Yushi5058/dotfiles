@@ -1,10 +1,9 @@
 return {
-	{
-		"stevearc/oil.nvim",
-		opts = {},
-		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
+
+	"stevearc/oil.nvim",
+	opts = {},
+	-- Optional dependencies
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keymaps = {
 		["g?"] = "actions.show_help",
 		["<CR>"] = "actions.select",
