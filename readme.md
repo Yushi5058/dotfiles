@@ -66,7 +66,7 @@ $ sudo dnf install @kde-desktop-environment
 ### Apps
 
 - Install apps : Wezterm, btop, eza, bat, neovim, clang, obs-studio, min-browser,
-  flameshot, xplr
+  flameshot, xplr, fim
 - Install flatpak apps: spotify, discord, obsidian
 - Install nodejs dependencies eg. neovim
 - Install zap zsh plugin manager and starship prompt
