@@ -38,7 +38,7 @@ return {
 		"ellisonleao/glow.nvim",
 		config = function()
 			require("glow").setup()
-			vim.keymap.set("n", "<c-m>", "<cmd>Glow<cr>")
+			vim.keymap.set("n", "<leader>md", "<cmd>Glow<cr>")
 		end,
 	},
 }
