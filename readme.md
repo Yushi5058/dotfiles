@@ -4,6 +4,10 @@ _These are my dotfiles, don't use it unless you know what each line of code mean
 
 _The dotfiles are managed by [chezmoi](https://www.chezmoi.io/)_
 
+```bash
+$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
+```
+
 ## Requirements
 
 - Fedora 39
