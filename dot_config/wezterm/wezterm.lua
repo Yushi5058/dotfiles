@@ -6,6 +6,7 @@ if wezterm.config_builder then
 end
 
 -- settings
+config.color_scheme = "Catppuccin Frappe"
 config.font = wezterm.font_with_fallback({
 	{ family = "Hack Nerd Font", scale = 1.24, weight = "Medium" },
 	{ family = "CaskaydiaCove Nerd Font", scale = 1.2 },
