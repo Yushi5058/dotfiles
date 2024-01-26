@@ -1,3 +1,7 @@
+# execute applications 
+exec mako
+
+
 # Set default font
 font pango: DaddyMonoTime NF Medium 16
 
@@ -23,8 +27,7 @@ set $menu wofi --show run
 
 # set swaylock
 
-set $lock swaylock --screenshots --effect-blur 7x7 --effect-vignette 0.5:0.5 --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2
-        
+set $lock swaylock         
 # Font for window titles
 
 
