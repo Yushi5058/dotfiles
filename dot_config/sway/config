@@ -65,7 +65,6 @@ output * bg ~/Downloads/yourname_bg.png fill
 # keyboard input
 input * {
     xkb_layout fr
-    xkb_options ctrl:nocaps
 }
 
 # touchpad input
@@ -92,7 +91,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set +5%
 
 
 # Set shut down, restart and locking features
-modm "system" {
+mode "system" {
     bindsym l exec --no-startup-id $lock, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot -i, mode "default"
