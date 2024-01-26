@@ -1,5 +1,6 @@
 # execute applications 
 exec mako
+bindsym space exec makoctl dismiss-all
 
 
 # Set default font
