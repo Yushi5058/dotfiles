@@ -1,7 +1,7 @@
 return {
 	"theprimeagen/harpoon",
 	dependencies = {
-		"nvim-lua/plenary.lua",
+		"nvim-lua/plenary.nvim",
 	},
 	config = function()
 		require("harpoon").setup()
