@@ -9,12 +9,15 @@ _The dotfiles are managed by [chezmoi](https://www.chezmoi.io/)_
 - Fedora 39
 - Rpm fusion free and non-free
 - Multimedia plugins
-- Wezterm, bat, eza, btop, neovim, clang
+- Wezterm, bat, eza, btop, neovim
 - Spotify (flatpak), OBS-studio(rpm fusion), Min browser
 - Discord (flatpak), Obsidian(flatpak)
-- Flameshot
+- Flameshot (screenshoot)
 - Zsh shell with zap plugin manager and starship prompt
 - xplr file explorer
+* linked (journaling), steam, krita
+* caffeine-ng
+- kvantum-manager with graphite kde theme, tela-dark icon, and breeze cursor
 
 ## Usage
 
