@@ -8,6 +8,7 @@ return {
 			require("mini.pairs").setup()
 			require("mini.surround").setup()
 			require("mini.animate").setup()
+			require("mini.comment").setup()
 		end,
 	},
 	{
