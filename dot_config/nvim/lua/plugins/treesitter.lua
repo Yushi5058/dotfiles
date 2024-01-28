@@ -22,6 +22,12 @@ return {
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = false,
+				disable = function()
+					-- check if 'filetype' option includes 'chezmoitmpl'
+					if string.find(vim.bo.filetype, "chezmoitmpl") then
+						return true
+					end
+				end,
 			},
 			indent = { enable = true },
 		})
