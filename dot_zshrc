@@ -39,4 +39,9 @@ alias ga="git add"
 
 eval "$(starship init zsh)"
 
+# ruby stuff
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+eval "$(~/.rbenv/bin/rbenv init - zsh)"
+
 
