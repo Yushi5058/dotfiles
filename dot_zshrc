@@ -3,6 +3,8 @@
 # make nvim the default editor : 
  export EDITOR=nvim
 
+ export rubyfmt_path = $HOME/Documents/rubyfmt/target/release/*
+
 
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
