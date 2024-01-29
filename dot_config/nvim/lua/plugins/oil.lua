@@ -6,7 +6,6 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("oil").setup({
-
 			use_default_keymaps = true,
 			view_options = {
 				-- Show files and directories that start with "."
@@ -27,5 +26,6 @@ return {
 		vim.keymap.set("n", "<leader>pv", function()
 			require("oil").toggle_float()
 		end)
+		vim.keymap.set("n", "<Esc>", "<cmd>q<cr>")
 	end,
 }
