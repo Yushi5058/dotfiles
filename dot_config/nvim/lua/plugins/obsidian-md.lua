@@ -10,18 +10,26 @@ return {
 			"nvim-telescope/telescope.nvim",
 			"preservim/vim-markdown",
 		},
+		keys = {
+			{ "<leader>oo", "<cmd>ObsidianOpen<cr>" },
+			{ "<leader>on", "<cmd>ObsidianNew<cr>" },
+			{ "<leader>oT", "<cmd>ObsidianTemplate<cr>" },
+			{ "<leader>ot", "<cmd>ObsidianToday<cr>" },
+			{ "<leader>oy", "<cmd>ObsidianYesterday<cr>" },
+			{ "<leader>ol", "<cmd>ObsidianLink<cr>" },
+			{ "<leader>oL", "<cmd>ObsidianLinkNew<cr>" },
+			{ "<leader>ob", "<cmd>ObsidianBacklinks<cr>" },
+			{ "<leader>os", "<cmd>ObsidianSearch<cr>" },
+			{ "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>" },
+		},
 		opts = {
-			workspaces = {
-				{
-					name = "personal",
-					path = "~/Obsidian Vault/",
-				},
+			dir = "~/Obsidian Vault/",
+			completion = {
+				nvim_cmp = true,
 			},
 		},
-		config = function()
-			require("obsidian").setup()
-			vim.keymap.set("n", "<c-n>", "<cmd>ObsidianNew<cr>")
-			vim.keymap.set("n", "<c-o", "<cmd>ObsidianQuickSwitch<cr>")
+		config = function(_, opts)
+			require("obsidian").setup(opts)
 		end,
 	},
 	{
