@@ -26,6 +26,5 @@ return {
 		vim.keymap.set("n", "<leader>pv", function()
 			require("oil").toggle_float()
 		end)
-		vim.keymap.set("n", "<Esc>", "<cmd>q<cr>")
 	end,
 }
