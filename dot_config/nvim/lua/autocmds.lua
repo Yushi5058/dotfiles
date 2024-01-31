@@ -13,17 +13,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = vim.api.nvim_create_augroup("edit_text", { clear = true }),
 	pattern = { "gitcommit", "markdown", "txt" },
 	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
+		vim.wo.wrap = true
+		vim.wo.spell = true
 	end,
 })
 
 -- Disable the concealing in some file formats
 -- The default conceallevel is 3 in LazyVim
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown" },
+	pattern = { "*" },
 	callback = function()
-		vim.opt.conceallevel = 1
+		vim.wo.conceallevel = 2
 	end,
 })
 
