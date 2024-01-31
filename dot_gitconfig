@@ -10,7 +10,8 @@
     grep = auto
 [user]
 	name = Yushi
-	email = yushi_61@proton.me
+    email = yushi_61@proton.me
+    signingkey = BFD3CCB5F96449FAD86F41EF043CF88FE03E4D6C
 [github]
     user = Yushi5058
 [color "diff-highlight"]
@@ -40,3 +41,5 @@
 
 [credential]
 	helper = cache --timeout=3600
+[commit]
+	gpgsign = true
