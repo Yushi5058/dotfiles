@@ -52,3 +52,11 @@ keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnos
 keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 keymap.set("n", "<leader>d", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
