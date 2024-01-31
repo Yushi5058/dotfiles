@@ -8,7 +8,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
-			"preservim/vim-markdown",
 		},
 		keys = {
 			{ "<C-o>", "<cmd>ObsidianOpen<cr>" },
@@ -29,7 +28,7 @@ return {
 		"ellisonleao/glow.nvim",
 		config = function()
 			require("glow").setup()
-			vim.keymap.set("n", "<c-g", "<cmd>Glow<cr>")
+			vim.keymap.set("n", "<leader>g", "<cmd>Glow<cr>")
 		end,
 	},
 }
