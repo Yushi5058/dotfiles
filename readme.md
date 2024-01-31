@@ -80,7 +80,7 @@ $ sudo dnf install @kde-desktop-environment
 
 ### Utils
 
-- Configure [ssh-key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- Configure [gpg-key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
   for github authentication.
 - Use DaddyTimeMono NF for usage font and Hack NF for code font.
 - Activate night control in settings.
