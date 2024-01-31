@@ -1,28 +1,50 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		lazy = false,
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "tsserver", "remark_ls", "ruby_ls" },
-				auto_install = true,
-			})
-		end,
+		lazy = false,
+		opts = {
+			auto_install = true,
+		},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.clangd.setup({})
-			lspconfig.tsserver.setup({})
-			lspconfig.remark_ls.setup({})
-			lspconfig.ruby_ls.setup({})
+
+			local servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							workspace = { checkThirdParty = false },
+							telemetry = { enabled = false },
+						},
+					},
+				},
+				clangd = {},
+				tsserver = {},
+				marksman = {},
+				ruby_ls = {},
+				html = {},
+				cssls = {},
+				tailwindcss = {},
+				jsonls = {},
+				bashls = {},
+			}
+
+			-- Iterate over our servers and set them up
+			for name in pairs(servers) do
+				lspconfig[name].setup({
+					capabilities = capabilities,
+				})
+			end
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
