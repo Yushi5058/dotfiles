@@ -20,11 +20,3 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_conceallevel = 2
 	end,
 })
-
--- default conceal level
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "*" },
-	callback = function()
-		vim.opt_conceallevel = 3
-	end,
-})
