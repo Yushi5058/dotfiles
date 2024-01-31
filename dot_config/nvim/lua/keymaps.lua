@@ -22,8 +22,8 @@ keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Increment/decrement
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
+keymap.set("n", "+", "<C-up>")
+keymap.set("n", "-", "<C-down")
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
