@@ -2,6 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		"fladson/vim-kitty",
 	},
 	build = ":TSUpdate",
 	config = function()
