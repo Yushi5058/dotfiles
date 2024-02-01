@@ -6,7 +6,7 @@
  export rubyfmt_path=$HOME/Documents/rubyfmt/target/release
 
  
-. "$HOME/.asdf/asdf.sh"
+#. "$HOME/.asdf/asdf.sh"
 
 
 # detect chezmoi
