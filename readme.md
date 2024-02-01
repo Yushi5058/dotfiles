@@ -17,7 +17,7 @@ $ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 - Spotify (flatpak), OBS-studio(rpm fusion), Min browser
 - Discord (flatpak), Obsidian(flatpak)
 - Flameshot (screenshoot)
-- Zsh shell with zap plugin manager and starship prompt
+- Zsh shell with zap plugin manager
 - xplr file explorer
 * linked (journaling), steam, krita
 * caffeine-ng
@@ -76,7 +76,7 @@ $ sudo dnf install @kde-desktop-environment
   flameshot, xplr, fim
 - Install flatpak apps: spotify, discord, obsidian
 - Install nodejs dependencies eg. neovim
-- Install zap zsh plugin manager and starship prompt
+- Install zap zsh plugin manager
 
 ### Utils
 
