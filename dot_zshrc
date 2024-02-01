@@ -17,6 +17,8 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "z-shell/F-Sy-H"
+plug "zap-zsh/zap-prompt"
+
 
 
 # Load and initialise completion system
@@ -26,6 +28,7 @@ compinit
 
 
 # aliases
+alias z="zellij"
 alias c="clear"
 alias cat="bat"
 alias htop="btop"
