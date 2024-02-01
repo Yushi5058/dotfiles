@@ -15,7 +15,7 @@ return {
 		})
 
 		vim.keymap.set("n", "<leader>nt", function()
-			require("neotest").run.run()
+			require("neotest").run.run(vim.fn.expand("%"))
 		end)
 	end,
 }
