@@ -13,7 +13,7 @@ $ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 - Fedora 39
 - Rpm fusion free and non-free
 - Multimedia plugins
-- Wezterm, bat, eza, btop, neovim
+- Kitty terminal, bat, eza, btop, neovim
 - Spotify (flatpak), OBS-studio(rpm fusion), Min browser
 - Discord (flatpak), Obsidian(flatpak)
 - Flameshot (screenshoot)
@@ -72,7 +72,7 @@ $ sudo dnf install @kde-desktop-environment
 
 ### Apps
 
-- Install apps : Wezterm, btop, eza, bat, neovim, clang, obs-studio, min-browser,
+- Install apps : Kitty terminal, btop, eza, bat, neovim, clang, obs-studio, min-browser,
   flameshot, xplr, fim
 - Install flatpak apps: spotify, discord, obsidian
 - Install nodejs dependencies eg. neovim
@@ -90,3 +90,4 @@ $ sudo dnf install @kde-desktop-environment
 
 * The dotfiles are in constant change. (WIP)
 * I will probably use Endeavour OS in the future.
+* I will use scripts to automate the installation of my apps in the future.
