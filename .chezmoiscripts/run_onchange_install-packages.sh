@@ -29,6 +29,11 @@ install_package bat
 install_package eza
 install_package zsh
 install_package zellij
+install_package nodejs
+install_package ripgrep
+install_package fd
+install_package xplr
+install_package kvantum
 
 # Install applications via Flatpak if not found
 if ! command -v spotify &>/dev/null; then
