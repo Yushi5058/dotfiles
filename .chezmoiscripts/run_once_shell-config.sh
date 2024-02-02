@@ -13,7 +13,7 @@ echo "Default shell changed to zsh."
 
 # Run zap update to update and install plugins
 echo "Running 'zap update' to update and install Zsh plugins..."
-zap update
+zap update all
 
 echo "Please log out and log back in for changes to take effect."
 
