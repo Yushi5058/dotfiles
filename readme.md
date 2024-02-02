@@ -24,7 +24,10 @@ $ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 Spotify, Kitty Terminal, Discord, Whatsie (flatpak), Firefox, Krita, Neovim,
 Xplr, Btop, Bat, Eza, Zellij, Obsidian, Nodejs
 
-
+### Theme 
+- Catppuccin Frappe Blue KDE Theme [here](https://github.com/catppuccin/kde)
+- Tela Dark Icon Theme [here](https://github.com/vinceliuice/Tela-icon-theme)
+- Lightly Window Style Theme [here](https://github.com/Luwx/Lightly)
 ### Utils
 
 - Configure [SSH-Key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)for github signing commits.
