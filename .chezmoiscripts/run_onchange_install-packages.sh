@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -eufo pipefail
+echo -e "\033[0;32m>>>>> Begin Setting Up Arch Linux Packages <<<<<\033[0m"
+
 # Function to install package using pacman or yay if available
 install_package() {
     if pacman -Q "$1" &>/dev/null || yay -Q "$1" &>/dev/null; then
@@ -45,3 +48,5 @@ if ! command -v obsidian &>/dev/null; then
     echo "Installing Obsidian via Flatpak"
     flatpak install flathub md.obsidian.Obsidian -y
 fi
+
+echo -e "\033[0;32m>>>>> Finish Setting Up Arch Linux Packages <<<<<\033[0m"
