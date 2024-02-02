@@ -21,20 +21,18 @@ $ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
  * system update
 
 ### Apps
-Apps are installed automatically with scripts. Some apps need to be installed 
-manually for the moment being. 
-* Min Browser
-* Linked journaling app 
+Spotify, Kitty Terminal, Discord, Whatsie (flatpak), Firefox, Krita, Neovim,
+Xplr, Btop, Bat, Eza, Zellij, Obsidian, Nodejs
+
 
 ### Utils
 
-- Configure [gpg-key](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
-  for github signing commits.
-* Use DaddyTimeMono NF for normal usage. 
+- Configure [SSH-Key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)for github signing commits.
+* Use DaddyTimeMono NF Regular for normal usage. 
 * Use [maple-font](https://github.com/subframe7536/Maple-font/releases) for developer/ programming usage.
 
-## Note
+## Notes
 
 * The dotfiles are in constant change. (WIP)
-* I will probably use Endeavour OS in the future. (once used, it will be deleted).
-I use actually fedora 39, the scripts don't work for fedora.
+* Script install for packages (apps) will be used in the future.
+* Private encryption with chezmoi and age for ssh key will be used in the future.
