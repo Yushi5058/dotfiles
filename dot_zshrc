@@ -3,7 +3,6 @@
 # make nvim the default editor : 
  export EDITOR=nvim
 
-#. "$HOME/.asdf/asdf.sh"
 
 
 # detect chezmoi
@@ -41,9 +40,8 @@ alias gs="git status"
 alias gp="git push origin main"
 alias ga="git add"
 
-# ruby stuff
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-eval "$(~/.rbenv/bin/rbenv init - zsh)"
+
+
+eval "$(rbenv init - zsh)"
 
 
