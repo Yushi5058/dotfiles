@@ -21,7 +21,7 @@ $ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
  * system update
 
 ### Apps
-Spotify, Kitty Terminal, Discord, Whatsie (flatpak), Firefox, Krita, Neovim,
+Spotify, Kitty Terminal, Discord, Whatsapp-for-linux, Firefox, Krita, Neovim,
 Xplr, Btop, Bat, Eza, Zellij, Obsidian, Nodejs, Pfetch, Flameshot, Min-browser
 
 ### Theme 
