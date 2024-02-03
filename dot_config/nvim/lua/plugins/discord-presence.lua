@@ -1,7 +1,6 @@
 return {
 	"andweeb/presence.nvim",
 	config = function()
-		-- The setup config table shows all available config options with their default values:
 		require("presence").setup({
 			-- Rich Presence text options
 			editing_text = "Editing %s", -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
