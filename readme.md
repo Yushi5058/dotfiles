@@ -22,7 +22,7 @@ $ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
 
 ### Apps
 Spotify, Kitty Terminal, Discord, Whatsie (flatpak), Firefox, Krita, Neovim,
-Xplr, Btop, Bat, Eza, Zellij, Obsidian, Nodejs, Pfetch
+Xplr, Btop, Bat, Eza, Zellij, Obsidian, Nodejs, Pfetch, Flameshot, Min-browser
 
 ### Theme 
 - Catppuccin Frappe Blue KDE Theme [here](https://github.com/catppuccin/kde)
