@@ -19,36 +19,16 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			local servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = {
-									"vim",
-									"require",
-								},
-							},
-						},
-					},
-				},
-				clangd = {},
-				tsserver = {},
-				marksman = {},
-				ruby_ls = {},
-				html = {},
-				cssls = {},
-				tailwindcss = {},
-				jsonls = {},
-				bashls = {},
-			}
-
-			-- Iterate over our servers and set them up
-			for name in pairs(servers) do
-				lspconfig[name].setup({
-					capabilities = capabilities,
-				})
-			end
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.clangd.setup({ capabilities = capabilities })
+			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.ruby_ls.setup({ capabilities = capabilities })
+			lspconfig.html.setup({ capabilities = capabilities })
+			lspconfig.cssls.setup({ capabilities = capabilities })
+			lspconfig.tailwindcss.setup({ capabilities = capabilities })
+			lspconfig.jsonls.setup({ capabilities = capabilities })
+			lspconfig.bashls.setup({ capabilities = capabilities })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
