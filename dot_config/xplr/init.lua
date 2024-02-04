@@ -3117,10 +3117,26 @@ xplr.fn.custom = {}
 --     { CallLuaSilently = "custom.some_plugin_with_hooks.on_selection_change" },
 --   }
 -- }
+--
+-- xpm plugin manager for xplr
+local home = os.getenv("HOME")
+local xpm_path = home .. "/.local/share/xplr/dtomvan/xpm.xplr"
+local xpm_url = "https://github.com/dtomvan/xpm.xplr"
 
--- web dev like icons for xplr
+package.path = package.path .. ";" .. xpm_path .. "/?.lua;" .. xpm_path .. "/?/init.lua"
+
+os.execute(string.format("[ -e '%s' ] || git clone '%s' '%s'", xpm_path, xpm_url, xpm_path))
+
+-- manage xplr plugins
 require("xpm").setup({
-	"gitlab:hartan/web-devicons.xplr",
+	plugins = {
+		-- let xpm manage itself
+		"dtomvan/xpm.xplr",
+		-- install webdevicons plugin
+		{ name = "hartan/web-devicons.xplr" },
+	},
+	auto_install = true,
+	auto_cleanup = true,
 })
 
 return {
