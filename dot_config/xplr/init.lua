@@ -3140,6 +3140,10 @@ require("xpm").setup({
 				xplr.config.general.table.row.cols[2] = { format = "custom.icons_dtomvan_col_1" }
 			end,
 		},
+		{
+			"prncss-xyz/icons.xplr",
+		},
+		{ "dy-sh/dysh-style.xplr" },
 	},
 	auto_install = true,
 	auto_cleanup = true,
