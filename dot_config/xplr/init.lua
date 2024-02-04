@@ -3134,6 +3134,12 @@ require("xpm").setup({
 		"dtomvan/xpm.xplr",
 		-- install webdevicons plugin
 		{ name = "gitlab:hartan/web-devicons.xplr" },
+		{
+			"dtomvan/extra-icons.xplr",
+			after = function()
+				xplr.config.general.table.row.cols[2] = { format = "custom.icons_dtomvan_col_1" }
+			end,
+		},
 	},
 	auto_install = true,
 	auto_cleanup = true,
