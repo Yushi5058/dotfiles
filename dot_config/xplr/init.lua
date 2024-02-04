@@ -3117,6 +3117,10 @@ xplr.fn.custom = {}
 --     { CallLuaSilently = "custom.some_plugin_with_hooks.on_selection_change" },
 --   }
 -- }
+local home = os.getenv("HOME")
+package.path = home .. "/.config/xplr/plugins/?/init.lua;" .. home .. "/.config/xplr/plugins/?.lua;" .. package.path
+
+require("icons").setup()
 -- ```
 
 return {
@@ -3139,9 +3143,3 @@ return {
 -- > If you still want to copy the entire configuration, make sure to put your
 -- > customization before the return statement.
 --
-local home = os.getenv("HOME")
-package.path = home
-.. "/.config/xplr/plugins/?/init.lua;"
-.. home
-.. "/.config/xplr/plugins/?.lua;"
-.. package.path
