@@ -3133,7 +3133,7 @@ require("xpm").setup({
 		-- let xpm manage itself
 		"dtomvan/xpm.xplr",
 		-- install webdevicons plugin
-		{ name = "hartan/web-devicons.xplr" },
+		{ name = "gitlab:hartan/web-devicons.xplr" },
 	},
 	auto_install = true,
 	auto_cleanup = true,
