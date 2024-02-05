@@ -8,6 +8,7 @@ return {
 				javascript = { "prettier", "eslint", "eslint_d" },
 				ruby = { "rubocop" },
 				python = { "black" },
+				markdown = { "markdownlint" },
 			},
 		})
 
