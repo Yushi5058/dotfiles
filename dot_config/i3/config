@@ -24,7 +24,6 @@ exec_always --no-startup-id dex-autostart --autostart --environment i3
 exec_always --no-startup-id picom
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id dunst
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # set desktop background with custom effect
 exec --no-startup-id betterlockscreen -w dim
 exec_always --no-startup-id nitrogen --restore
@@ -83,8 +82,6 @@ bindsym $super+d exec --no-startup-id "rofi -modes window,run,drun -show drun"
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
 
-# start redshift
-exec_always redshift -l 33.59:7.62
 
 # change focus
 bindsym $super+$left focus left
@@ -179,11 +176,11 @@ mode "resize" {
 bindsym $super+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-# position top
-# workspace_buttons no
-# tray_output none
-# }
+ bar {
+ position top
+ workspace_buttons no
+ tray_output none
+ }
 
 #                       border  bg      text    indicator border2
 client.focused          #1e1e2e #1e1e2e #cdd6f4 #F28FAD   #988BA2
