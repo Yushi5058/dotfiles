@@ -21,7 +21,7 @@ font pango:DaddyTimeMono 14
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
-exec_always --no-startup-id picom &
+exec_always --no-startup-id picom
 exec_always feh --bg-fill $HOME/2024-02-06-10:14:18-screenshot.png
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id mako
@@ -32,11 +32,14 @@ exec_always --no-startup-id polybar
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
+
+# start thunar
+bindsym $super+n exec --no-startup-id thunar
 
 # Use pactl to adjust volume in PulseAudio.
 #set $refresh_i3status killall -SIGUSR1 i3status
@@ -195,7 +198,8 @@ client.background       #11111b
 #exec killall nm-applet
 for_window [class=".*"] border pixel 3
 
-smart_gaps on
-gaps inner 4
-gaps outer 4
-exec_always picom &
+# gaps
+gaps inner 10
+gaps outer 5
+Border radius
+border_radius 0
