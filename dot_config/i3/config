@@ -13,7 +13,7 @@ exec_always --no-startup-id nitrogen --restore
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec_always --no-startup-id polybar main
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # keybding for lockscreen
 bindsym $super+shift+x exec betterlockscreen -l dim
