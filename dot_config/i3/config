@@ -22,10 +22,8 @@ font pango:DaddyTimeMono 14
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
 exec_always --no-startup-id picom &
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-#exec_always --no-startup-id feh --bg-scale $HOME/Pictures/mauve-cat.png
-exec_always --no-startup-id lxqt-policykit-agent
-exec_always --no-startup-id setxkbmap -layout fr    -variant    azerty
+exec_always feh --bg-fill $HOME/2024-02-06-10:14:18-screenshot.png
+exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id mako
 exec_always --no-startup-id polybar
 
