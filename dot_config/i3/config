@@ -22,16 +22,12 @@ font pango:DaddyTimeMono 14
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec_always --no-startup-id dex-autostart --autostart --environment i3
 exec_always --no-startup-id picom
-exec_always feh --bg-fill $HOME/2024-02-06-10:14:18-screenshot.png
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id dunst
-exec_always --no-startup-id polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # set desktop background with custom effect
 exec --no-startup-id betterlockscreen -w dim
-exec_always --no-startup-id nitrogen --restore &
-
-# Alternative (set last used background)
-exec --no-startup-id ~/.fehbg
+exec_always --no-startup-id nitrogen --restore
 
 bindsym $super+shift+x exec betterlockscreen -l dim
 
@@ -199,9 +195,5 @@ client.placeholder      #161320 #161320 #161320 #F28FAD   #161320
 client.background       #11111b
 
 
-#exec killall nm-applet
-for_window [class=".*"] border pixel 3
 
-# gaps
-gaps inner 10
-gaps outer 5
+
