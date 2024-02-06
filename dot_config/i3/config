@@ -26,6 +26,13 @@ exec_always feh --bg-fill $HOME/2024-02-06-10:14:18-screenshot.png
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id dunst
 exec_always --no-startup-id polybar
+# set desktop background with custom effect
+exec --no-startup-id betterlockscreen -w dim
+
+# Alternative (set last used background)
+exec --no-startup-id source ~/.fehbg
+
+bindsym $mod+shift+x exec betterlockscreen -l dim
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -48,8 +55,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# lock screen keybind
-bindsym $super+x exec $HOME/.config/i3/scripts/lock.sh
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
