@@ -113,7 +113,7 @@ bindsym $super+e layout toggle split
 bindsym $super+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $super+tab focus mode_toggle
+bindsym $super+t focus mode_toggle
 
 # focus the parent container
 #bindsym $super+a focus parent
@@ -201,5 +201,3 @@ for_window [class=".*"] border pixel 3
 # gaps
 gaps inner 10
 gaps outer 5
-Border radius
-border_radius 0
