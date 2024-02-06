@@ -20,11 +20,11 @@ font pango:DaddyTimeMono 14
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex-autostart --autostart --environment i3
+exec_always --no-startup-id dex-autostart --autostart --environment i3
 exec_always --no-startup-id picom
 exec_always feh --bg-fill $HOME/2024-02-06-10:14:18-screenshot.png
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
-exec_always --no-startup-id mako
+exec_always --no-startup-id dunst
 exec_always --no-startup-id polybar
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -72,8 +72,6 @@ bindsym $super+Return exec --no-startup-id kitty
 # kill focused window
 bindsym $super+q kill
 
-# keybindings for mako
-bindsym $super+space exec makoctl dimiss all
 
 # start dmenu (a program launcher)
 bindsym $super+d exec --no-startup-id "rofi -modes window,run,drun -show drun"
