@@ -46,7 +46,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # lock screen keybind
-bindsym $super+l exec /home/$USER/.config/i3/scripts/lock.sh
+bindsym $super+l exec $HOME/.config/i3/scripts/lock.sh
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
