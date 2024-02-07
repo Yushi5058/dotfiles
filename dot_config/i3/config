@@ -80,7 +80,7 @@ bindsym $super+Shift+$up move up
 bindsym $super+Shift+$right move right
 
 # split in horizontal orientation
-bindsym $super+h split h
+bindsym $super+b split h
 # split in vertical orientation
 bindsym $super+v split v
 # enter full screen mode
@@ -97,7 +97,7 @@ bindsym $super+Shift+space floating toggle
 bindsym $super+Shift+t focus mode_toggle
 
 # focus the parent container
-bindsym $super+a focus parent
+# bindsym $super+a focus parent
 
 # focus the child container
 #bindsym $super+d focus child
