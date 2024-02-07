@@ -16,6 +16,7 @@ exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10 -s ./mixkit-alert-bells-echo-765.wav
+exec_always --no-startup-id flameshot
 
 # keybding for lockscreen
 bindsym $super+shift+x exec betterlockscreen -l -u $HOME/Wallpapers/endeavour-black-4k.png
@@ -61,6 +62,9 @@ bindsym $super+Return exec --no-startup-id kitty
 
 # kill focused window
 bindsym $super+q kill
+
+# use flameshot for screenshots
+bindsym $super+print exec flameshot gui
 
 
 # start rofi (a program launcher)
@@ -158,12 +162,9 @@ mode "resize" {
 }
 
 bindsym $super+r mode "resize"
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
- # bar {
- #
- # }
 
+# import catppuccin-frappe colors
+exec_always --no-startup-id "source ~/.config/i3/colors.conf"
 
 # # class                 border  backgr. text    indicator child_border
 # client.focused          #ff9e64 #d65d0e #ff9e64 #ff9e64   #ff9e64
@@ -173,5 +174,11 @@ bindsym $super+r mode "resize"
 # client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 #
 # client.background       #ffffff
-#
-#
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
