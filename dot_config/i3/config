@@ -7,12 +7,12 @@ exec_always --no-startup-id dex-autostart --autostart --environment i3
 
 # Start apps & things
 exec_always --no-startup-id picom
+exec_always --no-startup-id systemctl enable lightdm
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id dunst
 exec_always --no-startup-id nitrogen --restore
 exec --no-startup-id caffeine-ng
 exec --no-startup-id betterlockscreen -w dim
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10 -s ./mixkit-alert-bells-echo-765.wav
