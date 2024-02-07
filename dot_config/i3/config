@@ -19,6 +19,7 @@ exec_always --no-startup-id dex-autostart --autostart --environment i3
 
 # Start apps & things
 exec_always --no-startup-id picom
+exec_always --no-startup-id redshift -l 33.47804:-7.43225
 exec_always --no-startup-id systemctl enable lightdm
 exec_always --no-startup-id setxkbmap -layout fr -variant azerty
 exec_always --no-startup-id dunst
