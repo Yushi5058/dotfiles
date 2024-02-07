@@ -1,3 +1,15 @@
+# i3-wm Config File
+#
+#
+# ██╗██████╗ 
+# ██║╚════██╗
+# ██║ █████╔╝
+# ██║ ╚═══██╗
+# ██║██████╔╝
+# ╚═╝╚═════╝ 
+#
+#
+#
 #set general font
 font pango:DaddyTimeMono 14
 
