@@ -46,12 +46,10 @@ for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4
 
 
 # touchpad settings
-exec xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
-exec xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
-
+exec xinput set-prop 13 323 1  
+exec xinput set-prop 13 331 1 
 # disable touch screen (thinkpad laptops)
-exec xinput set-prop "Wacom Pen and multitouch sensor Finger" "Device Enabled" 0
-
+exec xinput set-prop 10 187 0 
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
