@@ -1,3 +1,15 @@
+// Zellij Config File
+//
+//
+//███████╗███████╗██╗     ██╗     ██╗     ██╗
+//╚══███╔╝██╔════╝██║     ██║     ██║     ██║
+//  ███╔╝ █████╗  ██║     ██║     ██║     ██║
+// ███╔╝  ██╔══╝  ██║     ██║     ██║██   ██║
+//███████╗███████╗███████╗███████╗██║╚█████╔╝
+//╚══════╝╚══════╝╚══════╝╚══════╝╚═╝ ╚════╝
+
+
+
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
@@ -272,6 +284,7 @@ plugins {
 // Default: default
 //
 // theme "default"
+theme "catppuccin-frappe"
 
 // The name of the default layout to load on startup
 // Default: "default"
