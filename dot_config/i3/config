@@ -46,6 +46,10 @@ exec --no-startup-id caffeine-ng
 exec --no-startup-id nm-applet
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
+# autolockscreen after 3 minutes of inactivity 
+# inhibits when audio playing / fullscreen mode
+exec --no-startup-id xidlehook --timer 300 "brightnessctl set 600" "brightnessctl set 1500" exec --no-startup-id xidlehook --not-when-audio --timer 360 "betterlockscreen -l dim" ''
+
 # touchpad settings
 # enable tap-to-click
 exec xinput set-prop 13 323 1  
