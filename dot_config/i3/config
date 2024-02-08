@@ -39,7 +39,7 @@ exec_always systemctl enable ly.service
 exec_always --no-startup-id picom
 exec_always --no-startup-id i3-battery-popup -L 30 -l 20 -n -i /usr/share/icons/Tela-blue-dark/32/devices/battery.svg/ -s ./mixkit-alert-bells-echo-765.wav
 exec_always --no-startup-id nitrogen --set-zoom-fill  --random $HOME/Wallpapers/ --save
-exec --no-startup-id redshift -l 33.47804:-7.43225
+exec_always --no-startup-id redshift gui
 exec --no-startup-id setxkbmap -layout fr -variant azerty
 exec --no-startup-id dunst
 exec --no-startup-id caffeine-ng
@@ -87,6 +87,13 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 
+# Open applications on specific workspaces
+assign [class="firefox"] $ws1
+assign [class="discord"] $ws2
+assign [class="whatsapp-for-linux"] $ws2
+assign [class="kitty"] $ws3
+assign [class="min"] $ws4
+
 
 
 #
@@ -109,6 +116,12 @@ bindsym ctrl+shift+space exec dunstctl close-all
 
 # lockscreen
 bindsym $super+shift+x exec betterlockscreen -l dim
+
+# suspend the system
+bindsym $super+semicolon systemctl suspend
+
+# reboot the system
+bindsym $super+comma systemctl reboot
 
 # start file-explorer thunar
 bindsym $super+n exec --no-startup-id thunar
@@ -243,3 +256,7 @@ client.background        $base
 
 # remove borders
 for_window [class="^.*"] border pixel 2
+
+# This configuration directive enables automatic workspace back_and_forth (see [back_and_forth]) when switching to the workspace that is currently focused.
+# For instance: Assume you are on workspace "1: www" and switch to "2: IM" using mod+2 because somebody sent you a message. You don’t need to remember where you came from now, you can just press $mod+2 again to switch back to "1: www".
+workspace_auto_back_and_forth yes
