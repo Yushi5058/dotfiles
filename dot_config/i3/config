@@ -37,7 +37,7 @@ exec_always systemctl enable ly.service
 exec_always --no-startup-id picom
 exec_always --no-startup-id ./scripts/i3-battery-monitor.sh
 exec_always --no-startup-id nitrogen --set-zoom-fill  --random $HOME/Wallpapers/ --save
-exec_always --no-startup-id redshift-gtk
+# exec_always --no-startup-id redshift-gtk
 exec --no-startup-id setxkbmap -layout fr -variant azerty
 exec --no-startup-id dunst
 exec --no-startup-id caffeine-ng
