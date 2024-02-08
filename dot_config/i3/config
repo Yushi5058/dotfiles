@@ -13,44 +13,61 @@
 #set general font
 font pango:DaddyTimeMono 14
 
+#
+#
+#
+# ███████╗██╗  ██╗███████╗ ██████╗██╗   ██╗████████╗███████╗    ███████╗██╗██████╗ ███████╗████████╗
+# ██╔════╝╚██╗██╔╝██╔════╝██╔════╝██║   ██║╚══██╔══╝██╔════╝    ██╔════╝██║██╔══██╗██╔════╝╚══██╔══╝
+# █████╗   ╚███╔╝ █████╗  ██║     ██║   ██║   ██║   █████╗      █████╗  ██║██████╔╝███████╗   ██║   
+# ██╔══╝   ██╔██╗ ██╔══╝  ██║     ██║   ██║   ██║   ██╔══╝      ██╔══╝  ██║██╔══██╗╚════██║   ██║   
+# ███████╗██╔╝ ██╗███████╗╚██████╗╚██████╔╝   ██║   ███████╗    ██║     ██║██║  ██║███████║   ██║   
+# ╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝    ╚═╝   ╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   
+#
+#
+#
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec_always --no-startup-id dex-autostart --autostart --environment i3
 
+# import catppuccin-frappe colors
+exec_always --no-startup-id "source ~/.config/i3/colors.conf"
+
+
 # Start apps & things
 exec_always --no-startup-id picom
-exec_always --no-startup-id redshift -l 33.47804:-7.43225
+exec_always --no-startup-id i3-battery-popup -L 30 -l 20 -n -i /usr/share/icons/Tela-blue-dark/32/devices/battery.svg/ -s ./mixkit-alert-bells-echo-765.wav
 exec_always --no-startup-id systemctl enable lightdm
-exec_always --no-startup-id setxkbmap -layout fr -variant azerty
-exec_always --no-startup-id dunst
-exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id nitrogen --set-zoom-fill  --random $HOME/Wallpapers/ --save
+exec --no-startup-id redshift -l 33.47804:-7.43225
+exec --no-startup-id setxkbmap -layout fr -variant azerty
+exec --no-startup-id dunst
 exec --no-startup-id caffeine-ng
-exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id nm-applet
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id i3-battery-popup -L 30 -l 20 -n -i /usr/share/icons/Tela-blue-dark/32/devices/battery.svg/ -s ./mixkit-alert-bells-echo-765.wav
-exec_always --no-startup-id flameshot gui
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
-# close notifications
-bindsym ctrl+space exec dunstctl close
-bindsym ctrl+shift+space exec dunstctl close-all
-
-# keybding for lockscreen
-bindsym $super+shift+x exec betterlockscreen -l -u $HOME/Wallpapers/endeavour-black-4k.png
-
-# start thunar
-bindsym $super+n exec --no-startup-id thunar
-
-# Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+# touchpad settings
+# enable tap-to-click
+exec xinput set-prop 13 323 1  
+# enable natural-scroll
+exec xinput set-prop 13 331 1 
+# disable touch screen (thinkpad laptops)
+exec xinput set-prop 10 187 0 
 
 
+
+
+#
+#
+# ██╗   ██╗ █████╗ ██████╗ ██╗ █████╗ ██████╗ ██╗     ███████╗███████╗
+# ██║   ██║██╔══██╗██╔══██╗██║██╔══██╗██╔══██╗██║     ██╔════╝██╔════╝
+# ██║   ██║███████║██████╔╝██║███████║██████╔╝██║     █████╗  ███████╗
+# ╚██╗ ██╔╝██╔══██║██╔══██╗██║██╔══██║██╔══██╗██║     ██╔══╝  ╚════██║
+#  ╚████╔╝ ██║  ██║██║  ██║██║██║  ██║██████╔╝███████╗███████╗███████║
+#   ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚══════╝
+#
+#
+#
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows are not convenient #vimotions
 set $up k
@@ -59,29 +76,61 @@ set $left h
 set $right l
 set $super Mod4
 
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
 
-# touchpad settings
-exec xinput set-prop 13 323 1  
-exec xinput set-prop 13 331 1 
-# disable touch screen (thinkpad laptops)
-exec xinput set-prop 10 187 0 
 
-# use Mouse+Mod1 to drag floating windows to their wanted position
-floating_modifier Mod1
 
-# start a terminal (kitty)
+#
+#
+# ██╗  ██╗███████╗██╗   ██╗██████╗ ██╗███╗   ██╗██████╗ ███████╗
+# ██║ ██╔╝██╔════╝╚██╗ ██╔╝██╔══██╗██║████╗  ██║██╔══██╗██╔════╝
+# █████╔╝ █████╗   ╚████╔╝ ██████╔╝██║██╔██╗ ██║██║  ██║███████╗
+# ██╔═██╗ ██╔══╝    ╚██╔╝  ██╔══██╗██║██║╚██╗██║██║  ██║╚════██║
+# ██║  ██╗███████╗   ██║   ██████╔╝██║██║ ╚████║██████╔╝███████║
+# ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝
+#
+#
+#
+# screenshot keybind flameshot
+bindsym print exec --no-startup-id flameshot gui
+bindsym $super+shift+s exec --no-startup-id flameshot gui
+
+# close notifications dunst
+bindsym ctrl+space exec dunstctl close
+bindsym ctrl+shift+space exec dunstctl close-all
+
+# lockscreen
+bindsym $super+shift+x exec betterlockscreen -l -dim -u $HOME/Wallpapers/endeavour-black-4k.png
+
+# start file-explorer thunar
+bindsym $super+n exec --no-startup-id thunar
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# Sreen brightness controls with Brightnessctl
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+# use Mouse+super to drag floating windows to their wanted position
+floating_modifier $super
+
+# start a terminal kitty
 bindsym $super+Return exec --no-startup-id kitty
 
 # kill focused window
 bindsym $super+q kill
 
-# use flameshot for screenshots
-bindsym $super+print exec flameshot gui
 
-
-# start rofi (a program launcher)
-bindsym $super+d exec --no-startup-id "rofi -modes window,run,drun -show drun"
-
+# start menu launcher rofi
+bindsym $super+d exec --no-startup-id "rofi -show drun"
 
 # change focus
 bindsym $super+$left focus left
@@ -125,13 +174,6 @@ bindsym $super+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $super+minus scratchpad show
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-
 # switch to workspace
 bindsym $super+ampersand workspace number $ws1
 bindsym $super+eacute workspace number $ws2
@@ -151,8 +193,21 @@ bindsym $super+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# screenshot stuff
-bindsym Print exec --no-startup-id flameshot launcher
+
+
+
+
+#
+#
+# ███╗   ███╗ ██████╗ ██████╗ ███████╗███████╗
+# ████╗ ████║██╔═══██╗██╔══██╗██╔════╝██╔════╝
+# ██╔████╔██║██║   ██║██║  ██║█████╗  ███████╗
+# ██║╚██╔╝██║██║   ██║██║  ██║██╔══╝  ╚════██║
+# ██║ ╚═╝ ██║╚██████╔╝██████╔╝███████╗███████║
+# ╚═╝     ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝
+#
+#
+#
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -175,18 +230,6 @@ mode "resize" {
 
 bindsym $super+r mode "resize"
 
-# import catppuccin-frappe colors
-exec_always --no-startup-id "source ~/.config/i3/colors.conf"
-
-# # class                 border  backgr. text    indicator child_border
-# client.focused          #ff9e64 #d65d0e #ff9e64 #ff9e64   #ff9e64
-# client.focused_inactive #cfc9c2 #cfc9c2 #ffffff #cfc9c2   #cfc9c2
-# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-# client.urgent           #cc241d #900000 #ffffff #cc241d   #cc241d
-# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-#
-# client.background       #ffffff
-
 # target                 title     bg    text   indicator  border
 client.focused           $lavender $base $text  $rosewater $lavender
 client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
@@ -195,5 +238,5 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-# make small border for aesthetic
+# remove borders
 for_window [class="^.*"] border pixel 2
