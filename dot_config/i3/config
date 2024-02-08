@@ -104,7 +104,7 @@ bindsym ctrl+space exec dunstctl close
 bindsym ctrl+shift+space exec dunstctl close-all
 
 # lockscreen
-bindsym $super+shift+x exec betterlockscreen -l -dim
+bindsym $super+shift+x exec betterlockscreen -l dim
 
 # start file-explorer thunar
 bindsym $super+n exec --no-startup-id thunar
