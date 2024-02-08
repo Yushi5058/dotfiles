@@ -97,8 +97,8 @@ set $ws4 "4"
 #
 #
 # screenshot keybind flameshot
-bindsym print exec --no-startup-id flameshot gui
-bindsym $super+shift+s exec --no-startup-id flameshot gui
+bindsym print || $super+shift+s exec --no-startup-id flameshot gui
+# bindsym $super+shift+s exec --no-startup-id flameshot gui
 
 # close notifications dunst
 bindsym ctrl+space exec dunstctl close
