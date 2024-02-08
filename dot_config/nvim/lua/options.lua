@@ -9,7 +9,8 @@ vim.opt.smartindent = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 
-vim.opt.clipboard = "unamed,unnamedplus"
+-- Enable access to System Clipboard
+vim.opt.clipboard = "unnamed,unnamedplus"
 vim.opt.cursorline = true
 
 vim.opt.wrap = false
@@ -39,7 +40,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 vim.o.timeoutlen = 300
 
-vim.o.completeopt = "menuone,noselect"
+-- Set completeopt to have a better completion experience
+vim.opt.completeopt = { "menuone", "noselect" }
 
 vim.opt.colorcolumn = "80"
 
