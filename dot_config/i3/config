@@ -28,8 +28,12 @@ exec --no-startup-id caffeine-ng
 exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10 -s ./mixkit-alert-bells-echo-765.wav
-exec_always --no-startup-id flameshot
+exec --no-startup-id i3-battery-popup -L 30 -l 20 -n -i /usr/share/icons/Tela-blue-dark/32/devices/battery.svg/ -s ./mixkit-alert-bells-echo-765.wav
+exec_always --no-startup-id flameshot gui
+
+# close notifications
+bindsym ctrl+space exec dunstctl close
+bindsym ctrl+shift+space exec dunstctl close-all
 
 # keybding for lockscreen
 bindsym $super+shift+x exec betterlockscreen -l -u $HOME/Wallpapers/endeavour-black-4k.png
