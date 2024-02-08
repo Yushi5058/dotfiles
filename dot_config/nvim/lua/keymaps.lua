@@ -55,3 +55,6 @@ keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search
 keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+
+-- escape search highlight
+keymap.set("n", "jk", "<cmd>noh<cr>")
