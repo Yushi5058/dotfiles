@@ -1,0 +1,83 @@
+{
+	"layer": "top",
+	"modules-left": ["sway/workspaces", "tray"],
+	"modules-center": ["sway/window", "custom/media"],
+	"modules-right": ["battery","backlight", "pulseaudio", "cpu", "clock"],
+	"pulseaudio": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon}  {volume}%",
+		"format-muted": "󰝟  0%",
+		"on-click":"amixer -D pulse Master 1+ toggle",
+		"format-icons": {
+		"default": ["", "󰖀", "󰕾"]
+		}
+	},
+	"custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "min-length": 45,
+    "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+    "escape": true,
+     "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null"
+},
+
+	"sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs" : true,
+    "format": "{icon}",
+    "format-icons": {
+     "1": "",
+     "2": "🗪",
+     "3": "",
+     "4": "",
+     "5": "",
+     "6": "@",
+
+    //"urgent": "",
+    //"focused": "",
+    //"default": ""
+	}
+	},
+	"sway/window": {
+		"format": "{}",
+		"min-length": 25
+	},
+	"backlight": {
+		"device": "amdgpu_b10",
+		"format": "{icon}  {}%",
+		"format-icons": ["", ""],
+		"interval": 1,
+		"on-click": ""
+	},
+	"battery": {
+  "interval": 2,
+		"states": {
+			"good": 100,
+			"warning": 30,
+			"critical": 20
+		},
+		"format": "{icon}  {capacity}%",
+		"format-charging": "{icon}   {capacity}%",
+		"format-plugged": "{icon}   {capacity}%",
+		"format-icons": ["", "", "", "", ""]
+	},
+	"tray":{
+		"icon-size":21,
+		"spacing": 10,
+	},
+ "clock": {
+        "timezone": "Africa/Casablanca",
+        "interval": 1,
+        "format": " {:%H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+  "cpu" : {
+     "format": "{usage}% ",
+        "tooltip": false
+    }
+         }

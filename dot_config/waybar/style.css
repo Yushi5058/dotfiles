@@ -1,0 +1,208 @@
+
+@import "frappe.css";
+
+/* otf-font-awesome must be installed for icons */
+* {
+	border-radius: 0;
+	font-family: "DaddyTimeMono, FontAwesome, sans-serif";
+	font-size: 20px;
+}
+
+window#waybar {
+	background: @base;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+#window {
+	margin-top: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 5px;
+	transition: none;
+
+	color: @text;
+	background: none;
+	border-bottom: 3px solid @blue;
+}
+
+
+#custom-media {
+	margin-top: 6px;
+	margin-left: 12px;
+	margin-right: 12px;
+	padding-left: 15px;
+	padding-right: 20px;
+	border-radius: 5px;
+	transition: none;
+	background: @overlay0;
+}
+
+#workspaces {
+	margin-top: 6px;
+	margin-right: 12px;
+	font-size: 7px;
+	border-radius: 5px;
+	transition: none;
+	background: none;
+	border-bottom: 3px solid @mantle;
+}
+
+#workspaces button {
+	transition: none;
+	color: @text;
+  border-bottom: 3px solid @mantle;
+	background: transparent;
+	border-radius: 0px;
+}
+
+
+#workspaces button.focused {
+	color: @text;
+	border-bottom: 3px solid @blue;
+	background: transparent;
+	border-radius: inherit;
+}
+
+#workspaces button:hover {
+	transition: none;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	color: @text;
+  border-bottom: 3px solid @blue;
+}
+
+
+
+#pulseaudio {
+	margin-top: 6px;
+	margin-left: 12px;
+	border-radius: 5px;
+	transition: none;
+	padding: 0 10px;
+
+	color: @peach;
+	background: none;
+	border-bottom: 3px solid @peach;
+}
+
+#battery {
+	margin-top: 6px;
+	margin-left: 12px;
+	border-radius: 5px;
+	transition: none;
+	padding: 10px 10px;
+
+	color: @green;
+	background: none;
+	border-bottom: 3px solid @green;
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.warning:not(.charging), #battery.critical:not(.charging) {
+	background: none;
+	color: @yellow;
+  border-bottom: 3px solid @yellow;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#battery.charging, #battery.plugged {
+  background: none;
+  color: @green;
+  border-bottom: 3px solid @green;
+  animation-name: blink_2;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+	to {
+		background-color: @rosewater;
+		color: @rosewater;
+	}
+}
+
+@keyframes blink_2 {
+  to {
+   background-color: @green;
+   color: @green;
+}
+}
+
+#backlight {
+	margin-top: 6px;
+	margin-left: 12px;
+	border-radius: 5px;
+	transition: none;
+	padding: 10px 10px;
+
+	color: @yellow;
+	background: none;
+	border-bottom: 3px solid @yellow;
+}
+
+#cpu {
+	margin-top: 6px;
+	margin-left: 12px;
+	border-radius: 5px;
+	transition: none;
+	padding: 10px 10px;
+
+	background: none;
+  color: @lavender;
+	border-bottom: 3px solid @lavender;
+}
+
+
+#clock {
+	margin-top: 6px;
+	margin-left: 12px;
+	margin-right: 12px;
+	border-radius: 5px;
+	transition: none;
+	padding: 10px 10px;
+
+	color: @rosewater;
+	background: none;
+	border-bottom: 3px solid @rosewater;
+}
+
+#custom-media {
+  margin-top: 6px;
+  margin-left: 12px;
+  margin-right: 12px;
+  border-radius: 5px;
+  transition: none;
+  padding: 10px 10px;
+
+  color: @sapphire;
+
+  background: none;
+  min-width: 100px;
+  border-bottom: 3px solid @sapphire;
+}
+
+#custom-media.custom-spotify {
+
+  color: @green;
+  border-bottom: 3px solid @green;
+}
+
+#tray {
+	margin-top: 6px;
+	margin-right: 12px;
+	border-radius: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	color: @text;
+	background: none;
+}
