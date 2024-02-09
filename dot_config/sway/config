@@ -33,13 +33,11 @@ include catppuccin-frappe
 
 
 # Start apps & things
-exec systemctl enable ly.service
-exec wlsunset -t 3000 -T 5500 -S 06:30 -s 18:30
-exec mako
-exec caffeine-ng
-exec nm-applet
-# set sway-wm as XDG_CURRENT_DESKTOP to be recognized
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
+exec_always systemctl enable ly.service
+exec_always source $HOME/.config/sway/scripts/night-control.sh
+exec_always mako
+exec_always caffeine-ng
+exec_always nm-applet
 
 # inputs 
 #keyboard layout
@@ -52,6 +50,10 @@ input type:touchpad {
     tap enabled
     natural_scroll enabled
   }
+# disabled laptop touch screen
+  input type:touch {
+      events disabled
+    }
 
 
 
@@ -110,8 +112,8 @@ bindsym $super+Ctrl+print exec shotman --capture output
 
 
 # close notifications mako
-bindsym ctrl+space exec makoctl dismiss
-bindsym ctrl+shift+space exec makoctl dismiss -a
+bindsym Ctrl+Space exec makoctl dismiss
+bindsym Ctrl+shift+Space exec makoctl dismiss --all
 
 
 # suspend
@@ -310,3 +312,8 @@ bar swaybar_command waybar
 #
         # Start on workspace 3: Term
         exec swaymsg workspace 3
+
+
+        
+# Sway system stuff
+include /etc/sway/config.d/*
