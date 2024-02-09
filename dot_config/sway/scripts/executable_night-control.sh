@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# Run wlsunset
-exec wlsunset -t 3000 -T 5500 -S 06:30 -s 18:30
+# Run wlsunset with Casablanca / Morocco lat & long
+exec wlsunset -l 33.5 -L -7.6
 
