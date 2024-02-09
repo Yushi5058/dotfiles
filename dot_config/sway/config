@@ -264,8 +264,7 @@ for_window [class="^.*"] border pixel 2
 workspace_auto_back_and_forth yes
 
 # wallpaper background
-exec_always swaybg -o * -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png -m fill
-
+output "*" bg $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png fill
 # lockscreen
 bindsym $super+shift+x exec swaylock -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill
 
