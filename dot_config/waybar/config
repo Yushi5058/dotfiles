@@ -23,8 +23,7 @@
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
     "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null", 
-}
-
+},
 	"sway/workspaces": {
     "disable-scroll": true,
     "all-outputs" : true,
