@@ -84,13 +84,17 @@ set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 
 # Open applications on specific workspaces
 assign [class="firefox"] $ws1
 assign [class="discord"] $ws2
 assign [class="whatsapp-for-linux"] $ws2
 assign [class="kitty"] $ws3
-assign [class="min"] $ws4
+assign [class ="spotify"] $ws4
+assign [class="min"] $ws5
+assign [class="thunderbird"] $ws6
 
 
 
@@ -191,12 +195,15 @@ bindsym $super+ampersand workspace number $ws1
 bindsym $super+eacute workspace number $ws2
 bindsym $super+quotedbl workspace number $ws3
 bindsym $super+apostrophe workspace number $ws4
-
+bindsym $super+parenleft workspace 5
+bindsym $super+minus workspace 6	
 # move focused container to workspace
 bindsym $super+Shift+ampersand move container to workspace number $ws1
 bindsym $super+Shift+eacute move container to workspace number $ws2
 bindsym $super+Shift+quotedbl move container to workspace number $ws3
 bindsym $super+Shift+apostrophe move container to workspace number $ws4
+bindsym $super+Shift+parenleft move container to workspace number $ws5 
+bindsym $super+Shift+minus move container to workspace number $ws6
 
 # reload the configuration file
 bindsym $super+Shift+c reload
@@ -257,7 +264,7 @@ for_window [class="^.*"] border pixel 2
 workspace_auto_back_and_forth yes
 
 # wallpaper background
-exec swaybg -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png * -m fill
+exec swaybg * -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png -m fill
 
 # lockscreen
 bindsym $super+shift+x exec swaylock -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill
@@ -265,10 +272,10 @@ bindsym $super+shift+x exec swaylock -e -F -i $HOME/Wallpapers/endeavour-black-4
 # swayidle configuration 
 # Idle  
 exec swayidle -w \
-	timeout 300 'swaylock -f -c 000000' \
+	timeout 300 'swaylock -f -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill' \
 	timeout 600 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaylock -f -c 000000'
+	before-sleep 'swaylock -f -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill'
 # This will lock your screen after 300 seconds of inactivity, then turn off your 
 # displays after another 300 seconds, and turn your screens back on when resumed.
 # It will also lock your screen before your computer goes to sleep.
@@ -311,13 +318,13 @@ bar swaybar_command waybar
   # First Workspace
 #
         # Start on workspace 3: Term
-        exec swaymsg workspace 3
+        exec swaymsg workspace $ws3
 
 
+# Pause mako dimiss notifications when afk
+        exec swayidle timeout 30 "makoctl set-mode away" resume "makoctl set-mode default"
         
 # Sway system stuff
 include /etc/sway/config.d/*
 
-# Pause mako dimiss notifications when afk
-exec swayidle timeout 30 "makoctl set-mode away" resume "makoctl set-mode default"
 
