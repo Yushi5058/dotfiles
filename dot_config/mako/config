@@ -10,5 +10,9 @@ border-color=#ef9f76
 # additionnal options
 font=DaddyTimeMono 12
 
+# afk mode 
+[mode=away]
+default-timeout=0
+ignore-timeout=1
 
 
