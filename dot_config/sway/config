@@ -109,9 +109,9 @@ bindsym $super+Shift+print exec shotman --capture region
 bindsym $super+Ctrl+print exec shotman --capture output
 
 
-# close notifications dunst
-bindsym ctrl+space exec dunstctl close
-bindsym ctrl+shift+space exec dunstctl close-all
+# close notifications mako
+bindsym ctrl+space exec makoctl dismiss
+bindsym ctrl+shift+space exec makoctl dismiss -a
 
 
 # suspend
