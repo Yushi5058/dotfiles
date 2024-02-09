@@ -270,11 +270,11 @@ exec swaybg -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png * -m fill
 bindsym $super+shift+x swaylock -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill
 
 # swayidle configuration 
-swayidle -w \
-	timeout 300 'swaylock -f -c 000000' \
-	timeout 600 'swaymsg "output * dpms off"' \
-		resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaylock -f -c 000000'
+# Idle  
+exec swayidle -w \  
+	timeout 300 'swaylock -f' \  
+	timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output *   dpms on"' \  
+	before-sleep 'swaylock -f'
 # This will lock your screen after 300 seconds of inactivity, then turn off your 
 # displays after another 300 seconds, and turn your screens back on when resumed.
 # It will also lock your screen before your computer goes to sleep.
