@@ -35,7 +35,6 @@ include catppuccin-frappe
 # Start apps & things
 exec systemctl enable ly.service
 exec wlsunset -t 3000 -T 5500 -S 06:30 -s 18:30
-exec waybar
 exec dunst
 exec caffeine-ng
 exec nm-applet
@@ -284,6 +283,9 @@ seat * hide_cursor 6000
 # Drag and resize floating windows with $mod key
 floating_modifier $super normal
 
+# execute waybar
+bar swaybar_command waybar
+
 
 # Gnome Theme Settings
 # 
@@ -302,3 +304,9 @@ floating_modifier $super normal
 	    	gtk-theme:gtk-theme-name \
 	    	icon-theme:gtk-icon-theme-name \
 	    	cursor-theme:gtk-cursor-theme-name
+
+
+  # First Workspace
+#
+        # Start on workspace 3: Term
+        exec swaymsg workspace 3
