@@ -317,3 +317,7 @@ bar swaybar_command waybar
         
 # Sway system stuff
 include /etc/sway/config.d/*
+
+# Pause mako dimiss notifications when afk
+swayidle timeout 30 "makoctl set-mode away" resume "makoctl set-mode default"
+
