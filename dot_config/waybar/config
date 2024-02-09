@@ -13,17 +13,17 @@
 		"default": ["", "󰖀", "󰕾"]
 		}
 	},
-	"custom/media": {
+"custom/media": {
     "format": "{icon} {}",
+    "escape": true,
     "return-type": "json",
     "min-length": 45,
-    "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-    "escape": true,
-     "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null"
-},
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl stop",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null", 
+}
 
 	"sway/workspaces": {
     "disable-scroll": true,
