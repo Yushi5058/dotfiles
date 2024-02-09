@@ -1,4 +1,4 @@
-# Colors
+# Colors catppuccin-frappe
 
 background-color=#303446
 text-color=#c6d0f5
@@ -7,3 +7,8 @@ progress-color=over #414559
 
 [urgency=high]
 border-color=#ef9f76
+
+
+max-history=5
+font=DaddyTimeMono 12
+icon-path=/usr/share/icons/Tela-blue-dark/
