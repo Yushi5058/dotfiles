@@ -35,6 +35,7 @@ include catppuccin-frappe
 # Start apps & things
 exec systemctl enable ly.service
 exec wlsunset -t 3000 -T 5500 -S 06:30 -s 18:30
+exec waybar
 exec dunst
 exec caffeine-ng
 exec nm-applet
@@ -125,13 +126,12 @@ bindsym $super+n exec thunar
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
+# bindsym XF86AudioMicMute exec 
 
 # Sreen brightness controls with Brightnessctl
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-# use Mouse+super to drag floating windows to their wanted position
-floating_modifier $super
 
 # start a terminal kitty
 bindsym $super+Return exec kitty
@@ -255,13 +255,6 @@ for_window [class="^.*"] border pixel 2
 # For instance: Assume you are on workspace "1: www" and switch to "2: IM" using mod+2 because somebody sent you a message. You don’t need to remember where you came from now, you can just press $mod+2 again to switch back to "1: www".
 workspace_auto_back_and_forth yes
 
-  # Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command waybar
-}
-
-
 # wallpaper background
 exec swaybg -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png * -m fill
 
@@ -280,3 +273,32 @@ exec swayidle -w \
 # It will also lock your screen before your computer goes to sleep.
 # To make sure swayidle waits for swaylock to lock the screen before it releases 
 # the inhibition lock, the -w options is used in swayidle, and -f in swaylock.
+
+# Inhibit Idle if a window is fullscreen
+	for_window [class="^.*"] inhibit_idle fullscreen
+	for_window [app_id="^.*"] inhibit_idle fullscreen
+
+
+# Hide mouse cursor
+seat * hide_cursor 6000
+# Drag and resize floating windows with $mod key
+floating_modifier $super normal
+
+
+# Gnome Theme Settings
+# 
+	# Set Gnome Theme
+	set $gnome-schema org.gnome.desktop.interface
+	exec_always {
+		    gsettings set $gnome-schema gtk-theme 'Catppuccin-Frappe-Standard-Blue-Dark'
+	    	gsettings set $gnome-schema icon-theme 'Tela-blue-dark'
+	    	gsettings set $gnome-schema cursor-theme 'Catppuccin-Frappe-Blue-Cursors'
+	    	gsettings set $gnome-schema font-name 'DaddyTimeMono 14'
+	    	gsettings set $gnome-schema monospace-font-name 'MapleMono-NF-Regular 14'
+	}
+
+  # Import Gnome settings
+	exec_always import-gsettings \
+	    	gtk-theme:gtk-theme-name \
+	    	icon-theme:gtk-icon-theme-name \
+	    	cursor-theme:gtk-cursor-theme-name
