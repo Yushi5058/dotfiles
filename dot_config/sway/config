@@ -33,10 +33,10 @@ include catppuccin-frappe
 
 
 # Start apps & things
-exec systemctl enable ly.service
-exec source $HOME/.config/sway/scripts/night-control.sh
+exec_always systemctl enable ly.service
+exec_always source $HOME/.config/sway/scripts/night-control.sh
 exec_always mako
-exec caffeine
+exec_always Caffeine-ng
 exec_always nm-applet
 
 # inputs 
@@ -88,13 +88,13 @@ set $ws5 "5"
 set $ws6 "6"
 
 # Open applications on specific workspaces
-assign [class="firefox"] $ws1
-assign [class="discord"] $ws2
-assign [class="whatsapp-for-linux"] $ws2
-assign [class="kitty"] $ws3
-assign [class ="spotify"] $ws4
-assign [class="min"] $ws5
-assign [class="thunderbird"] $ws6
+# assign [class="firefox"] $ws1
+# assign [class="discord"] $ws2
+# assign [class="whatsapp-for-linux"] $ws2
+# assign [class="kitty"] $ws3
+# assign [class ="spotify"] $ws4
+# assign [class="min"] $ws5
+# assign [class="thunderbird"] $ws6
 
 
 
@@ -264,7 +264,7 @@ for_window [class="^.*"] border pixel 2
 workspace_auto_back_and_forth yes
 
 # wallpaper background
-exec swaybg * -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png -m fill
+exec_always swaybg -o * -i $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png -m fill
 
 # lockscreen
 bindsym $super+shift+x exec swaylock -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill
@@ -318,11 +318,11 @@ bar swaybar_command waybar
   # First Workspace
 #
         # Start on workspace 3: Term
-        exec swaymsg workspace $ws3
+        # exec_always swaymsg workspace $ws3
 
 
 # Pause mako dimiss notifications when afk
-        exec swayidle timeout 30 "makoctl set-mode away" resume "makoctl set-mode default"
+        exec_always swayidle timeout 30 "makoctl set-mode away" resume "makoctl set-mode default"
         
 # Sway system stuff
 include /etc/sway/config.d/*
