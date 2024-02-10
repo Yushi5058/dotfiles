@@ -34,9 +34,10 @@ include catppuccin-frappe
 
 # Start apps & things
 exec_always systemctl enable ly.service
-exec_always source $HOME/.config/sway/scripts/night-control.sh
+# exec_always source $HOME/.config/sway/scripts/night-control.sh
 exec_always mako
-exec_always Caffeine-ng
+exec_always caffeine
+exec_always wlsunset -t 3500
 exec_always nm-applet
 
 # inputs 
