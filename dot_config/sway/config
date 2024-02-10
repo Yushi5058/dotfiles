@@ -34,7 +34,7 @@ include catppuccin-frappe
 
 # Start apps & things
 exec_always systemctl enable ly.service
-exec_always gammastep
+exec wlsunset -l 33.5 -L -7.5 &
 exec_always mako
 exec_always caffeine
 exec_always nm-applet
