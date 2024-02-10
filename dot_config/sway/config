@@ -38,6 +38,13 @@ exec wlsunset -l 33.5 -L -7.5 &
 exec_always mako
 exec_always caffeine
 exec_always nm-applet
+
+# monitor battery power
+exec systemctl mask power-profiles-daemon.service
+exec systemctl enable --now auto-cpufreq
+
+# monitor temperature of cpu
+exec systemctl start thermald.service
  
 # clipboard manager settings
 exec wl-paste --watch zsh -c "xargs -0 -I{} clapboard store {}"
@@ -139,6 +146,9 @@ bindsym Ctrl+shift+Space exec makoctl dismiss --all
 
 # clipboard manager keybind
 bindsym $super+c exec clapboard
+
+# rofi-wifi-menu
+bindsym $super+Shift+d exec ./rofi-wifi-menu.sh
 
 
 # suspend
