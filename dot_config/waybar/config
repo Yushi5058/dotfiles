@@ -1,6 +1,6 @@
 {
 	"layer": "top",
-	"modules-left": ["sway/workspaces", "tray"],
+	"modules-left": ["sway/workspaces", "tray", "custom/update"],
 	"modules-center": ["sway/window", "custom/media"],
 	"modules-right": ["battery","backlight", "pulseaudio", "cpu", "clock"],
 	"pulseaudio": {
@@ -13,6 +13,16 @@
 		"default": ["", "󰖀", "󰕾"]
 		}
 	},
+     "custom/updates": {
+       "format": "{} {icon}",
+       "return-type": "json",
+       "format-icons": {
+           "has-updates": "󱍷",
+           "updated": "󰂪"
+       },
+       "exec-if": "which waybar-module-pacman-updates",
+       "exec": "waybar-module-pacman-updates"
+   },
 "custom/media": {
     "format": "{icon} {}",
     "escape": true,
