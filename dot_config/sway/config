@@ -38,6 +38,10 @@ exec wlsunset -l 33.5 -L -7.5 &
 exec_always mako
 exec_always caffeine
 exec_always nm-applet
+ 
+# clipboard manager settings
+exec wl-paste --watch zsh -c "xargs -0 -I{} clapboard store {}"
+exec wl-paste -p --watch zsh -c "xargs -0 -I{} clapboard store {}"
 
 # inputs 
 #keyboard layout
@@ -132,6 +136,9 @@ set $ws6 "6"
 # close notifications mako
 bindsym Ctrl+Space exec makoctl dismiss
 bindsym Ctrl+shift+Space exec makoctl dismiss --all
+
+# clipboard manager keybind
+bindsym $super+c exec clapboard
 
 
 # suspend
