@@ -29,15 +29,20 @@ window#waybar.hidden {
 }
 
 
-#custom-media {
-	margin-top: 6px;
-	margin-left: 12px;
-	margin-right: 12px;
-	padding-left: 15px;
-	padding-right: 20px;
-	border-radius: 5px;
-	transition: none;
-	background: @overlay0;
+
+#custom-updates {
+  margin-top: 6px;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  transition: none;
+  background: none;
+
+  color: @text;
+
+  border-bottom: 3px solid @blue;
 }
 
 #workspaces {
@@ -103,10 +108,30 @@ window#waybar.hidden {
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.warning:not(.charging), #battery.critical:not(.charging) {
 	background: none;
+	/* color: @yellow; */
+  /* border-bottom: 3px solid @yellow; */
+	/* animation-name: blink; */
+	/* animation-duration: 3.0s; */
+	/* animation-timing-function: steps(12); */
+	/* animation-iteration-count: infinite; */
+	/* animation-direction: alternate; */
+}
+
+#battery.warning:not(.charging) {
 	color: @yellow;
   border-bottom: 3px solid @yellow;
 	animation-name: blink;
-	animation-duration: 0.5s;
+	animation-duration: 3.0s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+  color: @rosewater;
+  border-bottom: 3px solid @rosewater;
+	animation-name: blink_c;
+	animation-duration: 3.0s;
 	animation-timing-function: steps(12);
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
@@ -117,7 +142,7 @@ window#waybar.hidden {
   color: @green;
   border-bottom: 3px solid @green;
   animation-name: blink_2;
-  animation-duration: 0.5s;
+  animation-duration: 3.0s;
   animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -125,9 +150,16 @@ window#waybar.hidden {
 
 @keyframes blink {
 	to {
-		background-color: @rosewater;
-		color: @rosewater;
+		background-color: @yellow;
+		color: @yellow;
 	}
+}
+
+ @keyframes blink_c {
+to {
+  background-color: @rosewater;
+  color: @rosewater;
+}
 }
 
 @keyframes blink_2 {
@@ -206,3 +238,6 @@ window#waybar.hidden {
 	color: @text;
 	background: none;
 }
+
+/* vim:ft=gtk */
+
