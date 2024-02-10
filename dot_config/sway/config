@@ -267,15 +267,15 @@ workspace_auto_back_and_forth yes
 # wallpaper background
 output "*" bg $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png fill
 # lockscreen
-bindsym $super+shift+x exec swaylock -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill
+bindsym $super+shift+x exec swaylock 
 
 # swayidle configuration 
 # Idle  
 exec swayidle -w \
-	timeout 300 'swaylock -f -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill' \
+	timeout 300 'swaylock -f' \
 	timeout 600 'swaymsg "output * dpms off"' \
 		resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaylock -f -e -F -i $HOME/Wallpapers/endeavour-black-4k.png -s fill'
+	before-sleep 'swaylock -f'
 # This will lock your screen after 300 seconds of inactivity, then turn off your 
 # displays after another 300 seconds, and turn your screens back on when resumed.
 # It will also lock your screen before your computer goes to sleep.
