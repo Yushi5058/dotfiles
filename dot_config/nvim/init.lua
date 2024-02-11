@@ -14,32 +14,26 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("keymaps")
 require("autocmds")
-require("lazy").setup({
+
+local opts = {
 	install = {
-		-- try to load one of these colorschemes when starting an installation during startup
-		colorscheme = {
-			function()
-				require("catppuccin").load()
-			end,
+		colorscheme = { "catppuccin", "tokyonight" },
+		checker = { enabled = true },
+	},
+	rtp = {
+		disabled_plugins = {
+			"gzip",
+			"matchit",
+			"matchparen",
+			"netrwPlugin",
+			"rplugin",
+			"tarPlugin",
+			"tohtml",
+			"tutor",
+			"zipPlugin",
 		},
 	},
-	checker = {
-		-- automatically check for plugin updates
-		enabled = true,
-	},
-	change_detection = {
-		-- automatically check for config file changes and reload the ui
-		notify = false, -- get a notification when changes are found
-	},
-	disabled_plugins = {
-		-- "gzip",
-		-- "matchit",
-		-- "matchparen",
-		-- "netrwPlugin",
-		-- "tarPlugin",
-		-- "tohtml",
-		"tutor",
-		-- "zipPlugin",
-	},
-	{ import = "plugins" },
-})
+	debug = false,
+}
+
+require("lazy").setup("plugins", opts)
