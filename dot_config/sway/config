@@ -141,7 +141,7 @@ set $ws6 "6"
 
 # keybinds for wlsunset
 bindsym $super+w exec wlsunset -t 3500
-bindsym $super+shift+w exec pkillall wlsunset
+bindsym $super+shift+w exec pkill wlsunset
 
 # close notifications mako
 bindsym Ctrl+Space exec makoctl dismiss
