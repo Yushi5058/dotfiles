@@ -155,8 +155,6 @@ bindsym $super+c exec clapboard
 # bindsym $super+Shift+d exec ./rofi-wifi-menu.sh
 
 
-# suspend
-bindsym $super+semicolon exec systemctl suspend
 
 
 # start file-explorer thunar
@@ -244,8 +242,6 @@ bindsym $super+Shift+minus move container to workspace number $ws6
 # reload the configuration file
 bindsym $super+Shift+c reload
 
-# exit sway (logs you out of your wayland session)
-bindsym $super+Shift+e exit
 
 
 
