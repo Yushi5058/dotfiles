@@ -47,7 +47,7 @@ exec systemctl enable --now auto-cpufreq
 exec systemctl start thermald.service
  
 # clipboard manager settings
-exec wl-paste --watch zsh -c "xargs -0 -I{} clapboard store {}"
+# exec wl-paste --watch zsh -c "xargs -0 -I{} clapboard store {}"
 exec wl-paste -p --watch zsh -c "xargs -0 -I{} clapboard store {}"
 
 # inputs 
@@ -144,11 +144,12 @@ set $ws6 "6"
 bindsym Ctrl+Space exec makoctl dismiss
 bindsym Ctrl+shift+Space exec makoctl dismiss --all
 
+
 # clipboard manager keybind
 bindsym $super+c exec clapboard
 
 # rofi-wifi-menu
-bindsym $super+Shift+d exec ./rofi-wifi-menu.sh
+# bindsym $super+Shift+d exec ./rofi-wifi-menu.sh
 
 
 # suspend
@@ -177,7 +178,8 @@ bindsym $super+q kill
 
 
 # start menu launcher rofi
-bindsym $super+d exec "rofi -show drun"
+set $menu tofi-drun | xargs swaymsg exec --
+bindsym $super+d exec $menu
 
 # change focus
 bindsym $super+$left focus left
