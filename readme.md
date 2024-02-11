@@ -5,6 +5,7 @@ Managed by [chezmoi](https://www.chezmoi.io/) and powered by [catppuccin](https:
 ## Overview
 
 - _Shell_ : Zsh
+- _Terminal Emulator_ : [Kitty](https://sw.kovidgoyal.net/kitty/)
 - _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
 - _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
 - _Powerbutton Menu_ : [Wlogout](https://github.com/ArtsyMacaw/wlogout)
