@@ -38,6 +38,7 @@ exec wlsunset -l 33.5 -L -7.5 &
 exec_always mako
 exec_always caffeine
 exec_always nm-applet
+exec_always autotiling
 
 # monitor battery power
 exec systemctl mask power-profiles-daemon.service
