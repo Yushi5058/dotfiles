@@ -1,42 +1,36 @@
-# About the project
+# Dotfiles
 
-_These are my dotfiles, don't use it unless you know what each line of code means._
+Managed by [chezmoi](https://www.chezmoi.io/) and powered by [catppuccin](https://github.com/catppuccin/).
 
-_The dotfiles are managed by [chezmoi](https://www.chezmoi.io/)_
+## Overview
 
-```bash
-$ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply $GITHUB_USERNAME
-```
+- _Shell_ : Zsh
+- _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
+- _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
+- _Powerbutton Menu_ : [Wlogout](https://github.com/ArtsyMacaw/wlogout)
+- _Shell plugin manager_ : [Zap](https://github.com/zap-zsh/zap)
+- _Notification daemon_ : [Mako](https://github.com/emersion/mako)
+- _Code Text Editor_ : [Neovim](https://github.com/neovim/neovim)
+- _Code Font_ : [Maple](https://github.com/subframe7536/Maple-font/)
+- _Regular Font_ : [DaddyTimeMono](https://github.com/BourgeoisBear/DaddyTimeMono)
+- _Icons Font_ : [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
+- _GTK Theme_ : Catppuccin Standard Blue Dark
+- _System Icons_ : Tela Blue Dark
+- _System Cursor_ : Catppuccin Blue
+- _Login Manager_ : Ly
 
-## Requirements
-- Machine (Endeavour OS Linux distro).
-- Internet.
-- Power-user experience.
+## Notice
 
-## Usage
+- `chsh -s /usr/bin/zsh` to make zsh the default shell.
+- The packages to install are in the packages.txt, separated
+  by type : AUR or Pacman.
+- `$ nvim --headless "+Lazy!sync" +qa` to sync plugins with lazy
+  without launching nvim.
+- SSH github authentification is a must. Click [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- My dotfiles are WIP forever.
+- add `-k` to let existing .zshrc when installing Zap.
+- Run `:checkhealth` in the first launch of Neovim.
 
-### Post-installation guide
-- Don't skip the post-installation welcome : 
- * update mirrors
- * system update
+## TO-DO
 
-### Apps
-Spotify, Kitty Terminal, Discord, Whatsapp-for-linux, Firefox, Krita, Neovim,
-Xplr, Btop, Bat, Eza, Zellij, Obsidian, Nodejs, Pfetch, Flameshot, Min-browser
-
-### Theme 
-- Catppuccin Frappe Blue KDE Theme [here](https://github.com/catppuccin/kde)
-- Tela Dark Icon Theme [here](https://github.com/vinceliuice/Tela-icon-theme)
-- Lightly Window Style Theme [here](https://github.com/Luwx/Lightly)
-
-### Utils
-
-- Configure [SSH-Key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) for github signing commits.
-* Use DaddyTimeMono NF Regular for normal usage. 
-* Use [maple-font](https://github.com/subframe7536/Maple-font/releases) for developer/programming usage.
-
-## Notes
-
-* The dotfiles are in constant change. (WIP)
-* Script install for packages (apps) will be used in the future.
-* Private encryption with chezmoi and age for ssh key will be used in the future.
+- Add scripts to automate packages installation.
