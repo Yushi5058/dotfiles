@@ -34,7 +34,6 @@ include catppuccin-frappe
 
 # Start apps & things
 exec_always systemctl enable ly.service
-exec wlsunset -l 33.5 -L -7.5 &
 exec_always mako
 exec_always caffeine
 exec_always nm-applet
@@ -140,6 +139,9 @@ set $ws6 "6"
 #
 
 
+# keybinds for wlsunset
+bindsym $super+w exec wlsunset -t 3500
+bindsym $super+shift+w exec pkillall wlsunset
 
 # close notifications mako
 bindsym Ctrl+Space exec makoctl dismiss
