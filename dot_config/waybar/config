@@ -23,16 +23,17 @@
        "exec-if": "which waybar-module-pacman-updates",
        "exec": "waybar-module-pacman-updates"
    },
-"custom/media": {
+  "custom/media": {
     "format": "{icon} {}",
     "escape": true,
     "return-type": "json",
     "max-length": 45,
     "on-click": "playerctl play-pause",
     "on-click-right": "playerctl stop",
+    "smooth-scrolling-threshold": 10,    
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null", 
+    "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null"
 },
 	"sway/workspaces": {
     "disable-scroll": true,
@@ -44,11 +45,7 @@
      "3": "",
      "4": "",
      "5": "",
-     "6": "@",
-
-    //"urgent": "",
-    //"focused": "",
-    //"default": ""
+     "6": "@"
 	}
 	},
 	"sway/window": {
@@ -76,7 +73,7 @@
 	},
 	"tray":{
 		"icon-size":21,
-		"spacing": 10,
+		"spacing": 10
 	},
  "clock": {
         "timezone": "Africa/Casablanca",
@@ -90,3 +87,4 @@
         "tooltip": false
     }
          }
+// vim:ft=json
