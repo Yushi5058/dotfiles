@@ -28,3 +28,5 @@ text-caps-lock-color=ef9f76
 text-ver-color=8caaee
 text-wrong-color=ea999c
 image=$HOME/Wallpapers/endeavour-black-4k.png
+indicator-x-position=172
+indicator-y-position=789
