@@ -1,6 +1,5 @@
 # Colors catppuccin-frappe
 
-[mode=default]
 background-color=#303446
 text-color=#c6d0f5
 border-color=#8caaee
@@ -10,11 +9,5 @@ font=DaddyTimeMono 12
 
 [urgency=high]
 border-color=#ef9f76
-
-
-# afk mode 
-[mode=away]
-default-timeout=0
-ignore-timeout=1
 
 
