@@ -1,11 +1,12 @@
 # Dotfiles
 
-Managed by [chezmoi](https://www.chezmoi.io/) and powered by [catppuccin](https://github.com/catppuccin/).
+Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](https://github.com/catppuccin/).
 
 ## Overview
 
 - _Shell_ : Zsh
 - _Terminal Emulator_ : [Kitty](https://sw.kovidgoyal.net/kitty/)
+- _Menu Launcher_ : [Tofi](https://github.com/philj56/tofi)
 - _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
 - _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
 - _Powerbutton Menu_ : [Wlogout](https://github.com/ArtsyMacaw/wlogout)
