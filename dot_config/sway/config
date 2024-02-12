@@ -151,8 +151,9 @@ bindsym Ctrl+shift+Space exec makoctl dismiss --all
 # clipboard manager keybind
 bindsym $super+c exec clapboard
 
-# rofi-wifi-menu
-# bindsym $super+Shift+d exec ./rofi-wifi-menu.sh
+
+# wlogout keybind
+bindsym $super+shift+e exec wlogout
 
 
 
@@ -178,7 +179,7 @@ bindsym $super+Return exec kitty
 bindsym $super+q kill
 
 
-# start menu launcher rofi
+# start menu launcher tofi
 set $menu tofi-drun | xargs swaymsg exec --
 bindsym $super+d exec $menu
 
