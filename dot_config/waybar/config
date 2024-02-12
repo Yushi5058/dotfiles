@@ -1,28 +1,28 @@
 {
-	"layer": "top",
-	"modules-left": ["sway/workspaces", "tray", "custom/updates"],
-	"modules-center": ["sway/window", "custom/media"],
-	"modules-right": ["battery","backlight", "pulseaudio", "cpu", "clock"],
-	"pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon}  {volume}%",
-		"format-muted": "󰝟  0%",
-		"on-click":"amixer -D pulse Master 1+ toggle",
-		"format-icons": {
-		"default": ["", "󰖀", "󰕾"]
-		}
-	},
-     "custom/updates": {
-       "format": "{} {icon}",
-       "return-type": "json",
-       "format-icons": {
-           "has-updates": "󱍷",
-           "updated": "󰂪"
-       },
-       "exec-if": "which waybar-module-pacman-updates",
-       "exec": "waybar-module-pacman-updates"
-   },
+  "layer": "top",
+  "modules-left": ["sway/workspaces", "tray", "custom/updates"],
+  "modules-center": ["sway/window", "custom/media"],
+  "modules-right": ["battery","backlight", "pulseaudio", "cpu", "clock"],
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟  0%",
+    "on-click":"amixer -D pulse Master 1+ toggle",
+    "format-icons": {
+      "default": ["", "󰖀", "󰕾"]
+    }
+  },
+  "custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+      "has-updates": "󱍷",
+      "updated": "󰂪"
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates"
+  },
   "custom/media": {
     "format": "{icon} {}",
     "escape": true,
@@ -34,57 +34,71 @@
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous",
     "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null"
-},
-	"sway/workspaces": {
+  },
+  "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs" : true,
     "format": "{icon}",
     "format-icons": {
-     "1": "",
-     "2": "🗪",
-     "3": "",
-     "4": "",
-     "5": "",
-     "6": "@"
-	}
-	},
-	"sway/window": {
-		"format": "{}",
-		"max-length": 40
-	},
-	"backlight": {
-		"device": "amdgpu_b10",
-		"format": "{icon}  {}%",
-		"format-icons": ["", ""],
-		"interval": 1,
-		"on-click": ""
-	},
-	"battery": {
-  "interval": 2,
-		"states": {
-			"good": 100,
-			"warning": 30,
-			"critical": 20
-		},
-		"format": "{icon}  {capacity}%",
-		"format-charging": "{icon}   {capacity}%",
-		"format-plugged": "{icon}   {capacity}%",
-		"format-icons": ["", "", "", "", ""]
-	},
-	"tray":{
-		"icon-size":21,
-		"spacing": 10
-	},
- "clock": {
-        "timezone": "Africa/Casablanca",
-        "interval": 1,
-        "format": " {:%H:%M:%S}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-  "cpu" : {
-     "format": "{usage}% ",
-        "tooltip": false
+      "1": "",
+      "2": "🗪",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "@"
     }
-         }
+  },
+  "sway/window": {
+    "format": "{}",
+    "max-length": 40
+  },
+  "backlight": {
+    "device": "amdgpu_b10",
+    "format": "{icon}  {}%",
+    "format-icons": ["", ""],
+    "interval": 1,
+    "on-click": ""
+  },
+  "battery": {
+    "interval": 2,
+    "states": {
+      "good": 100,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "{icon}   {capacity}%",
+    "format-plugged": "{icon}   {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "tray":{
+    "icon-size":21,
+    "spacing": 10
+  },
+  "clock": {
+    "timezone": "Africa/Casablanca",
+    "interval": 1,
+    "format": " {:%H:%M:%S}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode"          : "year",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+        "months":     "<span color='#f2d5cf'><b>{}</b></span>",
+        "days":       "<span color='#f4b8e4'><b>{}</b></span>",
+        "weeks":      "<span color='#99d1db'><b>W{}</b></span>",
+        "weekdays":   "<span color='#e5c890'><b>{}</b></span>",
+        "today":      "<span color='#e78284'><b><u>{}</u></b></span>"
+      }
+    },
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  "cpu" : {
+    "format": "{usage}% ",
+    "tooltip": false
+  }
+}
 // vim:ft=json
