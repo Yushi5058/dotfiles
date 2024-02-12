@@ -352,8 +352,6 @@ bar swaybar_command waybar
         # exec_always swaymsg workspace $ws3
 
 
-# Pause mako dimiss notifications when afk
-        exec_always swayidle timeout 30 "makoctl set-mode away" resume "makoctl set-mode default"
         
 # Sway system stuff
 include /etc/sway/config.d/*
