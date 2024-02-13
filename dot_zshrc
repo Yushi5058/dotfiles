@@ -27,7 +27,6 @@ compinit
 
 
 # aliases
-alias z="zellij"
 alias c="clear"
 alias cat="bat"
 alias htop="btop"
