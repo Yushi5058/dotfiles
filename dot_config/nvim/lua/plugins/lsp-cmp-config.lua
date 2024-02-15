@@ -95,6 +95,7 @@ return {
 				tailwindcss = {},
 				jsonls = {},
 				bashls = {},
+				zigls = {},
 			}
 
 			require("mason").setup()
