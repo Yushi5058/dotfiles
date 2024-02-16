@@ -103,13 +103,6 @@ window#waybar.hidden {
 #battery.warning:not(.charging),
 #battery.critical:not(.charging) {
   background: none;
-  /* color: @yellow; */
-  /* border-bottom: 3px solid @yellow; */
-  /* animation-name: blink; */
-  /* animation-duration: 3.0s; */
-  /* animation-timing-function: steps(12); */
-  /* animation-iteration-count: infinite; */
-  /* animation-direction: alternate; */
 }
 
 #battery.warning:not(.charging) {
