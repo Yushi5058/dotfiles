@@ -23,7 +23,7 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>pv", function()
+		vim.keymap.set("n", "<leader>n", function()
 			require("oil").toggle_float()
 		end)
 	end,

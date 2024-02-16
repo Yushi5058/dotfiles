@@ -14,8 +14,11 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>nt", function()
+		vim.keymap.set("n", "<leader>tf", function()
 			require("neotest").run.run(vim.fn.expand("%"))
+			vim.keympa.set("n", "<leader>tl", function()
+				require("neotest").run.run()
+			end)
 		end)
 	end,
 }
