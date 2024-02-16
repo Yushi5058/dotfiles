@@ -23,8 +23,6 @@ keymap.set("n", "-", "<C-down")
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
 keymap.set("n", "<leader>m", "<cmd>Mason<cr>")
 
-keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
 -- dealing with word wrap
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
