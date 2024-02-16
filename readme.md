@@ -5,7 +5,7 @@ Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](ht
 ## Overview
 
 - _Shell_ : Zsh
-- _Terminal Emulator_ : [Kitty](https://sw.kovidgoyal.net/kitty/)
+- _Terminal Emulator_ : [Wezterm](https://github.com/wez/wezterm)
 - _Menu Launcher_ : [Tofi](https://github.com/philj56/tofi)
 - _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
 - _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
