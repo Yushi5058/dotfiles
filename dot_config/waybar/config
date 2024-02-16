@@ -29,7 +29,7 @@
   },
   "sway/window": {
     "format": "{}",
-    "max-length": 40
+    "min-length": 40
   },
   "backlight": {
     "device": "amdgpu_b10",
