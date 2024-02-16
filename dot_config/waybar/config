@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "modules-left": ["sway/workspaces", "tray", "custom/updates"],
-  "modules-center": ["sway/window", "custom/media"],
+  "modules-center": ["sway/window"],
   "modules-right": ["battery","backlight", "pulseaudio", "cpu", "clock"],
   "pulseaudio": {
     "tooltip": false,
@@ -23,30 +23,9 @@
     "exec-if": "which waybar-module-pacman-updates",
     "exec": "waybar-module-pacman-updates"
   },
-  "custom/media": {
-    "format": "{icon} {}",
-    "escape": true,
-    "return-type": "json",
-    "max-length": 45,
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl stop",
-    "smooth-scrolling-threshold": 10,    
-    "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous",
-    "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null"
-  },
-  "sway/workspaces": {
+    "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs" : true,
-    "format": "{icon}",
-    "format-icons": {
-      "1": "",
-      "2": "🗪",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "@"
-    }
   },
   "sway/window": {
     "format": "{}",
