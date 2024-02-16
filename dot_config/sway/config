@@ -39,6 +39,9 @@ exec_always caffeine
 exec_always nm-applet
 exec_always autotiling
 
+# clipboard manager
+exec copyq
+
 # monitor battery power
 exec systemctl mask power-profiles-daemon.service
 exec systemctl enable --now auto-cpufreq
@@ -46,9 +49,6 @@ exec systemctl enable --now auto-cpufreq
 # monitor temperature of cpu
 exec systemctl start thermald.service
  
-# clipboard manager settings
-# exec wl-paste --watch zsh -c "xargs -0 -I{} clapboard store {}"
-exec wl-paste -p --watch zsh -c "xargs -0 -I{} clapboard store {}"
 
 # inputs 
 #keyboard layout
@@ -147,9 +147,6 @@ bindsym $super+shift+w exec pkill wlsunset
 bindsym Ctrl+Space exec makoctl dismiss
 bindsym Ctrl+shift+Space exec makoctl dismiss --all
 
-
-# clipboard manager keybind
-bindsym $super+c exec clapboard
 
 
 # wlogout keybind
@@ -291,6 +288,9 @@ client.background        $base
 
 # remove borders
 for_window [class="^.*"] border pixel 2
+
+# open clipboard manager as float
+for_window [app_id="com.github.hluk.copyq"] floating enable
 
 # This configuration directive enables automatic workspace back_and_forth (see [back_and_forth]) when switching to the workspace that is currently focused.
 # For instance: Assume you are on workspace "1: www" and switch to "2: IM" using mod+2 because somebody sent you a message. You don’t need to remember where you came from now, you can just press $mod+2 again to switch back to "1: www".
