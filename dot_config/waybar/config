@@ -25,7 +25,7 @@
   },
     "sway/workspaces": {
     "disable-scroll": true,
-    "all-outputs" : true,
+    "all-outputs" : true
   },
   "sway/window": {
     "format": "{}",
