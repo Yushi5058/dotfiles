@@ -9,6 +9,9 @@ return {
 			require("mini.surround").setup()
 			require("mini.animate").setup()
 			require("mini.comment").setup()
+			require("mini.statusline").setup()
+			require("mini.starter").setup()
+			require("mini.notify").setup()
 		end,
 	},
 	{
@@ -24,20 +27,6 @@ return {
 			require("gitsigns").setup()
 			vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>")
 			vim.keymap.set("n", "<leader>gt", "<cmd>Gitsigns toggle_current_line_blame<cr>")
-		end,
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("lualine").setup({
-				options = {
-					icons_enabled = true,
-					theme = "catppuccin",
-					component_separators = "|",
-					section_separators = "",
-				},
-			})
 		end,
 	},
 	{
