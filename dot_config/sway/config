@@ -45,7 +45,6 @@ exec copyq
 # monitor battery power
 exec systemctl mask power-profiles-daemon.service
 exec systemctl enable --now auto-cpufreq
-exec systemctl enable --now darkman.service
 
 # monitor temperature of cpu
 exec systemctl start thermald.service
