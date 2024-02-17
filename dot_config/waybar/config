@@ -58,13 +58,13 @@
     "timezone": "Africa/Casablanca",
     "interval": 1,
     "format": " {:%H:%M:%S}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "{calendar}",
     "calendar": {
       "mode"          : "month",
       "format": {
-        "days":       "<span color='#f4b8e4'><b>{}</b></span>",
-        "weeks":      "<span color='#99d1db'><b>W{}</b></span>",
-        "today":      "<span color='#e78284'><b><u>{}</u></b></span>"
+        "months": "<span color='#949cbb'><b>{}</b></span>"
+        "days":       "<span color='#c6d0f5'><b>{}</b></span>",
+        "today":      "<span color='#a5adce'><b><u>{}</u></b></span>"
       }
     },
     "format-alt": "{:%Y-%m-%d}"
