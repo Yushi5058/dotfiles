@@ -37,3 +37,6 @@ Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](ht
 ## TO-DO
 
 - Add scripts to automate packages installation.
+- Add package.txt regrouping all pacman and AUR packages.
+- Move to arch linux, to build my dotfiles on a fresh install without the
+  default Endeavour OS configuration.
