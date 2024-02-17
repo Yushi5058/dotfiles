@@ -49,6 +49,9 @@ exec systemctl enable --now darkman.service
 
 # monitor temperature of cpu
 exec systemctl start thermald.service
+
+# launch wlsunset
+exec wlsunset -l 33.4 -L -7.4 -t 3000 -T 4500
  
 
 # inputs 
@@ -140,9 +143,6 @@ set $ws6 "6"
 #
 
 
-# keybinds for wlsunset
-bindsym $super+w exec wlsunset -t 3500
-bindsym $super+shift+w exec pkill wlsunset
 
 # close notifications mako
 bindsym Ctrl+Space exec makoctl dismiss
