@@ -60,16 +60,10 @@
     "format": " {:%H:%M:%S}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "calendar": {
-      "mode"          : "year",
-      "mode-mon-col"  : 3,
-      "weeks-pos"     : "right",
-      "on-scroll"     : 1,
-      "on-click-right": "mode",
+      "mode"          : "month",
       "format": {
-        "months":     "<span color='#f2d5cf'><b>{}</b></span>",
         "days":       "<span color='#f4b8e4'><b>{}</b></span>",
         "weeks":      "<span color='#99d1db'><b>W{}</b></span>",
-        "weekdays":   "<span color='#e5c890'><b>{}</b></span>",
         "today":      "<span color='#e78284'><b><u>{}</u></b></span>"
       }
     },
