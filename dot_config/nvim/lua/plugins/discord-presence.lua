@@ -2,7 +2,7 @@
 -- https://github.com/andweeb/presence.nvim/issues/127
 --
 --
--- return {
--- 	"andweeb/presence.nvim",
--- 	lazy = false,
--- }
+return {
+	-- 	"andweeb/presence.nvim",
+	-- 	lazy = false,
+}
