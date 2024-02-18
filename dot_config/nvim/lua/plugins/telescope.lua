@@ -14,19 +14,19 @@ return {
 	keys = {
 		{
 			"<leader>ff",
-			"<cmd>lua require('telescope.builtin').find_files, {}",
+			"<cmd>Telescope find_files<cr>",
 			mode = { "n" },
 			desc = "Telescope find files",
 		},
 		{
 			"<leader>fg",
-			"<cmd>lua require('telescope.builtin').live_grep, {}",
+			"<cmd>Telescope live_grep<cr>",
 			mode = { "n" },
 			desc = "Telescope live grep",
 		},
 		{
 			"<leader>fh",
-			"<cmd>lua require('telescope.builtin').help_tags, {}",
+			"<cmd>Telescope help_tags<cr>",
 			mode = { "n" },
 			desc = "Telescope help tags",
 		},

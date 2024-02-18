@@ -3,7 +3,7 @@ return {
 	priority = 10000,
 	lazy = false,
 	keys = {
-		"<leader>k",
+		"<",
 		"<cmd>Legendary<cr>",
 		mode = { "n" },
 		desc = "Open legendary",
