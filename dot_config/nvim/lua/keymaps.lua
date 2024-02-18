@@ -41,3 +41,8 @@ keymap.set("n", "jk", "<cmd>noh<cr>")
 
 -- split windows
 keymap.set("n", "ss", "<cmd>vsplit<cr>")
+-- keymap.set("n", "sh", "<cmd>split<cr>") for horizontal split
+
+-- navigate between splits
+keymap.set("n", "<c-h", "<cmd>wincmd h<cr>")
+keymap.set("n", "<c-l", "<cmd>wincmd l<cr>")
