@@ -20,20 +20,5 @@ local opts = {
 		colorscheme = { "catppuccin", "tokyonight" },
 		checker = { enabled = true },
 	},
-	rtp = {
-		disabled_plugins = {
-			"gzip",
-			"matchit",
-			"matchparen",
-			"netrwPlugin",
-			"rplugin",
-			"tarPlugin",
-			"tohtml",
-			"tutor",
-			"zipPlugin",
-		},
-	},
-	debug = false,
 }
-
 require("lazy").setup("plugins", opts)
