@@ -3,7 +3,7 @@ return {
 		"echasnovski/mini.nvim",
 		version = false,
 		keys = {
-			{ "n", "<leader>n", "<cmd>lua MiniFiles.open()<cr>" },
+			{ "<leader>n", "<cmd>lua MiniFiles.open()<cr>", mode = { "n" }, desc = "File explorer" },
 		},
 		config = function()
 			require("mini.cursorword").setup()
@@ -45,10 +45,25 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
 		keys = {
-			{ "n", "<leader>xx", "<cmd>lua require('trouble').toggle()<cr>" },
-			{ "n", "<leader>xw", "<cmd>lua require('trouble').toggle('workspace_diagnostics')" },
-			{ "n", "<leader>xd", "<cmd>lua require('trouble').toggle('document_diagnostics')" },
-			{ "n", "<leader>xq", "<cmd>lua require('trouble').toggle('quickfix')" },
+			{ "<leader>xx", "<cmd>lua require('trouble').toggle()<cr>", mode = { "n" }, desc = "Trouble toggle" },
+			{
+				"<leader>xw",
+				"<cmd>lua require('trouble').toggle('workspace_diagnostics')",
+				mode = { "n" },
+				desc = "Trouble Workspace Diagnostics",
+			},
+			{
+				"<leader>xd",
+				"<cmd>lua require('trouble').toggle('document_diagnostics')",
+				mode = { "n" },
+				desc = "Trouble Document Diagnostics",
+			},
+			{
+				"<leader>xq",
+				"<cmd>lua require('trouble').toggle('quickfix')",
+				mode = { "n" },
+				desc = "Trouble Quickfix",
+			},
 		},
 	},
 	{
@@ -56,18 +71,18 @@ return {
 		dependencies = "nvim-lua/plenary.nvim",
 		config = true,
 		keys = {
-			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", mode = { "n" }, desc = "Undotree Toggle" },
 		},
 	},
 	{
 		"gbprod/yanky.nvim",
 		opts = {},
 		keys = {
-			{ { "n", "x" }, "p", "<Plug>(YankyPutAfter)" },
-			{ { "n", "x" }, "P", "<Plug>(YankyPutBefore)" },
-			{ { "n", "x" }, "gp", "<Plug>(YankyGPutAfter)" },
-			{ { "n", "x" }, "gP", "<Plug>(YankyGPutBefore)" },
-			{ { "n", "x" }, "y", "<Plug>(YankyYank)" },
+			{ "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
+			{ "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
+			{ "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
+			{ "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
+			{ "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
 		},
 		config = function()
 			require("yanky").setup({

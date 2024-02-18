@@ -3,12 +3,17 @@ return {
 	priority = 10000,
 	lazy = false,
 	keys = {
-		{ "n", "<leader>k", "<cmd>Legendary<cr>" },
+		"<leader>k",
+		"<cmd>Legendary<cr>",
+		mode = { "n" },
+		desc = "Open legendary",
 	},
 	config = function()
 		require("legendary").setup({
 			keymaps = {},
-			lazy_nvim = { auto_register = true },
+			extensions = {
+				lazy_nvim = true,
+			},
 		})
 	end,
 }

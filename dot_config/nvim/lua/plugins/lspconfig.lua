@@ -5,10 +5,10 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 	},
 	keys = {
-		{ "n", "K", vim.lsp.buf.hover, {} },
-		{ "n", "<leader>gd", vim.lsp.buf.definition, {} },
-		{ "n", "<leader>gr", vim.lsp.buf.references, {} },
-		{ "n", "<leader>ca", vim.lsp.buf.code_action, {} },
+		{ "K", vim.lsp.buf.hover, {}, mode = { "n" }, desc = "lsp hover" },
+		{ "<leader>gd", vim.lsp.buf.definition, {}, mode = { "n" }, desc = "lsp definition" },
+		{ "<leader>gr", vim.lsp.buf.references, {}, mode = { "n" }, desc = "lsp references" },
+		{ "<leader>ca", vim.lsp.buf.code_action, {}, mode = { "n" }, desc = "lsp code action" },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -23,6 +23,7 @@ return {
 					diagnostics = {
 						globals = {
 							"vim",
+							"on_attach",
 						},
 						-- disable = { 'missing-fields' } },
 					},
