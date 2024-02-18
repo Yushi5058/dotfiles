@@ -9,9 +9,9 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 		keys = {
-			{ "<C-o>", "<cmd>ObsidianOpen<cr>" },
-			{ "<C-n>", "<cmd>ObsidianNew<cr>" },
-			{ "<C-s>", "<cmd>ObsidianQuickSwitch<cr>" },
+			{ "<C-o>", "<cmd>ObsidianOpen<cr>", mode = { "n" }, desc = "Open Obsidian" },
+			{ "<C-n>", "<cmd>ObsidianNew<cr>", mode = { "n" }, desc = "New Obsidian" },
+			{ "<C-s>", "<cmd>ObsidianQuickSwitch<cr>", mode = { "n" }, desc = "Obsidian Quick Switch" },
 		},
 		opts = {
 			dir = "~/Obsidian Vault/",
@@ -25,7 +25,9 @@ return {
 	},
 	{
 		"ellisonleao/glow.nvim",
-		keys = { "n", "<leader>g", "<cmd>Glow<cr>" },
+		keys = {
+			{ "<leader>g", "<cmd>Glow<cr>", mode = { "n" }, desc = "Markdown preview" },
+		},
 		config = function()
 			require("glow").setup()
 		end,

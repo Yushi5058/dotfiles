@@ -3,43 +3,70 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	config = function()
-		require("harpoon").setup()
-
-		local harpoon_ui = require("harpoon.ui")
-		local harpoon_mark = require("harpoon.mark")
-
-		vim.keymap.set("n", "<c-e>", function()
-			harpoon_ui.toggle_quick_menu()
-		end)
-
-		-- Add current file to harpoon
-		vim.keymap.set("n", "<leader>a", function()
-			harpoon_mark.add_file()
-		end)
-
-		-- Remove current file from harpoon
-		vim.keymap.set("n", "<leader>r", function()
-			harpoon_mark.rm_file()
-		end)
-
-		-- Remove all files from harpoon
-		vim.keymap.set("n", "<leader>c", function()
-			harpoon_mark.clear_all()
-		end)
-
-		-- Quickly jump to harpooned files
-		vim.keymap.set("n", "<c-&>", function()
-			harpoon_ui.nav_file(1)
-		end)
-		vim.keymap.set("n", "<c-é>", function()
-			harpoon_ui.nav_file(2)
-		end)
-		vim.keymap.set("n", '<c-">', function()
-			harpoon_ui.nav_file(3)
-		end)
-		vim.keymap.set("n", "<c-'>", function()
-			harpoon_ui.nav_file(4)
-		end)
-	end,
+	keys = {
+		{
+			"<c-e>",
+			function()
+				require("harpoon.ui").toggle_quick_menu()
+			end,
+			mode = { "n" },
+			desc = "Open Harpoon Menu",
+		},
+		{
+			"<leader>a",
+			function()
+				require("harpoon.mark").add_file()
+			end,
+			mode = { "n" },
+			desc = "Add file to harpoon",
+		},
+		{
+			"<leader>r",
+			function()
+				require("harpoon.mark").rm_file()
+			end,
+			mode = { "n" },
+			desc = "Remove file from harpoon",
+		},
+		{
+			"<leader>c",
+			function()
+				require("harpoon.mark").clear_all()
+			end,
+			mode = { "n" },
+			desc = "Clear harpoon menu",
+		},
+		{
+			"<c-&>",
+			function()
+				require("harpoon.ui").nav_file(1)
+			end,
+			mode = { "n" },
+			desc = "Navigate to file 1",
+		},
+		{
+			"<c-é>",
+			function()
+				require("harpoon.ui").nav_file(2)
+			end,
+			mode = { "n" },
+			desc = "Navigate to file 2",
+		},
+		{
+			'<c-">',
+			function()
+				require("harpoon.ui").nav_file(3)
+			end,
+			mode = { "n" },
+			desc = "Navigate to file 3",
+		},
+		{
+			"<c-'>",
+			function()
+				require("harpoon.ui").nav_file(4)
+			end,
+			mode = { "n" },
+			desc = "Navigate to file 4",
+		},
+	},
 }

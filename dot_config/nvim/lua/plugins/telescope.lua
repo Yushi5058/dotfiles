@@ -1,7 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
-	-- or                              , branch = '0.1.x',
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{
@@ -13,8 +12,23 @@ return {
 		},
 	},
 	keys = {
-		{ "n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files, {}" },
-		{ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep, {}" },
-		{ "n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags, {}" },
+		{
+			"<leader>ff",
+			"<cmd>lua require('telescope.builtin').find_files, {}",
+			mode = { "n" },
+			desc = "Telescope find files",
+		},
+		{
+			"<leader>fg",
+			"<cmd>lua require('telescope.builtin').live_grep, {}",
+			mode = { "n" },
+			desc = "Telescope live grep",
+		},
+		{
+			"<leader>fh",
+			"<cmd>lua require('telescope.builtin').help_tags, {}",
+			mode = { "n" },
+			desc = "Telescope help tags",
+		},
 	},
 }
