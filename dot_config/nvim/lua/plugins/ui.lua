@@ -13,6 +13,7 @@ return {
 			require("mini.starter").setup()
 			require("mini.notify").setup()
 			require("mini.files").setup()
+			require("mini.completion").setup() -- complementary to nvim-cmp for now
 
 			vim.keymap.set("n", "<leader>n", "<cmd>lua MiniFiles.open()<cr>")
 		end,
@@ -101,7 +102,6 @@ return {
 			vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 			vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 			vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-
 			vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 		end,
 	},
