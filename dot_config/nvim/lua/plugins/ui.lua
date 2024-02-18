@@ -2,6 +2,7 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		version = false,
+		lazy = false,
 		keys = {
 			{ "<leader>n", "<cmd>lua MiniFiles.open()<cr>", mode = { "n" }, desc = "File explorer" },
 		},
