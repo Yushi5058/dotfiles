@@ -5,20 +5,15 @@ vim.g.mapleader = " "
 keymap.set({ "i", "v" }, "jk", "<Esc>")
 
 -- disable space in normal mode for leader key
-keymap.set("n", "<space>", "<nop>")
+keymap.set({ "n", "v" }, "<space>", "<nop>")
 
 -- save, quit, save & quit files with leader key
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
 keymap.set("n", "<leader>q", "<cmd>q<cr>")
-keymap.set("n", "<leader>z", "<cmd>wq<cr>")
 
 -- Move line up/down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
--- Increment/decrement
-keymap.set("n", "+", "<C-up>")
-keymap.set("n", "-", "<C-down")
 
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
 keymap.set("n", "<leader>m", "<cmd>Mason<cr>")
@@ -43,3 +38,6 @@ keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search
 
 -- escape search highlight
 keymap.set("n", "jk", "<cmd>noh<cr>")
+
+-- split windows
+keymap.set("n", "ss", "<cmd>vsplit<cr>")
