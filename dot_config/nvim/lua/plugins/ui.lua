@@ -48,19 +48,19 @@ return {
 			{ "<leader>xx", "<cmd>lua require('trouble').toggle()<cr>", mode = { "n" }, desc = "Trouble toggle" },
 			{
 				"<leader>xw",
-				"<cmd>lua require('trouble').toggle('workspace_diagnostics')",
+				"<cmd>lua require('trouble').toggle('workspace_diagnostics')<cr>",
 				mode = { "n" },
 				desc = "Trouble Workspace Diagnostics",
 			},
 			{
 				"<leader>xd",
-				"<cmd>lua require('trouble').toggle('document_diagnostics')",
+				"<cmd>lua require('trouble').toggle('document_diagnostics')<cr>",
 				mode = { "n" },
 				desc = "Trouble Document Diagnostics",
 			},
 			{
 				"<leader>xq",
-				"<cmd>lua require('trouble').toggle('quickfix')",
+				"<cmd>lua require('trouble').toggle('quickfix')<cr>",
 				mode = { "n" },
 				desc = "Trouble Quickfix",
 			},
