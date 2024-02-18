@@ -20,3 +20,14 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.colorcolumn = ""
 	end,
 })
+
+-- open help vertically
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("vertical_help", { clear = true }),
+	pattern = "help",
+	callback = function()
+		vim.bo.bufhidden = "unload"
+		vim.cmd.wincmd("L")
+		vim.cmd.wincmd("=")
+	end,
+})
