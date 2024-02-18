@@ -6,7 +6,6 @@ return {
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
 		},
 		keys = {
@@ -26,9 +25,9 @@ return {
 	},
 	{
 		"ellisonleao/glow.nvim",
+		keys = { "n", "<leader>g", "<cmd>Glow<cr>" },
 		config = function()
 			require("glow").setup()
-			vim.keymap.set("n", "<leader>mp", "<cmd>Glow<cr>")
 		end,
 	},
 }

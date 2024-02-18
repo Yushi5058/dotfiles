@@ -12,10 +12,9 @@ return {
 			end,
 		},
 	},
-	config = function()
-		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-	end,
+	keys = {
+		{ "n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files, {}" },
+		{ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep, {}" },
+		{ "n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags, {}" },
+	},
 }

@@ -2,6 +2,9 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		version = false,
+		keys = {
+			{ "n", "<leader>n", "<cmd>lua MiniFiles.open()<cr>" },
+		},
 		config = function()
 			require("mini.cursorword").setup()
 			require("mini.indentscope").setup()
@@ -14,13 +17,11 @@ return {
 			require("mini.notify").setup()
 			require("mini.files").setup()
 			require("mini.completion").setup() -- complementary to nvim-cmp for now
-
-			vim.keymap.set("n", "<leader>n", "<cmd>lua MiniFiles.open()<cr>")
 		end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
+		lazy = true,
 		config = function()
 			require("gitsigns").setup()
 		end,
@@ -42,47 +43,31 @@ return {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+		opts = {},
+		keys = {
+			{ "n", "<leader>xx", "<cmd>lua require('trouble').toggle()<cr>" },
+			{ "n", "<leader>xw", "<cmd>lua require('trouble').toggle('workspace_diagnostics')" },
+			{ "n", "<leader>xd", "<cmd>lua require('trouble').toggle('document_diagnostics')" },
+			{ "n", "<leader>xq", "<cmd>lua require('trouble').toggle('quickfix')" },
 		},
-		config = function()
-			-- Lua
-			vim.keymap.set("n", "<leader>xx", function()
-				require("trouble").toggle()
-			end)
-			vim.keymap.set("n", "<leader>xw", function()
-				require("trouble").toggle("workspace_diagnostics")
-			end)
-			vim.keymap.set("n", "<leader>xd", function()
-				require("trouble").toggle("document_diagnostics")
-			end)
-			vim.keymap.set("n", "<leader>xq", function()
-				require("trouble").toggle("quickfix")
-			end)
-			vim.keymap.set("n", "<leader>xl", function()
-				require("trouble").toggle("loclist")
-			end)
-			vim.keymap.set("n", "gR", function()
-				require("trouble").toggle("lsp_references")
-			end)
-		end,
 	},
 	{
 		"jiaoshijie/undotree",
 		dependencies = "nvim-lua/plenary.nvim",
 		config = true,
-		keys = { -- load the plugin only when using it's keybinding:
+		keys = {
 			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
 		},
 	},
 	{
 		"gbprod/yanky.nvim",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+		opts = {},
+		keys = {
+			{ { "n", "x" }, "p", "<Plug>(YankyPutAfter)" },
+			{ { "n", "x" }, "P", "<Plug>(YankyPutBefore)" },
+			{ { "n", "x" }, "gp", "<Plug>(YankyGPutAfter)" },
+			{ { "n", "x" }, "gP", "<Plug>(YankyGPutBefore)" },
+			{ { "n", "x" }, "y", "<Plug>(YankyYank)" },
 		},
 		config = function()
 			require("yanky").setup({
@@ -98,11 +83,6 @@ return {
 					sync_with_ring = true,
 				},
 			})
-			vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-			vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-			vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-			vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-			vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 		end,
 	},
 }
