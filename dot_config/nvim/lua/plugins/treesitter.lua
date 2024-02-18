@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"fladson/vim-kitty",
-		"ziglang/zig.vim",
 	},
 	build = ":TSUpdate",
 	config = function()
@@ -13,10 +12,10 @@ return {
 				"typescript",
 				"c",
 				"lua",
-				"rust",
 				"vimdoc",
 				"vim",
 				"bash",
+				"ruby",
 				"markdown",
 				"markdown_inline",
 			},
