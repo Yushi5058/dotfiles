@@ -9,8 +9,7 @@ vim.opt.smartindent = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 
--- Enable access to System Clipboard
-vim.opt.clipboard = "unnamed,unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 
 vim.opt.wrap = false
@@ -22,7 +21,6 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- Better splitting
-vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- Disable mouse
