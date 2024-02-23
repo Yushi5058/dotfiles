@@ -8,6 +8,9 @@ return {
 				flavour = "frappe",
 			})
 			vim.cmd.colorscheme("catppuccin")
+
+			-- configure highlights
+			vim.cmd.hi("Comment gui=none")
 		end,
 	},
 

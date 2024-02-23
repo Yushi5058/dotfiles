@@ -19,7 +19,7 @@ return {
 			desc = "Telescope find files",
 		},
 		{
-			"<leader>fg",
+			"<leader>fr",
 			"<cmd>Telescope live_grep<cr>",
 			mode = { "n" },
 			desc = "Telescope live grep",
@@ -29,6 +29,18 @@ return {
 			"<cmd>Telescope help_tags<cr>",
 			mode = { "n" },
 			desc = "Telescope help tags",
+		},
+		{
+			"<leader>fg",
+			"<cmd>Telescope git_files<cr>",
+			mode = { "n" },
+			desc = "Telescope find git files",
+		},
+		{
+			"<leader>fd",
+			"<cmd>Telescope diagnostics<cr>",
+			mode = { "n" },
+			desc = "Telescope diagnostics",
 		},
 	},
 }
