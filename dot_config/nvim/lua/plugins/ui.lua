@@ -17,6 +17,7 @@ return {
 			require("mini.starter").setup()
 			require("mini.notify").setup()
 			require("mini.files").setup()
+			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.completion").setup() -- complementary to nvim-cmp for now
 		end,
 	},
@@ -102,13 +103,6 @@ return {
 		end,
 	},
 	{
-		"folke/drop.nvim",
-		event = "VimEnter",
-		config = function()
-			require("drop").setup()
-		end,
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		opts = {},
@@ -160,9 +154,7 @@ return {
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			signs = false,
 		},
 	},
 }

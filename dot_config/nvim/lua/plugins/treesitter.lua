@@ -1,9 +1,5 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"fladson/vim-kitty",
-	},
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
@@ -32,12 +28,5 @@ return {
 			},
 			indent = { enable = true },
 		})
-
-		-- fix tree-sitter executable not found warning
-		--  https://github.com/nvim-treesitter/nvim-treesitter/issues/2484#issuecomment-1031912446
-		for _, config in pairs(require("nvim-treesitter.parsers").get_parser_configs()) do
-			config.install_info.use_makefile = true
-			config.install_info.cxx_standard = "c++14"
-		end
 	end,
 }
