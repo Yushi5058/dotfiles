@@ -155,8 +155,6 @@ bindsym $super+shift+e exec wlogout
 
 
 
-# start file-explorer thunar
-bindsym $super+n exec thunar
 
 # Use pactl to adjust volume with Alsa
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
