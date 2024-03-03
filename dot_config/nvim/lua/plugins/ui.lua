@@ -16,6 +16,7 @@ return {
 			require("mini.statusline").setup()
 			require("mini.starter").setup()
 			require("mini.notify").setup()
+			require("mini.bracketed").setup()
 			require("mini.files").setup()
 			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.completion").setup() -- complementary to nvim-cmp for now
