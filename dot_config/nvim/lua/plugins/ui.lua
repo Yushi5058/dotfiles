@@ -3,10 +3,8 @@ return {
 		"echasnovski/mini.nvim",
 		version = false,
 		lazy = false,
-		keys = {
-			{ "<leader>n", "<cmd>lua MiniFiles.open()<cr>", mode = { "n" }, desc = "File explorer" },
-		},
 		config = function()
+			require("mini.files").setup()
 			require("mini.cursorword").setup()
 			require("mini.indentscope").setup()
 			require("mini.pairs").setup()
@@ -17,9 +15,8 @@ return {
 			require("mini.starter").setup()
 			require("mini.notify").setup()
 			require("mini.bracketed").setup()
-			require("mini.files").setup()
-			require("mini.ai").setup({ n_lines = 500 })
-			require("mini.completion").setup() -- complementary to nvim-cmp for now
+
+			vim.keymap.set("n", "<leader>n", ":lua MiniFiles.open()<cr>")
 		end,
 	},
 	{
@@ -103,53 +100,6 @@ return {
 			})
 		end,
 	},
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
-		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
-			{
-				"S",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").treesitter()
-				end,
-				desc = "Flash Treesitter",
-			},
-			{
-				"r",
-				mode = "o",
-				function()
-					require("flash").remote()
-				end,
-				desc = "Remote Flash",
-			},
-			{
-				"R",
-				mode = { "o", "x" },
-				function()
-					require("flash").treesitter_search()
-				end,
-				desc = "Treesitter Search",
-			},
-			{
-				"<c-s>",
-				mode = { "c" },
-				function()
-					require("flash").toggle()
-				end,
-				desc = "Toggle Flash Search",
-			},
-		},
-	},
 	{ "tpope/vim-sleuth" },
 	{
 		"folke/todo-comments.nvim",
@@ -157,5 +107,17 @@ return {
 		opts = {
 			signs = false,
 		},
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.5",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local builtin = require("telescope.builtin")
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
+		end,
 	},
 }
