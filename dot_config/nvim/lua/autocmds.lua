@@ -31,3 +31,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd.wincmd("=")
 	end,
 })
+
+-- trim white space
+vim.api.nvim_create_autocmd("BufWritePre", { command = "%s/\\s\\+$//e" })

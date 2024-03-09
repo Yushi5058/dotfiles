@@ -9,13 +9,24 @@ return {
 			require("mini.indentscope").setup()
 			require("mini.pairs").setup()
 			require("mini.surround").setup()
+			-- NOTE:
+			-- add = 'sa', -- Add surrounding in Normal and Visual modes
+			--  delete = 'sd', -- Delete surrounding
+			--  find = 'sf', -- Find surrounding (to the right)
+			--  find_left = 'sF', -- Find surrounding (to the left)
+			--  highlight = 'sh', -- Highlight surrounding
+			--  replace = 'sr', -- Replace surrounding
 			require("mini.animate").setup()
 			require("mini.comment").setup()
+			-- NOTE:
+			-- on visual mode :
+			-- gc to comment
+			-- gcc to comment current line
 			require("mini.statusline").setup()
 			require("mini.starter").setup()
 			require("mini.notify").setup()
-			require("mini.bracketed").setup()
 
+			-- keymap for mini.files navigation
 			vim.keymap.set("n", "<leader>n", ":lua MiniFiles.open()<cr>")
 		end,
 	},
@@ -119,5 +130,23 @@ return {
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
 		end,
+	},
+	{
+		"mrjones2014/legendary.nvim",
+		priority = 10000,
+		lazy = false,
+		config = function()
+			require("legendary").setup({
+				lazy_nvim = {
+					auto_register = true,
+				},
+			})
+
+			vim.keymap.set("n", "<leader>wk", ":Legendary<cr>")
+		end,
+	},
+	{
+		"wakatime/vim-wakatime",
+		lazy = false,
 	},
 }
