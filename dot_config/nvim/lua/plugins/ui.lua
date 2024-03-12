@@ -137,8 +137,8 @@ return {
 		lazy = false,
 		config = function()
 			require("legendary").setup({
-				lazy_nvim = {
-					auto_register = true,
+				extensions = {
+					lazy_nvim = true,
 				},
 			})
 
