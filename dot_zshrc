@@ -4,21 +4,18 @@
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
 
-
-
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "z-shell/F-Sy-H"
-
+plug "zettlrobert/simple-prompt"
 
 
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
-
 
 # aliases
 alias c="clear"
@@ -42,5 +39,4 @@ fi
 
 
 eval "$(rbenv init - zsh)"
-
 
