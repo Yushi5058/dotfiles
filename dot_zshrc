@@ -1,9 +1,5 @@
-# If you come from bash you might have to change your $PATH.
- export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
-# make nvim the default editor : 
+# make nvim the default editor :
  export EDITOR=nvim
-
-
 
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
@@ -16,7 +12,6 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "z-shell/F-Sy-H"
-plug "zap-zsh/zap-prompt"
 
 
 
@@ -25,19 +20,9 @@ autoload -Uz compinit
 compinit
 
 
-
 # aliases
 alias c="clear"
-alias cat="bat"
-alias htop="btop"
-alias vim="nvim"
-alias vi="nvim"
 alias home="cd"
-alias update="sudo pacman -Syu"
-alias gc="git commit -m"
-alias gs="git status"
-alias gp="git push origin main"
-alias ga="git add"
 alias ls="eza --icons -a"
 alias ll="eza --icons -la"
 
@@ -53,7 +38,6 @@ if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
         ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
     fi
 fi
-
 
 
 
