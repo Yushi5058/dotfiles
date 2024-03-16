@@ -10,7 +10,6 @@ plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "z-shell/F-Sy-H"
-plug "zap-zsh/zap-prompt"
 
 
 # Load and initialise completion system
@@ -23,20 +22,12 @@ alias home="cd"
 alias ls="eza --icons -a"
 alias ll="eza --icons -la"
 
-# auto add ssh github key to ssh-agent
-# thanks tmikus on github
-
-if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
-    eval $(ssh-agent -s) > /dev/null
-    if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
-        # Auto-add ssh keys to your ssh agent
-        # Example:
-        # ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
-        ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
-    fi
-fi
 
 
-
+# rbenv use
 eval "$(rbenv init - zsh)"
+
+# starship use
+eval "$(starship init zsh)"
+
 
