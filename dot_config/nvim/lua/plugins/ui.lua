@@ -26,7 +26,7 @@ return {
 			require("mini.starter").setup()
 			require("mini.notify").setup()
 
-			-- keymap for mini.files navigation
+			-- keymap for mini.files
 			vim.keymap.set("n", "<leader>n", ":lua MiniFiles.open()<cr>")
 		end,
 	},
