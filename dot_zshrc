@@ -23,7 +23,7 @@ alias ls="eza --icons -a"
 alias ll="eza --icons -la"
 alias pacman="sudo pacman -Syu"
 alias aur="paru -Syu"
-alias ssh="ssh-agent zsh && ssh-add"
+alias sshconnect="ssh-agent zsh && ssh-add"
 
 
 
