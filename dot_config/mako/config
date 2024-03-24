@@ -5,7 +5,8 @@ text-color=#c6d0f5
 border-color=#8caaee
 default-timeout=5000
 # additionnal options
-font=DaddyTimeMono 12
+font=DaddyTimeMono Regular 12
+icons=0
 
 [urgency=high]
 border-color=#ef9f76
