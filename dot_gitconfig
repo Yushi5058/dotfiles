@@ -11,7 +11,7 @@
 [user]
 	name = Yushi
     email = yushi_61@proton.me
-	signingkey = 4DADFE8D7A50EEEC
+	signingkey = 6488AFEBE95417A9
 [github]
     user = Yushi5058
 [color "diff-highlight"]
