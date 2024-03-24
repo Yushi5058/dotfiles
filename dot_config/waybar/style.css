@@ -3,8 +3,8 @@
 /* otf-font-awesome must be installed for icons */
 * {
   border-radius: 0;
-  font-family: "DaddyTimeMonoNerdFont Regular, FontAwesome, sans-serif";
-  font-size: 20px;
+  font-family: "DaddyTimeMono, FontAwesome, sans-serif";
+  font-size: 30px;
 }
 
 window#waybar {
