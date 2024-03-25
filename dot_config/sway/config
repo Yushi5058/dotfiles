@@ -11,8 +11,8 @@
 #
 #
 #set general font
-font pango:DaddyTimeMono 16
-# font pango:monospace 14
+# font pango:DaddyTimeMono 16
+font pango:monospace 16
 
 # include catppuccin
 include catppuccin-frappe
@@ -33,23 +33,30 @@ include catppuccin-frappe
 
 
 # Start apps & things
+# install ly login manager
 exec_always systemctl enable ly.service
+# install mako
 exec_always mako
+# install caffeine-ng
 exec_always caffeine
+# networkmanager
 exec_always nm-applet
+# install autotiling
 exec_always autotiling
 
 # clipboard manager
-exec copyq
+# install copyq
+exec_always copyq
 
 # monitor battery power
-exec systemctl mask power-profiles-daemon.service
+# install auto-cpufreq
 exec systemctl enable --now auto-cpufreq
 
 # monitor temperature of cpu
 exec systemctl start thermald.service
 
 # launch wlsunset
+# install wlsunset
 exec wlsunset -l 33.4 -L -7.4 -t 3000 -T 4500
 
 
@@ -124,7 +131,7 @@ set $ws6 "6"
 #
 #
 
-# swayshot
+# install swayshot
 #
 # Print screen helper for sway: add keyboard shortcuts for screenshots:
 # * Print Scr for whole screen
@@ -144,23 +151,23 @@ set $ws6 "6"
 
 
 # close notifications mako
-bindsym Ctrl+Space exec makoctl dismiss
-bindsym Ctrl+shift+Space exec makoctl dismiss --all
+bindsym Ctrl+Space exec makoctl dismiss --all
 
 
 
 # wlogout keybind
+# install wlogout
 bindsym $super+shift+e exec wlogout
 
 
 
 
 
-# Use pactl to adjust volume with Alsa
+# Adjust volume with Alsa
+# install alsa-utils
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
-# bindsym XF86AudioMicMute exec
 
 # Sreen brightness controls with Brightnessctl
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
@@ -168,14 +175,16 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 
 # start a terminal wezterm
+# install wezterm
 bindsym $super+Return exec wezterm
 
 # kill focused window
 bindsym $super+q kill
 
 
-# start menu launcher tofi
-set $menu tofi-drun | xargs swaymsg exec --
+# start menu launcher rofi
+# install rofi
+set $menu rofi -show drun
 bindsym $super+d exec $menu
 
 # change focus
