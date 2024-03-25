@@ -50,14 +50,14 @@ exec_always copyq
 
 # monitor battery power
 # install auto-cpufreq
-exec systemctl enable --now auto-cpufreq
+exec_always systemctl enable --now auto-cpufreq
 
 # monitor temperature of cpu
-exec systemctl start thermald.service
+exec_always systemctl start thermald.service
 
 # launch wlsunset
 # install wlsunset
-exec wlsunset -l 33.4 -L -7.4 -t 3000 -T 4500
+exec_always wlsunset -l 33.4 -L -7.4 -t 3000 -T 4500
 
 
 # inputs
