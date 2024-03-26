@@ -28,13 +28,13 @@
     "all-outputs" : true
   },
   "sway/window": {
-    "format": "{app_id}",
-    "min-length": 40,
+    "format": "{title}",
+    "max-length": 50,
     "icon": true
   },
   "backlight": {
     "device": "amdgpu_b10",
-    "format": "{icon}  {}%",
+    "format": "{icon}  {} %",
     "format-icons": ["", ""],
     "interval": 1,
     "on-click": ""
@@ -46,9 +46,9 @@
       "warning": 30,
       "critical": 20
     },
-    "format": "{icon}  {capacity}%",
-    "format-charging": "{icon}   {capacity}%",
-    "format-plugged": "{icon}   {capacity}%",
+    "format": "{icon}  {capacity} %",
+    "format-charging": "{icon}   {capacity} %",
+    "format-plugged": "{icon}   {capacity} %",
     "format-icons": ["", "", "", "", ""],
     "icon-size":21
   },
@@ -59,7 +59,7 @@
   "clock": {
     "timezone": "Africa/Casablanca",
     "interval": 1,
-    "format": " {:%H:%M:%S}",
+    "format": " {:%Hh%Mmin%Ssec}",
     "format-alt": "{:%Y-%m-%d}"
   },
   "cpu" : {
