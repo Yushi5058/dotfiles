@@ -3,12 +3,12 @@
   "modules-left": ["sway/workspaces", "tray", "custom/updates"],
   "modules-center": ["sway/window"],
   "modules-right": ["battery","backlight", "pulseaudio", "cpu", "clock"],
+
+
   "pulseaudio": {
     "tooltip": false,
-    "scroll-step": 5,
     "format": "{icon}  {volume}%",
     "format-muted": "󰝟  0%",
-    "on-click":"amixer -D pulse Master 1+ toggle",
     "format-icons": {
       "default": ["", "󰖀", "󰕾"]
     }
@@ -36,8 +36,7 @@
     "device": "amdgpu_b10",
     "format": "{icon}  {} %",
     "format-icons": ["", ""],
-    "interval": 1,
-    "on-click": ""
+    "interval": 1
   },
   "battery": {
     "interval": 2,
@@ -53,18 +52,23 @@
     "icon-size":21
   },
   "tray":{
-    "icon-size":21,
+    "icon-size":15,
     "spacing": 10
   },
   "clock": {
     "timezone": "Africa/Casablanca",
     "interval": 1,
-    "format": " {:%Hh%Mmin%Ssec}",
+    "format": " {:%H:%M:%S} ",
     "format-alt": "{:%Y-%m-%d}"
   },
   "cpu" : {
     "format": "{usage}% ",
     "tooltip": false
-  }
+  },
+  "memory": {
+	"interval": 30,
+	"format": "{}% ",
+	"max-length": 10
+}
 }
 // vim:ft=json
