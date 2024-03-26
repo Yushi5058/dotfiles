@@ -28,8 +28,9 @@
     "all-outputs" : true
   },
   "sway/window": {
-    "format": "{}",
-    "min-length": 40
+    "format": "{app_id}",
+    "min-length": 40,
+    "icon": true
   },
   "backlight": {
     "device": "amdgpu_b10",
