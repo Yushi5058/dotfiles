@@ -11,7 +11,7 @@
 #
 #
 #set general font
-font pango:DaddyTimeMono Nerd Font Regular 16
+font pango:Cantarell 20
 # font pango:monospace 16
 
 # include catppuccin
