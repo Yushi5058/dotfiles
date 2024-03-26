@@ -3,7 +3,8 @@
 /* otf-font-awesome must be installed for icons */
 * {
   border-radius: 0;
-  font-family: "DaddyTimeMono, FontAwesome, sans-serif";
+  font-family: "DaddyTimeMono Nerd Font Regular", "Font Awesome 6 Free",
+    sans-serif;
   font-size: 20px;
 }
 
