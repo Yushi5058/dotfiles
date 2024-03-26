@@ -28,7 +28,6 @@
   },
   "sway/window": {
     "format": "{title}",
-    "max-length": 50,
     "icon": true
   },
   "backlight": {
