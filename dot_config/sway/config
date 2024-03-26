@@ -11,8 +11,8 @@
 #
 #
 #set general font
-# font pango:DaddyTimeMono 16
-font pango:monospace 16
+font pango:DaddyTimeMono Nerd Font Regular 16
+# font pango:monospace 16
 
 # include catppuccin
 include catppuccin-frappe
