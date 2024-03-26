@@ -198,6 +198,16 @@ window#waybar.hidden {
   border-bottom: 3px solid @lavender;
 }
 
+#memory {
+  margin-top: 6px;
+  margin-left: 12px;
+  border-radius: 5px;
+  transition: none;
+  padding: 10px 10px;
+  background: none;
+  color: @sapphire;
+  border-bottom: 3px solid @sapphire;
+}
 #clock {
   margin-top: 6px;
   margin-left: 12px;
