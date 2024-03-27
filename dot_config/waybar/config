@@ -56,16 +56,16 @@
   "clock": {
     "timezone": "Africa/Casablanca",
     "interval": 1,
-    "format": " {:%H:%M:%S} ",
+    "format": " {:%H:%M:%S}",
     "format-alt": "{:%Y-%m-%d}"
   },
   "cpu" : {
-    "format": "{usage}% ",
+    "format": " {usage}%",
     "tooltip": false
   },
   "memory": {
 	"interval": 30,
-	"format": "{}% ",
+	"format": " {}%",
 	"max-length": 10
 }
 }
