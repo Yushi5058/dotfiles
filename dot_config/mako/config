@@ -5,7 +5,7 @@ text-color=#c6d0f5
 border-color=#8caaee
 default-timeout=5000
 # additionnal options
-font=Cantarell 20
+font=Cantarell 14
 
 [urgency=high]
 border-color=#ef9f76
