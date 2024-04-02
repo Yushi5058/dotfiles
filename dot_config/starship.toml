@@ -1,9 +1,10 @@
 # starship config for thyme
 # https://github.com/chenhao-ye/thyme
+# modified by Yushi_61
 
 add_newline = true
-format='''[\[$username($hostname)\]](white) $directory ([\[$git_branch(:$git_commit)(:$git_status)(:$git_state)\]](yellow))$line_break$character'''
-right_format = '''($jobs)($status)($cmd_duration)$time'''
+format='''# $username($hostname) at $directory ([\[$git_branch(:$git_commit)(:$git_status)(:$git_state)\]](yellow))$line_break$character'''
+right_format = '''($jobs)($status)'''
 
 [username]
 format = '[$user](blue)'
@@ -11,11 +12,11 @@ show_always = true
 
 [hostname]
 format = '[@$hostname](cyan)'
+show_always = true
 
 [character]
-success_symbol = '[❯](bold green)'
-error_symbol = '[❯](bold red)'
-vicmd_symbol = '[❮](bold blue)'
+success_symbol = '$(bold green)'
+error_symbol = '$(bold red)'
 
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
@@ -37,16 +38,6 @@ format = '[$all_status$ahead_behind](yellow)'
 format = '[$state($progress_current/$progress_total)](yellow)'
 
 [line_break]
-disabled = false
-
-[time]
-format = '[\[$time\]](green)'
-disabled = false
-
-[cmd_duration]
-format = '[\[$duration\]](yellow)'
-min_time = 1
-show_milliseconds = true
 disabled = false
 
 [status]
