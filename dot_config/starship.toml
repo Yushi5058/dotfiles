@@ -12,11 +12,10 @@ show_always = true
 
 [hostname]
 format = '[@$hostname](cyan)'
-show_always = true
 
 [character]
-success_symbol = '$(bold green)'
-error_symbol = '$(bold red)'
+success_symbol = '\$(bold green)'
+error_symbol = '\$(bold red)'
 
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
