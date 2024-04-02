@@ -1,49 +1,60 @@
-# Configuration for Starship prompt
-# Clean, simple, compatible and meaningful.
-# Tested on Linux, Unix and Windows under ANSI colors.
-# It is recommended to use with a dark background.
-# Colors: black, red, green, yellow, *blue, magenta, cyan, and white.
-#
-# Mar 2013 Yad Smood
+# starship config for thyme
+# https://github.com/chenhao-ye/thyme
 
-# VCS
-[vcs]
-  format = "on"
-  style = "white"
-[vcs.status]
-  unstaged = " %{red.bold}x"
-  staged = " %{green.bold}o"
+add_newline = true
+format='''[\[$username($hostname)\]](white) $directory ([\[$git_branch(:$git_commit)(:$git_status)(:$git_state)\]](yellow))$line_break$character'''
+right_format = '''($jobs)($status)($cmd_duration)$time'''
 
-# Git info
-[git]
-  format = "git"
-  prefix = ":"
-  style = "cyan"
-  suffix = ""
-  disabled = false
+[username]
+format = '[$user](blue)'
+show_always = true
 
-# HG info
-[hg]
-  format = "hg"
-  prefix = ":"
-  style = "cyan"
-  suffix = ""
-  disabled = false
+[hostname]
+format = '[@$hostname](cyan)'
 
-# Prompt format:
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+vicmd_symbol = '[❮](bold blue)'
 
-# PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
-# $ COMMAND
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+style = 'green'
+truncation_length = 6
+truncate_to_repo = false
+truncation_symbol = '.../'
 
-# For example:
+[git_branch]
+format = '[$branch](yellow)'
 
-# % ys @ ys-mbp in ~/.oh-my-zsh on git:master x [21:47:42] C:0
-# $
-[prompt]
-  format = """
-# %B%F{blue}#%f
-%(!.%B%B%F{yellow}%n%f%b.%B%F{cyan}%n%f) %F{white}@ %F{green}%m %F{white}in %B%F{yellow}%~%f
-$vcs
-%F{white}[%D %*] $exit_code
-%F{red}%b """
+[git_commit]
+format = '[$hash](yellow)'
 
+[git_status]
+format = '[$all_status$ahead_behind](yellow)'
+
+[git_state]
+format = '[$state($progress_current/$progress_total)](yellow)'
+
+[line_break]
+disabled = false
+
+[time]
+format = '[\[$time\]](green)'
+disabled = false
+
+[cmd_duration]
+format = '[\[$duration\]](yellow)'
+min_time = 1
+show_milliseconds = true
+disabled = false
+
+[status]
+format = '[\[$status(:$common_meaning)(:$signal_name)\]](red)'
+disabled = false
+
+[jobs]
+format = '[\[$symbol(:$number)\]](cyan)'
+symbol = '⚙'
+symbol_threshold = 1
+number_threshold = 2
