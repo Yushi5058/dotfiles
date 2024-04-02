@@ -306,8 +306,6 @@ for_window [app_id="com.github.hluk.copyq"] floating enable
 # For instance: Assume you are on workspace "1: www" and switch to "2: IM" using mod+2 because somebody sent you a message. You don’t need to remember where you came from now, you can just press $mod+2 again to switch back to "1: www".
 workspace_auto_back_and_forth yes
 
-# wallpaper background
-output "*" bg $HOME/Wallpapers/mocha-hald8-Cosmic_Islands.png fill
 # lockscreen
 bindsym $super+shift+x exec swaylock --clock --indicator
 
@@ -349,6 +347,7 @@ bar swaybar_command waybar
 	    	gsettings set $gnome-schema font-name 'DaddyTimeMono 14'
 	    	gsettings set $gnome-schema monospace-font-name 'MapleMono-NF-Regular 14'
 	}
+# or use lxtappearance
 
   # Import Gnome settings
 	exec_always import-gsettings \
