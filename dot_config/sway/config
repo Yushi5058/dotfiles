@@ -33,8 +33,8 @@ include catppuccin-frappe
 
 
 # Start apps & things
-# install ly login manager
-exec_always systemctl enable ly.service
+# install sddm login manager
+exec_always systemctl enable sddm
 # install mako
 exec_always mako
 # install caffeine-ng
@@ -105,17 +105,6 @@ set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-
-# Open applications on specific workspaces
-# assign [class="firefox"] $ws1
-# assign [class="discord"] $ws2
-# assign [class="whatsapp-for-linux"] $ws2
-# assign [class="kitty"] $ws3
-# assign [class ="spotify"] $ws4
-# assign [class="min"] $ws5
-# assign [class="thunderbird"] $ws6
 
 
 
@@ -187,8 +176,8 @@ bindsym $super+q kill
 set $menu rofi -show drun
 bindsym $super+d exec $menu
 # start file manager
-# install nautilus
-bindsym $super+n exec nautilus
+# install thunar
+bindsym $super+n exec thunar
 
 # change focus
 bindsym $super+$left focus left
@@ -237,15 +226,11 @@ bindsym $super+ampersand workspace number $ws1
 bindsym $super+eacute workspace number $ws2
 bindsym $super+quotedbl workspace number $ws3
 bindsym $super+apostrophe workspace number $ws4
-bindsym $super+parenleft workspace 5
-bindsym $super+minus workspace 6
 # move focused container to workspace
 bindsym $super+Shift+ampersand move container to workspace number $ws1
 bindsym $super+Shift+eacute move container to workspace number $ws2
 bindsym $super+Shift+quotedbl move container to workspace number $ws3
 bindsym $super+Shift+apostrophe move container to workspace number $ws4
-bindsym $super+Shift+parenleft move container to workspace number $ws5
-bindsym $super+Shift+minus move container to workspace number $ws6
 
 # reload the configuration file
 bindsym $super+Shift+c reload
@@ -336,30 +321,10 @@ floating_modifier $super normal
 bar swaybar_command waybar
 
 
-# Gnome Theme Settings
-#
-	# Set Gnome Theme
-	set $gnome-schema org.gnome.desktop.interface
-	exec_always {
-		    gsettings set $gnome-schema gtk-theme 'Catppuccin-Frappe-Standard-Blue-Dark'
-	    	gsettings set $gnome-schema icon-theme 'Tela-blue-dark'
-	    	gsettings set $gnome-schema cursor-theme 'Catppuccin-Frappe-Blue-Cursors'
-	    	gsettings set $gnome-schema font-name 'DaddyTimeMono 14'
-	    	gsettings set $gnome-schema monospace-font-name 'MapleMono-NF-Regular 14'
-	}
+
 # or use lxtappearance
+# for gtk theme, cursors and icons
 
-  # Import Gnome settings
-	exec_always import-gsettings \
-	    	gtk-theme:gtk-theme-name \
-	    	icon-theme:gtk-icon-theme-name \
-	    	cursor-theme:gtk-cursor-theme-name
-
-
-  # First Workspace
-#
-        # Start on workspace 3: Term
-        # exec_always swaymsg workspace $ws3
 
 
 
