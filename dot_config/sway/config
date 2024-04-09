@@ -34,7 +34,7 @@ include catppuccin-frappe
 
 # Start apps & things
 # install sddm login manager
-exec_always systemctl enable sddm
+exec_always systemctl enable ly.service
 # install mako
 exec_always mako
 # install caffeine-ng
