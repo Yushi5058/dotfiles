@@ -20,7 +20,7 @@ Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](ht
 - _System Icons_ : Tela Blue Dark
 - _System Cursor_ : Catppuccin Blue
 - _Login Manager_ : [Ly](https://github.com/fairyglade/ly)
-- _File Manager_ : [Nautilus](https://github.com/GNOME/nautilus)
+- _File Manager_ : Thunar
 - _Browser_ : [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 ## Notice
