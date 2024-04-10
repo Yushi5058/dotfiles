@@ -40,5 +40,4 @@ Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](ht
 
 - Add scripts to automate packages installation.
 - Add package.txt regrouping all pacman and AUR packages.
-- Add and encrypt SSH and GPG key files.
 - Add nitrogen or a way to randomize wallpapers on the screen and lockscreen.
