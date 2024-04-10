@@ -59,6 +59,12 @@ exec_always systemctl start thermald.service
 # install wlsunset
 exec_always wlsunset -l 33.4 -L -7.4 -t 3000 -T 4500
 
+# waypaper for wallpapers
+exec waypaper --restore --random
+
+# launch swww
+exec swww-daemon
+
 
 # inputs
 #keyboard layout
