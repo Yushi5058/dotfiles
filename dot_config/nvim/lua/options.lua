@@ -1,7 +1,13 @@
 -- Set space as the leader key
 -- NOTE: Must happen before plugins are loaded
 vim.g.mapleader = " "
-vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Set to true if you have a Nerd Font installed
+vim.g.have_nerd_font = true
+
+-- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.mouse = 'a'
 
 -- Line numbers as default
 -- Relative line numbers for jumping
@@ -44,10 +50,20 @@ vim.opt.smartcase = true
 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 10
 
+-- Sets how neovim will display certain whitespace characters in the editor.
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
+
+-- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 
 -- Decrease update time
 vim.opt.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.timeoutlen = 300
