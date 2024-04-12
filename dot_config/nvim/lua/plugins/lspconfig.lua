@@ -31,7 +31,7 @@ return {
 			},
 			clangd = {},
 			tsserver = {},
-			ruby_ls = {},
+			solargraph = {},
 			html = {},
 			cssls = {},
 			tailwindcss = {},
