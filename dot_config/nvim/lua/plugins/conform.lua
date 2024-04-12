@@ -7,7 +7,6 @@ return {
 				lua = { "stylua" },
 				javascript = { "prettier", "eslint", "eslint_d" },
 				ruby = { "rubocop" },
-				python = { "black" },
 				markdown = { "prettier" },
 				css = { "prettier" },
 			},
