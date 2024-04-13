@@ -327,9 +327,8 @@ bar swaybar_command waybar
 # or use lxtappearance
 # for gtk theme, cursors and icons
 
-# wallpaper set with azote
-exec ~/.azotebg
-
+# set wallpaper
+output "*" bg $HOME/Wallpapers/blue-cat.png fill
 
 
 
