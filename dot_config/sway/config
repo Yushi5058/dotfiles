@@ -328,6 +328,7 @@ bar swaybar_command waybar
 # for gtk theme, cursors and icons
 
 # wallpaper set with azote
+exec ~/.azotebg
 
 
 
