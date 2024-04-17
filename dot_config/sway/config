@@ -55,9 +55,9 @@ exec_always systemctl enable --now auto-cpufreq
 # monitor temperature of cpu
 exec_always systemctl start thermald.service
 
-# launch wlsunset
-# install wlsunset
-exec_always wlsunset -t 3000
+# launch gammastep
+# install gammastep
+exec_always gammastep -l 33.4:7.4 -t 4500:3000
 
 
 
