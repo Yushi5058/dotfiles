@@ -14,7 +14,7 @@ return {
 			}
 		})
 
-		vim.keymap.set("n", "<leader>tn", ":lua require('neotest').run.run()")
-		vim.keymap.set("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))")
+		vim.keymap.set("n", "<leader>tn", ":lua require('neotest').run.run()<cr>")
+		vim.keymap.set("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<cr>")
 	end
 }
