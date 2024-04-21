@@ -59,6 +59,9 @@ exec_always systemctl start thermald.service
 # install wlsunset
 exec_always wlsunset -l 33.4 -L -7.4 -t 3000
 
+# execute flameshot
+exec_always flameshot
+
 
 
 
