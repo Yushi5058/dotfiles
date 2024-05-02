@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- Escape visual / insert mode
 keymap.set({ "i", "v" }, "jk", "<Esc>")
 
+-- File explorer
+keymap.set("n", "<leader>n", ":Ex<cr>")
+
 -- disable space in normal mode for leader key
 keymap.set({ "n", "v" }, "<space>", "<nop>")
 
