@@ -4,7 +4,6 @@ return {
 		version = false,
 		lazy = false,
 		config = function()
-			require("mini.files").setup()
 			require("mini.cursorword").setup()
 			require("mini.indentscope").setup()
 			require("mini.pairs").setup()
@@ -26,8 +25,6 @@ return {
 			require("mini.starter").setup()
 			require("mini.notify").setup()
 
-			-- keymap for mini.files
-			vim.keymap.set("n", "<leader>n", ":lua MiniFiles.open()<cr>")
 		end,
 	},
 	{

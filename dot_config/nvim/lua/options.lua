@@ -60,6 +60,11 @@ vim.opt.inccommand = 'split'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- netrw options
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
