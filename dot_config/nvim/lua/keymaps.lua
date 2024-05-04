@@ -46,3 +46,13 @@ vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 -- Navigation splits
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+
+-- QOL:
+-- Search centering
+vim.keymap.set('n', 'n', 'nzz')
+vim.keymap.set('n', 'N', 'Nzz')
+-- Deleting to the void
+vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('v', 'x', '"_x')
+-- Format pasted line
+vim.keymap.set('n', 'p', 'p==')

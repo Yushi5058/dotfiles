@@ -147,18 +147,16 @@ return {
 		"wakatime/vim-wakatime",
 		lazy = false,
 	},
-{
-  'stevearc/oil.nvim',
-  opts = {
-			view_options = {
-				show_hidden = true,
-			}
-		},
-  -- Optional dependencies
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function ()
-		require("oil").setup()
-		vim.keymap.set("n", "<leader>n", ":Oil open_float()<cr>")
-	end
-}
+ {
+        'stevearc/oil.nvim',
+        config = function()
+            vim.keymap.set('n', '<leader>o',  function()
+	require("oil").toggle_float()
+end)
+            require('oil').setup({
+                default_file_explorer = true,
+                view_options = { show_hidden = true },
+            })
+        end
+    },
 }
