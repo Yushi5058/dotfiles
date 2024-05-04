@@ -36,7 +36,6 @@ vim.opt.incsearch = true
 -- More QOL options
 vim.opt.clipboard = "unnamedplus"
 vim.opt.encoding = "utf-8"
-vim.opt.completeopt = "menu, menuone, noselect"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
