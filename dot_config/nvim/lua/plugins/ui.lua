@@ -150,7 +150,7 @@ return {
  {
         'stevearc/oil.nvim',
         config = function()
-            vim.keymap.set('n', '<leader>o',  function()
+            vim.keymap.set('n', '<leader>n',  function()
 	require("oil").toggle_float()
 end)
             require('oil').setup({
