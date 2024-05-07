@@ -35,6 +35,8 @@ Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](ht
 - My dotfiles are WIP forever.
 - add `-k` to let existing .zshrc when installing Zap.
 - Run `:checkhealth` in the first launch of Neovim.
+- Install tree-sitter-cli.
+- Install [chaotic-aur](https://aur.chaotic.cx/)
 
 ## TO-DO
 
