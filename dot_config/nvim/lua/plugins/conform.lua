@@ -9,6 +9,7 @@ return {
 				ruby = { "rubocop" },
 				markdown = { "prettier" },
 				css = { "prettier" },
+				c = { "clang-format"},
 			},
 		})
 
