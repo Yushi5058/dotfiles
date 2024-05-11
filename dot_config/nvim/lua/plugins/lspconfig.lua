@@ -30,7 +30,6 @@ return {
 				},
 			},
 			tsserver = {},
-			ccls= {},
 			solargraph = {},
 			html = {},
 			cssls = {},
