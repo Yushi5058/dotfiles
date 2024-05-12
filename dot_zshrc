@@ -22,6 +22,8 @@ alias home="cd"
 alias ls="eza --icons -a"
 alias ll="eza --icons -la"
 
+source ~/quartus.sh
+
 
 
 # rbenv use
