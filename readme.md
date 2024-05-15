@@ -1,6 +1,6 @@
 # Dotfiles
 
-Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](https://github.com/catppuccin/).
+Managed with [chezmoi](https://www.chezmoi.io/)
 
 ## Overview
 
@@ -16,9 +16,6 @@ Managed with [chezmoi](https://www.chezmoi.io/) and powered with [catppuccin](ht
 - _Code Font_ : [Maple](https://github.com/subframe7536/Maple-font/)
 - _Regular Font_ : [Cantarell](https://fonts.google.com/specimen/Cantarell)
 - _Icons Font_ : [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
-- _GTK Theme_ : Catppuccin Standard Blue Dark
-- _System Icons_ : Tela Blue Dark
-- _System Cursor_ : Catppuccin Blue
 - _Login Manager_ : [Ly](https://github.com/fairyglade/ly)
 - _File Manager_ : Thunar
 - _Browser_ : [Firefox](https://www.mozilla.org/en-US/firefox/new/)
