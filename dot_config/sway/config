@@ -263,7 +263,9 @@ bindsym $super+r mode "resize"
 
 
 # remove borders
-for_window [class="^.*"] border pixel 0
+default_border pixel 0
+
+
 
 # open clipboard manager as float
 for_window [app_id="com.github.hluk.copyq"] floating enable
