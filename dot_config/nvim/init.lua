@@ -17,7 +17,7 @@ require("autocmds")
 
 local opts = {
 	install = {
-		colorscheme = { "catppuccin", "tokyonight" },
+		colorscheme = { "rose-pine" },
 		checker = { enabled = true },
 	},
 }
