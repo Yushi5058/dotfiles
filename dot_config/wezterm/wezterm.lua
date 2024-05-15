@@ -1,15 +1,12 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local theme = wezterm.plugin.require('https://github.com/neapsix/wezterm').main
 
--- This will hold the configuration.
-local config = {}
 
--- This is where you actually apply your config choices
+return {
+colors = theme.colors(),
+window_frame = theme.window_frame(), -- needed only if using fancy tab bar
+font = wezterm.font("MapleMono NF"),
+font_size = 16.0,
+ }
 
--- For example, changing the color scheme:
-config.color_scheme = wezterm.plugin.require('https://github.com/neapsix/wezterm').main
-config.font = wezterm.font("MapleMono NF")
-config.font_size = 16.0
-
--- and finally, return the configuration to wezterm
-return config
