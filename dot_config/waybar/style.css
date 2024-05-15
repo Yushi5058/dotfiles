@@ -115,7 +115,7 @@ window#waybar.hidden {
   margin-right: 12px;
   transition: none;
   padding: 10px 10px;
-  color: @subtle;
+  color: @text;
   background: none;
 }
 
