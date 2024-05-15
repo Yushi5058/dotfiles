@@ -336,7 +336,7 @@ bar swaybar_command waybar
 # for gtk theme, cursors and icons
 
 # set wallpaper
-output * bg $HOME/Wallpapers/blue-cat.png fill
+output * bg $HOME/Wallpapers/star_mountains.jpg fill
 
 
 
