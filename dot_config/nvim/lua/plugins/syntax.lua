@@ -40,25 +40,14 @@ return {
 			-- add other options here if needed.
 		end,
 	},
-	"NvChad/nvim-colorizer.lua",
-	lazy = true,
-	config = function()
-		require("colorizer").setup({
-			filetypes = {
-				"css",
-				"javascript",
-				html = { mode = "foreground" },
-			},
-			user_default_options = {
-				css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-				mode = "background", -- Set the display mode.
-				-- True is same as normal
-				tailwind = true, -- Enable tailwind colors
-				sass = { enable = true, parsers = { "css" } }, -- Enable sass colors
-				virtualtext = "■",
-				always_update = false,
-			},
-		})
-	end,
+	{
+		"brenoprata10/nvim-highlight-colors",
+		config = function ()
+			require("nvim-highlight-colors").setup({
+				render = 'foreground',
+				enable_tailwind = true,
+			})
+		vim.keymap.set("n", "<c-h", "<cmd>HighlightColors Toggle<cr>")
+		end
+	}
 }
