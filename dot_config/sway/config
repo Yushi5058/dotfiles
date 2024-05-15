@@ -14,8 +14,6 @@
 font pango:Cantarell 20
 # font pango:monospace 16
 
-# include catppuccin
-include catppuccin-frappe
 #
 #
 #
@@ -137,9 +135,6 @@ bindsym Ctrl+Space exec makoctl dismiss --all
 
 
 
-# wlogout keybind
-# install wlogout
-bindsym $super+shift+e exec wlogout
 
 
 
@@ -266,13 +261,6 @@ mode "resize" {
 
 bindsym $super+r mode "resize"
 
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
 
 # remove borders
 for_window [class="^.*"] border pixel 2
