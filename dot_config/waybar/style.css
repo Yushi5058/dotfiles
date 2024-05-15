@@ -9,7 +9,7 @@
 
 /* Waybar container */
 window#waybar {
-  background: @base;
+  background: none;
 }
 
 /* Hidden Waybar */
