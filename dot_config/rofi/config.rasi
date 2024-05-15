@@ -11,5 +11,5 @@ configuration{
     sidebar-mode: true;
 }
 
-@theme "catppuccin-frappe"
+@theme "rose_pine"
 
