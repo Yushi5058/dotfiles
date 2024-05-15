@@ -24,7 +24,7 @@ window#waybar.hidden {
 
   color: @text;
   background: none;
-  border-bottom: 3px solid @blue;
+  border-bottom: 3px solid @pine;
 }
 
 #custom-updates {
@@ -207,6 +207,7 @@ window#waybar.hidden {
   color: @iris;
   border-bottom: 3px solid @iris;
 }
+
 #clock {
   margin-top: 6px;
   margin-left: 12px;
