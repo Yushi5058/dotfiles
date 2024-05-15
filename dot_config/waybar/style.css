@@ -2,14 +2,13 @@
 
 /* General styles */
 * {
-  border-radius: 0;
   font-family: "Cantarell", "Font Awesome 6 Free", sans-serif;
   font-size: 20px;
 }
 
 /* Waybar container */
 window#waybar {
-  background: none;
+  background: @base;
 }
 
 /* Hidden Waybar */
@@ -22,7 +21,6 @@ window#waybar.hidden {
   margin-top: 6px;
   margin-right: 12px;
   font-size: 7px;
-  border-radius: 5px;
   transition: none;
   background: none;
 }
@@ -43,7 +41,6 @@ window#waybar.hidden {
   margin-top: 6px;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 5px;
   transition: none;
   color: @text;
   background: none;
@@ -56,7 +53,6 @@ window#waybar.hidden {
   margin-right: 12px;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 5px;
   transition: none;
   background: none;
   color: @pine;
@@ -66,7 +62,6 @@ window#waybar.hidden {
 #battery {
   margin-top: 6px;
   margin-left: 12px;
-  border-radius: 5px;
   transition: none;
   padding: 10px 10px;
   color: @rose;
@@ -77,7 +72,6 @@ window#waybar.hidden {
 #backlight {
   margin-top: 6px;
   margin-left: 12px;
-  border-radius: 5px;
   transition: none;
   padding: 10px 10px;
   color: @gold;
@@ -88,7 +82,6 @@ window#waybar.hidden {
 #pulseaudio {
   margin-top: 6px;
   margin-left: 12px;
-  border-radius: 5px;
   transition: none;
   padding: 0 10px;
   color: @love;
@@ -99,7 +92,6 @@ window#waybar.hidden {
 #cpu {
   margin-top: 6px;
   margin-left: 12px;
-  border-radius: 5px;
   transition: none;
   padding: 10px 10px;
   background: none;
@@ -110,7 +102,6 @@ window#waybar.hidden {
 #memory {
   margin-top: 6px;
   margin-left: 12px;
-  border-radius: 5px;
   transition: none;
   padding: 10px 10px;
   background: none;
@@ -122,7 +113,6 @@ window#waybar.hidden {
   margin-top: 6px;
   margin-left: 12px;
   margin-right: 12px;
-  border-radius: 5px;
   transition: none;
   padding: 10px 10px;
   color: @subtle;
@@ -133,7 +123,6 @@ window#waybar.hidden {
 #tray {
   margin-top: 6px;
   margin-right: 12px;
-  border-radius: 5px;
   padding-left: 10px;
   padding-right: 10px;
   color: @text;
