@@ -1,47 +1,23 @@
 @import "rose_pine.css";
 
-/* otf-font-awesome must be installed for icons */
+/* General styles */
 * {
   border-radius: 0;
   font-family: "Cantarell", "Font Awesome 6 Free", sans-serif;
   font-size: 20px;
 }
 
+/* Waybar container */
 window#waybar {
   background: @base;
 }
 
+/* Hidden Waybar */
 window#waybar.hidden {
   opacity: 0.2;
 }
 
-#window {
-  margin-top: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
-  transition: none;
-
-  color: @text;
-  background: none;
-  border-bottom: 3px solid @pine;
-}
-
-#custom-updates {
-  margin-top: 6px;
-  margin-left: 12px;
-  margin-right: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
-  transition: none;
-  background: none;
-
-  color: @text;
-
-  border-bottom: 3px solid @iris;
-}
-
+/* Workspace module */
 #workspaces {
   margin-top: 6px;
   margin-right: 12px;
@@ -75,128 +51,81 @@ window#waybar.hidden {
   border-bottom: 3px solid @iris;
 }
 
-#pulseaudio {
+/* Window title module */
+#window {
   margin-top: 6px;
-  margin-left: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 5px;
   transition: none;
-  padding: 0 10px;
-
-  color: @rose;
+  color: @text;
   background: none;
-  border-bottom: 3px solid @rose;
+  border-bottom: 3px solid @blue;
 }
 
+/* Custom updates module */
+#custom-updates {
+  margin-top: 6px;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  transition: none;
+  background: none;
+  color: @text;
+  border-bottom: 3px solid @iris;
+}
+
+/* Battery module */
 #battery {
   margin-top: 6px;
   margin-left: 12px;
   border-radius: 5px;
   transition: none;
   padding: 10px 10px;
-
   color: @foam;
   background: none;
   border-bottom: 3px solid @foam;
 }
 
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.warning:not(.charging),
-#battery.critical:not(.charging) {
-  background: none;
-}
-
-#battery.warning:not(.charging) {
-  color: @gold;
-  border-bottom: 3px solid @gold;
-  animation-name: blink;
-  animation-duration: 3s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#battery.critical:not(.charging) {
-  color: @rose;
-  border-bottom: 3px solid @rose;
-  animation-name: blink_c;
-  animation-duration: 3s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#battery.charging,
-#battery.plugged {
-  background: none;
-  color: @foam;
-  border-bottom: 3px solid @foam;
-  animation-name: blink_2;
-  animation-duration: 3s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes blink {
-  0% {
-    color: @gold;
-  }
-  50% {
-    color: @rose;
-  }
-  100% {
-    color: @gold;
-  }
-}
-
-@keyframes blink_c {
-  0% {
-    color: @rose;
-  }
-  50% {
-    color: @pine;
-  }
-  100% {
-    color: @rose;
-  }
-}
-
-@keyframes blink_2 {
-  0% {
-    color: @foam;
-  }
-  50% {
-    color: @iris;
-  }
-  100% {
-    color: @foam;
-  }
-}
-
+/* Backlight module */
 #backlight {
   margin-top: 6px;
   margin-left: 12px;
   border-radius: 5px;
   transition: none;
   padding: 10px 10px;
-
   color: @gold;
   background: none;
   border-bottom: 3px solid @gold;
 }
 
+/* Pulseaudio module */
+#pulseaudio {
+  margin-top: 6px;
+  margin-left: 12px;
+  border-radius: 5px;
+  transition: none;
+  padding: 0 10px;
+  color: @rose;
+  background: none;
+  border-bottom: 3px solid @rose;
+}
+
+/* CPU module */
 #cpu {
   margin-top: 6px;
   margin-left: 12px;
   border-radius: 5px;
   transition: none;
   padding: 10px 10px;
-
   background: none;
   color: @pine;
   border-bottom: 3px solid @pine;
 }
 
+/* Memory module */
 #memory {
   margin-top: 6px;
   margin-left: 12px;
@@ -208,6 +137,7 @@ window#waybar.hidden {
   border-bottom: 3px solid @iris;
 }
 
+/* Clock module */
 #clock {
   margin-top: 6px;
   margin-left: 12px;
@@ -215,19 +145,18 @@ window#waybar.hidden {
   border-radius: 5px;
   transition: none;
   padding: 10px 10px;
-
   color: @rose;
   background: none;
   border-bottom: 3px solid @rose;
 }
 
+/* Tray module */
 #tray {
   margin-top: 6px;
   margin-right: 12px;
   border-radius: 5px;
   padding-left: 10px;
   padding-right: 10px;
-
   color: @text;
   background: none;
 }
