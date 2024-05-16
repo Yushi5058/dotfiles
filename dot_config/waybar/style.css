@@ -55,7 +55,7 @@ window#waybar.hidden {
   padding-right: 10px;
   transition: none;
   background: none;
-  color: @pine;
+  color: @text;
 }
 
 /* Battery module */
@@ -66,6 +66,10 @@ window#waybar.hidden {
   padding: 10px 10px;
   color: @rose;
   background: none;
+}
+
+#battery.charging {
+  color: @foam;
 }
 
 /* Backlight module */
