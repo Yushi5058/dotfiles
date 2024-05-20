@@ -127,36 +127,9 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
-			vim.keymap.set("n", "Gd", builtin.lsp_definitions, {})
 		end,
 	},
-	{
-		"mrjones2014/legendary.nvim",
-		priority = 10000,
-		lazy = false,
-		config = function()
-			require("legendary").setup({
-				extensions = {
-					lazy_nvim = true,
-					-- default settings shown below:
-					smart_splits = {
-						directions = { 'h', 'j', 'k', 'l' },
-						mods = {
-							-- for moving cursor between windows
-							move = '<C>',
-							-- for resizing windows
-							resize = '<M>',
-							-- for swapping window buffers
-							swap = false, -- false disables creating a binding
-						},
-					},
-				}
-			})
-
-			vim.keymap.set("n", "<leader>wk", ":Legendary<cr>")
-		end,
-	},
-	{
+		{
 		"wakatime/vim-wakatime",
 		lazy = false,
 	},
@@ -164,8 +137,8 @@ return {
         'stevearc/oil.nvim',
         config = function()
             vim.keymap.set('n', '<leader>n',  function()
-	require("oil").toggle_float()
-end)
+				require("oil").toggle_float()
+			end)
             require('oil').setup({
                 default_file_explorer = true,
                 view_options = { show_hidden = true },
