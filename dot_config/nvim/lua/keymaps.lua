@@ -9,9 +9,6 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
 keymap.set("n", "<leader>m", "<cmd>Mason<cr>")
 
--- dealing with word wrap
-keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
 keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
