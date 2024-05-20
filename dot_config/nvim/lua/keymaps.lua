@@ -14,10 +14,18 @@ keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true }
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+keymap.set("n", "gr", require("telescope.builtin").lsp_references)
+
+-- See `:help K` for why this keymap
+keymap.set("n","K", vim.lsp.buf.hover)
+keymap.set("n","<leader>k", vim.lsp.buf.signature_help)
+keymap.set("n","<C-k>", vim.lsp.buf.signature_help)
+
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -27,20 +35,16 @@ keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search
 keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
--- escape search highlight
+-- escape search highlight / insert mode
 keymap.set("n", "jk", "<cmd>nohlsearch<cr>")
+keymap.set("n", "jk", "<Esc>")
 
 -- split windows
 keymap.set("n", "ss", "<cmd>vsplit<cr>")
 -- keymap.set("n", "sh", "<cmd>split<cr>") for horizontal split
 
--- NOTE: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Navigation splits
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
