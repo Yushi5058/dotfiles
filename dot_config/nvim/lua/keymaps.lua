@@ -19,7 +19,6 @@ keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnosti
 keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-keymap.set("n", "gr", require("telescope.builtin").lsp_references)
 
 -- See `:help K` for why this keymap
 keymap.set("n","K", vim.lsp.buf.hover)
