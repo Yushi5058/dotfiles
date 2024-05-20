@@ -9,6 +9,9 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>")
 keymap.set("n", "<leader>m", "<cmd>Mason<cr>")
 
+-- dealing with word wrap
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
 keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -33,7 +36,7 @@ keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search
 
 -- escape search highlight / insert mode
 keymap.set("n", "jk", "<cmd>nohlsearch<cr>")
-keymap.set("n", "jk", "<Esc>")
+keymap.set("i", "jk", "<Esc>")
 
 -- split windows
 keymap.set("n", "ss", "<cmd>vsplit<cr>")
