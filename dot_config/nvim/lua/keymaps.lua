@@ -1,10 +1,4 @@
 local keymap = vim.keymap
-
-vim.g.mapleader = " "
--- Escape visual / insert mode
-keymap.set({ "i", "v" }, "jk", "<Esc>")
-
-
 -- disable space in normal mode for leader key
 keymap.set({ "n", "v" }, "<space>", "<nop>")
 
@@ -19,8 +13,11 @@ keymap.set("n", "<leader>m", "<cmd>Mason<cr>")
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Diagnostics :
--- use telescope for diagnostics
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
