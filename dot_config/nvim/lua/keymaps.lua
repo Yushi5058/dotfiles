@@ -36,7 +36,7 @@ keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search
 
 -- escape search highlight / insert mode
 keymap.set("n", "jk", "<cmd>nohlsearch<cr>")
-keymap.set("i", "v", "jk", "<Esc>")
+keymap.set(""i", "v"", "jk", "<Esc>")
 
 -- split windows
 keymap.set("n", "ss", "<cmd>vsplit<cr>")
