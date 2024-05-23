@@ -42,13 +42,6 @@ return {
 		end,
 	},
 	{
-		"stevearc/dressing.nvim",
-		opts = {},
-		config = function()
-			require("dressing").setup()
-		end,
-	},
-	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
@@ -119,7 +112,11 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
+		"nvim-telescope/telescope-fzf-native.nvim"
+		},
 		config = function()
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
@@ -129,22 +126,26 @@ return {
 			vim.keymap.set("n", "gr", builtin.lsp_references, {})
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 			vim.keymap.set("n", "fk", builtin.keymaps, {})
+
+			require('telescope').load_extension('fzf')
+			require("telescope").load_extension("ui-select")
 		end,
+		build = "make",
 	},
-		{
+	{
 		"wakatime/vim-wakatime",
 		lazy = false,
 	},
- {
-        'stevearc/oil.nvim',
-        config = function()
-            vim.keymap.set('n', '<leader>n',  function()
+	{
+		'stevearc/oil.nvim',
+		config = function()
+			vim.keymap.set('n', '<leader>n',  function()
 				require("oil").toggle_float()
 			end)
-            require('oil').setup({
-                default_file_explorer = true,
-                view_options = { show_hidden = true },
-            })
-        end
-    },
+			require('oil').setup({
+				default_file_explorer = true,
+				view_options = { show_hidden = true },
+			})
+		end
+	},
 }
