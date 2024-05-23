@@ -1,45 +1,15 @@
 return {
-	{
-		"echasnovski/mini.nvim",
-		version = false,
-		lazy = false,
-		config = function()
-			require("mini.cursorword").setup()
-			require("mini.indentscope").setup()
-			require("mini.pairs").setup()
-			require("mini.surround").setup()
-			-- NOTE:
-			-- add = 'sa', -- Add surrounding in Normal and Visual modes
-			--  delete = 'sd', -- Delete surrounding
-			--  find = 'sf', -- Find surrounding (to the right)
-			--  find_left = 'sF', -- Find surrounding (to the left)
-			--  highlight = 'sh', -- Highlight surrounding
-			--  replace = 'sr', -- Replace surrounding
-			require("mini.animate").setup()
-			require("mini.comment").setup()
-			-- NOTE:
-			-- on visual mode :
-			-- gc to comment
-			-- gcc to comment current line
-			require("mini.statusline").setup()
-			require("mini.starter").setup()
-			require("mini.notify").setup()
 
-        end,
-    },
-    {
-        "lewis6991/gitsigns.nvim",
-        lazy = true,
-        config = function()
-            require("gitsigns").setup()
-        end,
-    },
     {
         "folke/neodev.nvim",
         opts = {},
         config = function()
             require("neodev").setup()
         end,
+    },
+    {
+        'stevearc/dressing.nvim',
+        opts = {},
     },
     {
         "folke/trouble.nvim",
@@ -122,22 +92,22 @@ return {
             vim.keymap.set("n", "gr", builtin.lsp_references, {})
             vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
             vim.keymap.set("n", "fk", builtin.keymaps, {})
-		end,
-	},
-	{
-		"wakatime/vim-wakatime",
-		lazy = false,
-	},
-	{
-		'stevearc/oil.nvim',
-		config = function()
-			vim.keymap.set('n', '<leader>n',  function()
-				require("oil").toggle_float()
-			end)
-			require('oil').setup({
-				default_file_explorer = true,
-				view_options = { show_hidden = true },
-			})
-		end
-	},
+        end,
+    },
+    {
+        "wakatime/vim-wakatime",
+        lazy = false,
+    },
+    {
+        'stevearc/oil.nvim',
+        config = function()
+            vim.keymap.set('n', '<leader>n',  function()
+            require("oil").toggle_float()
+            end)
+            require('oil').setup({
+                default_file_explorer = true,
+                view_options = { show_hidden = true },
+            })
+        end
+    },
 }
