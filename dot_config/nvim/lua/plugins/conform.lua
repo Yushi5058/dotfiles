@@ -17,14 +17,7 @@ return {
 			pattern = "*",
 			callback = function(args)
 				require("conform").format({ bufnr = args.buf })
-		end,
+			end,
 		})
-		-- rubocop alternative
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.rb",
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
 	end,
 }
