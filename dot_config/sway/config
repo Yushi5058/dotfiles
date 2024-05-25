@@ -261,7 +261,8 @@ mode "resize" {
 
 bindsym $super+r mode "resize"
 
-
+# remove borders (ugly)
+default_border pixel 0
 
 # styling
 # set primary Rosé Pine colorscheme colors
