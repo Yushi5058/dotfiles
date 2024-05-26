@@ -162,9 +162,6 @@ bindsym $super+q kill
 # install rofi
 set $menu rofi -show drun
 bindsym $super+d exec $menu
-# start file manager
-# install thunar
-bindsym $super+n exec thunar
 
 # change focus
 bindsym $super+$left focus left
