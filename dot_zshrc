@@ -21,8 +21,8 @@ alias c="clear"
 alias home="cd"
 alias ls="eza --icons -a"
 alias ll="eza --icons -la"
+alias lt="eza --tree --level=2 --long --icons --git"
 
-source ~/quartus.sh
 
 
 
