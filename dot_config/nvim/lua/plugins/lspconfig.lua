@@ -4,6 +4,11 @@ return {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 	},
+	opts = {
+		inlay_hints = {
+			enabled = false,
+		},
+	},
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -53,5 +58,3 @@ return {
 	end,
 
 }
-
-
