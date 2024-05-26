@@ -54,7 +54,7 @@ return {
 				}),
 			},
 			experimental = {
-				ghost_text = true,
+				ghost_text = false,
 			},
 		})
 
