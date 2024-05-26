@@ -9,7 +9,6 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 - _Menu Launcher_ : [Rofi](https://github.com/davatorium/rofi)
 - _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
 - _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
-- _Powerbutton Menu_ : [Wlogout](https://github.com/ArtsyMacaw/wlogout)
 - _Shell plugin manager_ : [Zap](https://github.com/zap-zsh/zap) + [Starship](https://starship.rs/)
 - _Notification daemon_ : [Mako](https://github.com/emersion/mako)
 - _Code Text Editor_ : [Neovim](https://github.com/neovim/neovim)
@@ -17,7 +16,7 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 - _Regular Font_ : [Cantarell](https://fonts.google.com/specimen/Cantarell)
 - _Icons Font_ : [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
 - _Login Manager_ : [Ly](https://github.com/fairyglade/ly)
-- _File Manager_ : Thunar
+- _File Manager_ : Yazi
 - _Browser_ : [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 ## Notice
