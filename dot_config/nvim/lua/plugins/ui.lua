@@ -45,32 +45,6 @@ return {
             { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", mode = { "n" }, desc = "Undotree Toggle" },
         },
     },
-    {
-        "gbprod/yanky.nvim",
-        opts = {},
-        keys = {
-            { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" } },
-            { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" } },
-            { "gp", "<Plug>(YankyGPutAfter)", mode = { "n", "x" } },
-            { "gP", "<Plug>(YankyGPutBefore)", mode = { "n", "x" } },
-            { "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
-        },
-        config = function()
-            require("yanky").setup({
-                ring = {
-                    history_length = 100,
-                    storage = "shada",
-                    sync_with_numbered_registers = true,
-                    cancel_event = "update",
-                    ignore_registers = { "_" },
-                    update_register_on_cycle = false,
-                },
-                system_clipboard = {
-                    sync_with_ring = true,
-                },
-            })
-        end,
-    },
     { "tpope/vim-sleuth" },
     {
         "folke/todo-comments.nvim",
@@ -88,9 +62,6 @@ return {
             vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
             vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-            vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
-            vim.keymap.set("n", "gr", builtin.lsp_references, {})
-            vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
             vim.keymap.set("n", "fk", builtin.keymaps, {})
         end,
     },
