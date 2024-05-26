@@ -125,10 +125,7 @@ set $ws4 "4"
 #
 #
 
-# install flameshot
-#
 
- bindsym Print exec flameshot gui
 
 
 
