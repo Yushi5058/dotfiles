@@ -5,7 +5,7 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "prettier", "eslint", "eslint_d" },
+				javascript = { "eslint"},
 				ruby = { "rubocop" },
 				markdown = { "prettier" },
 				css = { "prettier" },
