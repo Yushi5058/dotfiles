@@ -4,12 +4,6 @@ return {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 	},
-	keys = {
-		{ "K", vim.lsp.buf.hover, {}, mode = { "n" }, desc = "lsp hover" },
-		{ "<leader>gd", vim.lsp.buf.definition, {}, mode = { "n" }, desc = "lsp definition" },
-		{ "<leader>gr", vim.lsp.buf.references, {}, mode = { "n" }, desc = "lsp references" },
-		{ "<leader>ca", vim.lsp.buf.code_action, {}, mode = { "n" }, desc = "lsp code action" },
-	},
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -20,10 +20,14 @@ keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnosti
 keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 
--- See `:help K` for why this keymap
+-- lsp keymaps
 keymap.set("n","K", vim.lsp.buf.hover)
 keymap.set("n","<leader>k", vim.lsp.buf.signature_help)
 keymap.set("n","<C-k>", vim.lsp.buf.signature_help)
+keymap.set("n","<leader>gd", vim.lsp.buf.definition)
+keymap.set("n","<leader>gr", vim.lsp.buf.references )
+keymap.set("n","<leader>ca", vim.lsp.buf.code_action)
+
 
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
