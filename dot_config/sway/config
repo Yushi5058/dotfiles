@@ -57,12 +57,6 @@ exec_always systemctl start thermald.service
 # install wlsunset
 exec_always wlsunset -l 33.4 -L -7.4 -t 3000
 
-# Take a screenshot with all output and save it into screenshots
-bindsym Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
-
-# Take a Screenshot with the region select
-bindsym $super+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
-
 
 
 # inputs
@@ -133,6 +127,12 @@ set $ws4 "4"
 bindsym Ctrl+Space exec makoctl dismiss --all
 
 
+
+# Take a screenshot with all output and save it into screenshots
+bindsym Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
+
+# Take a Screenshot with the region select
+bindsym $super+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
 
 
 
