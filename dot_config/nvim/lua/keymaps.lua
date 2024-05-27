@@ -21,12 +21,12 @@ keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnosti
 
 
 -- lsp keymaps
-keymap.set("n","K", vim.lsp.buf.hover)
-keymap.set("n","<leader>k", vim.lsp.buf.signature_help)
-keymap.set("n","<C-k>", vim.lsp.buf.signature_help)
-keymap.set("n","<leader>gd", vim.lsp.buf.definition)
-keymap.set("n","<leader>gr", vim.lsp.buf.references )
-keymap.set("n","<leader>ca", vim.lsp.buf.code_action)
+keymap.set("n", "K", vim.lsp.buf.hover)
+keymap.set("n", "<leader>k", vim.lsp.buf.signature_help)
+keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
+keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
+keymap.set("n", "<leader>gr", vim.lsp.buf.references)
+keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
 
 
@@ -40,7 +40,7 @@ keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search
 
 -- escape search highlight / insert mode
 keymap.set("n", "jk", "<cmd>nohlsearch<cr>")
-keymap.set({"i", "v"}, "jk", "<Esc>")
+keymap.set({ "i", "v" }, "jk", "<Esc>")
 
 -- split windows
 keymap.set("n", "ss", "<cmd>vsplit<cr>")
@@ -51,3 +51,26 @@ keymap.set("n", "ss", "<cmd>vsplit<cr>")
 keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
+
+-- Yank one word to the clipboard
+keymap.set('n', '<leader>yw', '"+yiw', { noremap = true, silent = true })
+keymap.set('v', '<leader>yw', '"+y', { noremap = true, silent = true })
+
+-- Yank entire line to the clipboard
+keymap.set('n', '<leader>Y', '"+yy', { noremap = true, silent = true })
+keymap.set('v', '<leader>Y', '"+y', { noremap = true, silent = true })
+
+-- Paste from the clipboard
+keymap.set('n', '<leader>p', '"+p', { noremap = true, silent = true })
+keymap.set('n', '<leader>P', '"+P', { noremap = true, silent = true })
+keymap.set('v', '<leader>p', '"+p', { noremap = true, silent = true })
+keymap.set('v', '<leader>P', '"+P', { noremap = true, silent = true })
+
+-- Replace selection with clipboard contents
+keymap.set('v', '<leader>r', '"_d"+P', { noremap = true, silent = true })
+
+-- Copy file path to clipboard
+keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { noremap = true, silent = true })
+
+-- Delete line to the void register
+keymap.set('n', '<leader>dd', '"_dd', { noremap = true, silent = true })
