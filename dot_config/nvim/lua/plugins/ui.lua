@@ -13,8 +13,23 @@ return {
     },
     {
         "folke/trouble.nvim",
+        branch = "dev", -- IMPORTANT !
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {},
+        opts = {
+            {
+                modes = {
+                    test = {
+                        mode = "diagnostics",
+                        preview = {
+                            type = "split",
+                            relative = "win",
+                            position = "right",
+                            size = 0.3,
+                        },
+                    },
+                },
+            }
+        },
         keys = {
             { "<leader>xx", "<cmd>lua require('trouble').toggle()<cr>", mode = { "n" }, desc = "Trouble toggle" },
             {
@@ -56,7 +71,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5",
-        dependencies = {"nvim-lua/plenary.nvim"},
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
@@ -72,8 +87,8 @@ return {
     {
         'stevearc/oil.nvim',
         config = function()
-            vim.keymap.set('n', '<leader>n',  function()
-            require("oil").toggle_float()
+            vim.keymap.set('n', '<leader>n', function()
+                require("oil").toggle_float()
             end)
             require('oil').setup({
                 default_file_explorer = true,
