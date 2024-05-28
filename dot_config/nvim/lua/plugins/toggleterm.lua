@@ -4,6 +4,6 @@ return
 	version = "*",
 	config = function()
 		require("toggleterm").setup()
-		vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=float<cr>")
+		vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm direction=horizontal<cr>")
 	end
 }
