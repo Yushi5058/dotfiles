@@ -5,11 +5,11 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "eslint"},
+				javascript = { "eslint" },
 				ruby = { "rubocop" },
 				markdown = { "prettier" },
 				css = { "prettier" },
-				c = { "clang-format"},
+				c = { "clang-format" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
