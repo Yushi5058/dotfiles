@@ -19,11 +19,26 @@ compinit
 # aliases
 alias c="clear"
 alias home="cd"
-alias ls="eza --icons -a"
-alias ll="eza --icons -la"
+alias ls="eza --icons -a --git"
+alias ll="eza --icons -la --git"
 alias lt="eza --tree --level=2 --long --icons --git"
+alias cat="bat"
 
+# Configure zsh history
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=2000
+export SAVEHIST=$HISTSIZE
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+setopt hist_ignore_space
 
+# Enable auto-complete of aliases
+setopt complete_aliases
+
+# Enable comments
+setopt interactive_comments
 
 
 # rbenv use
