@@ -3,7 +3,8 @@
 # modified by Yushi_61
 
 add_newline = true
-format='''# $username($hostname) at $directory via $package\
+format='''# $username($hostname) at $directory via
+$package\
 $c\
 $cmake\
 $cobol\
