@@ -7,14 +7,14 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"olimorris/neotest-rspec"
 	},
-	config = function ()
+	config = function()
 		require("neotest").setup({
 			adapters = {
 				require("neotest-rspec")
 			}
 		})
 
-		vim.keymap.set("n", "<leader>tn", ":lua require('neotest').run.run()<cr>")
-		vim.keymap.set("n", "<leader>tf", ":lua require('neotest').run.run(vim.fn.expand('%'))<cr>")
+		vim.keymap.set("n", "<leader>nr", ":lua require('neotest').run.run()<cr>")
+		vim.keymap.set("n", "<leader>nf", ":lua require('neotest').run.run(vim.fn.expand('%'))<cr>")
 	end
 }
