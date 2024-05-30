@@ -11,7 +11,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "z-shell/F-Sy-H"
 plug "jeffreytse/zsh-vi-mode"
-plug "zsh-users/zsh-history-substring-match"
+plug "zsh-users/zsh-history-substring-search"
 
 
 # Load and initialise completion system
