@@ -37,7 +37,14 @@ vim.api.nvim_create_autocmd("BufWritePre", { command = "%s/\\s\\+$//e" })
 
 -- Highlight yanked text for 150ms
 vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end
+	callback = function()
+		vim.highlight.on_yank()
+	end
+})
+-- autoclose quickfix list when choosing one
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
+	end,
 })
