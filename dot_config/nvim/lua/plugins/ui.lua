@@ -30,21 +30,21 @@ return {
             }
         },
         keys = {
-            { "<leader>xx", "<cmd>lua require('trouble').toggle()<cr>", mode = { "n" }, desc = "Trouble toggle" },
+            { "<leader>tt", "<cmd>lua require('trouble').toggle()<cr>", mode = { "n" }, desc = "Trouble toggle" },
             {
-                "<leader>xw",
+                "<leader>tw",
                 "<cmd>lua require('trouble').toggle('workspace_diagnostics')<cr>",
                 mode = { "n" },
                 desc = "Trouble Workspace Diagnostics",
             },
             {
-                "<leader>xd",
+                "<leader>td",
                 "<cmd>lua require('trouble').toggle('document_diagnostics')<cr>",
                 mode = { "n" },
                 desc = "Trouble Document Diagnostics",
             },
             {
-                "<leader>xq",
+                "<leader>tq",
                 "<cmd>lua require('trouble').toggle('quickfix')<cr>",
                 mode = { "n" },
                 desc = "Trouble Quickfix",
