@@ -13,7 +13,6 @@ return {
     },
     {
         "folke/trouble.nvim",
-        branch = "dev", -- IMPORTANT !
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             {
