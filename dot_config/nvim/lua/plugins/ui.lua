@@ -13,43 +13,39 @@ return {
     },
     {
         "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            {
-                modes = {
-                    test = {
-                        mode = "diagnostics",
-                        preview = {
-                            type = "split",
-                            relative = "win",
-                            position = "right",
-                            size = 0.3,
-                        },
-                    },
-                },
-            }
-        },
         keys = {
-            { "<leader>tt", "<cmd>lua require('trouble').toggle()<cr>", mode = { "n" }, desc = "Trouble toggle" },
             {
-                "<leader>tw",
-                "<cmd>lua require('trouble').toggle('workspace_diagnostics')<cr>",
-                mode = { "n" },
-                desc = "Trouble Workspace Diagnostics",
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
             },
             {
-                "<leader>td",
-                "<cmd>lua require('trouble').toggle('document_diagnostics')<cr>",
-                mode = { "n" },
-                desc = "Trouble Document Diagnostics",
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>tq",
-                "<cmd>lua require('trouble').toggle('quickfix')<cr>",
-                mode = { "n" },
-                desc = "Trouble Quickfix",
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
             },
         },
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
     },
     {
         "jiaoshijie/undotree",
