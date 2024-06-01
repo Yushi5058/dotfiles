@@ -1,7 +1,6 @@
 
 readme.md
 lazy-lock.json
-~/.config/tmux/plugins/
-~/.config/tmux/plugins/**
+.config/tmux/plugins/
 
 
