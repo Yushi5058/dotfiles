@@ -42,14 +42,8 @@ keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search
 keymap.set("n", "jk", "<cmd>nohlsearch<cr>")
 keymap.set({ "i", "v" }, "jk", "<Esc>")
 
--- split windows
-keymap.set("n", "ss", "<cmd>vsplit<cr>")
--- keymap.set("n", "sh", "<cmd>split<cr>") for horizontal split
 
 
--- Navigation splits
-keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
 
 -- Yank one word to the clipboard
