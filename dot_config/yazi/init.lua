@@ -1,4 +1,3 @@
-@@ -18,16 +18,28 @@
 function Manager:render(area)
 	local chunks = self:layout(area)
 
