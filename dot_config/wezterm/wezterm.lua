@@ -3,8 +3,8 @@ local wezterm = require("wezterm")
 local theme = require('themes/rose_pine').main
 -- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
 local function is_vim(pane)
-    -- this is set by the plugin, and unset on ExitPre in Neovim
-    return pane:get_user_vars().IS_NVIM == 'true'
+  -- this is set by the plugin, and unset on ExitPre in Neovim
+  return pane:get_user_vars().IS_NVIM == 'true'
 end
 local direction_keys = {
   h = 'Left',
@@ -37,22 +37,22 @@ end
 
 
 return {
-colors = theme.colors(),
-window_frame = theme.window_frame(), -- needed only if using fancy tab bar
-font = wezterm.font("MapleMono NF"),
-font_size = 16.0,
-keys = {
-        -- move between split panes
-        split_nav('move', 'h'),
-        split_nav('move', 'j'),
-        split_nav('move', 'k'),
-        split_nav('move', 'l'),
-        -- resize panes
-        split_nav('resize', 'h'),
-        split_nav('resize', 'j'),
-        split_nav('resize', 'k'),
-        split_nav('resize', 'l'),
-    },
+  colors = theme.colors(),
+  window_frame = theme.window_frame(), -- needed only if using fancy tab bar
+  font = wezterm.font("MapleMono NF"),
+  enable_tab_bar = false,
+  font_size = 16.0,
+  keys = {
+    -- move between split panes
+    split_nav('move', 'h'),
+    split_nav('move', 'j'),
+    split_nav('move', 'k'),
+    split_nav('move', 'l'),
+    -- resize panes
+    split_nav('resize', 'h'),
+    split_nav('resize', 'j'),
+    split_nav('resize', 'k'),
+    split_nav('resize', 'l'),
+  },
 
- }
-
+}
