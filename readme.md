@@ -4,8 +4,7 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 
 ## Overview
 
-- _Shell_ : Zsh
-- _Terminal Emulator_ : [Wezterm](https://github.com/wez/wezterm)
+- _Terminal Environment_ : zsh + tmux + wezterm
 - _Menu Launcher_ : [Rofi](https://github.com/davatorium/rofi)
 - _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
 - _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
@@ -17,13 +16,11 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 - _Icons Font_ : [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
 - _Login Manager_ : [Ly](https://github.com/fairyglade/ly)
 - _File Manager_ : Yazi
-- _Browser_ : [Firefox](https://www.mozilla.org/en-US/firefox/new/)
+- _Browser_ : Firefox + [tridactyl](https://github.com/tridactyl/tridactyl)
 
 ## Notice
 
 - `chsh -s /usr/bin/zsh` to make zsh the default shell.
-- The packages to install are in the packages.txt, separated
-  by type : AUR or Pacman.
 - `$ nvim --headless "+Lazy!sync" +qa` to sync plugins with lazy
   without launching nvim.
 - SSH github authentification is a must. Click [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
@@ -37,5 +34,3 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 ## TO-DO
 
 - Add scripts to automate packages installation.
-- Add package.txt regrouping all pacman and AUR packages.
-- Add nitrogen or a way to randomize wallpapers on the screen and lockscreen.
