@@ -51,21 +51,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 
--- Create an augroup for Godot
-vim.api.nvim_exec([[
-  augroup godot
-    autocmd!
-    autocmd FileType gdscript lua << EOF
-      -- Set fold method to expression
-      vim.bo.foldmethod = 'expr'
-      -- Set tabstop to 4
-      vim.bo.tabstop = 4
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"godot", "gdscript"},
+    callback = function()
+        vim.bo.foldmethod = 'expr'
+        vim.bo.tabstop = 4
+        vim.api.nvim_buf_set_keymap(0, 'n', '<F4>', ':GodotRunLast<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, 'n', '<F5>', ':GodotRun<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, 'n', '<F6>', ':GodotRunCurrent<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(0, 'n', '<F7>', ':GodotRunFZF<CR>', { noremap = true, silent = true })
+    end,
+})
 
-      -- Set key mappings for Godot commands
-      vim.api.nvim_buf_set_keymap(0, 'n', '<F4>', ':GodotRunLast<CR>', { noremap = true, silent = true })
-      vim.api.nvim_buf_set_keymap(0, 'n', '<F5>', ':GodotRun<CR>', { noremap = true, silent = true })
-      vim.api.nvim_buf_set_keymap(0, 'n', '<F6>', ':GodotRunCurrent<CR>', { noremap = true, silent = true })
-      vim.api.nvim_buf_set_keymap(0, 'n', '<F7>', ':GodotRunFZF<CR>', { noremap = true, silent = true })
-    EOF
-  augroup END
-]], false)
