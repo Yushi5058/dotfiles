@@ -68,3 +68,7 @@ keymap.set('n', '<leader>cf', ':let @+=expand("%:p")<CR>', { noremap = true, sil
 
 -- Delete line to the void register
 keymap.set('n', '<leader>dd', '"_dd', { noremap = true, silent = true })
+
+-- Keymaps for neovim splits
+keymap.set("n", "sv", "<cmd>vsplit<cr>")
+keymap.set("n", "sh", "<cmd>split<cr>")
