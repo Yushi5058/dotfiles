@@ -42,11 +42,14 @@ return {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		config = function ()
+		config = function()
 			require("nvim-highlight-colors").setup({
 				enable_tailwind = true,
 			})
-		vim.keymap.set("n", "<c-h", "<cmd>HighlightColors Toggle<cr>")
+			vim.keymap.set("n", "<c-h", "<cmd>HighlightColors Toggle<cr>")
 		end
+	},
+	{
+		"habamax/vim-godot"
 	}
 }
