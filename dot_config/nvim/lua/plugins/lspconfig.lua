@@ -36,6 +36,12 @@ return {
 			jsonls = {},
 			bashls = {},
 			clangd = {},
+			gdscript = {
+				force_setup = true,
+				single_file_support = false,
+				root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
+				filetypes = { 'gd', 'gdscript', 'gdscript3' }
+			}
 		}
 
 		require("mason").setup()
