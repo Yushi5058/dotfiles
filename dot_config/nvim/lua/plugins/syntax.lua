@@ -15,7 +15,7 @@ return {
 					"ruby",
 					"markdown",
 					"markdown_inline",
-					"gscript"
+					"gdscript"
 				},
 				auto_install = true,
 				highlight = {
