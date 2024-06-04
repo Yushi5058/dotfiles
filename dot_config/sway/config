@@ -35,8 +35,6 @@ font pango:Cantarell 20
 exec_always systemctl enable ly.service
 # install mako
 exec_always mako
-# install caffeine-ng
-exec_always caffeine
 # networkmanager
 exec_always nm-applet
 # install autotiling
@@ -105,6 +103,9 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
+
+# workspace settings
+focus_follows_mouse no
 
 
 
