@@ -33,14 +33,15 @@ font pango:Cantarell 20
 # Start apps & things
 # install sddm login manager
 exec_always systemctl enable ly.service
-exec_always systemctl enable batsignal.service
-exec_always systemctl start batsignal.service
 # install mako
 exec_always mako
 # networkmanager
 exec_always nm-applet
 # install autotiling
 exec_always autotiling
+
+# install batsignal (low battery notif)
+exec batsignal -b
 
 # clipboard manager
 # install copyq
