@@ -36,7 +36,7 @@ return {
 			jsonls = {},
 			bashls = {},
 			clangd = {},
-			gdscript = {
+			gdtoolkit = {
 				force_setup = true,
 				single_file_support = false,
 				root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
