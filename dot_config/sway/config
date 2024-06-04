@@ -33,6 +33,8 @@ font pango:Cantarell 20
 # Start apps & things
 # install sddm login manager
 exec_always systemctl enable ly.service
+exec_always systemctl enable batsignal.service
+exec_always systemctl start batsignal.service
 # install mako
 exec_always mako
 # networkmanager
