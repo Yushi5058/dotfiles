@@ -41,7 +41,7 @@ exec_always nm-applet
 exec_always autotiling
 
 # install batsignal (low battery notif)
-exec batsignal -b
+exec batsignal -b -w 20 -c 15 -f 100
 
 # clipboard manager
 # install copyq
