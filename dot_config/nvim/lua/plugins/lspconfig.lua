@@ -37,7 +37,6 @@ return {
 			bashls = {},
 			clangd = {},
 			emmet_ls = {},
-			gdscript = {},
 			rubocop = {},
 
 		}
