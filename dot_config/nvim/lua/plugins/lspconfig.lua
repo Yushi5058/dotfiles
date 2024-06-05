@@ -38,7 +38,6 @@ return {
 			clangd = {},
 			emmet_ls = {},
 			gdscript = {},
-			gdshader_lsp = {},
 			rubocop = {},
 
 		}

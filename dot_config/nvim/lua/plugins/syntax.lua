@@ -16,7 +16,6 @@ return {
 					"markdown",
 					"markdown_inline",
 					"gdscript",
-					"gdresource",
 					"html",
 					"json",
 				},
