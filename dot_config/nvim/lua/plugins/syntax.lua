@@ -52,5 +52,7 @@ return {
 	},
 	{
 		"habamax/vim-godot"
-	}
+	},
+	{ "vim-ruby/vim-ruby" },
+	{ "tpope/vim-rails" }
 }
