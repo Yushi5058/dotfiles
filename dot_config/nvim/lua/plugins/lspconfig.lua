@@ -36,6 +36,10 @@ return {
 			jsonls = {},
 			bashls = {},
 			clangd = {},
+			emmet_ls = {},
+			gdscript = {},
+			gdshader_lsp = {},
+			rubocop = {},
 
 		}
 

@@ -16,7 +16,9 @@ return {
 					"markdown",
 					"markdown_inline",
 					"gdscript",
-					"embedded_template"
+					"gdresource",
+					"htmls",
+					"emmetls"
 				},
 				auto_install = true,
 				highlight = {
