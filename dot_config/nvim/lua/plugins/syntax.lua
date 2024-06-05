@@ -17,8 +17,8 @@ return {
 					"markdown_inline",
 					"gdscript",
 					"gdresource",
-					"htmls",
-					"emmetls"
+					"html",
+					"json",
 				},
 				auto_install = true,
 				highlight = {
