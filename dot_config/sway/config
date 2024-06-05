@@ -40,8 +40,6 @@ exec_always nm-applet
 # install autotiling
 exec_always autotiling
 
-# install batsignal (low battery notif)
-exec batsignal -b -w 20 -c 15 -f 100 -p -W "Low battery" -C "Critical, plug in" -a "mako"
 
 # clipboard manager
 # install copyq
@@ -106,6 +104,11 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # workspace settings
 focus_follows_mouse no
@@ -216,12 +219,23 @@ bindsym $super+eacute workspace number $ws2
 bindsym $super+quotedbl workspace number $ws3
 bindsym $super+apostrophe workspace number $ws4
 bindsym $super+parenleft workspace number $ws5
+bindsym $mod+minus workspace number $ws6
+bindsym $mod+egrave workspace number $ws7
+bindsym $mod+underscore workspace number $ws8
+bindsym $mod+ccedilla workspace number $ws9
+bindsym $mod+agrave workspace number $ws10
 # move focused container to workspace
 bindsym $super+Shift+ampersand move container to workspace number $ws1
 bindsym $super+Shift+eacute move container to workspace number $ws2
 bindsym $super+Shift+quotedbl move container to workspace number $ws3
 bindsym $super+Shift+apostrophe move container to workspace number $ws4
 bindsym $super+Shift+parenleft move container to workspace number $ws5
+bindsym $super+Shift+minus move container to workspace number $ws6
+bindsym $super+Shift+egrave move container to workspace number $ws7
+bindsym $super+Shift+underscore move container to workspace number $ws8
+bindsym $super+Shift+ccedilla move container to workspace number $ws9
+bindsym $super+Shift+agrave move container to workspace number $ws10
+
 
 # reload the configuration file
 bindsym $super+Shift+c reload
