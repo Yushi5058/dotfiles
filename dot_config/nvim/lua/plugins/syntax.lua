@@ -15,7 +15,8 @@ return {
 					"ruby",
 					"markdown",
 					"markdown_inline",
-					"gdscript"
+					"gdscript",
+					"embedded_template"
 				},
 				auto_install = true,
 				highlight = {
