@@ -1,6 +1,9 @@
 # make nvim the default editor :
  export EDITOR=nvim
 
+# rose-pine bat theme
+export BAT_THEME="rose-pine"
+
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
 
