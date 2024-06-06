@@ -28,6 +28,7 @@ alias ls="eza --icons -a --git"
 alias ll="eza --icons -la --git"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias cat="bat"
+alias cd="z"
 
 # Configure zsh history
 export HISTFILE=$HOME/.zsh_history
