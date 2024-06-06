@@ -29,7 +29,7 @@ return {
 				},
 			},
 			tsserver = {},
-			solargraph = {},
+			ruby_lsp = {},
 			html = {},
 			cssls = {},
 			tailwindcss = {},
