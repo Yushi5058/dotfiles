@@ -52,4 +52,6 @@ eval "$(rbenv init - zsh)"
 # starship use
 eval "$(starship init zsh)"
 
+# zoxide use
+eval "$(zoxide init zsh)"
 
