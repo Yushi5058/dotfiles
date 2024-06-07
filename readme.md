@@ -16,7 +16,7 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 - _Icons Font_ : [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
 - _Login Manager_ : [Ly](https://github.com/fairyglade/ly)
 - _File Manager_ : Yazi
-- _Browser_ : Firefox + [tridactyl](https://github.com/tridactyl/tridactyl)
+- _Browser_ : Firefox
 
 ## Notice
 
