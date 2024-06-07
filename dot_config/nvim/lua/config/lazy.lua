@@ -11,9 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("options")
-require("keymaps")
-require("autocmds")
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")
 
 local opts = {
 	install = {
