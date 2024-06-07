@@ -11,7 +11,7 @@ return {
 			},
 		},
 		config = function()
-			local lspconfig = require("lua.plugins.syntax_lsp")
+			local lspconfig = require("lspconfig")
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 			local servers = {
