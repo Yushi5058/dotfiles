@@ -40,6 +40,9 @@ exec_always nm-applet
 # install autotiling
 exec_always autotiling
 
+# low-battery notify
+exec bash $HOME/.config/sway/battery.sh &
+
 
 # clipboard manager
 # install copyq
