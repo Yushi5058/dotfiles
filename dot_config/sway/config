@@ -40,8 +40,6 @@ exec_always nm-applet
 # install autotiling
 exec_always autotiling
 
-# low-battery notify
-exec $HOME/poweralertd/build/poweralertd &
 
 
 # clipboard manager
