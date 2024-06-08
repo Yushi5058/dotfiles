@@ -41,7 +41,7 @@ exec_always nm-applet
 exec_always autotiling
 
 # low-battery notify
-exec bash $HOME/.config/sway/battery.sh &
+exec $HOME/poweralertd/build/poweralertd &
 
 
 # clipboard manager
