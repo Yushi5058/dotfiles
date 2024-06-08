@@ -70,8 +70,7 @@
 			"",
 			""
 		],
-		"icon-size": 21,
-		"exec": "battery.sh"
+		"icon-size": 21
 	},
 	"tray": {
 		"icon-size": 15,
