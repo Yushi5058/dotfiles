@@ -30,7 +30,7 @@ return {
 					},
 				},
 				tsserver = {},
-				ruby_lsp = {},
+				solargraph = {},
 				html = {},
 				cssls = {},
 				tailwindcss = {},
@@ -39,7 +39,6 @@ return {
 				clangd = {},
 				emmet_ls = {},
 				rubocop = {},
-
 			}
 
 			require("mason").setup()
@@ -113,16 +112,16 @@ return {
 			})
 		end,
 		keys = {
-			{ "<c-h>", mode = { "n" }, "<cmd>HighlightColors Toggle<cr>" }
-		}
+			{ "<c-h>", mode = { "n" }, "<cmd>HighlightColors Toggle<cr>" },
+		},
 	},
 	{
-		'stevearc/aerial.nvim',
+		"stevearc/aerial.nvim",
 		opts = {},
 		-- Optional dependencies
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons"
+			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
 			require("aerial").setup({
@@ -135,6 +134,6 @@ return {
 			})
 			-- You probably also want to set a keymap to toggle aerial
 			vim.keymap.set("n", "<leader>ta", "<cmd>AerialToggle! right<CR>")
-		end
-	}
+		end,
+	},
 }
