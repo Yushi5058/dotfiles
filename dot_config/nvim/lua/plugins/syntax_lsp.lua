@@ -39,6 +39,7 @@ return {
 				clangd = {},
 				emmet_ls = {},
 				rubocop = {},
+				pyright = {},
 			}
 
 			require("mason").setup()
