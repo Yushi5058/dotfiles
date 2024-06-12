@@ -40,6 +40,7 @@ return {
 				emmet_ls = {},
 				rubocop = {},
 				pyright = {},
+				kotlin_language_server = {},
 			}
 
 			require("mason").setup()
@@ -80,6 +81,7 @@ return {
 					"html",
 					"css",
 					"json",
+					"kotlin",
 				},
 				auto_install = true,
 				highlight = {
