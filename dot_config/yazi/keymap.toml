@@ -57,3 +57,8 @@ desc = "Move in relative steps"
 on = [ "9" ]
 run = "plugin relative-motions --args=9"
 desc = "Move in relative steps"
+
+[[manager.prepend_keymap]]
+{ on = [ "<C-n>" ], run = '''
+    shell 'dragon -x -i -T "$1"' --confirm
+''' }
