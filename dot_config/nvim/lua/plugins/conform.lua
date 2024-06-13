@@ -5,11 +5,11 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "eslint", "prettier" },
+				javascript = { "eslint", "prettier", "prettierd" },
 				ruby = { "rubocop" },
-				markdown = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
+				markdown = { "prettier", "prettierd" },
+				css = { "prettier", "prettierd" },
+				html = { "prettier", "prettierd" },
 				c = { "clang-format" },
 				python = { "ruff_fix", "ruff_format" },
 				kotlin = { "ktfmt" },
