@@ -30,6 +30,11 @@ alias lt="eza --tree --level=2 --long --icons --git"
 alias cat="bat"
 alias cd="z"
 
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+# Otherwise start tmux
+[[ -z "$TMUX" ]] && exec tmux
+
 # Configure zsh history
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=2000
