@@ -43,6 +43,8 @@ exec_always autotiling
 exec_always /usr/lib/polkit-kde-authentication-agent-1
 # mount flash drives / CD / usb automatically
 exec udiskie &
+# battery notify
+exec_always ./battery.sh
 
 
 
