@@ -45,7 +45,7 @@ exec_always /usr/lib/polkit-kde-authentication-agent-1
 exec udiskie &
 
 # poweralertd - notifications
-exec_always poweralertd
+exec poweralertd
 
 
 # clipboard manager
