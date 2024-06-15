@@ -9,5 +9,14 @@ font=Cantarell 14
 
 [urgency=high]
 border-color=#eb6f92
+default-timeout=0
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+[category=power.low]
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
 
+[category=power.online]
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/power-plug.oga
+
+[category=power.offline]
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/power-unplug.oga
 
