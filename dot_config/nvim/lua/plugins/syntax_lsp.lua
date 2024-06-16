@@ -41,7 +41,8 @@ return {
 				rubocop = {},
 				pyright = {},
 				kotlin_language_server = {},
-				jdtls = {}
+				jdtls = {},
+				gradle_ls = {}
 			}
 
 			require("java").setup()
