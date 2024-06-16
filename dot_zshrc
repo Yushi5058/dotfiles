@@ -10,6 +10,12 @@ export BAT_THEME="rose-pine"
 # source SDKman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+
+# android development
+export ANDROID_HOME=$HOME/Android
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zap-zsh/supercharge"
