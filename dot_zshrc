@@ -7,15 +7,6 @@ export BAT_THEME="rose-pine"
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
 
-# source SDKman
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-
-# android development
-export ANDROID_HOME=$HOME/Android
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zap-zsh/supercharge"
@@ -38,11 +29,6 @@ alias ll="eza --icons -la --git"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias cat="bat"
 alias cd="z"
-
-# If not running interactively, do not do anything
-[[ $- != *i* ]] && return
-# Otherwise start tmux
-[[ -z "$TMUX" ]] && exec tmux
 
 # Configure zsh history
 export HISTFILE=$HOME/.zsh_history
