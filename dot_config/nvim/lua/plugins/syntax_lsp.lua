@@ -41,6 +41,7 @@ return {
 				rubocop = {},
 				pyright = {},
 				kotlin_language_server = {},
+				groovyls = {}
 			}
 
 			require("mason").setup()
