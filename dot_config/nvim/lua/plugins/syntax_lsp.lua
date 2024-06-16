@@ -31,7 +31,7 @@ return {
 				},
 				tsserver = {},
 				solargraph = {},
-				html = {},
+				html = { filetypes = "html.erb" },
 				cssls = {},
 				tailwindcss = {},
 				jsonls = {},
