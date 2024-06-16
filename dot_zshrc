@@ -7,6 +7,9 @@ export BAT_THEME="rose-pine"
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
 
+ # asdf-vm
+ . /opt/asdf-vm/asdf.sh
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zap-zsh/supercharge"
