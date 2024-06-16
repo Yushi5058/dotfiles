@@ -55,10 +55,6 @@ setopt complete_aliases
 # Enable comments
 setopt interactive_comments
 
-
-# rbenv use
-eval "$(rbenv init - zsh)"
-
 # starship use
 eval "$(starship init zsh)"
 
