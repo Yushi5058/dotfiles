@@ -8,7 +8,9 @@ export BAT_THEME="rose-pine"
  export CHEZMOI=$HOME/bin/chezmoi
 
  # asdf-vm
- . /opt/asdf-vm/asdf.sh
+. "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
