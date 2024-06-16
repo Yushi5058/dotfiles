@@ -21,6 +21,10 @@ plug "zsh-users/zsh-history-substring-search"
 autoload -Uz compinit
 compinit
 
+# zsh-history-substring-search keybinds
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # aliases
 alias c="clear"
 alias home="cd"
