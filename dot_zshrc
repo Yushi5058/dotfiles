@@ -7,6 +7,9 @@ export BAT_THEME="rose-pine"
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
 
+# add bob to path
+export PATH=~/bin:/home/yushi_61/.local/share/bob/nvim-bin:$PATH
+
  # asdf-vm
 . "$HOME/.asdf/asdf.sh"
 # append completions to fpath
