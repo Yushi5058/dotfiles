@@ -150,7 +150,7 @@ focus_follows_mouse no
 bindsym Ctrl+Space exec makoctl dismiss --all
 
 # open filemanager
-bindsym $super+n exec Yazi
+bindsym $super+n exec yazi
 
 # Take a screenshot with all output and save it into screenshots
 bindsym Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
