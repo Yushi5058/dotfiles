@@ -31,7 +31,7 @@ return {
 				},
 				tsserver = {},
 				solargraph = {},
-				html = { filetypes = "html.erb" },
+				html = { "eruby", "erb" },
 				cssls = {},
 				tailwindcss = {},
 				jsonls = {},
@@ -39,10 +39,6 @@ return {
 				clangd = {},
 				emmet_ls = {},
 				rubocop = {},
-				pyright = {},
-				kotlin_language_server = {},
-				jdtls = {},
-				gradle_ls = {}
 			}
 
 			require("java").setup()
