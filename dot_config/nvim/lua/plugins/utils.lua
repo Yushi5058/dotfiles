@@ -88,6 +88,7 @@ opts = {
 keys = {
     {"<leader>n", mode = {"n"}, "<cmd>lua require('oil').toggle_float()"}
 },
+    },
 {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -141,6 +142,7 @@ keys = {
         {"<leader>sw", mode = {"v"}, "<cmd>lua require('spectre').open_visual()<cr>"},
         {"<leader>sp", mode = {"n"}, "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>"},
     },
+        },
     {
         "cbochs/grapple.nvim",
         dependencies = {
@@ -153,6 +155,7 @@ keys = {
             { "<leader>é",  mode = { "n" }, "<cmd>Grapple select index=2<cr>" },
             { "<leader>\"", mode = { "n" }, "<cmd>Grapple select index=3<cr>" },
         },
+        }
         {
             "epwalsh/pomo.nvim",
             version = "*", -- Recommended, use latest release instead of latest commit
