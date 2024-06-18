@@ -72,7 +72,6 @@ return {
             { "<leader>fg", mode = { "n" }, "<cmd>Telescope live_grep<cr>" },
             { "<leader>fh", mode = { "n" }, "<cmd>Telescope help_tags<cr>" },
             { "<leader>fc", mode = { "n" }, "<cmd>TodoTelescope<cr>" },
-            { "<leader>fk", mode = { "n" }, "<cmd>Telescope keymaps<cr>" }
         }
     },
     {
@@ -168,4 +167,36 @@ return {
             vim.keymap.set("n", "<leader>\"", "<cmd>Grapple select index=3<cr>")
         end
     },
+    {
+        "epwalsh/pomo.nvim",
+        version = "*", -- Recommended, use latest release instead of latest commit
+        lazy = true,
+        cmd = { "TimerStart", "TimerRepeat" },
+        dependencies = {
+            -- Optional, but highly recommended if you want to use the "Default" timer
+            "rcarriga/nvim-notify",
+        },
+        opts = {
+            -- See below for full list of options 👇
+            sticky = false
+        },
+    },
+    {
+        'mrjones2014/legendary.nvim',
+        priority = 10000,
+        lazy = false,
+        -- sqlite is only needed if you want to use frecency sorting
+        -- dependencies = { 'kkharji/sqlite.lua' }
+        opts = {
+            extensions = {
+                lazy_nvim = true
+            }
+        },
+        keys = {
+            "<leader>fk",
+            "<cmd>Legendary<CR>",
+            mode = { "n" },
+            desc = { "Open Legendary" }
+        }
+    }
 }
