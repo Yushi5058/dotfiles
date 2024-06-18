@@ -11,8 +11,6 @@ return {
 				css = { "prettier", "prettierd" },
 				html = { "prettier", "prettierd" },
 				c = { "clang-format" },
-				python = { "ruff_fix", "ruff_format" },
-				kotlin = { "ktfmt" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
