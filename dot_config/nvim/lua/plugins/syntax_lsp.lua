@@ -125,6 +125,9 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
 		},
+		keys = {
+			{ "<leader>ta", mode = { "n" }, "<cmd>AerialToggle! right<cr>" }
+		},
 		config = function()
 			require("aerial").setup({
 				-- optionally use on_attach to set keymaps when aerial has attached to a buffer
@@ -134,30 +137,6 @@ return {
 					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
 				end,
 			})
-			-- You probably also want to set a keymap to toggle aerial
-			vim.keymap.set("n", "<leader>ta", "<cmd>AerialToggle! right<CR>")
 		end,
 	},
-	{
-		'nvim-java/nvim-java',
-		dependencies = {
-			'nvim-java/lua-async-await',
-			'nvim-java/nvim-java-refactor',
-			'nvim-java/nvim-java-core',
-			'nvim-java/nvim-java-test',
-			'nvim-java/nvim-java-dap',
-			'MunifTanjim/nui.nvim',
-			'neovim/nvim-lspconfig',
-			'mfussenegger/nvim-dap',
-			{
-				'williamboman/mason.nvim',
-				opts = {
-					registries = {
-						'github:nvim-java/mason-registry',
-						'github:mason-org/mason-registry',
-					},
-				},
-			}
-		},
-	}
 }
