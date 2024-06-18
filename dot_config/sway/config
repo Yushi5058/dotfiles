@@ -117,14 +117,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# assign workspaces
-assign [app_id="firefox"] workspace number 1
-assign [app_id="discord"] workspace number 2
-assign [app_id="chromium"] workspace number 2
-assign [app_id="wezterm"] workspace number 3
-assign [app_id="weektodo"] workspace number 4
-assign [app_id="linked"] workspace number 4
-
 # workspace settings
 focus_follows_mouse no
 
