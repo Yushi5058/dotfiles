@@ -80,7 +80,6 @@ return {
 					"html",
 					"css",
 					"json",
-					"kotlin",
 				},
 				auto_install = true,
 				highlight = {

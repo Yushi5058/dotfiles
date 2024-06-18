@@ -86,7 +86,7 @@ opts = {
     }
 },
 keys = {
-    {"<leader>n", mode = {"n"}, "<cmd>lua require('oil').toggle_float()"}
+    {"<leader>n", mode = {"n"}, "<cmd>lua require('oil').toggle_float()<cr>"}
 },
     },
 {
@@ -155,7 +155,7 @@ keys = {
             { "<leader>é",  mode = { "n" }, "<cmd>Grapple select index=2<cr>" },
             { "<leader>\"", mode = { "n" }, "<cmd>Grapple select index=3<cr>" },
         },
-        }
+        },
         {
             "epwalsh/pomo.nvim",
             version = "*", -- Recommended, use latest release instead of latest commit
