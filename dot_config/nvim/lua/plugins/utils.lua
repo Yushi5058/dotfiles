@@ -1,5 +1,4 @@
 return {
-
 {
     "folke/neodev.nvim",
     opts = {},
@@ -79,16 +78,16 @@ return {
     lazy = false,
 },
 {
-    'stevearc/oil.nvim',
-    opts = {
-        default_file_explorer = true,
-        view_options = {
-            show_hidden = true
-        }
-    },
-    keys = {
+'stevearc/oil.nvim',
+opts = {
+    default_file_explorer = true,
+    view_options = {
+        show_hidden = true
+    }
+},
+keys = {
     {"<leader>n", mode = {"n"}, "<cmd>lua require('oil').toggle_float()"}
-    },
+},
 {
     "folke/flash.nvim",
     event = "VeryLazy",
