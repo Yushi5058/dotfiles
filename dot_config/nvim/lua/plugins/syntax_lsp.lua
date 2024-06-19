@@ -38,7 +38,6 @@ return {
 				bashls = {},
 				clangd = {},
 				emmet_ls = {},
-				rubocop = {},
 			}
 
 			require("mason").setup()
