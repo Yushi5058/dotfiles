@@ -38,7 +38,7 @@ return {
 				bashls = {},
 				clangd = {},
 				emmet_ls = {},
-				rubocop = {}
+				rubocop = {},
 			}
 
 			require("mason").setup()
@@ -124,7 +124,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		keys = {
-			{ "<leader>ta", mode = { "n" }, "<cmd>AerialToggle! right<cr>" }
+			{ "<leader>ta", mode = { "n" }, "<cmd>AerialToggle! right<cr>" },
 		},
 		config = function()
 			require("aerial").setup({

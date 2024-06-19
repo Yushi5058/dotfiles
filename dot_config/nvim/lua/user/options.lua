@@ -7,7 +7,7 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- Disable mouse
-vim.opt.mouse = ''
+vim.opt.mouse = ""
 
 -- Line numbers as default
 -- Relative line numbers for jumping
@@ -48,22 +48,19 @@ vim.opt.termguicolors = true
 -- Configure how new splits should be opened
 vim.opt.splitright = true
 
-
-
 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 10
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.showmatch = true
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
-
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
@@ -77,10 +74,10 @@ vim.opt.wrap = false
 
 -- guicursor options preference
 vim.opt.guicursor = {
-	"n-v-c:block",                               -- Normal, visual, command-line: block cursor
-	"i-ci-ve:ver25",                             -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
-	"r-cr:hor20",                                -- Replace, command-line replace: horizontal bar cursor with 20% height
-	"o:hor50",                                   -- Operator-pending: horizontal bar cursor with 50% height
-	"a:blinkwait700-blinkoff400-blinkon250",     -- All modes: blinking settings
+	"n-v-c:block", -- Normal, visual, command-line: block cursor
+	"i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+	"r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
+	"o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
+	"a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
 	"sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
