@@ -178,26 +178,4 @@ return {
             }
         },
     },
-    {
-        "nvim-neotest/neotest",
-        lazy = true,
-        dependencies = {
-            "olimorris/neotest-rspec",
-            "nvim-neotest/nvim-nio",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter"
-        },
-        config = function()
-            require("neotest").setup({
-                adapters = {
-                    require("neotest-rspec")
-                },
-            })
-        end,
-        keys = {
-            {"<leader>tn", mode = {"n"}, "<cmd> lua require('neotest').run.run()<cr>"},
-            {"<leader>tf", mode = {"n"}, "<cmd> lua require('neotest').run.run(vim.fn.expand('%'))<cr>"}
-        }
-    }
 }
