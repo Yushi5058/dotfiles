@@ -30,7 +30,7 @@ return {
 					},
 				},
 				tsserver = {},
-				solargraph = {},
+				ruby_lsp = {},
 				html = { "eruby", "erb" },
 				cssls = {},
 				tailwindcss = {},
@@ -38,7 +38,6 @@ return {
 				bashls = {},
 				clangd = {},
 				emmet_ls = {},
-				rubocop = {},
 			}
 
 			require("mason").setup()
