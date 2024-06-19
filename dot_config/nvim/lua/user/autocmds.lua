@@ -36,10 +36,10 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufWritePre", { command = "%s/\\s\\+$//e" })
 
 -- Highlight yanked text for 150ms
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
-	end
+	end,
 })
 -- autoclose quickfix list when choosing one
 vim.api.nvim_create_autocmd("FileType", {
@@ -49,16 +49,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
-
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "godot", "gdscript" },
 	callback = function()
-		vim.bo.foldmethod = 'expr'
+		vim.bo.foldmethod = "expr"
 		vim.bo.tabstop = 4
-		vim.api.nvim_buf_set_keymap(0, 'n', '<F4>', ':GodotRunLast<CR>', { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, 'n', '<F5>', ':GodotRun<CR>', { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, 'n', '<F6>', ':GodotRunCurrent<CR>', { noremap = true, silent = true })
-		vim.api.nvim_buf_set_keymap(0, 'n', '<F7>', ':GodotRunFZF<CR>', { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<F4>", ":GodotRunLast<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<F5>", ":GodotRun<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<F6>", ":GodotRunCurrent<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<F7>", ":GodotRunFZF<CR>", { noremap = true, silent = true })
 	end,
 })
