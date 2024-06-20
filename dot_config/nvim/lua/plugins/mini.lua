@@ -14,15 +14,11 @@ return {
 		--  find_left = 'sF', -- Find surrounding (to the left)
 		--  highlight = 'sh', -- Highlight surrounding
 		--  replace = 'sr', -- Replace surrounding
-		require("mini.animate").setup()
 		require("mini.comment").setup()
 		-- NOTE:
 		-- on visual mode :
 		-- gc to comment
 		-- gcc to comment current line
-		require("mini.statusline").setup()
-		require("mini.starter").setup()
-		require("mini.notify").setup()
 		require("mini.diff").setup()
 	end,
 }

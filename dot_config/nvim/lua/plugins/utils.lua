@@ -70,15 +70,15 @@ return {
 		},
 	},
 	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.5",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "<leader>ff", mode = { "n" }, "<cmd>Telescope find_files<cr>" },
-			{ "<leader>fg", mode = { "n" }, "<cmd>Telescope live_grep<cr>" },
-			{ "<leader>fh", mode = { "n" }, "<cmd>Telescope help_tags<cr>" },
-			{ "<leader>fc", mode = { "n" }, "<cmd>TodoTelescope<cr>" },
-		},
+		"ibhagwan/fzf-lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			-- calling `setup` is optional for customization
+			require("fzf-lua").setup({})
+			vim.keymap.set("n", "<leader>ff", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+			vim.keymap.set("n", "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<cr>")
+			vim.keymap.set("n", "<leader>fh", "<cmd>lua require('fzf-lua').helptags()<cr>")
+		end,
 	},
 	{
 		"wakatime/vim-wakatime",
@@ -97,62 +97,7 @@ return {
 		},
 	},
 	{
-		"folke/zen-mode.nvim",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		keys = {
-			{ "<leader>z", mode = { "n" }, "<cmd>ZenMode<cr>", desc = "Toggle ZenMode" },
-		},
-	},
-	{
 		"IogaMaster/neocord",
 		event = "VeryLazy",
-		config = function()
-			require("neocord").setup()
-		end,
-	},
-	{
-		"ellisonleao/glow.nvim",
-		keys = {
-			{ "<leader>gl", "<cmd>Glow<cr>", mode = { "n" }, desc = "Markdown preview" },
-		},
-	},
-	{
-		"nvim-pack/nvim-spectre",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "<leader>s", mode = { "n" }, "<cmd>lua require('spectre').toggle()<cr>" },
-			{ "<leader>sw", mode = { "n" }, "<cmd>lua require('spectre').open_visual({select_word=true})<cr>" },
-			{ "<leader>sw", mode = { "v" }, "<cmd>lua require('spectre').open_visual()<cr>" },
-			{ "<leader>sp", mode = { "n" }, "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>" },
-		},
-	},
-	{
-		"cbochs/grapple.nvim",
-		dependencies = {
-			{ "nvim-tree/nvim-web-devicons", lazy = true },
-		},
-		keys = {
-			{ "<leader>a", mode = { "n" }, "<cmd>lua require('grapple').toggle<cr>" },
-			{ "<c-e>", mode = { "n" }, "<cmd>lua require('grapple').toggle_tags<cr>" },
-			{ "<leader>&", mode = { "n" }, "<cmd>Grapple select index=1<cr>" },
-			{ "<leader>é", mode = { "n" }, "<cmd>Grapple select index=2<cr>" },
-			{ '<leader>"', mode = { "n" }, "<cmd>Grapple select index=3<cr>" },
-		},
-	},
-	{
-		"mrjones2014/legendary.nvim",
-		priority = 10000,
-		lazy = false,
-		-- sqlite is only needed if you want to use frecency sorting
-		-- dependencies = { 'kkharji/sqlite.lua' }
-		opts = {
-			extensions = {
-				lazy_nvim = true,
-			},
-		},
 	},
 }
