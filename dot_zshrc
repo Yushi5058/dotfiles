@@ -63,6 +63,3 @@ eval "$(starship init zsh)"
 
 # zoxide use
 eval "$(zoxide init zsh)"
-
-# homebrew use
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
