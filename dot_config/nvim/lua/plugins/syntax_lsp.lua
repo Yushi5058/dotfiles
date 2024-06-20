@@ -25,7 +25,7 @@ return {
 								"vim",
 								"on_attach",
 							},
-							-- disable = { 'missing-fields' } },
+							disable = { "missing-fields" },
 						},
 					},
 				},
@@ -35,7 +35,6 @@ return {
 				cssls = {},
 				tailwindcss = {},
 				jsonls = {},
-				bashls = {},
 				clangd = {},
 				emmet_ls = {},
 			}
@@ -80,14 +79,7 @@ return {
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
-					disable = function()
-						-- check if 'filetype' option includes 'chezmoitmpl'
-						if string.find(vim.bo.filetype, "chezmoitmpl") then
-							return true
-						end
-					end,
 				},
-				indent = { enable = true },
 			})
 		end,
 	},

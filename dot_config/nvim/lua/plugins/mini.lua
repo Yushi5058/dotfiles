@@ -6,19 +6,14 @@ return {
 		require("mini.cursorword").setup()
 		require("mini.indentscope").setup()
 		require("mini.pairs").setup()
-		require("mini.surround").setup()
-		-- NOTE:
-		-- add = 'sa', -- Add surrounding in Normal and Visual modes
-		--  delete = 'sd', -- Delete surrounding
-		--  find = 'sf', -- Find surrounding (to the right)
-		--  find_left = 'sF', -- Find surrounding (to the left)
-		--  highlight = 'sh', -- Highlight surrounding
-		--  replace = 'sr', -- Replace surrounding
 		require("mini.comment").setup()
 		-- NOTE:
 		-- on visual mode :
 		-- gc to comment
-		-- gcc to comment current line
+		-- on normal mode :
+		-- gcc to comment
 		require("mini.diff").setup()
+		require("mini.git").setup()
+		require("mini.completion").setup()
 	end,
 }
