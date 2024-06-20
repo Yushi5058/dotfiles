@@ -8,7 +8,7 @@ export BAT_THEME="rose-pine"
  export CHEZMOI=$HOME/bin/chezmoi
 
 # add bob to path
-export PATH=~/bin:/home/yushi_61/.local/share/bob/nvim-bin:$PATH
+export PATH=~/bin:/home/yushi_61/.local/share/bob/nvim-bin:/home/yushi_61/.asdf/installs/rust/1.79.0/bin:$PATH
 
  # asdf-vm
 . "$HOME/.asdf/asdf.sh"
