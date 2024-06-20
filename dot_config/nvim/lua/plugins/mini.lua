@@ -15,5 +15,6 @@ return {
 		require("mini.diff").setup()
 		require("mini.git").setup()
 		require("mini.completion").setup()
+		require("mini.notify").setup()
 	end,
 }
