@@ -17,6 +17,11 @@ return {
 				timeout_ms = 500,
 				lsp_fallback = true,
 			},
+			formatters = {
+				rubocop = {
+					args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
+				},
+			},
 		})
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
