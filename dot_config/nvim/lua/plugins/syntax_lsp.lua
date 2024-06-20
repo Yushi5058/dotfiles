@@ -71,10 +71,7 @@ return {
 					"lua",
 					"vimdoc",
 					"vim",
-					"bash",
 					"ruby",
-					"markdown",
-					"markdown_inline",
 					"html",
 					"css",
 					"json",
@@ -95,50 +92,11 @@ return {
 		end,
 	},
 	{
-		"alker0/chezmoi.vim",
-		lazy = false,
-		init = function()
-			-- This option is required.
-			vim.g["chezmoi#use_tmp_buffer"] = true
-			-- add other options here if needed.
-		end,
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
 		config = function()
 			require("nvim-highlight-colors").setup({
 				enable_tailwind = true,
 			})
 		end,
-		keys = {
-			{ "<c-h>", mode = { "n" }, "<cmd>HighlightColors Toggle<cr>" },
-		},
-	},
-	{
-		"stevearc/aerial.nvim",
-		opts = {},
-		-- Optional dependencies
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
-		keys = {
-			{ "<leader>ta", mode = { "n" }, "<cmd>AerialToggle! right<cr>" },
-		},
-		config = function()
-			require("aerial").setup({
-				-- optionally use on_attach to set keymaps when aerial has attached to a buffer
-				on_attach = function(bufnr)
-					-- Jump forwards/backwards with '{' and '}'
-					vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-					vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-				end,
-			})
-		end,
-	},
-	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true, -- or `opts = {}`
 	},
 }
