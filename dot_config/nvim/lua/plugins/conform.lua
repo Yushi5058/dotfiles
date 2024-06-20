@@ -6,7 +6,7 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { "eslint", "prettier", "prettierd" },
-				ruby = { "rubocop" },
+				ruby = { "rubocop", "rubyfmt" },
 				markdown = { "prettier", "prettierd" },
 				css = { "prettier", "prettierd" },
 				html = { "prettier", "prettierd" },
