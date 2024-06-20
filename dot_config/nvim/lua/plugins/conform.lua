@@ -5,21 +5,25 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "eslint", "prettier", "prettierd" },
+				javascript = { "biome" },
 				ruby = { "rubocop" },
 				markdown = { "prettier", "prettierd" },
-				css = { "prettier", "prettierd" },
+				css = { "biome", "prettier", "prettierd" },
 				html = { "prettier", "prettierd" },
 				c = { "clang-format" },
+				sh = { "shfmt" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
-				timeout_ms = 500,
+				timeout_ms = 10000, -- important for rubocop
 				lsp_fallback = true,
+			},
+			format_after_save = {
+				lsp_format = "fallback",
 			},
 			formatters = {
 				rubocop = {
-					args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
+					args = { "-a", "-f", "quiet", "--stderr", "--stdin", "$FILENAME" },
 				},
 			},
 		})
