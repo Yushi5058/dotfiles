@@ -30,7 +30,7 @@ return {
 					},
 				},
 				tsserver = {},
-				ruby_lsp = {},
+				solargraph = {},
 				html = { "eruby", "erb" },
 				cssls = {},
 				tailwindcss = {},
