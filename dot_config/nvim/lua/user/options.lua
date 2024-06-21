@@ -16,9 +16,9 @@ vim.opt.relativenumber = true
 
 -- Display settings
 vim.opt.autoindent = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.smarttab = true
 vim.opt.expandtab = true
 vim.opt.showcmd = true
@@ -74,10 +74,17 @@ vim.opt.wrap = false
 
 -- guicursor options preference
 vim.opt.guicursor = {
-    "n-v-c:block",                               -- Normal, visual, command-line: block cursor
-    "i-ci-ve:ver25",                             -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
-    "r-cr:hor20",                                -- Replace, command-line replace: horizontal bar cursor with 20% height
-    "o:hor50",                                   -- Operator-pending: horizontal bar cursor with 50% height
-    "a:blinkwait700-blinkoff400-blinkon250",     -- All modes: blinking settings
+    "n-v-c:block",                                  -- Normal, visual, command-line: block cursor
+    "i-ci-ve:ver25",                                -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+    "r-cr:hor20",                                   -- Replace, command-line replace: horizontal bar cursor with 20% height
+    "o:hor50",                                      -- Operator-pending: horizontal bar cursor with 50% height
+    "a:blinkwait700-blinkoff400-blinkon250",        -- All modes: blinking settings
     "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
+
+-- netrw settings
+vim.g.netrw_keepdir = 0
+vim.g.netrw_winsize = 30
+vim.g.netrw_banner = 0
+vim.g.netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+vim.g.netrw_localcopydircmd = 'cp -r'
