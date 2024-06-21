@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- autoformat on save
-vim.api.nvim_create_autocmd("BufWritePe", {
+vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
 		vim.lsp.buf.format()
