@@ -65,3 +65,14 @@ keymap.set("n", "<leader>dd", '"_dd', { noremap = true, silent = true })
 -- Keymaps for neovim splits
 keymap.set("n", "sv", "<cmd>vsplit<cr>")
 keymap.set("n", "sh", "<cmd>split<cr>")
+
+-- navigate between splits
+keymap.set("n", "<C-h", "<C-w>h")
+keymap.set("n", "<C-l", "<C-w>l")
+keymap.set("n", "<C-k", "<C-w>k")
+keymap.set("n", "<C-j", "<C-w>j")
+-- resize splits
+vim.keymap.set("n", "<A-h>", "10<C-w><", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-l>", "10<C-w>>", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-j>", "10<C-w>+", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-k>", "10<C-w>-", { noremap = true, silent = true })
