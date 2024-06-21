@@ -13,5 +13,6 @@ return {
 		require("mini.notify").setup()
 		require("mini.statusline").setup()
 		require("mini.surround").setup()
+		require("mini.animate").setup()
 	end,
 }

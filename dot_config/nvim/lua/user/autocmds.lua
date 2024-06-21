@@ -48,3 +48,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
 	end,
 })
+
+-- autoformat on save
+vim.api.nvim_create_autocmd("BufWritePe", {
+	pattern = "*",
+	callback = function()
+		vim.lsp.buf.format()
+	end,
+})
