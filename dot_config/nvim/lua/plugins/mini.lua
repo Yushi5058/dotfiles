@@ -7,14 +7,11 @@ return {
 		require("mini.indentscope").setup()
 		require("mini.pairs").setup()
 		require("mini.comment").setup()
-		-- NOTE:
-		-- on visual mode :
-		-- gc to comment
-		-- on normal mode :
-		-- gcc to comment
 		require("mini.diff").setup()
 		require("mini.git").setup()
 		require("mini.completion").setup()
 		require("mini.notify").setup()
+		require("mini.statusline").setup()
+		require("mini.surround").setup()
 	end,
 }
