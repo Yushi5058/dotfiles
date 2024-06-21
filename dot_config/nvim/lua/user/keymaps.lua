@@ -22,7 +22,6 @@ keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnosti
 -- lsp keymaps
 keymap.set("n", "K", vim.lsp.buf.hover)
 keymap.set("n", "<leader>k", vim.lsp.buf.signature_help)
-keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
 keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
 keymap.set("n", "<leader>gr", vim.lsp.buf.references)
 keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
@@ -76,3 +75,5 @@ vim.keymap.set("n", "<A-h>", "10<C-w><", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-l>", "10<C-w>>", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-j>", "10<C-w>+", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-k>", "10<C-w>-", { noremap = true, silent = true })
+-- netrw explorer
+vim.keymap.set("n", "<leader>n", "<cmd>Ex<cr>")
