@@ -1,17 +1,5 @@
 return {
 	{
-		"stevearc/dressing.nvim",
-		opts = {},
-	},
-	{
-		"jiaoshijie/undotree",
-		dependencies = "nvim-lua/plenary.nvim",
-		config = true,
-		keys = {
-			{ "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", mode = { "n" }, desc = "Undotree Toggle" },
-		},
-	},
-	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
@@ -22,6 +10,7 @@ return {
 			vim.keymap.set("n", "<leader>fh", "<cmd>lua require('fzf-lua').helptags()<cr>")
 			vim.keymap.set("n", "<leader>fd", "<cmd>lua require('fzf-lua').diagnostics_workspace()<cr>")
 			vim.keymap.set("n", "<leader>fq", "<cmd>lua require('fzf-lua').quickfix()<cr>")
+			vim.keymap.set("n", "<leader>fu", "<cmd>lua require('fzf-lua').changes()<cr>")
 		end,
 	},
 	{
@@ -39,9 +28,5 @@ return {
 		keys = {
 			{ "<leader>n", mode = { "n" }, "<cmd>lua require('oil').toggle_float()<cr>" },
 		},
-	},
-	{
-		"IogaMaster/neocord",
-		event = "VeryLazy",
 	},
 }
