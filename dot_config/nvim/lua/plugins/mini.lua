@@ -3,17 +3,26 @@ return {
   version = false,
   lazy = false,
   config = function()
-    require("mini.cursorword").setup()
-    require("mini.indentscope").setup()
-    require("mini.pairs").setup()
-    require("mini.comment").setup()
-    require("mini.diff").setup()
-    require("mini.git").setup()
-    require("mini.completion").setup()
-    require("mini.notify").setup()
-    require("mini.statusline").setup()
-    require("mini.surround").setup()
-    require("mini.animate").setup()
-    require("mini.starter").setup()
+    local mini_modules = {
+      "cursorword",
+      "indentscope",
+      "pairs",
+      "comment",
+      "diff",
+      "git",
+      "completion",
+      "notify",
+      "statusline",
+      "surround",
+      "animate",
+      "starter",
+    }
+
+    for _, module_name in ipairs(mini_modules) do
+      -- Construct the full module name
+      local full_module_name = "mini." .. module_name
+      -- Require the module and call its setup method
+      require(full_module_name).setup()
+    end
   end,
 }
