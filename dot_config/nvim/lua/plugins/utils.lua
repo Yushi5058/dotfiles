@@ -1,9 +1,7 @@
 return {
   {
     "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      -- calling `setup` is optional for customization
       require("fzf-lua").register_ui_select(function(_, items)
         local min_h, max_h = 0.15, 0.70
         local h = (#items + 4) / vim.o.lines
