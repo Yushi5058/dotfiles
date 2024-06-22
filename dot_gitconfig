@@ -1,4 +1,4 @@
-/* vim: set filetype=git_config : */
+; vim: set filetype=git_config :
 [core]
 editor = nvim
 excludesfile = $HOME/.gitignore
