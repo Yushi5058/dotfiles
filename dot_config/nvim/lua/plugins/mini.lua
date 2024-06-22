@@ -24,5 +24,6 @@ return {
       -- Require the module and call its setup method
       require(full_module_name).setup()
     end
+    vim.notify = require("mini.notify")
   end,
 }
