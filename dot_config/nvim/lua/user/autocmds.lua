@@ -35,17 +35,19 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filepath = vim.api.nvim_buf_get_name(bufnr)
     if vim.bo.filetype ~= "gitcommit" then
       if vim.bo.filetype == "css" or vim.bo.filetype == "markdown" or vim.bo.filetype == "html" then
-        vim.fn.system("prettier --write " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+        vim.fn.system("prettier --write " .. vim.fn.shellescape(filepath))
       elseif vim.bo.filetype == "javascript" then
-        vim.fn.system("eslint --fix " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+        vim.fn.system("eslint --fix " .. vim.fn.shellescape(filepath))
       elseif vim.bo.filetype == "ruby" then
-        vim.fn.system("rubocop -A " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+        vim.fn.system("rubocop -A " .. vim.fn.shellescape(filepath))
       elseif vim.bo.filetype == "lua" then
-        vim.fn.system("stylua " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+        vim.fn.system("stylua " .. vim.fn.shellescape(filepath))
       elseif vim.bo.filetype == "C" or vim.bo.filetype == "cpp" then
-        vim.fn.system("clang-format -i " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+        vim.fn.system("clang-format -i " .. vim.fn.shellescape(filepath))
       else
         vim.lsp.buf.format({ async = true })
       end
