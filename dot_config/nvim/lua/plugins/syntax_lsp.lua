@@ -28,7 +28,7 @@ return function()
       }
 
       require("mason").setup()
-      
+
 
            require("nvim-treesitter.configs").setup({
         ensure_installed = {
@@ -49,4 +49,4 @@ return function()
           additional_vim_regex_highlighting = false,
         },
       })
-    end,
+    end
