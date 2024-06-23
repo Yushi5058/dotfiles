@@ -31,16 +31,18 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- autoformat on save
+
 -- Define commands per filetype
 local commands = {
-  html = "prettier --write",
-  css = "prettier --write",
-  markdown = "prettier --write",
-  javascript = "eslint --fix",
-  ruby = "rubocop -A",
-  lua = "stylua",
-  c = "clang-format -i",
-  cpp = "clang-format -i",
+  html = "prettier --stdin-filepath",
+  css = "prettier --stdin-filepath",
+  markdown = "prettier --stdin-filepath",
+  javascript = "eslint --fix --stdin --stdin-filename",
+  ruby = "rubocop -A --stdin",
+  lua = "stylua --stdin-filepath",
+  c = "clang-format",
+  cpp = "clang-format",
 }
 
 -- autoformat on save
@@ -52,17 +54,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       local command = commands[ft]
 
       if command then
-          local range = {1, vim.fn.line("$")}  -- Format entire buffer
-          local output = vim.fn.systemlist(command, {
-              args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
-              capture_output = true,
-              input = table.concat(vim.api.nvim_buf_get_lines(0, range[1] - 1, range[2], false), "\n"),
-          })
+        local filename = vim.api.nvim_buf_get_name(0)
+        local content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+        local cmd = command .. " " .. vim.fn.shellescape(filename)
 
-        if output and #output > 0 then
-          vim.api.nvim_buf_set_lines(0, range[1] - 1, range[2], false, output)
+        local output = vim.fn.systemlist(cmd, content)
+        if vim.v.shell_error == 0 then
+          vim.api.nvim_buf_set_lines(0, 0, -1, false, output)
+        else
+          print("Error running: " .. cmd)
         end
-             else
+      else
         vim.lsp.buf.format({ async = true })
       end
     end
