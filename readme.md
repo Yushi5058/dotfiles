@@ -21,8 +21,6 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 ## Notice
 
 - `chsh -s /usr/bin/zsh` to make zsh the default shell.
-- `$ nvim --headless "+Lazy!sync" +qa` to sync plugins with lazy
-  without launching nvim.
 - SSH github authentification is a must. Click [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 - GPG key generation for signing commits. Click [here](https://docs.github.com/fr/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
 - My dotfiles are WIP forever.
