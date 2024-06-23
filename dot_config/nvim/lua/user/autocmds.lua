@@ -36,7 +36,19 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
     if vim.bo.filetype ~= "gitcommit" then
-      vim.lsp.buf.format()
+      if vim.bo.filetype == "css" or vim.bo.filetype == "markdown" or vim.bo.filetype == "html" then
+        vim.fn.system("prettier --write " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+      elseif vim.bo.filetype == "javascript" then
+        vim.fn.system("eslint --fix " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+      elseif vim.bo.filetype == "ruby" then
+        vim.fn.system("rubocop -A " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+      elseif vim.bo.filetype == "lua" then
+        vim.fn.system("stylua " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+      elseif vim.bo.filetype == "C" or vim.bo.filetype == "cpp" then
+        vim.fn.system("clang-format -i " .. vim.fn.shellescape(vim.api.nvim_buf_get_name(0)))
+      else
+        vim.lsp.buf.format({ async = true })
+      end
     end
   end,
 })
