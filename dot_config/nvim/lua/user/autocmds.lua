@@ -13,24 +13,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- oil configuration
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "oil",
-	callback = function()
-		vim.opt_local.colorcolumn = ""
-	end,
-})
-
--- open help vertically
-vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("vertical_help", { clear = true }),
-	pattern = "help",
-	callback = function()
-		vim.bo.bufhidden = "unload"
-		vim.cmd.wincmd("L")
-		vim.cmd.wincmd("=")
-	end,
-})
 
 -- trim white space
 vim.api.nvim_create_autocmd("BufWritePre", { command = "%s/\\s\\+$//e" })
@@ -45,7 +27,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "qf",
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
+		vim.keymap.set(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
 	end,
 })
 
@@ -53,6 +35,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function()
+		if vim.bo.filetype ~= "gitcommit" then
 		vim.lsp.buf.format()
+	end
 	end,
 })
