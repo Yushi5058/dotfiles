@@ -15,4 +15,4 @@ return  function()
       vim.keymap.set("n", "<leader>fd", "<cmd>lua require('fzf-lua').diagnostics_workspace()<cr>")
       vim.keymap.set("n", "<leader>fq", "<cmd>lua require('fzf-lua').quickfix()<cr>")
       vim.keymap.set("n", "<leader>fu", "<cmd>lua require('fzf-lua').changes()<cr>")
-    end,
+    end
