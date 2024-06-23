@@ -10,7 +10,7 @@ vim.g.have_nerd_font = true
 vim.opt.mouse = ""
 
 -- Set habamax colorscheme
-vim.cmd [[colorscheme sorbet]]
+vim.cmd [[colorscheme habamax]]
 
 -- Line numbers as default
 -- Relative line numbers for jumping
@@ -41,7 +41,7 @@ vim.opt.clipboard = ""
 vim.opt.encoding = "utf-8"
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- Set highlight on search
 vim.opt.hlsearch = true
@@ -62,8 +62,6 @@ vim.opt.showmatch = true
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"

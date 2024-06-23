@@ -1,7 +1,4 @@
-return {
-  {
-    "ibhagwan/fzf-lua",
-    config = function()
+return  function()
       require("fzf-lua").register_ui_select(function(_, items)
         local min_h, max_h = 0.15, 0.70
         local h = (#items + 4) / vim.o.lines
@@ -19,9 +16,3 @@ return {
       vim.keymap.set("n", "<leader>fq", "<cmd>lua require('fzf-lua').quickfix()<cr>")
       vim.keymap.set("n", "<leader>fu", "<cmd>lua require('fzf-lua').changes()<cr>")
     end,
-  },
-  {
-    "wakatime/vim-wakatime",
-    lazy = false,
-  },
-}

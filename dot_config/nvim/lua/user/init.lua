@@ -1,4 +1,4 @@
 require("user.options")
 require("user.keymaps")
-require("user.lazy")
+require("user.deps")
 require("user.autocmds")

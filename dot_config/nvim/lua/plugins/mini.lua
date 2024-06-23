@@ -1,8 +1,4 @@
-return {
-  "echasnovski/mini.nvim",
-  version = false,
-  lazy = false,
-  config = function()
+return function()
     local mini_modules = {
       "cursorword",
       "indentscope",
@@ -25,5 +21,5 @@ return {
       require(full_module_name).setup()
     end
     vim.notify = require("mini.notify").make_notify()
-  end,
-}
+  end
+

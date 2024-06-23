@@ -1,16 +1,4 @@
-return {
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
-    opts = {
-      inlay_hints = {
-        enabled = false,
-      },
-    },
-    config = function()
+return function()
       local lspconfig = require("lspconfig")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -40,29 +28,9 @@ return {
       }
 
       require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = vim.tbl_keys(servers),
-      })
+      
 
-      require("mason-lspconfig").setup_handlers({
-        -- This is a default handler that will be called for each installed server
-        -- (also for new servers that are installed during a session)
-        function(server_name)
-          lspconfig[server_name].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-          })
-        end,
-      })
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup({
+           require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "javascript",
           "typescript",
@@ -82,5 +50,3 @@ return {
         },
       })
     end,
-  },
-}
