@@ -19,13 +19,15 @@ local add = MiniDeps.add
 add('ibhagwan/fzf-lua')
 add('wakatime/vim-wakatime')
 add({
-source = 'neovim/nvim-lspconfig',
-depends = {'williamboman/mason.nvim'},
+  source = 'neovim/nvim-lspconfig',
+  depends = { 'williamboman/mason.nvim' },
 })
 
 add({
-	source = 'nvim-treesitter/nvim-treesitter',
-	checkout = 'master',
-	monitor = 'main',
-	hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+  source = 'nvim-treesitter/nvim-treesitter',
+  checkout = 'master',
+  monitor = 'main',
+  hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
 })
+add('mbbill/undotree')
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
