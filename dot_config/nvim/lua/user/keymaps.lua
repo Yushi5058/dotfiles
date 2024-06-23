@@ -1,3 +1,8 @@
+
+-- Set space as the leader key
+-- NOTE: Must happen before plugins are loaded
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 -- helper function
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
