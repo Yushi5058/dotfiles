@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "qf",
   callback = function()
-    vim.keymap.set(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
+    vim.keymap.set("n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
   end,
 })
 

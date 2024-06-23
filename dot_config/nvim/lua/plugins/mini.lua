@@ -1,5 +1,4 @@
 local mini_modules = {
-  "cursorword",
   "indentscope",
   "pairs",
   "comment",
@@ -8,8 +7,6 @@ local mini_modules = {
   "completion",
   "notify",
   "surround",
-  "animate",
-  "starter",
 }
 
 for _, module_name in ipairs(mini_modules) do
