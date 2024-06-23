@@ -15,9 +15,9 @@ vim.opt.relativenumber = true
 
 -- Display settings
 vim.opt.autoindent = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 vim.opt.smarttab = true
 vim.opt.expandtab = true
 vim.opt.showcmd = true
@@ -36,7 +36,7 @@ vim.opt.incsearch = true
 vim.opt.clipboard = ""
 vim.opt.encoding = "utf-8"
 
--- Show which line your cursor is on
+-- disable cursorline
 vim.opt.cursorline = false
 
 -- Set highlight on search
