@@ -1,4 +1,3 @@
-
 -- Set space as the leader key
 -- NOTE: Must happen before plugins are loaded
 vim.g.mapleader = " "
@@ -32,8 +31,8 @@ map("n", "<leader>gr", vim.lsp.buf.references)
 map("n", "<leader>ca", vim.lsp.buf.code_action)
 
 -- Sane behavior of searching
-map({"n", "x", "o"}, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map({"n", "x", "o"}, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- escape search highlight / insert mode
 map("n", "jk", "<cmd>nohlsearch<cr>")
@@ -55,10 +54,10 @@ map("n", "sv", "<cmd>vsplit<cr>")
 map("n", "sh", "<cmd>split<cr>")
 
 -- navigate between splits
-map("n", "<C-h", "<C-w>h")
-map("n", "<C-l", "<C-w>l")
-map("n", "<C-k", "<C-w>k")
-map("n", "<C-j", "<C-w>j")
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-l>", "<C-w>l")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-j>", "<C-w>j")
 -- resize splits
 map("n", "<A-h>", "10<C-w><", { noremap = true, silent = true })
 map("n", "<A-l>", "10<C-w>>", { noremap = true, silent = true })
