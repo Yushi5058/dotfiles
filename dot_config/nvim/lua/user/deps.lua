@@ -16,6 +16,8 @@ end
 require('mini.deps').setup({ path = { package = path_package } })
 
 local add = MiniDeps.add
+add('rose-pine/neovim')
+vim.cmd('colorscheme rose-pine main')
 add('ibhagwan/fzf-lua')
 add('wakatime/vim-wakatime')
 add({

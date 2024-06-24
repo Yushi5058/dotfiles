@@ -5,8 +5,6 @@ vim.g.have_nerd_font = true
 -- Disable mouse
 vim.opt.mouse = ""
 
--- Set habamax colorscheme
-vim.cmd [[colorscheme habamax]]
 
 -- Line numbers as default
 -- Relative line numbers for jumping
