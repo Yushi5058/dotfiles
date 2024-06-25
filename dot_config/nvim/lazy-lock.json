@@ -1,0 +1,10 @@
+{
+  "fzf-lua": { "branch": "main", "commit": "1ec6eeda11c3a3dcd544e1c61ad4b8c9b49903c4" },
+  "lazy.nvim": { "branch": "main", "commit": "4ea9fe060042f345960ad0c01aa7bca91405e10a" },
+  "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },
+  "neovim": { "branch": "main", "commit": "8c4660cfe697621bcc61d37b3651ffed94fe7fed" },
+  "nvim-lspconfig": { "branch": "master", "commit": "9c9eb07fecc578e25e28db8dc9002b43fff2ed79" },
+  "nvim-treesitter": { "branch": "master", "commit": "c233773abf17cd6bbf7720718faa140f04c7838e" },
+  "oil.nvim": { "branch": "master", "commit": "65c53dbe4f2140236590a7568a5f22a77d16be39" },
+  "vim-wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" }
+}
