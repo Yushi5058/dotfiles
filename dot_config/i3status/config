@@ -9,15 +9,12 @@
 general {
         colors = true
         interval = 5
+
 }
 
-order += "ipv6"
 order += "wireless _first_"
-order += "ethernet _first_"
 order += "battery all"
-order += "disk /"
-order += "load"
-order += "memory"
+order += "volume master"
 order += "tztime local"
 
 wireless _first_ {
@@ -25,27 +22,21 @@ wireless _first_ {
         format_down = "W: down"
 }
 
-ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "pulse:1"
 }
 
 battery all {
         format = "%status %percentage %remaining"
-}
-
-disk "/" {
-        format = "%avail"
-}
-
-load {
-        format = "%1min"
-}
-
-memory {
-        format = "%used | %available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+        format_down = "No battery"
+        status_chr = "⚡ CHR"
+        status_bat = "🔋 BAT"
+        status_unk = "? UNK"
+        status_full = "☻ FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 15
 }
 
 tztime local {
