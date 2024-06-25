@@ -172,9 +172,9 @@ bindsym $super+Return exec wezterm
 bindsym $super+q kill
 
 
-# start menu launcher rofi
-# install rofi
-set $menu rofi -show drun
+# start menu launcher fuzzel
+# install fuzzel
+set $menu fuzzel
 bindsym $super+d exec $menu
 
 # change focus
@@ -364,5 +364,4 @@ output * bg $HOME/Wallpapers/star_mountains.jpg fill
 
 # Sway system stuff
 include /etc/sway/config.d/*
-
 
