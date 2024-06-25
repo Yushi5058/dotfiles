@@ -31,7 +31,7 @@ font pango:monospace 20
 
 
 # Start apps & things
-# install sddm login manager
+# install ly login manager
 exec_always systemctl enable ly.service
 # install mako
 exec_always mako
@@ -39,11 +39,8 @@ exec_always mako
 exec_always nm-applet
 # install autotiling
 exec_always autotiling
-# authentification agent
-exec_always /usr/lib/polkit-kde-authentication-agent-1
-
 # battery alerts
-exec poweralertd
+exec_always poweralertd
 
 
 # clipboard manager
@@ -335,12 +332,13 @@ seat * hide_cursor 6000
 # Drag and resize floating windows with $super key
 floating_modifier $super normal
 
-# execute waybar
-bar swaybar_command waybar
+# execute statusbar
+bar {
+    status_command i3status
+}
 
 
-
-# or use lxtappearance
+# use lxtappearance
 # for gtk theme, cursors and icons
 
 # set wallpaper
