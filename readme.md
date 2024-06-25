@@ -5,7 +5,7 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 ## Overview
 
 - _Terminal Environment_ : zsh + tmux + wezterm
-- _Menu Launcher_ : [Rofi](https://github.com/davatorium/rofi)
+- _Menu Launcher_ : Fuzzel
 - _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
 - _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
 - _Shell plugin manager_ : [Zap](https://github.com/zap-zsh/zap) + [Starship](https://starship.rs/)
@@ -28,7 +28,3 @@ Managed with [chezmoi](https://www.chezmoi.io/)
 - Run `:checkhealth` in the first launch of Neovim.
 - Install tree-sitter-cli.
 - Install [chaotic-aur](https://aur.chaotic.cx/)
-
-## TO-DO
-
-- Add scripts to automate packages installation.
