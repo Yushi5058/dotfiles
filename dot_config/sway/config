@@ -11,8 +11,8 @@
 #
 #
 #set general font
-font pango:Cantarell 20
-# font pango:monospace 16
+# font pango:Cantarell 20
+font pango:monospace 16
 
 #
 #
@@ -41,27 +41,18 @@ exec_always nm-applet
 exec_always autotiling
 # authentification agent
 exec_always /usr/lib/polkit-kde-authentication-agent-1
-# mount flash drives / CD / usb automatically
-exec udiskie &
 
-# poweralertd - notifications
+# battery alerts
 exec poweralertd
 
 
 # clipboard manager
 # install copyq
-exec_always copyq
-
-# monitor battery power
-# install auto-cpufreq
-exec_always systemctl enable --now auto-cpufreq
-
-# monitor temperature of cpu
-exec_always systemctl start thermald.service
+exec copyq
 
 # launch wlsunset
 # install wlsunset
-exec_always wlsunset -l 33.4 -L -7.4 -t 3000
+exec_always wlsunset -t 3500
 
 
 
@@ -143,13 +134,10 @@ bindsym Ctrl+Space exec makoctl dismiss --all
 
 
 # Take a screenshot with all output and save it into screenshots
-bindsym Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
+bindsym Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 
 # Take a Screenshot with the region select
-bindsym $super+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg
-
-
-
+bindsym $super+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 
 
 
@@ -189,23 +177,23 @@ bindsym $super+Shift+$down move down
 bindsym $super+Shift+$up move up
 bindsym $super+Shift+$right move right
 
-# split in horizontal orientation
-bindsym $super+b split h
-# split in vertical orientation
-bindsym $super+v split v
-# enter full screen mode
-bindsym $super+f fullscreen toggle
-# change container layout (stacked, tabbed, toggle split)
-bindsym $super+s layout stacking
-bindsym $super+t layout tabbed
-bindsym $super+e layout toggle split
-
-# toggle tiling / floating
-bindsym $super+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $super+Shift+t focus mode_toggle
-
+# # split in horizontal orientation
+# bindsym $super+b split h
+# # split in vertical orientation
+# bindsym $super+v split v
+# # enter full screen mode
+# bindsym $super+f fullscreen toggle
+# # change container layout (stacked, tabbed, toggle split)
+# bindsym $super+s layout stacking
+# bindsym $super+t layout tabbed
+# bindsym $super+e layout toggle split
+#
+# # toggle tiling / floating
+# bindsym $super+Shift+space floating toggle
+#
+# # change focus between tiling / floating windows
+# bindsym $super+Shift+t focus mode_toggle
+#
 # focus the parent container
 # bindsym $super+a focus parent
 
@@ -358,7 +346,7 @@ bar swaybar_command waybar
 # for gtk theme, cursors and icons
 
 # set wallpaper
-output * bg $HOME/Wallpapers/star_mountains.jpg fill
+output * bg $HOME/Wallpapers/blockwavemoon.png fill
 
 
 

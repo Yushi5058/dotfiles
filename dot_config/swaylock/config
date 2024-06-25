@@ -45,7 +45,7 @@ ring-ver-color=#c4a7e7aa
 ring-wrong-color=#eb6f92aa
 
 # lockscreen wallpaper
-image=$HOME/Wallpapers/misty_snow_mountain.jpg
+image=$HOME/Wallpapers/black_hole.jpg
 
 # position of the ring
 indicator-x-position=172
