@@ -332,6 +332,7 @@ seat * hide_cursor 6000
 floating_modifier $super normal
 
 # execute statusbar
+status_command yambar
 
 # use lxtappearance
 # for gtk theme, cursors and icons
