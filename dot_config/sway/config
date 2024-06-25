@@ -333,7 +333,13 @@ floating_modifier $super normal
 
 # execute statusbar
 bar {
-    status_command i3status
+    position top
+    status_command while date +'%Y-%m-%d %X'; do sleep1; done
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
 }
 
 
