@@ -2,133 +2,133 @@
 
 /* General styles */
 * {
-  font-family: "Cantarell", "Font Awesome 6 Free", sans-serif;
-  font-size: 20px;
+    font-family: "monospace", "Font Awesome 6 Free", sans-serif;
+    font-size: 20px;
 }
 
 /* Waybar container */
 window#waybar {
-  background: @base;
+    background: @base;
 }
 
 /* Hidden Waybar */
 window#waybar.hidden {
-  opacity: 0.2;
+    opacity: 0.2;
 }
 
 /* Workspace module */
 #workspaces {
-  margin-top: 6px;
-  margin-right: 12px;
-  font-size: 7px;
-  transition: none;
-  background: none;
+    margin-top: 6px;
+    margin-right: 12px;
+    font-size: 7px;
+    transition: none;
+    background: none;
 }
 
 #workspaces button {
-  transition: none;
-  color: @text;
-  background: none;
+    transition: none;
+    color: @text;
+    background: none;
 }
 
 #workspaces button.focused {
-  color: @pine;
-  background: none;
+    color: @pine;
+    background: none;
 }
 
 /* Window title module */
 #window {
-  margin-top: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  transition: none;
-  color: @text;
-  background: none;
+    margin-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: none;
+    color: @text;
+    background: none;
 }
 
 /* Custom updates module */
 #custom-updates {
-  margin-top: 6px;
-  margin-left: 12px;
-  margin-right: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-  transition: none;
-  background: none;
-  color: @text;
+    margin-top: 6px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: none;
+    background: none;
+    color: @text;
 }
 
 /* Battery module */
 #battery {
-  margin-top: 6px;
-  margin-left: 12px;
-  transition: none;
-  padding: 10px 10px;
-  color: @rose;
-  background: none;
+    margin-top: 6px;
+    margin-left: 12px;
+    transition: none;
+    padding: 10px 10px;
+    color: @rose;
+    background: none;
 }
 
 #battery.charging {
-  color: @foam;
+    color: @foam;
 }
 
 /* Backlight module */
 #backlight {
-  margin-top: 6px;
-  margin-left: 12px;
-  transition: none;
-  padding: 10px 10px;
-  color: @gold;
-  background: none;
+    margin-top: 6px;
+    margin-left: 12px;
+    transition: none;
+    padding: 10px 10px;
+    color: @gold;
+    background: none;
 }
 
 /* Pulseaudio module */
 #pulseaudio {
-  margin-top: 6px;
-  margin-left: 12px;
-  transition: none;
-  padding: 0 10px;
-  color: @love;
-  background: none;
+    margin-top: 6px;
+    margin-left: 12px;
+    transition: none;
+    padding: 0 10px;
+    color: @love;
+    background: none;
 }
 
 /* CPU module */
 #cpu {
-  margin-top: 6px;
-  margin-left: 12px;
-  transition: none;
-  padding: 10px 10px;
-  background: none;
-  color: @iris;
+    margin-top: 6px;
+    margin-left: 12px;
+    transition: none;
+    padding: 10px 10px;
+    background: none;
+    color: @iris;
 }
 
 /* Memory module */
 #memory {
-  margin-top: 6px;
-  margin-left: 12px;
-  transition: none;
-  padding: 10px 10px;
-  background: none;
-  color: @foam;
+    margin-top: 6px;
+    margin-left: 12px;
+    transition: none;
+    padding: 10px 10px;
+    background: none;
+    color: @foam;
 }
 
 /* Clock module */
 #clock {
-  margin-top: 6px;
-  margin-left: 12px;
-  margin-right: 12px;
-  transition: none;
-  padding: 10px 10px;
-  color: @text;
-  background: none;
+    margin-top: 6px;
+    margin-left: 12px;
+    margin-right: 12px;
+    transition: none;
+    padding: 10px 10px;
+    color: @text;
+    background: none;
 }
 
 /* Tray module */
 #tray {
-  margin-top: 6px;
-  margin-right: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: @text;
-  background: none;
+    margin-top: 6px;
+    margin-right: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: @text;
+    background: none;
 }
