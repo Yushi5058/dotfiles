@@ -1,2 +1,1 @@
-require("user")
-require("plugins")
+require("config")
