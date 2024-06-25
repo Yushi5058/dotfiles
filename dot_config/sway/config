@@ -31,11 +31,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -f' \
+         timeout 300 'swaylock -f --clock --indicator' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f'
+         before-sleep 'swaylock -f --clock --indicator'
 
-bindsym $mod+shift+x exec swaylock
+bindsym $mod+shift+x exec swaylock --clock --indicator
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -63,7 +63,7 @@ input type:touchpad {
 }
 
 input type:touch {
-    tap disabled
+    events disabled
 }
 
 #
@@ -109,7 +109,15 @@ input type:touch {
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
+focus_follows_mouse no
 #
+
+
+# Take a screenshot with all output and save it into screenshots
+bindsym Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+# Take a Screenshot with the region select
+bindsym $super+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 # Workspaces:
 #
 # Switch to workspace
@@ -137,7 +145,7 @@ input type:touch {
     bindsym $mod+Shift+agrave move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-    workspace back_and_forth
+    workspace_auto_back_and_forth yes
 #
 # Layout stuff:
 #
@@ -214,13 +222,20 @@ exec poweralertd
 exec wlsunset
 
 
-# volume control
-bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
-bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
+# Adjust volume with Alsa
+# install alsa-utils
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
+# Sreen brightness controls with Brightnessctl
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # worskpace cycle-through previous and actual
  workspace back_and_forth
+
+# thin border color
+default_border pixel 2
 
 
 #
