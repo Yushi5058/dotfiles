@@ -334,7 +334,6 @@ floating_modifier $super normal
 # execute statusbar
 bar {
  status_command swaybar
- tray_output primary
 }
 # use lxtappearance
 # for gtk theme, cursors and icons
