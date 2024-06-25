@@ -23,7 +23,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "z-shell/F-Sy-H"
 plug "jeffreytse/zsh-vi-mode"
 plug "zsh-users/zsh-history-substring-search"
-
+plug "romkatv/powerlevel10k"
 
 # Load and initialise completion system
 autoload -Uz compinit
@@ -41,6 +41,9 @@ alias ll="eza --icons -la --git"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias cat="bat"
 alias cd="z"
+alias gs="git status"
+alias gp="git push"
+alias gc="git commit"
 
 # Configure zsh history
 export HISTFILE=$HOME/.zsh_history
@@ -58,8 +61,6 @@ setopt complete_aliases
 # Enable comments
 setopt interactive_comments
 
-# starship use
-eval "$(starship init zsh)"
 
 # zoxide use
 eval "$(zoxide init zsh)"
