@@ -40,7 +40,7 @@ exec_always nm-applet
 # install autotiling
 exec_always autotiling
 # battery alerts
-exec_always poweralertd
+exec poweralertd
 
 
 # clipboard manager
