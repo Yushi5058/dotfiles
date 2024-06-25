@@ -12,7 +12,7 @@
 #
 #set general font
 # font pango:Cantarell 20
-font pango:monospace 16
+font pango:monospace 20
 
 #
 #
