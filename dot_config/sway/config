@@ -50,9 +50,7 @@ exec poweralertd
 # install copyq
 exec copyq
 
-# launch wlsunset
-# install wlsunset
-exec wlsunset -t 3500
+
 
 
 
