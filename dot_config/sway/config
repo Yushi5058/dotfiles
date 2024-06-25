@@ -332,8 +332,10 @@ seat * hide_cursor 6000
 floating_modifier $super normal
 
 # execute statusbar
-status_command yambar
-
+bar {
+ status_command swaybar
+ tray_output primary
+}
 # use lxtappearance
 # for gtk theme, cursors and icons
 
