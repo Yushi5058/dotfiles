@@ -6,3 +6,5 @@ config.font = wezterm.font "MapleMono NF"
 config.enable_tab_bar = false
 config.font_size = 20
 config.line_height = 1.5
+
+return config
