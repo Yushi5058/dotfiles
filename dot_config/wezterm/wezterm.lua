@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.color_scheme = "N0Tch2K"
+config.color_scheme = 'Kanagawa (Gogh)'
 config.font = "MapleMono NF"
 config.enable_tab_bar = false
 config.font_size = 20
