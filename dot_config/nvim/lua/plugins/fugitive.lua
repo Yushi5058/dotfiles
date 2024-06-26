@@ -1,3 +1,6 @@
 return {
-    { "tpope/vim-fugitive" }
+     "tpope/vim-fugitive",
+     config = function()
+         vim.cmd("set statusline+=%{FugitiveStatusline()}")
+     end
 }
