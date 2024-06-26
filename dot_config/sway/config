@@ -238,28 +238,15 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 # thin border color
 default_border pixel 2
 
-
-client.focused		   "#98971a" "#665c54" "#ebdbb2" "#ebdbb2" "#98971a"
-client.unfocused	   "#a89984" "#3c3836" "#a89984" "#98971a" "#a89984"
-client.focused_inactive    "#a89984" "#3c3836" "#a89984" "#484e50" "#5f676a"
-client.focused_tab_title   "#a89984" "#3c3836" "#a89984"
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
-    separator_symbol " "
-
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-    colors {
-        statusline #a89984
-        background #3c3836
-        inactive_workspace #a89984 #3c3836 #484e50
-    }
 }
 
 include /etc/sway/config.d/*
