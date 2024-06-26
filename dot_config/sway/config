@@ -239,6 +239,10 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 default_border pixel 2
 
 
+client.focused		   "#98971a" "#665c54" "#ebdbb2" "#ebdbb2" "#98971a"
+client.unfocused	   "#a89984" "#3c3836" "#a89984" "#98971a" "#a89984"
+client.focused_inactive    "#a89984" "#3c3836" "#a89984" "#484e50" "#5f676a"
+client.focused_tab_title   "#a89984" "#3c3836" "#a89984"
 #
 # Status Bar:
 #
@@ -246,7 +250,6 @@ default_border pixel 2
 bar {
     position top
     separator_symbol " "
-    tray_output primary
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
