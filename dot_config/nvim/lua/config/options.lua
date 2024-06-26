@@ -1,4 +1,5 @@
 vim.opt.mouse = "a"
+vim.opt.winblend = 35
 vim.opt.cursorline = false
 vim.opt.number = true
 vim.opt.relativenumber = true
