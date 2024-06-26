@@ -1,7 +1,8 @@
 return {
-    "sainnhe/sonokai",
+    "sho-87/kanagawa-paper.nvim",
+    lazy = false,
     priority = 1000,
     config = function()
-        vim.cmd("colorscheme sonokai espresso")
+        vim.cmd("colorscheme kanagawa-paper")
     end,
 }
