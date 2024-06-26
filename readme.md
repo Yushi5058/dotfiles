@@ -1,30 +1,16 @@
 # Dotfiles
-
-Managed with [chezmoi](https://www.chezmoi.io/)
+## Preface
+I would like to update myself and others who follow my dotfiles about many things I did lately to my configuration. I decided to shift my focus to a minimalistic environment to avoid distractions and have some productivity momentum, flow state, or whatever you want to call it. Furthermore, I believe that every individual is different in its method of focusing, working and everyone has its own definition of productivity and I don't blame anyone for thinking something that opposes my beliefs.
+Anyway, this configuration is meant for me and suits me more than you guys, sorry yes.
+I would like to learn more about my code editor and I decided to use fewer plugins for a while and discovered that my old bloated configuration of nearly 37 plugins was insignificant and unnecessary. I was able to be content with fewer plugins, who amount actually to approximately 9 plugins. Likewise, I decided that I would learn more vim motions and rely on less of plugins made to enhance and simplify the overall Neovim / Vim experience. I'm really grateful for the awesome work made by these developers, as it's on their free time and with no stable revenue to gain from it. What makes learning in public and contributing more delightful, and I hope I will be able to do that soon and help as many people as I could, including myself.
 
 ## Overview
+- Code Editor : Neovim 
+- Window Manager : Sway
+- Terminal : Wezterm 
+- Font : Maple Font
+- Theme : Gruvbox Dark / Kanagawa
 
-- _Terminal Environment_ : zsh + tmux + wezterm
-- _Menu Launcher_ : Fuzzel
-- _Window Manager_ : [Sway-wm](https://github.com/swaywm/)
-- _Status Bar_ : [Waybar](https://github.com/Alexays/Waybar/)
-- _Shell plugin manager_ : [Zap](https://github.com/zap-zsh/zap) + [Starship](https://starship.rs/)
-- _Notification daemon_ : [Mako](https://github.com/emersion/mako)
-- _Code Text Editor_ : [Neovim](https://github.com/neovim/neovim)
-- _Code Font_ : [Maple](https://github.com/subframe7536/Maple-font/)
-- _Regular Font_ : [Cantarell](https://fonts.google.com/specimen/Cantarell)
-- _Icons Font_ : [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
-- _Login Manager_ : [Ly](https://github.com/fairyglade/ly)
-- _File Manager_ : Yazi
-- _Browser_ : Firefox
 
-## Notice
 
-- `chsh -s /usr/bin/zsh` to make zsh the default shell.
-- SSH github authentification is a must. Click [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-- GPG key generation for signing commits. Click [here](https://docs.github.com/fr/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
-- My dotfiles are WIP forever.
-- add `-k` to let existing .zshrc when installing Zap.
-- Run `:checkhealth` in the first launch of Neovim.
-- Install tree-sitter-cli.
-- Install [chaotic-aur](https://aur.chaotic.cx/)
+
