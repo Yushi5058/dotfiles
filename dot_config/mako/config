@@ -1,15 +1,21 @@
-# # Colors 
-# background-color=#362e3c
-# text-color=#e0def4
-# border-color=#f6c177
-# additionnal options
-font=Cantarell 16
-default-timeout=10000
+# general
+background-color=#120d09
+text-color=#cabeb3
+border-color=#766454
+default-timeout=5000
+
+# specific
+[urgency=low]
+background-color=#120d09
+text-color=#4b3c2e
+border-color=#766454
 
 [urgency=high]
-border-color=#eb6f92
+background-color=#120d09
+text-color=#241b13
+border-color=#766454
 default-timeout=0
-on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga --volume=500
+
 [category=power.low]
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga --volume=500
 

@@ -1,0 +1,11 @@
+{
+  "base16-nvim": { "branch": "master", "commit": "6ac181b5733518040a33017dde654059cd771b7c" },
+  "fzf-lua": { "branch": "main", "commit": "98f315bfe61bca7ecb8e721b5c733dd2d23ee0cb" },
+  "lazy.nvim": { "branch": "main", "commit": "6a423278a10ff7b1a76795275111d01632851c48" },
+  "mini.nvim": { "branch": "main", "commit": "19e1584124cda35388d4fdb911eab7124014e541" },
+  "nvim-lspconfig": { "branch": "master", "commit": "9c9eb07fecc578e25e28db8dc9002b43fff2ed79" },
+  "nvim-treesitter": { "branch": "master", "commit": "173515a5d2be6e98c2996189f77ee5993620e2aa" },
+  "oil.nvim": { "branch": "master", "commit": "65c53dbe4f2140236590a7568a5f22a77d16be39" },
+  "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
+  "vim-wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" }
+}
