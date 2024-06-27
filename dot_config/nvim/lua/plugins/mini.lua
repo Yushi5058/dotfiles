@@ -13,5 +13,7 @@ return {
 		require("mini.completion").setup()
 		require("mini.git").setup()
 		require("mini.diff").setup()
+		require("mini.notify").setup()
+		vim.notify = require("mini.notify").make_notify()
 	end,
 }
