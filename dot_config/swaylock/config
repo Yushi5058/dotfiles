@@ -1,48 +1,49 @@
 
-# Background color
-# color=#191724
-
+# Scheme : Expressoft
+# Author : Yushi5058
+#
 # Layout text colors
-# layout-bg-color=#00000000
-# layout-border-color=#00000000
-# layout-text-color=#e0def4
+layout-bg-color=#241b13
+layout-border-color=#766454
+layout-text-color=#cabeb3
 
 # Text color
-# text-color=#31748f
-# text-clear-color=#9ccfd8
-# text-caps-lock-color=#f6c177
-# text-ver-color=#c4a7e7
-# text-wrong-color=#eb6f92
+text-color=#120d09
+text-clear-color=#120d09
+text-caps-lock-color=#120d09
+text-ver-color=#120d09
+text-wrong-color=#120d09
 
 # Highlight segments
-# bs-hl-color=#19172466
-# key-hl-color=#31748f
-# caps-lock-bs-hl-color=#19172466
-# caps-lock-key-hl-color=#f6c177
+bs-hl-color=#cabeb3
+key-hl-color=#8f7c6d
+caps-lock-bs-hl-color=#4b3c2e
+caps-lock-key-hl-color=#372b20
 
 # Highlight segments separator
-# separator-color=#00000000
+separator-color=#120d09
 
 # Inside of the indicator
-# inside-color=#31748f55
-# inside-clear-color=#9ccfd855
-# inside-caps-lock-color=#f6c17755
-# inside-ver-color=#c4a7e755
-# inside-wrong-color=#eb6f9255
+inside-color=#aa998b
+inside-clear-color=#9c6d44
+inside-caps-lock-color=#9c6d44
+inside-ver-color=#739c44
+inside-wrong-color=#9c4473
+
 
 # Line between the inside and ring
-# line-color=#31748f11
-# line-clear-color=#9ccfd811
-# line-caps-lock-color=#f6c17711
-# line-ver-color=#c4a7e711
-# line-wrong-color=#eb6f9211
+line-color=#aa998b
+line-clear-color=#9c6d44
+line-caps-lock-color=#9c6d44
+line-ver-color=#739c44
+line-wrong-color=#9c4473
 
 # Indicator ring
-# ring-color=#31748faa
-# ring-clear-color=#9ccfd8aa
-# ring-caps-lock-color=#f6c177aa
-# ring-ver-color=#c4a7e7aa
-# ring-wrong-color=#eb6f92aa
+ring-color=#120d09
+ring-clear-color=#4b3c2e
+ring-caps-lock-color=#4b3c2e
+ring-ver-color=#449c6d
+ring-wrong-color=#9c4473
 
 # lockscreen wallpaper
 image=$HOME/Wallpapers/black_hole.png
