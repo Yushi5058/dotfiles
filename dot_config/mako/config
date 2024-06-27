@@ -3,6 +3,7 @@ background-color=#120d09
 text-color=#cabeb3
 border-color=#766454
 default-timeout=5000
+font=MapleFont 20
 
 # specific
 [urgency=low]
