@@ -8,12 +8,12 @@ font=MapleFont 20
 # specific
 [urgency=low]
 background-color=#120d09
-text-color=#4b3c2e
+text-color=#aa998b
 border-color=#766454
 
 [urgency=high]
 background-color=#120d09
-text-color=#241b13
+text-color=#9c4473
 border-color=#766454
 default-timeout=0
 
