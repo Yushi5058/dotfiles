@@ -1,0 +1,34 @@
+
+/*
+Scheme : Expressoft
+Author : Yushi5058
+*/
+* {
+    red:                         #241b13;
+    blue:                        #766454;
+    lightfg:                     #cabeb3;
+    lightbg:                     #44738c;
+    foreground:                  #9c4473;
+    background:                  #120d09;
+    background-color:            rgba ( 9, 3, 0, 0 % );
+    separatorcolor:              @foreground;
+    border-color:                @foreground;
+    selected-normal-foreground:  @lightbg;
+    selected-normal-background:  @lightfg;
+    selected-active-foreground:  @background;
+    selected-active-background:  @blue;
+    selected-urgent-foreground:  @background;
+    selected-urgent-background:  @red;
+    normal-foreground:           @foreground;
+    normal-background:           @background;
+    active-foreground:           @blue;
+    active-background:           @background;
+    urgent-foreground:           @red;
+    urgent-background:           @background;
+    alternate-normal-foreground: @foreground;
+    alternate-normal-background: @lightbg;
+    alternate-active-foreground: @blue;
+    alternate-active-background: @lightbg;
+    alternate-urgent-foreground: @red;
+    alternate-urgent-background: @lightbg;
+}
