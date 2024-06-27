@@ -2,7 +2,7 @@
 # background-color=#362e3c
 # text-color=#e0def4
 # border-color=#f6c177
-# default-timeout=10000
+default-timeout=10000
 # additionnal options
 font=Cantarell 16
 
