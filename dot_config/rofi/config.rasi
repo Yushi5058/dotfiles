@@ -1,34 +1,16 @@
-
 /*
 Scheme : Expressoft
 Author : Yushi5058
 */
 * {
-    base0B:                        #9c4473;
-    base08:                        #44739c;
     lightfg:                       #aa998b;
     lightbg:                       #8f7c6d;
     foreground:                    #cabeb3;
-    background:                    #120d09;
-    background-color:              rgba ( 9, 3, 0, 0 % );
-    separatorcolor:              @foreground;
-    border-color:                @foreground;
-    selected-normal-foreground:  @lightbg;
-    selected-normal-background:  @lightfg;
-    selected-active-foreground:  @background;
-    selected-active-background:  @base08;
-    selected-urgent-foreground:  @background;
-    selected-urgent-background:  @base0B;
+    border-color:                @lightbg;
+    selected-normal-foreground:  @foreground;
+    selected-normal-background:  @lightbg;
+    selected-active-foreground:  @lightbg;
+    selected-active-background:  @foreground;
     normal-foreground:           @foreground;
-    normal-background:           @background;
-    active-foreground:           @base08;
-    active-background:           @background;
-    urgent-foreground:           @base0B;
-    urgent-background:           @background;
-    alternate-normal-foreground: @foreground;
-    alternate-normal-background: @lightbg;
-    alternate-active-foreground: @base08;
-    alternate-active-background: @lightbg;
-    alternate-urgent-foreground: @base0B;
-    alternate-urgent-background: @lightbg;
+    normal-background:           @lightbg;
 }
