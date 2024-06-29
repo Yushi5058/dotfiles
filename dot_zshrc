@@ -1,9 +1,6 @@
 # make nvim the default editor :
  export EDITOR=nvim
 
-# rose-pine bat theme
-export BAT_THEME="rose-pine"
-
 # detect chezmoi
  export CHEZMOI=$HOME/bin/chezmoi
 
@@ -39,7 +36,6 @@ alias home="cd"
 alias ls="eza --icons -a --git"
 alias ll="eza --icons -la --git"
 alias lt="eza --tree --level=2 --long --icons --git"
-alias cat="bat"
 alias cd="z"
 alias gs="git status"
 alias gp="git push"
