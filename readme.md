@@ -9,8 +9,7 @@ I would like to learn more about my code editor and I decided to use fewer plugi
 - Window Manager : Sway
 - Terminal : Wezterm 
 - Font : Maple Font
-- Theme : Gruvbox Dark / Kanagawa
-
+- Theme : my own theme [here](https://github.com/Yushi5058/expressoft)
 
 
 
