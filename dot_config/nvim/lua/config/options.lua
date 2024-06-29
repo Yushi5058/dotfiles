@@ -1,4 +1,10 @@
+-- use :h <options>
+--  example for vim.opt.mouse use :h mouse
+--
+--  Expressoft colorscheme
+vim.cmd.colorscheme "expressoft"
 vim.opt.mouse = "a"
+vim.opt.signcolumn = "yes"
 vim.g.have_nerd_font = true
 vim.opt.showmode = false
 vim.opt.cursorline = false
