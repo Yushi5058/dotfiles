@@ -3,8 +3,7 @@
     "position": "top",
     "height": 24,
 
-    "modules-left": ["sway/workspaces"],
-    "modules-center": ["sway/window"],
+    "modules-left": ["sway/workspaces", "sway/window"],
     "modules-right": ["tray", "backlight", "wireplumber", "network", "battery", "clock"],
     "sway/workspaces": {
         "format": "{name}",
