@@ -1,5 +1,5 @@
 # font
-font pango:MapleFont 20
+font pango:monospace 20
 
 # variables
 
