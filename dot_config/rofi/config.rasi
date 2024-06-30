@@ -3,14 +3,10 @@ Scheme : Expressoft
 Author : Yushi5058
 */
 * {
-    lightfg:                       #aa998b;
-    lightbg:                       #8f7c6d;
-    foreground:                    #cabeb3;
-    border-color:                @lightbg;
-    selected-normal-foreground:  @foreground;
-    selected-normal-background:  @lightbg;
-    selected-active-foreground:  @lightbg;
-    selected-active-background:  @foreground;
-    normal-foreground:           @foreground;
-    normal-background:           @lightbg;
+    font: "monospace 20";
+    border-color:                #739c44;
+    selected-normal-foreground:  #739c44;
+    selected-normal-background:  #372b20;
+    normal-foreground:           #cabeb3;
+    normal-background:           #766454;
 }
