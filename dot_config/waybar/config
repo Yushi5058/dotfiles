@@ -1,0 +1,52 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["tray", "backlight", "wireplumber", "network", "battery", "clock"],
+    "sway/workspaces": {
+        "format": "{name}",
+        "sort-by-number" : "true", 
+    },
+    "sway/window": {
+        "max-length": 80,
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%a  ·  %d.%m.%Y  ·  %H:%M}",
+        "tooltip": false
+    },
+    "battery": {
+        "bat": "BAT0",
+        "format": " BAT {capacity}%",
+        "tooltip-format": "{time}",
+        "format-charging": "BAT {capacity}%",
+        "interval": 60,
+        "states": {
+            "warning": 20,
+            "critical": 15,
+        },
+        "tooltip": true
+    },
+    "network": {
+        "format": "{essid} {signalStrength}%",
+        "format-disconnected": "NULL",
+        "tooltip": false
+    },
+    "wireplumber": {
+        "format": "VOL {volume}%",
+        "format-muted": "MUTED",
+        "tooltip": false,
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "BC {percent}%",
+        "tooltip": false,
+    },
+     "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}
