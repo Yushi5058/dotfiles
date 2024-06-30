@@ -1,0 +1,45 @@
+
+
+* {
+    transition: none;
+    box-shadow: none;
+    font-size: 20;
+    font-family: "monospace";
+    color: #739c44;
+    background: #241b13;
+}
+
+#workspaces {
+  margin: 0 4px;
+}
+
+#workspaces button {
+  margin: 4px 0;
+  padding: 0 6px;
+}
+
+
+#workspaces button.focused {
+  border-radius: 4px;
+}
+
+#workspaces button.urgent {
+  border-color: #9c4473;
+}
+
+#tray {
+  margin: 4px 16px 4px 4px;
+  border-radius: 4px;
+}
+
+ #battery,  #network, #wireplumber,  #backlight,  #clock {
+  margin: 4px 2px;
+  padding: 0 6px;
+  border-radius: 4px;
+  min-width: 20px;
+}
+
+#clock {
+  margin-left: 12px;
+  margin-right: 4px;
+}
