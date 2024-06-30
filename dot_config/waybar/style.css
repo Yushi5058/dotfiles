@@ -13,6 +13,10 @@
   margin: 0 4px;
 }
 
+#window {
+    padding-right: 4px;
+}
+
 #workspaces button {
   margin: 4px 0;
   padding: 0 6px;
@@ -36,6 +40,7 @@
  #battery,  #network, #wireplumber,  #backlight,  #clock {
   margin: 4px 2px;
   padding: 0 6px;
+  border-right: 1px solid #241b13;
   border-radius: 4px;
   min-width: 20px;
 }
