@@ -1,26 +1,34 @@
-return {
-	"neovim/nvim-lspconfig",
-	config = function()
-		local lspconfig = require("lspconfig")
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		lspconfig.lua_ls.setup({
-			settings = {
-				Lua = {
-					completion = {
-						callSnippet = "Replace",
-					},
-				},
+local lspconfig = require("lspconfig")
+capabilities = vim.lsp.protocol.make_client_capabilities()
+
+lspconfig.lua_ls.setup({
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LUAJIT",
 			},
-		})
-		lspconfig.tsserver.setup({})
-		lspconfig.ruby_lsp.setup({})
-		lspconfig.phpactor.setup({})
-		lspconfig.sqls.setup({})
-		lspconfig.html.setup({})
-		lspconfig.cssls.setup({})
-		lspconfig.jsonls.setup({})
-		lspconfig.clangd.setup({})
-		lspconfig.emmet_ls.setup({})
-		lspconfig.tailwindcss.setup({})
-	end,
-}
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			telemetry = {
+				enable = false,
+			},
+			completion = {
+				callSnippet = "Replace",
+			},
+			capabilities = capabilities,
+		},
+	},
+})
+lspconfig.tsserver.setup({ capabilities = capabilities })
+lspconfig.ruby_lsp.setup({ capabilities = capabilities })
+lspconfig.html.setup({ capabilities = capabilities })
+lspconfig.phpactor.setup({ capabilities = capabilities })
+lspconfig.cssls.setup({ capabilities = capabilities })
+lspconfig.jsonls.setup({ capabilities = capabilities })
+lspconfig.clangd.setup({ capabilities = capabilities })
+lspconfig.emmet_ls.setup({ capabilities = capabilities })
+lspconfig.tailwindcss.setup({ capabilities = capabilities })
