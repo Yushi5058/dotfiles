@@ -1,13 +1,3 @@
--- oil configuration
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "oil",
-    callback = function()
-        vim.opt.relativenumber = false
-        vim.opt.number = false
-        vim.opt.signcolumn = "no"
-    end,
-})
-
 -- text yanking highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),

@@ -1,3 +1,4 @@
+-- keymaps
 -- helper function
 local function map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
@@ -58,3 +59,4 @@ map("n", "<A-h>", "10<C-w><", { noremap = true, silent = true })
 map("n", "<A-l>", "10<C-w>>", { noremap = true, silent = true })
 map("n", "<A-j>", "10<C-w>+", { noremap = true, silent = true })
 map("n", "<A-k>", "10<C-w>-", { noremap = true, silent = true })
+

@@ -1,0 +1,5 @@
+require("plugins.treesitter")
+require("plugins.lsp_config")
+require("plugins.mini")
+require("plugins.grapple")
+require("plugins.completion")
