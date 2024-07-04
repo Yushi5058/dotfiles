@@ -18,5 +18,6 @@ return {
             lspconfig.jsonls.setup{}
             lspconfig.clangd.setup{}
             lspconfig.emmet_ls.setup{}
+            lspconfig.tailwindcss.setup{}
         end
     }
