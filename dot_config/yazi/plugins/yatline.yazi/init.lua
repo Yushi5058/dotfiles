@@ -4,7 +4,7 @@
 --- @alias Span Span Comes from Yazi.
 --- @alias Color Color Comes from Yazi.
 --- @alias Config Config The config used for setup.
---- @alias Coloreds Coloreds The array returned by colorizer in {{string, Color}, {string, Color} ... } format
+--- @alias Coloreds Coloreds The array returned by colorizer in {{string, Color}, {string, Color} ... } format 
 --- @alias Side # [ LEFT ... RIGHT ]
 --- | `enums.LEFT` # The left side of either the header-line or status-line. [ LEFT ... ]
 --- | `enums.RIGHT` # The right side of either the header-line or status-line. [ ... RIGHT]
@@ -62,7 +62,19 @@ local selected_fg
 local copied_fg
 local cut_fg
 
-local section_order = { "section_a", "section_b", "section_c" }
+local task_total_icon
+local task_succ_icon
+local task_fail_icon
+local task_found_icon
+local task_processed_icon
+
+local task_total_fg
+local task_succ_fg
+local task_fail_fg
+local task_found_fg
+local task_processed_fg
+
+local section_order = {"section_a", "section_b", "section_c"}
 
 --=================--
 -- Component Setup --
@@ -147,9 +159,9 @@ local function connect_separator(component, side, separator_type)
 	close:style(separator_style)
 
 	if side == Side.LEFT then
-		return ui.Line({ component, close })
+		return ui.Line{component, close}
 	else
-		return ui.Line({ open, component })
+		return ui.Line{open, component}
 	end
 end
 
@@ -229,37 +241,79 @@ local get = {}
 --- Gets the hovered file's name of the current active tab.
 --- @return string name Current active tab's hovered file's name.
 function get:hovered_name()
-	return cx.active.current.hovered.name
+	local hovered = cx.active.current.hovered
+	if hovered then
+		return hovered.name
+	else
+		return ""
+	end
+end
+
+--- Gets the hovered file's path of the current active tab.
+--- @return string path Current active tab's hovered file's path.
+function get:hovered_path()
+	local hovered = cx.active.current.hovered
+	if hovered then
+		return tostring(hovered.url)
+	else
+		return ""
+	end
 end
 
 --- Gets the hovered file's size of the current active tab.
 --- @return string size Current active tab's hovered file's size.
 function get:hovered_size()
-	local h = cx.active.current.hovered
+	local hovered = cx.active.current.hovered
+	if hovered then
+		return ya.readable_size(hovered:size() or hovered.cha.length)
+	else
+		return ""
+	end
+end
 
-	return ya.readable_size(h:size() or h.cha.length)
+--- Gets the hovered file's path of the current active tab.
+--- @return string mime Current active tab's hovered file's path.
+function get:hovered_mime()
+	local hovered = cx.active.current.hovered
+	if hovered then
+		return hovered:mime()
+	else
+		return ""
+	end
 end
 
 --- Gets the hovered file's extension of the current active tab.
 --- @param show_icon boolean Whether or not an icon will be shown.
 --- @return string file_extension Current active tab's hovered file's extension.
 function get:hovered_file_extension(show_icon)
-	local file = cx.active.current.hovered
-	local cha = file.cha
+	local hovered = cx.active.current.hovered
 
-	local name
-	if cha.is_dir then
-		name = "dir"
+	if hovered then
+		local cha = hovered.cha
+
+		local name
+		if cha.is_dir then
+			name = "dir"
+		else
+			name = get_file_extension(hovered.url:name())
+		end
+
+		if show_icon then
+			local icon = hovered:icon().text
+			return icon .. " " .. name
+		else
+			return name
+		end
 	else
-		name = get_file_extension(file.url:name())
+		return ""
 	end
 
-	if show_icon then
-		local icon = file:icon().text
-		return icon .. " " .. name
-	else
-		return name
-	end
+end
+
+--- Gets the path of the current active tab.
+--- @return string path Current active tab's path.
+function get:tab_path()
+	return cx.active.current.cwd
 end
 
 --- Gets the mode of active tab.
@@ -273,13 +327,23 @@ function get:tab_mode()
 	return mode
 end
 
+--- Gets the number of files in the current active tab.
+--- @return string num_files Number of files in the current active tab.
+function get:tab_num_files()
+	return tostring(#cx.active.current.files)
+end
+
 --- Gets the cursor position in the current active tab.
 --- @return string cursor_position Current active tab's cursor position.
 function get:cursor_position()
 	local cursor = cx.active.current.cursor
 	local length = #cx.active.current.files
 
-	return string.format(" %2d/%-2d", cursor + 1, length)
+	if length ~= 0 then
+		return string.format(" %2d/%-2d", cursor + 1, length)
+	else
+		return "0"
+	end
 end
 
 --- Gets the cursor position as percentage which is according to the number of files inside of current active tab.
@@ -382,32 +446,37 @@ local colorize = {}
 --- Gets the hovered file's permissions of the current active tab.
 --- @return Coloreds coloreds Current active tab's hovered file's permissions
 function colorize:permissions()
-	local h = cx.active.current.hovered
-	local perm = h.cha:permissions()
+	local hovered = cx.active.current.hovered
 
-	local coloreds = {}
-	coloreds[1] = { " ", "black" }
+	if hovered then
+		local perm = hovered.cha:permissions()
 
-	for i = 1, #perm do
-		local c = perm:sub(i, i)
+		local coloreds = {}
+		coloreds[1] = {" ", "black"}
 
-		local fg = permissions_t_fg
-		if c == "-" then
-			fg = permissions_s_fg
-		elseif c == "r" then
-			fg = permissions_r_fg
-		elseif c == "w" then
-			fg = permissions_w_fg
-		elseif c == "x" or c == "s" or c == "S" or c == "t" or c == "T" then
-			fg = permissions_x_fg
+		for i = 1, #perm do
+			local c = perm:sub(i, i)
+
+			local fg = permissions_t_fg
+			if c == "-" then
+				fg = permissions_s_fg
+			elseif c == "r" then
+				fg = permissions_r_fg
+			elseif c == "w" then
+				fg = permissions_w_fg
+			elseif c == "x" or c == "s" or c == "S" or c == "t" or c == "T" then
+				fg = permissions_x_fg
+			end
+
+			coloreds[i + 1] = {c, fg}
 		end
 
-		coloreds[i + 1] = { c, fg }
+		coloreds[#perm + 2] = {" ", "black"}
+
+		return coloreds
+	else
+		return ""
 	end
-
-	coloreds[#perm + 2] = { " ", "black" }
-
-	return coloreds
 end
 
 --- Gets the number of selected and yanked files of the active tab.
@@ -418,7 +487,7 @@ function colorize:count()
 
 	local yanked_fg, yanked_icon
 	if cx.yanked.is_cut then
-		yanked_fg = cut_fg
+		yanked_fg= cut_fg
 		yanked_icon = cut_icon
 	else
 		yanked_fg = copied_fg
@@ -427,7 +496,34 @@ function colorize:count()
 
 	local coloreds = {
 		{ string.format(" %s %d ", selected_icon, num_selected), selected_fg },
-		{ string.format(" %s %d ", yanked_icon, num_yanked), yanked_fg },
+		{ string.format(" %s %d ", yanked_icon, num_yanked), yanked_fg }
+	}
+
+	return coloreds
+end
+
+--- Gets the number of task states.
+--- @return Coloreds coloreds Number of task states.
+function colorize:task_states()
+	local tasks = cx.tasks.progress
+
+	local coloreds = {
+		{ string.format(" %s %d ", task_total_icon, tasks.total), task_total_fg },
+		{ string.format(" %s %d ", task_succ_icon, tasks.succ), task_succ_fg },
+		{ string.format(" %s %d ", task_fail_icon, tasks.fail), task_fail_fg }
+	}
+
+	return coloreds
+end
+
+--- Gets the number of task workloads.
+--- @return Coloreds coloreds Number of task workloads.
+function colorize:task_workload()
+	local tasks = cx.tasks.progress
+
+	local coloreds = {
+		{ string.format(" %s %d ", task_found_icon, tasks.found), task_found_fg },
+		{ string.format(" %s %d ", task_processed_icon, tasks.processed), task_processed_fg },
 	}
 
 	return coloreds
@@ -440,13 +536,25 @@ end
 --- @return Coloreds coloreds Array of solely array of string based component's string and desired foreground color.
 function colorize:string_based_component(component_name, fg, params)
 	local getter = get[component_name]
-	params = params or {}
 
-	if params then
-		return { { getter(get, table.unpack(params)), fg } }
+	if getter then
+		local output
+		if params then
+			output = getter(get, table.unpack(params))
+		else
+			output = getter()
+		end
+
+
+		if output ~= nil and output ~= "" then
+			return {{ output, fg }}
+		else
+			return ""
+		end
 	else
-		return { { getter(), fg } }
+		return ""
 	end
+
 end
 
 --===============--
@@ -495,41 +603,43 @@ local function config_line(line)
 
 				if component.type == "string" then
 					if component.custom then
-						side_components[#side_components + 1] =
-							create_component_from_str(component.name, in_side, in_section, in_part)
+						side_components[#side_components + 1] = create_component_from_str(component.name, in_side, in_section, in_part)
 					else
 						local getter = get[component.name]
 
-						if component.params then
-							side_components[#side_components + 1] = create_component_from_str(
-								getter(get, table.unpack(component.params)),
-								in_side,
-								in_section,
-								in_part
-							)
-						else
-							side_components[#side_components + 1] =
-								create_component_from_str(getter(), in_side, in_section, in_part)
+						if getter then
+							local output
+							if component.params then
+								output = getter(get, table.unpack(component.params))
+							else
+								output = getter()
+							end
+
+							if output ~= nil and output ~= "" then
+								side_components[#side_components + 1] = create_component_from_str(output, in_side, in_section, in_part)
+							end
 						end
+
 					end
 				elseif component.type == "coloreds" then
 					if component.custom then
-						side_components[#side_components + 1] =
-							create_component_from_coloreds(component.name, in_side, in_section, in_part)
+						side_components[#side_components + 1] = create_component_from_coloreds(component.name, in_side, in_section, in_part)
 					else
 						local colorizer = colorize[component.name]
 
-						if component.params then
-							side_components[#side_components + 1] = create_component_from_coloreds(
-								colorizer(colorize, table.unpack(component.params)),
-								in_side,
-								in_section,
-								in_part
-							)
-						else
-							side_components[#side_components + 1] =
-								create_component_from_coloreds(colorizer(), in_side, in_section, in_part)
+						if colorizer then
+							local output
+							if component.params then
+								output = colorizer(colorize, table.unpack(component.params))
+							else
+								output = colorizer()
+							end
+
+							if output ~= nil and output ~= "" then
+								side_components[#side_components + 1] = create_component_from_coloreds(output, in_side, in_section, in_part)
+							end
 						end
+
 					end
 				elseif component.type == "line" then
 					if component.custom then
@@ -537,10 +647,17 @@ local function config_line(line)
 					else
 						local creator = create[component.name]
 
-						if component.params then
-							side_components[#side_components + 1] = creator(create, table.unpack(component.params))
-						else
-							side_components[#side_components + 1] = creator()
+						if creator then
+							local output
+							if component.params then
+								output = creator(create, table.unpack(component.params))
+							else
+								output = creator()
+							end
+
+							if output then
+								side_components[#side_components + 1] = output
+							end
 						end
 					end
 				end
@@ -603,6 +720,18 @@ return {
 		copied_fg = config.copied.fg
 		cut_fg = config.cut.fg
 
+		task_total_icon = config.total.icon
+		task_succ_icon = config.succ.icon
+		task_fail_icon = config.fail.icon
+		task_found_icon = config.found.icon
+		task_processed_icon = config.processed.icon
+
+		task_total_fg = config.total.fg
+		task_succ_fg = config.succ.fg
+		task_fail_fg = config.fail.fg
+		task_found_fg = config.found.fg
+		task_processed_fg = config.processed.fg
+
 		if show_line(config.header_line) then
 			Header.render = function(self, area)
 				self.area = area
@@ -635,69 +764,5 @@ return {
 				}
 			end
 		end
-		require("yatline"):setup({
-			section_separator = { open = "", close = "" },
-			part_separator = { open = "", close = "" },
-
-			style_a = {
-				fg = "black",
-				bg_mode = {
-					normal = "#a89984",
-					select = "#d79921",
-					un_set = "#d65d0e",
-				},
-			},
-			style_b = { bg = "#665c54", fg = "#ebdbb2" },
-			style_c = { bg = "#3c3836", fg = "#a89984" },
-
-			permissions_t_fg = "green",
-			permissions_r_fg = "yellow",
-			permissions_w_fg = "red",
-			permissions_x_fg = "cyan",
-			permissions_s_fg = "darkgray",
-
-			tab_width = 20,
-
-			selected = { icon = "󰻭", fg = "#d79921" },
-			copied = { icon = "", fg = "#98971a" },
-			cut = { icon = "", fg = "#cc241d" },
-
-			header_line = {
-				left = {
-					section_a = {},
-					section_b = {},
-					section_c = {},
-				},
-				right = {
-					section_a = {},
-					section_b = {},
-					section_c = {},
-				},
-			},
-			status_line = {
-				left = {
-					section_a = {
-						{ type = "string", custom = false, name = "tab_mode" },
-					},
-					section_b = {
-						{ type = "string", custom = false, name = "hovered_size" },
-					},
-					section_c = {
-						{ type = "string", custom = false, name = "hovered_name" },
-					},
-				},
-				right = {
-					section_a = {
-						{ type = "string", custom = false, name = "cursor_position" },
-					},
-					section_b = {
-						{ type = "string", custom = false, name = "cursor_percentage" },
-					},
-					section_c = {
-						{ type = "coloreds", custom = false, name = "permissions" },
-					},
-				},
-			},
-		})
 	end,
 }
