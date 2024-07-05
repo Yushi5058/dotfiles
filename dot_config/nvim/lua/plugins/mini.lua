@@ -1,7 +1,13 @@
 -- require("mini.completion").setup()
 -- waiting for mini.snippets
-require("mini.pick").setup()
+require("mini.pick").setup({
+mappings = {
+ move_down  = '<C-j>',
+move_up    = '<C-k>',
+},
+})
 require("mini.extra").setup()
+-- using mini.extra for lsp and diagnostic pickers
 local map = vim.keymap.set
 
 map("n", "<leader>ff", "<cmd>Pick files<cr>")
@@ -19,9 +25,12 @@ require("mini.notify").setup()
 -- use mini.notify as default notifier
 vim.notify = require("mini.notify").make_notify()
 
-require("mini.files").setup()
+require("mini.files").setup({
+mappings = {
+    close       = '<leader>n',
+}
+})
 map("n", "<leader>n", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>")
-require("mini.fuzzy").setup()
 
 local hipatterns = require("mini.hipatterns")
 hipatterns.setup({
@@ -32,4 +41,3 @@ hipatterns.setup({
 
 require("mini.indentscope").setup()
 require("mini.icons").setup()
-require("mini.ai").setup()
