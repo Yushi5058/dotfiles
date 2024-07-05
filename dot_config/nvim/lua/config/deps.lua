@@ -51,7 +51,14 @@ add("wakatime/vim-wakatime")
 local map = vim.keymap.set
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 add("cbochs/grapple.nvim")
-add("barrett-ruth/live-server.nvim")
+add({
+    source ="barrett-ruth/live-server.nvim",
+    hooks = {
+        post_checkout = function()
+            vim.cmd("!pnpm add -g live-server")
+        end
+    }
+})
 add({
 	source = "L3MON4D3/LuaSnip",
 	depends = {
@@ -68,3 +75,5 @@ add({
 		"hrsh7th/cmp-buffer",
 	},
 })
+add("stevearc/conform.nvim")
+
