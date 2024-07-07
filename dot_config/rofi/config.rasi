@@ -10,3 +10,7 @@ Author : Yushi5058
     normal-foreground:           #cabeb3;
     normal-background:           #766454;
 }
+
+configuration {
+show-icons: true;
+    }
