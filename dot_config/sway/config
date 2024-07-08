@@ -90,10 +90,10 @@ input type:touch {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -104,10 +104,10 @@ input type:touch {
     bindsym $mod+$right focus right
 
 # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    bindsym $mod+shift+$left move left
+    bindsym $mod+shift+$down move down
+    bindsym $mod+shift+$up move up
+    bindsym $mod+shift+$right move right
 
 # no follow mouse cursor
 focus_follows_mouse no
@@ -116,9 +116,9 @@ bindsym Ctrl+space exec makoctl dismiss -a
 
 
 # Take a screenshot with all output and save it into screenshots
-bindsym Shift+Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+bindsym $mod+Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 # Take a Screenshot with the region select
-bindsym $mod+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+bindsym $mod+shift+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 
 # Workspaces:
 #
@@ -135,16 +135,16 @@ bindsym $mod+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%
     bindsym $mod+agrave workspace 10
 
     # Move focused container to workspace
-    bindsym $mod+Shift+ampersand move container to workspace number 1
-    bindsym $mod+Shift+eacute move container to workspace number 2
-    bindsym $mod+Shift+quotedbl move container to workspace number 3
-    bindsym $mod+Shift+apostrophe move container to workspace number 4
-    bindsym $mod+Shift+parenleft move container to workspace number 5
-    bindsym $mod+Shift+minus move container to workspace number 6
-    bindsym $mod+Shift+egrave move container to workspace number 7
-    bindsym $mod+Shift+underscore move container to workspace number 8
-    bindsym $mod+Shift+ccedilla move container to workspace number 9
-    bindsym $mod+Shift+agrave move container to workspace number 10
+    bindsym $mod+shift+ampersand move container to workspace number 1
+    bindsym $mod+shift+eacute move container to workspace number 2
+    bindsym $mod+shift+quotedbl move container to workspace number 3
+    bindsym $mod+shift+apostrophe move container to workspace number 4
+    bindsym $mod+shift+parenleft move container to workspace number 5
+    bindsym $mod+shift+minus move container to workspace number 6
+    bindsym $mod+shift+egrave move container to workspace number 7
+    bindsym $mod+shift+underscore move container to workspace number 8
+    bindsym $mod+shift+ccedilla move container to workspace number 9
+    bindsym $mod+shift+agrave move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
