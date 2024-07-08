@@ -28,13 +28,10 @@ local add = MiniDeps.add
 add({
 	source = "neovim/nvim-lspconfig",
 	-- Supply dependencies near target plugin
-	depends = {  "williamboman/mason.nvim","williamboman/mason-lspconfig.nvim"  },
+	depends = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 })
-add({
-	source = "jiaoshijie/undotree",
-
-	depends = { "nvim-lua/plenary.nvim" },
-})
+add("mbbill/undotree")
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 add({
 	source = "nvim-treesitter/nvim-treesitter",
 	-- Use 'master' while monitoring updates in 'main'
@@ -76,3 +73,7 @@ add({
 	},
 })
 add("stevearc/conform.nvim")
+add({
+	source = "tpope/vim-dadbod",
+	depends = { "kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui" },
+})
