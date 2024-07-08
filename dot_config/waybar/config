@@ -4,11 +4,22 @@
     "height": 24,
 
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["tray", "backlight", "wireplumber", "network", "battery", "clock"],
+    "modules-right": ["custom/updates","tray", "backlight", "wireplumber", "network", "battery", "clock"],
     "sway/workspaces": {
         "format": "{name}",
         "sort-by-number" : "true", 
     },
+
+   "custom/updates": {
+       "format": "{} {icon}",
+       "return-type": "json",
+       "format-icons": {
+           "has-updates": "󱍷",
+           "updated": "󰂪"
+       },
+       "exec-if": "which waybar-module-pacman-updates",
+       "exec": "waybar-module-pacman-updates  --interval-seconds 5 --network-interval-seconds 300"
+   }
     "sway/window": {
         "max-length": 80,
         "tooltip": false
