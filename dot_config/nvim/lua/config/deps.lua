@@ -28,7 +28,7 @@ local add = MiniDeps.add
 add({
 	source = "neovim/nvim-lspconfig",
 	-- Supply dependencies near target plugin
-	depends = { "williamboman/mason.nvim" },
+	depends = { { "williamboman/mason.nvim" }, { "williamboman/mason-lspconfig.nvim" } },
 })
 add({
 	source = "jiaoshijie/undotree",
@@ -52,12 +52,12 @@ local map = vim.keymap.set
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 add("cbochs/grapple.nvim")
 add({
-    source ="barrett-ruth/live-server.nvim",
-    hooks = {
-        post_checkout = function()
-            vim.cmd("!pnpm add -g live-server")
-        end
-    }
+	source = "barrett-ruth/live-server.nvim",
+	hooks = {
+		post_checkout = function()
+			vim.cmd("!pnpm add -g live-server")
+		end,
+	},
 })
 add({
 	source = "L3MON4D3/LuaSnip",
@@ -76,4 +76,3 @@ add({
 	},
 })
 add("stevearc/conform.nvim")
-
