@@ -1,6 +1,10 @@
 local lspconfig = require("lspconfig")
 capabilities = vim.lsp.protocol.make_client_capabilities()
 
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = { "lua_ls", "phpactor", "tsserver", "tailwindcss", "cssls", "html", "emmet_ls" },
+})
 lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
@@ -24,7 +28,6 @@ lspconfig.lua_ls.setup({
 	},
 })
 lspconfig.tsserver.setup({ capabilities = capabilities })
-lspconfig.ruby_lsp.setup({ capabilities = capabilities })
 lspconfig.html.setup({ capabilities = capabilities })
 lspconfig.phpactor.setup({ capabilities = capabilities })
 lspconfig.cssls.setup({ capabilities = capabilities })
