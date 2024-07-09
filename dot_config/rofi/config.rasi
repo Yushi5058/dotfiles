@@ -11,6 +11,3 @@ Author : Yushi5058
     normal-background:           #766454;
 }
 
-configuration {
-show-icons: true;
-    }
