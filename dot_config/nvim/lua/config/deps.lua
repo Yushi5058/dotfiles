@@ -30,8 +30,6 @@ add({
 	-- Supply dependencies near target plugin
 	depends = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
 })
-add("mbbill/undotree")
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 add({
 	source = "nvim-treesitter/nvim-treesitter",
 	-- Use 'master' while monitoring updates in 'main'
