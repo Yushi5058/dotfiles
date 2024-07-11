@@ -1,7 +1,7 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "eslintd" },
+		javascript = { "eslint_d" },
 		html = { "prettierd" },
 		css = { "prettierd" },
 		php = { "php_cs_fixer" },
