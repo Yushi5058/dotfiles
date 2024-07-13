@@ -120,6 +120,11 @@ bindsym $mod+Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jp
 # Take a Screenshot with the region select
 bindsym $mod+shift+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 
+# Window rules
+for_window [app_id="com.github.finefindus.eyedropper"] floating enable
+for_window [app_id="com.github.hluk.copyq"] floating enable
+for_window [app_id="com.github.hluk.copyq"] resize set 700 800
+
 # Workspaces:
 #
 # Switch to workspace
