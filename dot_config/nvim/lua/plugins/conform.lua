@@ -4,11 +4,12 @@ require("conform").setup({
 		javascript = { "eslint_d" },
 		html = { "prettierd" },
 		css = { "prettierd" },
+		markdown = { "prettierd" },
 		php = { "php_cs_fixer" },
 	},
 	format_on_save = {
 		-- These options will be passed to conform.format()
-		timeout_ms = 1000,
+		timeout_ms = 10000,
 		lsp_format = "fallback",
 	},
 })

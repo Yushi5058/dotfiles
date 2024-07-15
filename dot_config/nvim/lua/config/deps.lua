@@ -43,14 +43,12 @@ add({
 	},
 })
 add("wakatime/vim-wakatime")
-local map = vim.keymap.set
-map("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 add("cbochs/grapple.nvim")
 add({
 	source = "barrett-ruth/live-server.nvim",
 	hooks = {
 		post_checkout = function()
-			vim.cmd("!pnpm add -g live-server")
+			vim.cmd("!bun i -g live-server")
 		end,
 	},
 })
