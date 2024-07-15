@@ -1,16 +1,8 @@
 # make nvim the default editor :
  export EDITOR=nvim
 
-# detect chezmoi
- export CHEZMOI=$HOME/bin/chezmoi
-
-# path
-export PATH=~/bin:/home/yushi_61/.local/share/bob/nvim-bin:$PATH
-
- # asdf-vm
-. "$HOME/.asdf/asdf.sh"
-# append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+# PATH
+export PATH=$BUN_INSTALL/bin:~/bin:/home/yushi_61/.local/share/bob/nvim-bin:$PATH
 
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
@@ -62,8 +54,6 @@ setopt complete_aliases
 # Enable comments
 setopt interactive_comments
 
-export CLR_OPENSSL_VERSION_OVERRIDE=1.1
-
 
 # zoxide use
 eval "$(zoxide init zsh)"
@@ -77,4 +67,3 @@ eval "$(zoxide init zsh)"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
