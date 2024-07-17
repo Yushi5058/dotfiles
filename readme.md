@@ -1,6 +1,7 @@
 # Dotfiles
 
 These dotfiles are managed by [chezmoi](https://www.chezmoi.io/)
+
 Sane configuration and minimalistic one.
 Actual OS : Arch Linux
 
