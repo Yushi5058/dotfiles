@@ -3,6 +3,7 @@
 These dotfiles are managed by [chezmoi](https://www.chezmoi.io/)
 
 Sane configuration and minimalistic one.
+
 Actual OS : Arch Linux
 
 ## Overview
@@ -12,6 +13,5 @@ Actual OS : Arch Linux
 - Terminal : Wezterm
 - Font : Maple Font
 - Theme : my own theme [here](https://github.com/Yushi5058/expressoft)
-- Browser : Firefox using [BetterFox](https://github.com/yokoffing/Betterfox)
-  with [ublock origin filters](https://github.com/yokoffing/filterlists#guidelines)
+- Browser : Firefox using [ublock origin filters](https://github.com/yokoffing/filterlists#guidelines)
   and [Next DNS](https://github.com/yokoffing/NextDNS-Config)
