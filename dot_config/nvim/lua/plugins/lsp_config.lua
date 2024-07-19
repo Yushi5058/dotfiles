@@ -29,6 +29,7 @@ local servers = {
 	jsonls = {},
 	clangd = {},
 	intelephense = {},
+	intelephense = {},
 	emmet_ls = {},
 	tailwindcss = {},
 }
