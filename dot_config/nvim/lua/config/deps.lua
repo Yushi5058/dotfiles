@@ -28,7 +28,7 @@ local add = MiniDeps.add
 add({
 	source = "neovim/nvim-lspconfig",
 	-- Supply dependencies near target plugin
-	depends = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
+	depends = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "mason-tool-installer.nvim" },
 })
 add({
 	source = "nvim-treesitter/nvim-treesitter",
