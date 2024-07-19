@@ -29,7 +29,7 @@ lspconfig.lua_ls.setup({
 })
 lspconfig.tsserver.setup({ capabilities = capabilities })
 lspconfig.html.setup({ capabilities = capabilities })
-lspconfig.phpactor.setup({ capabilities = capabilities })
+lspconfig.intelephense.setup({ capabilities = capabilities })
 lspconfig.cssls.setup({ capabilities = capabilities })
 lspconfig.jsonls.setup({ capabilities = capabilities })
 lspconfig.clangd.setup({ capabilities = capabilities })
