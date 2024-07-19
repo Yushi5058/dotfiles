@@ -1,37 +1,57 @@
 local lspconfig = require("lspconfig")
-capabilities = vim.lsp.protocol.make_client_capabilities()
-
-require("mason").setup()
-require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "phpactor", "tsserver", "tailwindcss", "cssls", "html", "emmet_ls" },
-})
-lspconfig.lua_ls.setup({
-	settings = {
-		Lua = {
-			runtime = {
-				version = "LUAJIT",
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+local servers = {
+	lua_ls = {
+		settings = {
+			Lua = {
+				runtime = {
+					version = "LUAJIT",
+				},
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				telemetry = {
+					enable = false,
+				},
+				completion = {
+					callSnippet = "Replace",
+				},
 			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			telemetry = {
-				enable = false,
-			},
-			completion = {
-				callSnippet = "Replace",
-			},
-			capabilities = capabilities,
 		},
 	},
+	tsserver = {},
+	html = {},
+	cssls = {},
+	jsonls = {},
+	clangd = {},
+	intelephense = {},
+	emmet_ls = {},
+	tailwindcss = {},
+}
+
+require("mason").setup()
+local ensure_installed = vim.tbl_keys(servers or {})
+vim.list_extend(ensure_installed, {
+	"stylua", -- Used to format Lua code
+	"eslint_d", -- format js and ts
+	"prettierd", -- format css, html, markdown
+	"php-cs-fixer", -- format php
 })
-lspconfig.tsserver.setup({ capabilities = capabilities })
-lspconfig.html.setup({ capabilities = capabilities })
-lspconfig.intelephense.setup({ capabilities = capabilities })
-lspconfig.cssls.setup({ capabilities = capabilities })
-lspconfig.jsonls.setup({ capabilities = capabilities })
-lspconfig.clangd.setup({ capabilities = capabilities })
-lspconfig.emmet_ls.setup({ capabilities = capabilities })
-lspconfig.tailwindcss.setup({ capabilities = capabilities })
+require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+require("mason-lspconfig").setup({
+	handlers = {
+		function(server_name)
+			local server = servers[server_name] or {}
+			-- This handles overriding only values explicitly passed
+			-- by the server configuration above. Useful when disabling
+			-- certain features of an LSP (for example, turning off formatting for tsserver)
+			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+			lspconfig[server_name].setup(server)
+		end,
+	},
+})
