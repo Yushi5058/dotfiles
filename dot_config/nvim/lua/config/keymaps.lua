@@ -19,13 +19,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- lsp maps
-map("n", "K", vim.lsp.buf.hover)
-map("n", "<leader>k", vim.lsp.buf.signature_help)
-map("n", "<leader>gd", vim.lsp.buf.definition)
-map("n", "<leader>gr", vim.lsp.buf.references)
-map("n", "<leader>ca", vim.lsp.buf.code_action)
-
 -- Sane behavior of searching
 map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
@@ -59,4 +52,3 @@ map("n", "<A-h>", "10<C-w><", { noremap = true, silent = true })
 map("n", "<A-l>", "10<C-w>>", { noremap = true, silent = true })
 map("n", "<A-j>", "10<C-w>+", { noremap = true, silent = true })
 map("n", "<A-k>", "10<C-w>-", { noremap = true, silent = true })
-
