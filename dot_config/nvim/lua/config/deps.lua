@@ -74,4 +74,4 @@ add({
 	source = "tpope/vim-dadbod",
 	depends = { "kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui" },
 })
-add({"MagicDuck/grug-far.nvim")
+add({"MagicDuck/grug-far.nvim"})
