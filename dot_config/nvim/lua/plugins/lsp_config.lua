@@ -38,13 +38,16 @@ local servers = {
 
 require("mason").setup()
 local ensure_installed = vim.tbl_keys(servers or {})
-vim.list_extend(ensure_installed, {
+local filtered_servers = vim.tbl_filter(function(server)
+	return server ~= "gdscript" and server ~= "gdshader"
+end, ensure_installed)
+vim.list_extend(filtered_servers, {
 	"stylua", -- Used to format Lua code
 	"eslint_d", -- format js and ts
 	"prettierd", -- format css, html, markdown
 	"php-cs-fixer", -- format php
 })
-require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+require("mason-tool-installer").setup({ ensure_installed = filtered_servers })
 
 require("mason-lspconfig").setup({
 	handlers = {
