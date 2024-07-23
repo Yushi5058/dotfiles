@@ -39,7 +39,7 @@ local servers = {
 require("mason").setup()
 local ensure_installed = vim.tbl_keys(servers or {})
 local filtered_servers = vim.tbl_filter(function(server)
-	return server ~= "gdscript" and server ~= "gdshader"
+	return server ~= "gdscript" and server ~= "gdshader_lsp"
 end, ensure_installed)
 vim.list_extend(filtered_servers, {
 	"stylua", -- Used to format Lua code
