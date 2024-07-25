@@ -2,7 +2,7 @@
 background-color=#120d09
 text-color=#cabeb3
 border-color=#766454
-default-timeout=0
+default-timeout=10000
 font=monospace 20
 
 # specific
@@ -15,6 +15,7 @@ border-color=#766454
 background-color=#120d09
 text-color=#9c4473
 border-color=#766454
+default-timeout=0
 
 [category=power.low]
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga --volume=500
