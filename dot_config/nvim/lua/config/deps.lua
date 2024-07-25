@@ -28,8 +28,11 @@ local add = MiniDeps.add
 add({
 	source = "neovim/nvim-lspconfig",
 	-- Supply dependencies near target plugin
-	depends = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim" },
-
+	depends = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+	},
 })
 add({
 	source = "nvim-treesitter/nvim-treesitter",
@@ -75,3 +78,4 @@ add({
 	depends = { "kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui" },
 })
 add("MagicDuck/grug-far.nvim")
+add("zenbones-theme/zenbones.nvim")
