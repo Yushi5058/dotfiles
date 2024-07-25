@@ -78,4 +78,4 @@ add({
 	depends = { "kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui" },
 })
 add("MagicDuck/grug-far.nvim")
-add("zenbones-theme/zenbones.nvim")
+add({ source = "zenbones-theme/zenbones.nvim", depends = { "rktjmp/lush.nvim" } })
