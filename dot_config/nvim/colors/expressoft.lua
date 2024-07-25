@@ -1,10 +1,12 @@
 -- Made with 'mini.colors' module of https://github.com/echasnovski/mini.nvim
 
-if vim.g.colors_name ~= nil then vim.cmd('highlight clear') end
-vim.g.colors_name = "expressoft.lua"
-
 -- Highlight groups
 local hi = vim.api.nvim_set_hl
+local set_hl_ns = vim.api.nvim__set_hl_ns or vim.api.nvim_set_hl_ns
+vim.api.nvim_buf_clear_namespace(0, 0, 0, -1)
+set_hl_ns(0)
+
+vim.g.colors_name = "expressoft.lua"
 
 hi(0, "@attribute", { link = "TSAttribute" })
 hi(0, "@attribute.builtin", { link = "Special" })
