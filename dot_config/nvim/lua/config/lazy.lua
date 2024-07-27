@@ -16,11 +16,10 @@ vim.g.maplocalleader = " "
 require("lazy").setup({
 	spec = {
 		-- import your plugins
-		{ import = "config.plugins" },
+		{ import = "plugins" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
-	-- automatically check for plugin updates
-	checker = { enabled = false },
+	install = { colorscheme = { "expressoft" } },
+	checker = { enabled = true, notify = true },
 	change_detection = { notify = false },
 })
