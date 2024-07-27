@@ -31,13 +31,6 @@ return {
 		require("mini.files").setup()
 		map("n", "<leader>n", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>")
 
-		local hipatterns = require("mini.hipatterns")
-		hipatterns.setup({
-			highlighters = {
-				hex_color = hipatterns.gen_highlighter.hex_color(),
-			},
-		})
-
 		require("mini.indentscope").setup()
 		require("mini.icons").setup()
 	end,
