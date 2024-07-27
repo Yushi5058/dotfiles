@@ -219,7 +219,7 @@ exec_always wlsunset -t 3000 -l 33.4 -L -7.4 &
 exec_always autotiling
 exec_always nm-applet
 exec_always mako &
-exec poweralertd
+exec_always poweralertd &
 
 
 # Adjust volume with Alsa
