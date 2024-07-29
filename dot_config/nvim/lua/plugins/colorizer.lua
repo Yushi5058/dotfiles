@@ -10,6 +10,7 @@ return {
 				tailwind = true,
 				sass = { enable = true, parsers = { "css" } },
 				always_update = true,
+				mode = virtualtext,
 			},
 		})
 	end,
