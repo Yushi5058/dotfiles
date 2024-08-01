@@ -1,5 +1,4 @@
 # Expressoft yazi theme
-# : Manager {{{
 
 [manager]
 cwd = { fg = "#449c99" }
@@ -135,4 +134,3 @@ rules = [
     { name = "*/", fg = "#739c44" }
 ]
 
-# : }}}
