@@ -4,11 +4,18 @@
     "height": 24,
 
     "modules-left": ["sway/workspaces", "sway/window"],
-    "modules-right": ["custom/updates","tray", "backlight", "wireplumber", "network", "battery", "clock"],
+    "modules-right": ["custom/updates", "idle_inhibitor", "tray", "backlight", "wireplumber", "network", "battery", "clock"],
     "sway/workspaces": {
         "format": "{name}",
         "sort-by-number" : "true", 
     },
+    "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
+    }
+}
 
    "custom/updates": {
        "format": "{icon} {}",

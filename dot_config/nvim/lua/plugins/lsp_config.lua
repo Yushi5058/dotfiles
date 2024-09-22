@@ -33,7 +33,7 @@ return {
 					},
 				},
 			},
-			tsserver = {},
+			ts_ls = {},
 			html = { filetypes = { "php" } },
 			gdscript = {},
 			gdshader_lsp = {},
