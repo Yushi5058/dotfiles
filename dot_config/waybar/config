@@ -15,7 +15,7 @@
         "activated": "",
         "deactivated": ""
     }
-}
+},
 
    "custom/updates": {
        "format": "{icon} {}",
