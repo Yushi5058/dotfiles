@@ -212,14 +212,14 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # execute apps on startup
-exec_always systemctl enable ly.service
-exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec_always copyq
-exec_always wlsunset -t 3000 -l 33.4 -L -7.4 &
-exec_always autotiling
-exec_always nm-applet
-exec_always mako &
-exec_always poweralertd &
+exec systemctl enable ly.service
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec copyq
+exec wlsunset -t 3000 -l 33.4 -L -7.4
+exec autotiling
+exec nm-applet
+exec mako
+exec poweralertd 
 
 
 # Adjust volume with Alsa
