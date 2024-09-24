@@ -2,7 +2,7 @@
 background-color=#120d09
 text-color=#cabeb3
 border-color=#766454
-default-timeout=10000
+default-timeout=5000
 font=monospace 20
 
 # specific
