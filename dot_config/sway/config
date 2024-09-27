@@ -215,7 +215,7 @@ bindsym $mod+r mode "resize"
 exec systemctl enable ly.service
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec copyq
-exec wlsunset -t 3000 -l 33.4 -L -7.4
+exec wlsunset -t 3000 
 exec autotiling
 exec nm-applet
 exec mako
