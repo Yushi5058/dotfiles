@@ -20,8 +20,7 @@ colorMoved = default
 [user]
 name = Yushi
 email = yushi_61@proton.me
-signingkey = 6488AFEBE95417A9
-
+signingkey = F652EF634852359E
 [github]
 user = Yushi5058
 
