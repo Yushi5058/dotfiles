@@ -9,26 +9,19 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
+# install wezterm emulator
 set $term wezterm
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
+# install rofi
 set $menu rofi -show drun
 
 ### Output configuration
 #
-output * bg $HOME/Wallpapers/galaxies_2.png fill
+# output * bg $HOME/Wallpapers/galaxies_2.png fill
 #
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+
 
 ### Idle configuration
-#
-# Example configuration:
 #
 exec swayidle -w \
          timeout 300 'swaylock -f --clock --indicator' \
@@ -43,15 +36,6 @@ exec swayidle -w \
 
 ### Input configuration
 #
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-
 input type:keyboard {
 xkb_layout fr
     }
@@ -115,13 +99,13 @@ focus_follows_mouse no
 bindsym Control+space exec makoctl dismiss -a
 
 
+# install grim and slurp
 # Take a screenshot with all output and save it into screenshots
-bindsym $mod+Print exec grim -t jpeg ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+bindsym $mod+Print exec grim -t jpeg ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 # Take a Screenshot with the region select
-bindsym $mod+shift+Print exec grim -t jpeg -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+bindsym $mod+shift+Print exec grim -t jpeg -g "$(slurp)" ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 
 # Window rules
-for_window [app_id="com.github.finefindus.eyedropper"] floating enable
 for_window [app_id="com.github.hluk.copyq"] floating enable
 for_window [app_id="com.github.hluk.copyq"] resize set 700 800
 
@@ -212,8 +196,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # execute apps on startup
+# install ly
+# install copyq
+# install wlsunset
+# install autotiling
+# install mako
+# install poweralertd
 exec systemctl enable ly.service
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec copyq
 exec wlsunset -t 3000 
 exec autotiling
