@@ -17,7 +17,7 @@ set $menu rofi -show drun
 
 ### Output configuration
 #
-# output * bg $HOME/Wallpapers/galaxies_2.png fill
+output * bg $HOME/Downloads/sunset_wallpaper.jpg fill
 #
 
 

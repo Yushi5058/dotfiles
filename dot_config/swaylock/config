@@ -30,7 +30,6 @@ inside-caps-lock-color=#9c6d44
 inside-ver-color=#739c44
 inside-wrong-color=#9c4473
 
-
 # Line between the inside and ring
 line-color=#aa998b
 line-clear-color=#9c6d44
@@ -46,7 +45,7 @@ ring-ver-color=#449c6d
 ring-wrong-color=#9c4473
 
 # lockscreen wallpaper
-image=$HOME/Wallpapers/black_hole.png
+image=$HOME/Downloads/wheat_wallpaper.jpg
 
 # position of the ring
 indicator-x-position=172
