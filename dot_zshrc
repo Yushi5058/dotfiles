@@ -68,3 +68,11 @@ eval "$(zoxide init zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# ssh-agent started auto
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
