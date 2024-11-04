@@ -203,6 +203,7 @@ bindsym $mod+r mode "resize"
 # install mako
 # install poweralertd
 exec systemctl enable ly.service
+exec systemctl enable bluetooth.service
 exec copyq
 exec wlsunset -t 3000 
 exec autotiling
