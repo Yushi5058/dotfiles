@@ -23,10 +23,10 @@ output * bg $HOME/Downloads/sunset_wallpaper.jpg fill
 
 ### Idle configuration
 #
-exec swayidle -w \
-         timeout 300 'swaylock -f --clock --indicator' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f --clock --indicator'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f --clock --indicator' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f --clock --indicator'
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -204,8 +204,8 @@ bindsym $mod+r mode "resize"
 # install poweralertd
 exec systemctl enable ly.service
 exec systemctl enable bluetooth.service
+exec blueman-applet
 exec copyq
-exec wlsunset -t 3000 
 exec autotiling
 exec nm-applet
 exec mako
