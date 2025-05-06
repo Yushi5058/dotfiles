@@ -1,5 +1,5 @@
 # font
-font pango:monospace 20
+font pango:SourceCodePro Medium 16
 
 # variables
 
