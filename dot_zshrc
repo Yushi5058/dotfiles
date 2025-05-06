@@ -4,24 +4,6 @@
 # PATH
 export PATH=$BUN_INSTALL/bin:~/bin:/home/yushi_61/.local/share/bob/nvim-bin:$PATH
 
-# Created by Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zap-zsh/supercharge"
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
-plug "z-shell/F-Sy-H"
-plug "jeffreytse/zsh-vi-mode"
-plug "zsh-users/zsh-history-substring-search"
-plug "romkatv/powerlevel10k"
-
-# Load and initialise completion system
-autoload -Uz compinit
-compinit
-
-# zsh-history-substring-search keybinds
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 # aliases
 alias c="clear"
 alias yy="yazi"
@@ -58,15 +40,10 @@ setopt interactive_comments
 # zoxide use
 eval "$(zoxide init zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
 # bun completions
 [ -s "/home/yushi_61/.bun/_bun" ] && source "/home/yushi_61/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
