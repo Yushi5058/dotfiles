@@ -4,6 +4,9 @@
 # PATH
 export PATH=$BUN_INSTALL/bin:~/bin:/home/yushi_61/.local/share/bob/nvim-bin:$PATH
 
+#Default prompt
+PS1="%F{#008000}%B%n@%m%b %1~:%f"
+
 # aliases
 alias c="clear"
 alias yy="yazi"
