@@ -49,4 +49,7 @@ eval "$(zoxide init zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 
+# launch starship
+ eval "$(starship init zsh)"
+
 
