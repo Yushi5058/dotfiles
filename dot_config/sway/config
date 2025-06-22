@@ -15,10 +15,6 @@ set $term wezterm
 # install rofi
 set $menu rofi -show drun
 
-### Output configuration
-#
-output * bg $HOME/Downloads/sunset_wallpaper.jpg fill
-#
 
 
 ### Idle configuration
