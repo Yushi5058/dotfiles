@@ -19,7 +19,6 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
-	install = { colorscheme = { "expressoft" } },
 	checker = { enabled = false },
 	change_detection = { notify = false },
 })
