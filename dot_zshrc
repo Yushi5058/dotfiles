@@ -1,4 +1,8 @@
+# path 
  export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# starship prompt 
+eval "$(starship init zsh)"
 
 
 
