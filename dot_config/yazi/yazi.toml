@@ -1,6 +1,0 @@
-[manager]
-sort_by = "mtime"
-sort_dir_first = true
-show_hidden = true
-scrolloff = 10
-
