@@ -2,7 +2,6 @@
 --  example for vim.opt.mouse use :h mouse
 --
 --  Expressoft colorscheme
-vim.cmd.colorscheme("expressoft")
 vim.opt.background = "dark"
 vim.opt.mouse = "a"
 vim.opt.signcolumn = "yes"
