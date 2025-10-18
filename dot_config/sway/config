@@ -206,8 +206,8 @@ exec copyq
 exec autotiling
 exec nm-applet
 exec mako
-exec poweralertd 
-exec wlsunset
+exec poweralertd & 
+exec wlsunset &
 
 
 # Adjust volume with Alsa
