@@ -23,17 +23,18 @@
 
 /* === Global === */
 * {
-  font-family: "Hack Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", monospace;
+  font-family:
+    "Hack Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", monospace;
   font-size: 20px;
   border: none;
   color: @foreground;
   min-height: 0;
+  margin-bottom: 2px;
 }
 
 window#waybar {
   background-color: @background;
   color: @foreground;
-  border-bottom: 2px solid @iris;
 }
 
 /* === Workspaces === */
@@ -86,13 +87,27 @@ window#waybar {
 }
 
 /* Color accents for clarity */
-#network { color: @foam; }
-#memory { color: @iris; }
-#disk { color: @rose; }
-#pulseaudio { color: @gold; }
-#backlight { color: @gold; }
-#battery { color: @pine; }
-#clock { color: @foam; }
+#network {
+  color: @foam;
+}
+#memory {
+  color: @iris;
+}
+#disk {
+  color: @rose;
+}
+#pulseaudio {
+  color: @gold;
+}
+#backlight {
+  color: @gold;
+}
+#battery {
+  color: @pine;
+}
+#clock {
+  color: @foam;
+}
 
 /* === Battery states === */
 #battery.warning {
@@ -129,4 +144,3 @@ window#waybar,
 #clock {
   text-shadow: 0 0 6px rgba(196, 167, 231, 0.3);
 }
-
