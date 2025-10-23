@@ -9,6 +9,10 @@ return {
 				css = { "prettierd" },
 				markdown = { "prettierd" },
 				php = { "php_cs_fixer" },
+                c = { "clang-format" },
+                c++ = { "clang-format"},
+                python = { "autopep8", "black"},
+
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
