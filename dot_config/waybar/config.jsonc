@@ -22,16 +22,15 @@
         "format": "{name}"
     },
     "clock": {
-        "interval": 60,
-        "format": "󰥔  {:%H:%M}",
+        "interval": 1,
+        "format": "󰥔  {:%H:%M:%S}",
         "format-alt": "󰥔  {:%A, %d %B %Y}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
-            "mode": "year",
+            "mode": "month",
             "mode-mon-col": 3,
             "weeks-pos": "right",
             "on-scroll": 1,
-            "on-click-right": "mode",
             "format": {
                 "months": "<span color='#ffead3'><b>{}</b></span>",
                 "days": "<span color='#ecc6d9'><b>{}</b></span>",
