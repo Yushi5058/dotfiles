@@ -30,4 +30,5 @@ Session.vim
 .vim/syntax/Dockerfile.vim
 .vim/snippets/
 .config/nvim/plugin/
-
+.config/yazi/plugins
+.config/yazi/package.toml
