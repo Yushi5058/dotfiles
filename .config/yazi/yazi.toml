@@ -1,0 +1,7 @@
+[mgr]
+show_hidden = true
+sort_by = "mtime"
+sort_dir_first = true
+scrolloff = 8
+[input]
+cursor_blink = true
