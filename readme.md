@@ -8,7 +8,7 @@ Sane configuration and minimalistic one.
 - Distro : Arch
 - WM : Sway
 - Code Editor : Neovim
-- Terminal : Ghostty
+- Terminal : Wezterm
 
 ## Apps
 
