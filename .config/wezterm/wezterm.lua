@@ -1,0 +1,8 @@
+local wezterm = require("wezterm")
+local config = wezterm.config_builder()
+
+config.font_size = 20
+config.font = wezterm.font("Maple Mono", { weight = "Light", stretch = "Normal", style = "Normal" })
+config.color_scheme = "rose-pine-moon"
+
+return config

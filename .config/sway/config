@@ -11,7 +11,7 @@ set $up k
 set $right l
 
 # install wezterm emulator
-set $term ghostty
+set $term wezterm
 # install rofi
 set $menu rofi -show drun
 
