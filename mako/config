@@ -1,9 +1,0 @@
-background-color=#393552
-text-color=#e0def4
-border-color=#56526e
-progress-color=over #3e8fb0
-font=Hack 20
-default-timeout=10000
-
-[urgency=high]
-border-color=#eb6f92
