@@ -1,5 +1,8 @@
 # alias 
-alias ls="eza -a --icons"
+alias ls="eza -A --icons"
+alias ll="eza -A --icons -l"
+alias lt="eza --tree --icons -A"
+alias cat="bat"
 alias home="cd ~"
 alias c="clear"
 alias ga="git add"
