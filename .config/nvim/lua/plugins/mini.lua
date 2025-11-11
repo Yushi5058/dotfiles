@@ -21,7 +21,6 @@ return {
 		require("mini.statusline").setup({
 			section_location = "%2l:%-2v",
 		})
-		require("mini.git").setup()
 		require("mini.surround").setup()
 		require("mini.diff").setup()
 		require("mini.notify").setup()
@@ -33,5 +32,6 @@ return {
 
 		require("mini.indentscope").setup()
 		require("mini.icons").setup()
+		require("mini.pairs").setup()
 	end,
 }
