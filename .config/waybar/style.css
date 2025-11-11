@@ -79,7 +79,8 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #battery,
-#clock {
+#clock,
+#bluetooth {
   padding: 0 14px;
   margin: 0 4px;
   background: transparent;
@@ -109,6 +110,10 @@ window#waybar {
   color: @foam;
 }
 
+#bluetooth {
+  color: @foam;
+}
+
 /* === Battery states === */
 #battery.warning {
   color: @gold;
@@ -127,7 +132,8 @@ window#waybar {
 #pulseaudio:hover,
 #backlight:hover,
 #battery:hover,
-#clock:hover {
+#clock:hover,
+#bluetooth:hover {
   background: @highlightLow;
   border-bottom: 2px solid @iris;
 }
@@ -141,6 +147,7 @@ window#waybar,
 #pulseaudio,
 #backlight,
 #battery,
-#clock {
+#clock,
+#bluetooth {
   text-shadow: 0 0 6px rgba(196, 167, 231, 0.3);
 }

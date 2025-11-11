@@ -200,14 +200,11 @@ bindsym $mod+r mode "resize"
 # install autotiling
 # install mako
 # install poweralertd
-exec systemctl enable bluetooth.service
-exec blueman-applet
 exec copyq
 exec autotiling
-exec nm-applet
 exec mako
-exec poweralertd & 
 exec wlsunset &
+exec poweralertd & 
 
 
 # Adjust volume with Alsa
