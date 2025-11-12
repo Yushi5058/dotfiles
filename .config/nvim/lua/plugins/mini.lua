@@ -16,12 +16,13 @@ return {
 		map("n", "<leader>ff", "<cmd>Pick files<cr>")
 		map("n", "<leader>fg", "<cmd>Pick grep_live<cr>")
 		map("n", "<leader>fd", "<cmd>Pick diagnostic<cr>")
-		map("n", "<leader>fl", "<cmd>Pick lsp<cr>")
 		map("n", "<leader>fh", "<cmd>Pick help<cr>")
 		require("mini.statusline").setup({
+			use_icons = vim.g.have_nerd_font,
 			section_location = "%2l:%-2v",
 		})
 		require("mini.surround").setup()
+		require("mini.ai").setup({ n_lines = 500 })
 		require("mini.diff").setup()
 		require("mini.notify").setup()
 		-- use mini.notify as default notifier
@@ -29,7 +30,6 @@ return {
 
 		require("mini.files").setup()
 		map("n", "<leader>n", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<cr>")
-
 		require("mini.indentscope").setup()
 		require("mini.icons").setup()
 		require("mini.pairs").setup()
