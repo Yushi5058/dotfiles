@@ -1,6 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
+	event = "VimEnter",
 	dependencies = {
 		{ "rafamadriz/friendly-snippets" },
 		{ "folke/lazydev.nvim", opts = {} },
@@ -14,23 +15,16 @@ return {
 			nerd_font_variant = "mono",
 		},
 
-		completion = { documentation = { auto_show = true } },
+		completion = { documentation = { auto_show = false } },
 
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "lazydev" },
+			providers = {
+				lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+			},
 		},
 
-		fuzzy = { implementation = "prefer_rust_with_warning" },
+		fuzzy = { implementation = "lua" },
+		signature = { enabled = true },
 	},
-	opts_extend = { "sources.default" },
-	config = function()
-		local blink_cmp = require("blink.cmp")
-
-		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = blink_cmp.get_lsp_capabilities()
-
-		vim.lsp.config("*", {
-			capabilities = capabilities,
-		})
-	end,
 }
