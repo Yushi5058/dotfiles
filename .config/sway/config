@@ -95,7 +95,8 @@ input type:touch {
 # no follow mouse cursor
 focus_follows_mouse no
 #mako dismiss notifications 
-bindsym Control+space exec makoctl dismiss -a
+bindsym Control+space exec makoctl dismiss
+bindsym Control+shift+space exec makoctl dismiss -a
 
 
 # install grim and slurp
@@ -203,8 +204,8 @@ bindsym $mod+r mode "resize"
 exec copyq
 exec autotiling
 exec mako
-exec wlsunset &
-exec poweralertd & 
+exec_always wlsunset 
+exec_always poweralertd 
 
 
 # Adjust volume with Alsa
