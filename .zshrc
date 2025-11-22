@@ -104,3 +104,7 @@ eval "$(zoxide init --cmd cd zsh)"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+# opencode
+export PATH=/home/yushi_61/.opencode/bin:$PATH
+
