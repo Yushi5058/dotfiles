@@ -1,5 +1,7 @@
 # font
-font pango:Hack Medium 20
+# use nwg-look to control font-size
+# font pango:Hack Medium 20
+
 
 # variables
 
@@ -19,15 +21,13 @@ set $menu rofi -show drun
 
 ### Idle configuration
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f --clock --indicator' \
+ exec swayidle -w \
+          timeout 300 'swaylock -f --clock --indicator' 
 #          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 #          before-sleep 'swaylock -f --clock --indicator'
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
+# This will lock your screen after 300 seconds of inactivity
 
-# swaylock effects
+# swaylock effects (aur)
          bindsym $mod+shift+x exec swaylock --clock --indicator
 
 ### Input configuration
@@ -106,6 +106,7 @@ bindsym $mod+Print exec grim -t jpeg ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jp
 bindsym $mod+shift+Print exec grim -t jpeg -g "$(slurp)" ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 
 # Window rules
+# install copyq
 for_window [app_id="com.github.hluk.copyq"] floating enable
 for_window [app_id="com.github.hluk.copyq"] resize set 700 800
 
@@ -145,25 +146,25 @@ for_window [app_id="com.github.hluk.copyq"] resize set 700 800
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    #bindsym $mod+b splith
-   # bindsym $mod+v splitv
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     #bindsym $mod+s layout stacking
-    #bindsym $mod+w layout tabbed
-    #bindsym $mod+e layout toggle split
+    #bindsym $mod+t layout tabbed
+    #bindsym $mod+shift+t layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-   # bindsym $mod+Shift+space floating toggle
+   # bindsym $mod+shift+f floating toggle
 
     # Swap focus between the tiling area and the floating area
-    #bindsym $mod+space focus mode_toggle
+    bindsym $mod+alt+f focus mode_toggle
 
     # Move focus to the parent container
-    #bindsym $mod+a focus parent
+    #bindsym $mod+p focus parent
 #
 # Scratchpad:
 #
