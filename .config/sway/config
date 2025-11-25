@@ -161,7 +161,7 @@ for_window [app_id="com.github.hluk.copyq"] resize set 700 800
    # bindsym $mod+shift+f floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+alt+f focus mode_toggle
+    bindsym $mod+control+f focus mode_toggle
 
     # Move focus to the parent container
     #bindsym $mod+p focus parent
