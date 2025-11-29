@@ -32,3 +32,6 @@ Session.vim
 .config/nvim/plugin/
 .config/yazi/plugins
 .config/yazi/package.toml
+
+# ignore tpm plugins
+.config/tmux/plugins/
