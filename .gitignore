@@ -35,3 +35,4 @@ Session.vim
 
 # ignore tpm plugins
 .config/tmux/plugins/
+.config/nvim/lazy-lock.json
