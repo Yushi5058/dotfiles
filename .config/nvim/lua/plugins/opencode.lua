@@ -1,3 +1,4 @@
+return {}
 --[[ return {
 	"NickvanDyke/opencode.nvim",
 	dependencies = {
