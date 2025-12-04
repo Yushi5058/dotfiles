@@ -8,7 +8,7 @@ return {
 				"bashls",
 				"clangd",
 				"cssls",
-				"emmet_ls",
+				"emmet_language_server",
 				"html",
 				"intelephense",
 				"marksman",
