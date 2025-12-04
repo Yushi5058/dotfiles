@@ -28,6 +28,7 @@ return {
 		"vue",
 		-- add php
 		"php",
+		"twig",
 	},
 	root_markers = { ".git" },
 }
