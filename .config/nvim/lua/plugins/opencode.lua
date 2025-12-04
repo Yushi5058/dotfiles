@@ -1,4 +1,4 @@
-return {
+--[[ return {
 	"NickvanDyke/opencode.nvim",
 	dependencies = {
 		-- Recommended for `ask()` and `select()`.
@@ -36,3 +36,4 @@ return {
 		end, { desc = "opencode half page down" })
 	end,
 }
+--]]
