@@ -1,15 +1,15 @@
 ---@brief
 ---
---- https://github.com/aca/emmet-ls
+--- https://github.com/olrtg/emmet-language-server
 ---
 --- Package can be installed via `npm`:
 --- ```sh
---- npm install -g emmet-ls
+--- npm install -g @olrtg/emmet-language-server
 --- ```
 
 ---@type vim.lsp.Config
 return {
-	cmd = { "emmet-ls", "--stdio" },
+	cmd = { "emmet-language-server", "--stdio" },
 	filetypes = {
 		"astro",
 		"css",
