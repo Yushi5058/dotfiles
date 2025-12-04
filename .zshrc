@@ -13,6 +13,8 @@ alias gd="git diff"
 
 # Add local binaries to PATH
 export PATH="$HOME/.local/bin:$PATH"
+# Add symfony
+export PATH="$HOME/.symfony5/bin:$PATH"
 
 # ~/.zshrc
 eval "$(starship init zsh)"
