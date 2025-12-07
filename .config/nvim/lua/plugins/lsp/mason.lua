@@ -4,21 +4,39 @@ return {
 		opts = {
 			-- list of servers for mason to install
 			ensure_installed = {
-				"lua_ls",
 				"bashls",
 				"clangd",
 				"cssls",
 				"emmet_language_server",
+				"djlsp",
+				"eslint",
 				"html",
-				"intelephense",
+				"jsonls",
 				"marksman",
 				"postgres_lsp",
-				"phpactor",
 				"pyright",
+				"phpactor",
+				"ruff",
 				"tailwindcss",
 				"ts_ls",
 				"twiggy_language_server",
 				"vue_ls",
+			},
+			handlers = {
+				-- Standard handler for most servers
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+
+				-- Special handler for ESLint to prevent it from messing up formatting
+				["eslint"] = function()
+					require("lspconfig").eslint.setup({
+						on_attach = function(client, bufnr)
+							-- DISABLE formatting capability so Conform handles it instead
+							client.server_capabilities.documentFormattingProvider = false
+						end,
+					})
+				end,
 			},
 		},
 		dependencies = {
@@ -35,21 +53,6 @@ return {
 				},
 			},
 			"neovim/nvim-lspconfig",
-		},
-	},
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		opts = {
-			ensure_installed = {
-				"prettierd", -- prettier formatter
-				"stylua", -- lua formatter
-				"ruff", -- python formatter
-				"pylint",
-				"eslint_d",
-			},
-		},
-		dependencies = {
-			"williamboman/mason.nvim",
 		},
 	},
 }
