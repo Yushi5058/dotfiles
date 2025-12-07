@@ -1,22 +1,24 @@
 return {
 	"stevearc/conform.nvim",
+	event = { "BufWritePre" },
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "eslint_d" },
+				javascript = { "prettierd", "eslint_d" },
+				typescript = { "prettierd", "eslind_d" },
+				javascriptreact = { "prettierd", "eslint_d" },
+				typescriptreact = { "prettierd", "eslint_d" },
+				vue = { "prettierd", "eslint_d" },
 				html = { "prettierd" },
 				css = { "prettierd" },
-				markdown = { "prettierd" },
 				php = { "php_cs_fixer" },
-				python = { "ruff" },
-				c = { "clangd" },
-				cplus = { "clangd" },
-				bash = { "beautysh" },
+				python = { "ruff_format", "ruff_fix" },
+				bash = { "shfmt" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
-				timeout_ms = 10000,
+				timeout_ms = 500,
 				lsp_format = "fallback",
 			},
 		})
