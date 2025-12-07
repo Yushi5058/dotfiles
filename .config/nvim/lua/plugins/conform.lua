@@ -9,9 +9,9 @@ return {
 				css = { "prettierd" },
 				markdown = { "prettierd" },
 				php = { "php_cs_fixer" },
-				python = { "black", "autopep8" },
-				c = { "clang-format" },
-				cplus = { "clang-format" },
+				python = { "ruff" },
+				c = { "clangd" },
+				cplus = { "clangd" },
 				bash = { "beautysh" },
 			},
 			format_on_save = {
