@@ -75,6 +75,8 @@ return {
 				-- Note: If you have "ruff" in mason-lspconfig, you technically
 				-- have the binary, but adding it here ensures updates.
 				"ruff",
+				-- Php
+				"php-cs-fixer",
 			},
 
 			-- Auto-install the above immediately
