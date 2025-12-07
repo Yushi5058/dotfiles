@@ -55,4 +55,30 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "williamboman/mason.nvim" },
+		opts = {
+			ensure_installed = {
+				-- Web (JS/TS/HTML/CSS)
+				"prettierd", -- Faster wrapper for prettier
+				"eslint_d", -- Faster wrapper for eslint
+
+				-- Lua
+				"stylua", -- The standard for Lua formatting
+
+				-- Shell Scripting
+				"shfmt", -- Formats bash/zsh scripts
+				-- "shellcheck", -- (Optional) If you want a linter for bash logic
+
+				-- Python
+				-- Note: If you have "ruff" in mason-lspconfig, you technically
+				-- have the binary, but adding it here ensures updates.
+				"ruff",
+			},
+
+			-- Auto-install the above immediately
+			run_on_start = true,
+		},
+	},
 }
