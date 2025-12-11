@@ -23,7 +23,6 @@ return {
 		})
 		require("mini.surround").setup()
 		require("mini.ai").setup({ n_lines = 500 })
-		require("mini.diff").setup()
 		require("mini.notify").setup()
 		-- use mini.notify as default notifier
 		vim.notify = require("mini.notify").make_notify()
@@ -33,5 +32,6 @@ return {
 		require("mini.indentscope").setup()
 		require("mini.icons").setup()
 		require("mini.pairs").setup()
+		require("mini.cmdline").setup()
 	end,
 }
