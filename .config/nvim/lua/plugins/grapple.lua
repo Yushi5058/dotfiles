@@ -1,6 +1,13 @@
 return {
 	"cbochs/grapple.nvim",
-	config = function()
+	dependencies = {},
+	opts = {
+		scope = "git",
+		icons = false,
+		status = false,
+	},
+	config = function(_, opts)
+		require("grapple").setup(opts)
 		local map = vim.keymap.set
 		map("n", "<leader>a", "<cmd>Grapple toggle<cr>")
 		map("n", "<C-e>", "<cmd>Grapple toggle_tags<cr>")
