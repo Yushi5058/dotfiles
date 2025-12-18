@@ -109,3 +109,7 @@ eval "$(atuin init zsh)"
 # opencode
 export PATH=/home/yushi_61/.opencode/bin:$PATH
 
+# Fix Discord Flatpak RPC for Neovim
+if [ -d "$XDG_RUNTIME_DIR/app/com.discordapp.Discord" ]; then
+    ln -sf $XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-0 $XDG_RUNTIME_DIR/discord-ipc-0
+fi
