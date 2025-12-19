@@ -52,5 +52,7 @@ return {
 		require("mini.icons").setup()
 		require("mini.pairs").setup()
 		require("mini.cmdline").setup()
+		require("mini.git").setup()
+		require("mini.diff").setup()
 	end,
 }
