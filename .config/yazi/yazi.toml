@@ -20,4 +20,8 @@ prepend_previewers = [
 	{ mime = "application/zstd",            run = "ouch" },
 	{ mime = "application/java-archive",    run = "ouch" },
 ]
-
+[opener]
+extract = [
+	{ run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
+	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+]
