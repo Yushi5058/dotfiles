@@ -63,7 +63,7 @@ input type:touch {
     bindsym $mod+d exec $menu
 
     # Start your browser
-    bindsym $mod+w exec firefox
+    bindsym $mod+w exec qutebrowser
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
