@@ -18,6 +18,8 @@ export PATH="$HOME/.symfony5/bin:$PATH"
 # ~/.zshrc
 eval "$(starship init zsh)"
 
+# define default editor
+export EDITOR="nvim"
 
 # bun completions
 [ -s "/home/yushi_61/.bun/_bun" ] && source "/home/yushi_61/.bun/_bun"
