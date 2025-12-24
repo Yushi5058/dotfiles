@@ -159,4 +159,6 @@ $diff")
         e|E) git commit -m "$msg" -e ;;
         *) echo "❌ Aborted." ;;
     esac
+# Force unload the model from RAM immediately to save memory
+    curl -s http://localhost:11434/api/generate -d '{"model": "qwen2.5-coder:1.5b", "keep_alive": 0}' > /dev/null
 }
