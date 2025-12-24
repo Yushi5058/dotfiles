@@ -115,3 +115,48 @@ export PATH=/home/yushi_61/.opencode/bin:$PATH
 if [ -d "$XDG_RUNTIME_DIR/app/com.discordapp.Discord" ]; then
     ln -sf $XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-0 $XDG_RUNTIME_DIR/discord-ipc-0
 fi
+
+# AI Commit Helper
+function aicommit() {
+    # 1. Check for staged changes
+    # "2>/dev/null" silences the big usage text if an error occurs
+    local diff=$(git diff --cached 2>/dev/null)
+
+    # 2. Check if diff is empty OR if the command failed
+    if [[ -z "$diff" ]]; then
+        echo "⚠️  No staged changes found. Run 'git add' first."
+        return 1
+    fi
+
+    # 3. Safety check: Truncate large diffs
+    if [[ ${#diff} -gt 6000 ]]; then
+        echo "⚠️  Diff is too large for the 1.5B model. Truncating..."
+        diff=${diff:0:6000}
+    fi
+
+    echo "🤖 Generating message with qwen2.5-coder:1.5b..."
+
+    local system_prompt="You are a strict git commit generator. You must generate a single line commit message that adheres to the Conventional Commits v1.0.0 specification (https://www.conventionalcommits.org/en/v1.0.0/).
+
+**Rules:**
+1. Format: <type>(<scope>): <subject>
+2. Allowed Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert.
+3. Use imperative mood (e.g., 'add' not 'added').
+4. Do NOT output markdown, quotes, or explanations. Output ONLY the raw commit message."
+
+    local msg=$(ollama run qwen2.5-coder:1.5b "$system_prompt
+
+Review this git diff:
+$diff")
+
+    print -P "\n📝 \033[1;32m$msg\033[0m"
+    print -n "Commit with this message? (y = yes / e = edit / n = no): "
+    read -k 1 choice
+    echo ""
+
+    case "$choice" in
+        y|Y) git commit -m "$msg" ;;
+        e|E) git commit -m "$msg" -e ;;
+        *) echo "❌ Aborted." ;;
+    esac
+}
