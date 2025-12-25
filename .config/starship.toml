@@ -3,6 +3,7 @@
 format = """
 $username\
 $directory\
+${custom.jj}\
 $git_branch\
 $git_status\
 $fill\
@@ -19,7 +20,7 @@ $rust\
 $scala\
 $conda\
 $python\
-$time\n  \
+$time\n  \
 [󱞪](fg:iris) \
 """
 
@@ -50,7 +51,19 @@ Pictures = " "
 style = "fg:overlay"
 symbol = " "
 
+# --- FIXED JJ CONFIGURATION START ---
+[custom.jj]
+# Only run this if we are inside a jj repo
+when = 'jj root'
+# This command gets the Change ID (first 4 chars) and the bookmarks (branches)
+command = 'jj log -r @ -n 1 --no-graph --color always -T "jj " ++ change_id.shortest(4) ++ " " ++ bookmarks.join(", ")'
+format = '[](fg:overlay)[ $output ]($style)[](fg:overlay) '
+style = "bg:overlay fg:foam"
+# --- FIXED JJ CONFIGURATION END ---
+
 [git_branch]
+# Disable git branch if jj is active to avoid duplicate info (optional, but cleaner)
+disabled = false
 format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
 style = "bg:overlay fg:foam"
 symbol = ""
