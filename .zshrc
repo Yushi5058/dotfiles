@@ -128,13 +128,7 @@ function aicommit() {
         return 1
     fi
 
-    # 3. Safety check: Truncate large diffs
-    if [[ ${#diff} -gt 6000 ]]; then
-        echo "⚠️  Diff is too large for the 1.5B model. Truncating..."
-        diff=${diff:0:6000}
-    fi
-
-    echo "🤖 Generating message with qwen2.5-coder:1.5b..."
+    echo "🤖 Generating message with qwen2.5-coder:3b..."
 
     local system_prompt="You are a strict git commit generator. You must generate a single line commit message that adheres to the Conventional Commits v1.0.0 specification (https://www.conventionalcommits.org/en/v1.0.0/).
 
@@ -144,7 +138,7 @@ function aicommit() {
 3. Use imperative mood (e.g., 'add' not 'added').
 4. Do NOT output markdown, quotes, or explanations. Output ONLY the raw commit message."
 
-    local msg=$(ollama run qwen2.5-coder:1.5b "$system_prompt
+    local msg=$(ollama run qwen2.5-coder:3b "$system_prompt
 
 Review this git diff:
 $diff")
@@ -160,5 +154,5 @@ $diff")
         *) echo "❌ Aborted." ;;
     esac
 # Force unload the model from RAM immediately to save memory
-    curl -s http://localhost:11434/api/generate -d '{"model": "qwen2.5-coder:1.5b", "keep_alive": 0}' > /dev/null
+    curl -s http://localhost:11434/api/generate -d '{"model": "qwen2.5-coder:3b", "keep_alive": 0}' > /dev/null
 }
