@@ -13,8 +13,7 @@ alias gd="git diff"
 alias ora-install='podman run -d --name oracle11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v oracle_data:/u01/app/oracle docker.io/wnameless/oracle-xe-11g-r2'
 alias ora-start='podman start oracle11g'
 alias ora-stop='podman stop oracle11g'
-alias ora-sql='podman exec -it oracle11g /u01/app/oracle/product/11.2.0/xe/bin/sqlplus system/oracle'
-
+alias ora-sql='podman exec -it oracle11g bash -c "export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/oracle"'
 
 # Add local binaries to PATH
 export PATH="$HOME/.local/bin:$PATH"
