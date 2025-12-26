@@ -161,3 +161,6 @@ $diff")
 # Force unload the model from RAM immediately to save memory
     curl -s http://localhost:11434/api/generate -d '{"model": "qwen2.5-coder:3b", "keep_alive": 0}' > /dev/null
 }
+
+# dynamic completions for jj
+source <(COMPLETE=zsh jj)

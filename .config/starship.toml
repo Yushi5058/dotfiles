@@ -19,8 +19,7 @@ $nim\
 $rust\
 $scala\
 $conda\
-$python\
-$time\n  \
+$python\n
 [󱞪](fg:iris) \
 """
 
@@ -51,15 +50,14 @@ Pictures = " "
 style = "fg:overlay"
 symbol = " "
 
-# --- FIXED JJ CONFIGURATION START ---
+
 [custom.jj]
-# Only run this if we are inside a jj repo
-when = 'jj root'
-# This command gets the Change ID (first 4 chars) and the bookmarks (branches)
-command = 'jj log -r @ -n 1 --no-graph --color always -T "jj " ++ change_id.shortest(4) ++ " " ++ bookmarks.join(", ")'
-format = '[](fg:overlay)[ $output ]($style)[](fg:overlay) '
-style = "bg:overlay fg:foam"
-# --- FIXED JJ CONFIGURATION END ---
+command = "prompt"
+format = "$output"
+ignore_timeout = true
+shell = ["starship-jj", "--ignore-working-copy", "starship"]
+use_stdin = false
+when = true
 
 [git_branch]
 # Disable git branch if jj is active to avoid duplicate info (optional, but cleaner)
