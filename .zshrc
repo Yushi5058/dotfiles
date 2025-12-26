@@ -18,6 +18,7 @@ alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOM
 # Add local binaries to PATH
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.symfony5/bin:$PATH"
+export PATH:"$HOME/.cargo/bin:$PATH"
 
 # ~/.zshrc
 eval "$(starship init zsh)"
