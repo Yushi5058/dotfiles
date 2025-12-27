@@ -202,11 +202,12 @@ bindsym $mod+r mode "resize"
 # install autotiling
 # install mako
 # install poweralertd
+# exec_always will launch the process everytime you reload sway
 exec copyq
 exec autotiling
 exec mako
-exec_always wlsunset 
-exec_always poweralertd 
+exec wlsunset -l 33.5 -L -7.6 
+exec poweralertd 
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 
