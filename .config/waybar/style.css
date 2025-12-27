@@ -1,55 +1,39 @@
 /*
- * Rosé Pine Moon — Sway Waybar Theme (Hack Nerd Font Edition)
+ * Rosé Pine Moon — Compact Edition
  */
 
 @define-color base            #232136;
 @define-color surface         #2a273f;
 @define-color overlay         #393552;
-
-@define-color muted           #6e6a86;
-@define-color subtle          #908caa;
 @define-color text            #e0def4;
-
 @define-color love            #eb6f92;
 @define-color gold            #f6c177;
-@define-color rose            #ea9a97;
 @define-color pine            #3e8fb0;
 @define-color foam            #9ccfd8;
 @define-color iris            #c4a7e7;
-
-@define-color background      @base;
-@define-color background-light @surface;
-@define-color foreground      @text;
+@define-color rose            #ea9a97;
 
 /* === Global === */
 * {
-  font-family:
-    "Hack Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", monospace;
-  font-size: 20px;
+  font-family: "Hack Nerd Font", monospace;
+  font-size: 15px; /* Reduced from 20px to fix overcrowding */
   border: none;
-  color: @foreground;
+  color: @text;
   min-height: 0;
-  margin-bottom: 2px;
+  margin-bottom: 0;
 }
 
 window#waybar {
-  background-color: @background;
-  color: @foreground;
+  background-color: @base;
+  color: @text;
 }
 
 /* === Workspaces === */
 #workspaces button {
   background: transparent;
-  color: @foreground;
-  padding: 0 14px;
-  margin: 0 4px;
+  color: @text;
+  padding: 0 8px; /* Reduced padding */
   font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-#workspaces button:hover {
-  background-color: @highlightLow;
-  color: @foam;
 }
 
 #workspaces button.focused,
@@ -64,35 +48,44 @@ window#waybar {
   color: @base;
 }
 
-/* === Center Window Title === */
-#window {
-  color: @subtle;
-  font-weight: 600;
-  margin: 0 12px;
-}
-
 /* === Right Modules === */
 #tray,
 #network,
-#memory,
+#bluetooth,
 #disk,
 #pulseaudio,
 #backlight,
 #battery,
-#clock,
-#bluetooth {
-  padding: 0 14px;
-  margin: 0 4px;
-  background: transparent;
-  border-bottom: 2px solid transparent;
+#clock {
+  padding: 0 8px; /* Reduced from 14px */
+  margin: 0 2px;
 }
 
-/* Color accents for clarity */
+/* === Hardware Group (CPU + Memory) === */
+/* Remove margins between CPU and Memory to fuse them */
+#cpu,
+#memory {
+  padding: 0 8px;
+  margin: 0;
+  color: @iris;
+  background-color: @surface; /* Subtle background to show they are grouped */
+}
+
+/* Round the left side of CPU */
+#cpu {
+  border-radius: 6px 0 0 6px;
+  padding-right: 4px; /* Pull them closer */
+}
+
+/* Round the right side of Memory */
+#memory {
+  border-radius: 0 6px 6px 0;
+  padding-left: 4px; /* Pull them closer */
+}
+
+/* === Module Colors === */
 #network {
   color: @foam;
-}
-#memory {
-  color: @iris;
 }
 #disk {
   color: @rose;
@@ -109,45 +102,27 @@ window#waybar {
 #clock {
   color: @foam;
 }
-
 #bluetooth {
   color: @foam;
 }
 
-/* === Battery states === */
+/* === Battery States === */
 #battery.warning {
   color: @gold;
-  border-bottom-color: @gold;
 }
 #battery.critical {
   color: @love;
-  border-bottom-color: @love;
 }
 
-/* === Hover / Active feedback === */
+/* === Hover Effects === */
 #tray:hover,
 #network:hover,
-#memory:hover,
+#bluetooth:hover,
 #disk:hover,
 #pulseaudio:hover,
 #backlight:hover,
 #battery:hover,
-#clock:hover,
-#bluetooth:hover {
-  background: @highlightLow;
+#clock:hover {
+  background: @surface;
   border-bottom: 2px solid @iris;
-}
-
-/* === Subtle glow for cyber aesthetic === */
-window#waybar,
-#workspaces button.focused,
-#network,
-#memory,
-#disk,
-#pulseaudio,
-#backlight,
-#battery,
-#clock,
-#bluetooth {
-  text-shadow: 0 0 6px rgba(196, 167, 231, 0.3);
 }

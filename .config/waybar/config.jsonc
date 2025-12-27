@@ -3,7 +3,7 @@
     "position": "top",
     "margin-top": 5,
     "margin-bottom": 0,
-    "spacing": 0,
+    "spacing": 0, // Keep spacing 0, we handle it in CSS
     "modules-left": [
         "sway/workspaces"
     ],
@@ -11,21 +11,102 @@
         "tray",
         "network",
         "bluetooth",
-        "memory",
+        "group/hardware", // <--- The new Group
         "disk",
         "pulseaudio",
         "backlight",
         "battery",
         "clock"
     ],
+    // --- MODULES ---
     "sway/workspaces": {
         "disable-scroll": true,
         "format": "{name}"
     },
+    // NEW: Group configuration
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory"
+        ]
+    },
+    // NEW: CPU Module
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%",
+        "tooltip": true
+    },
+    // UPDATED: Compact Memory (Removed "/ Total" to save space)
+    "memory": {
+        "interval": 10,
+        "format": " {percentage}%",
+        "tooltip-format": "Used: {used:0.1f}G\nTotal: {total:0.1f}G"
+    },
+    "disk": {
+        "interval": 30,
+        "path": "/",
+        "format": " {percentage_used}%", // Compact format
+        "tooltip-format": "{path} — {used} used of {total}"
+    },
+    "network": {
+        // Icon only to save space. Hover for name.
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "{ifname}: {ipaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "interval": 5
+    },
+    "bluetooth": {
+        "format": "",
+        "format-connected": "", // Icon only on bar
+        // Tooltip will list devices using the "enumerate" format below
+        "tooltip-format-connected": "Connected ({num_connections}):\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": " {device_alias}",
+        "tooltip-format-enumerate-connected-battery": " {device_alias} ({device_battery_percentage}%)",
+        "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "backlight": {
+        "format": "{icon} {percent}%", // Icon + Number
+        "format-icons": [
+            "󰃞",
+            "󰃟",
+            "󰃠"
+        ],
+        "tooltip": false
+    },
+    "battery": {
+        "interval": 5,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
     "clock": {
         "interval": 1,
-        "format": "󰥔  {:%H:%M:%S}",
-        "format-alt": "󰥔  {:%A, %d %B %Y}",
+        "format": "󰥔 {:%H:%M}", // Seconds removed to save space
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
@@ -41,69 +122,8 @@
             }
         }
     },
-    "network": {
-        "format-wifi": "󰤢  {essid} ({signalStrength}%)",
-        "format-ethernet": "󰈀  {ifname}",
-        "format-disconnected": "󰤮  Offline",
-        "tooltip-format": "{ifname}: {ipaddr}",
-        "interval": 5
-    },
-    "memory": {
-        "interval": 10,
-        "format": "  {used:0.1f}G / {total:0.1f}G",
-        "tooltip-format": "Used: {used:0.1f}G\nTotal: {total:0.1f}G"
-    },
-    "disk": {
-        "interval": 30,
-        "path": "/",
-        "format": " {used}/{total}",
-        "tooltip-format": "{path} — {used} used of {total} ({percentage_used}%)"
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "  Muted",
-        "format-icons": {
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        },
-        "on-click": "pavucontrol"
-    },
-    "backlight": {
-        "format": "󰃟  {percent}%",
-        "tooltip": false
-    },
-    "battery": {
-        "interval": 5,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-full": "  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "  {capacity}%",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
     "tray": {
-        "icon-size": 18,
+        "icon-size": 15,
         "spacing": 8
-    },
-    "bluetooth": {
-        "format": " {status}",
-        "format-connected": " {device_alias}",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     }
 }
