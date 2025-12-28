@@ -1,0 +1,7 @@
+[[plugin.deps]]
+use = "lmnek/pandoc"
+rev = "fd2798b"
+hash = "5af4b06948bb7b825a243131eea2075c"
+
+[flavor]
+deps = []
