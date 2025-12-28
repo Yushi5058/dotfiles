@@ -38,6 +38,7 @@ Session.vim
 .config/yazi/plugins/*
 .config/yazi/flavors/*
 
+
 # ignore tpm plugins
 !.config/tmux/plugins/tpm
 .config/tmux/plugins/*
