@@ -5,15 +5,11 @@ alias lt="eza --tree --icons -A"
 alias cat="bat"
 alias home="cd ~"
 alias c="clear"
-alias ga="git add"
-alias gc="git commit"
-alias gp="git push"
-alias gs="git status"
-alias gd="git diff"
 alias ora-install='podman run -d --name __ORACLE_PASSWORD__11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v __ORACLE_PASSWORD___data:/u01/app/__ORACLE_PASSWORD__ docker.io/wnameless/__ORACLE_PASSWORD__-xe-11g-r2'
 alias ora-start='podman start __ORACLE_PASSWORD__11g'
 alias ora-stop='podman stop __ORACLE_PASSWORD__11g'
 alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOME=/u01/app/__ORACLE_PASSWORD__/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/__ORACLE_PASSWORD__"'
+alias lj="lazyjj"
 
 # Add local binaries to PATH
 export PATH="$HOME/.local/bin:$PATH"
