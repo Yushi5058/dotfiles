@@ -21,9 +21,6 @@ behavior = "own"
 backend = "gpg"
 key = "B00996246A9FB926"
 
-[core]
-fsmonitor = "watchman"
-
 [template-aliases]
 "format_short_id(id)" = "id.shortest(8)"
 
