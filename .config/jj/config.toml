@@ -7,14 +7,17 @@ email = "yushi_61@proton.me"
 [ui]
 default-command = "log"
 editor = "nvim"
-diff-editor = ":meld"
-merge-editor = ":meld"
+diff-editor = ":builtin"
+diff-formatter = ":git"
 pager = "less -FRX"
+graph.style = "curved"
 
 [git]
-private-commits = "description-or-title"
+colocate = true
+sign-on-push = true
 
 [signing]
+behavior = "own"
 backend = "gpg"
 key = "B00996246A9FB926"
 
@@ -22,8 +25,7 @@ key = "B00996246A9FB926"
 fsmonitor = "watchman"
 
 [template-aliases]
-"format_short_id(id)" = "id.shortest(12)"
-"format_timestamp(timestamp)" = "timestamp.utc().format(\"%Y-%m-%d %H:%M:%S\")"
+"format_short_id(id)" = "id.shortest(8)"
 
 [revsets]
-"log-limit = "200"
+'mine()' = 'author(yushi_61)'
