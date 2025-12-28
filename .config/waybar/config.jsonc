@@ -61,6 +61,7 @@
     "bluetooth": {
         "format": "",
         "format-connected": "", // Icon only on bar
+        "format-disconnected": "󰂲",
         // Tooltip will list devices using the "enumerate" format below
         "tooltip-format-connected": "Connected ({num_connections}):\n{device_enumerate}",
         "tooltip-format-enumerate-connected": " {device_alias}",
