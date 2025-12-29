@@ -12,7 +12,9 @@ $cpp\
 $elixir\
 $golang\
 $java\
+$lua\
 $nodejs\
+$php\
 $rust\
 $python\
 $zig\n
@@ -51,7 +53,7 @@ use_stdin = false
 when = true
 
 [git_branch]
-# Disable git branch if jj is active to avoid duplicate info (optional, but cleaner)
+# Disable git branch if jj is active to avoid duplicate info
 disabled = true
 format = "[](fg:overlay)[ $symbol $branch ]($style)[](fg:overlay) "
 style = "bg:overlay fg:foam"
@@ -80,14 +82,13 @@ show_always = true
 style_root = "bg:overlay fg:iris"
 style_user = "bg:overlay fg:iris"
 
-# Languages
+# --- Languages ---
 
 [bun]
 style = "bg:overlay fg:pine"
 format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
 symbol = " "
-
 
 [c]
 style = "bg:overlay fg:pine"
@@ -101,7 +102,6 @@ format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
 symbol = " "
 
-
 [elixir]
 style = "bg:overlay fg:pine"
 format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
@@ -114,13 +114,17 @@ format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
 symbol = " "
 
-
 [java]
 style = "bg:overlay fg:pine"
 format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
 symbol = " "
 
+[lua]
+style = "bg:overlay fg:pine"
+format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
+disabled = false
+symbol = " "
 
 [nodejs]
 style = "bg:overlay fg:pine"
@@ -128,18 +132,24 @@ format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
 symbol = "󰎙 "
 
+[php]
+style = "bg:overlay fg:pine"
+format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
+disabled = false
+symbol = " "
+
+[python]
+style = "bg:overlay fg:pine"
+format = " [](fg:overlay)[ $symbol$version ($virtualenv) ]($style)[](fg:overlay)"
+disabled = false
+symbol = ' '
+
 
 [rust]
 style = "bg:overlay fg:pine"
 format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
 symbol = " "
-
-[python]
-style = "bg:overlay fg:pine"
-format = " [](fg:overlay)[ $symbol$version ][$virtualenv]($style)[](fg:overlay)"
-disabled = false
-symbol = ' '
 
 [zig]
 style = "bg:overlay fg:pine"
