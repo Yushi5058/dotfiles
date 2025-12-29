@@ -4,8 +4,6 @@ format = """
 $username\
 $directory\
 ${custom.jj}\
-$git_branch\
-$git_status\
 $bun\
 $c\
 $cpp\
@@ -60,7 +58,7 @@ style = "bg:overlay fg:foam"
 symbol = ""
 
 [git_status]
-disabled = false
+disabled = true
 style = "bg:overlay fg:love"
 format = '[](fg:overlay)([$all_status$ahead_behind]($style))[](fg:overlay) '
 up_to_date = '[ ✓ ](bg:overlay fg:iris)'
