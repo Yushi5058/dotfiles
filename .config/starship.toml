@@ -6,7 +6,6 @@ $directory\
 ${custom.jj}\
 $git_branch\
 $git_status\
-$fill\
 $bun\
 $c\
 $cpp\
@@ -41,10 +40,6 @@ truncation_symbol = "…/"
 Documents = "󰈙"
 Downloads = " "
 Pictures = " "
-
-[fill]
-style = "fg:overlay"
-symbol = " "
 
 
 [custom.jj]
