@@ -37,4 +37,7 @@ okular = [{ run = 'okular "$@"', orphan = true, desc = "Open with Okular" }]
 
 
 [open]
-prepend_rules = [{ name = "*.pdf", use = "okular" }]
+prepend_rules = [
+    { name = "*.pdf", use = "okular" },
+    { mime = "application/pdf", use = "okular" },
+]
