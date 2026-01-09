@@ -101,9 +101,16 @@ bindsym Control+shift+space exec makoctl dismiss -a
 
 # install grim and slurp
 # Take a screenshot with all output and save it into screenshots
-bindsym $mod+Print exec grim -t jpeg ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+bindsym $mod+Print exec grim ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
 # Take a Screenshot with the region select
-bindsym $mod+shift+Print exec grim -t jpeg -g "$(slurp)" ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+bindsym $mod+shift+Print exec grim -g "$(slurp)" ~/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg && notify-send "Screenshot Taken"
+
+# install wl-clipboard
+# Fullscreen to Clipboard
+bindsym $mod+Ctrl+Print exec grim - | wl-copy && notify-send "Screenshot copied to clipboard"
+
+# Selection to Clipboard
+bindsym $mod+Ctrl+Shift+Print exec grim -g "$(slurp)" - | wl-copy && notify-send "Selection copied to clipboard"
 
 # Window rules
 # install copyq
