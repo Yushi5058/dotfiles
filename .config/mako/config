@@ -15,11 +15,5 @@ width=400
 padding=20
 margin=20
 
-# Colors (Rose Pine Moon Palette)
-background-color=#232136
-text-color=#e0def4
-border-color=#eb6f92
-border-size=3
-
 # Sound (Changed to a softer alert)
 on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/message.oga
