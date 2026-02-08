@@ -3,6 +3,8 @@
 --
 --  Expressoft colorscheme
 vim.opt.background = "dark"
+vim.opt.arabicshape = true
+vim.opt.termbidi = true
 vim.opt.mouse = "a"
 vim.opt.signcolumn = "yes"
 vim.g.have_nerd_font = true
