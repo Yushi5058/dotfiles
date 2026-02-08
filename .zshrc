@@ -4,12 +4,20 @@ alias ll="eza -A --icons -l"
 alias lt="eza --tree --icons -A"
 alias cat="bat"
 alias home="cd ~"
-alias c="clear"
+alias c="clear; fastfetch"
 alias ora-install='podman run -d --name oracle11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v oracle_data:/u01/app/oracle docker.io/wnameless/oracle-xe-11g-r2'
 alias ora-start='podman start oracle11g'
 alias ora-stop='podman stop oracle11g'
 alias ora-sql='podman exec -it oracle11g bash -c "export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/oracle"'
 alias lj="lazyjj"
+# suffix aliases
+alias -s md="bat"
+alias -s py="$EDITOR"
+alias -s json="jless"
+alias -s html="open"
+# Helpful aliases for zmv
+alias zcp='zmv -C'  # Copy with patterns
+alias zln='zmv -L'  # Link with patterns
 
 # Add local binaries to PATH
 export PATH="$HOME/.local/bin:$PATH"
@@ -43,6 +51,9 @@ fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
+# Enable zmv
+autoload -Uz zmv
+
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 #
@@ -108,6 +119,42 @@ eval "$(zoxide init --cmd cd zsh)"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+# open buffer line in editor
+bindkey -M vicmd 'v' edit-command-line
+# expand history expressions with space
+bindkey ' ' magic-space
+
+# To merge hooks, use add-zsh-hook
+autoload -Uz add-zsh-hook
+
+# auto enable virtualenv in py projects
+function auto_venv() {
+  # If already in a virtualenv, do nothing
+  if [[ -n "$VIRTUAL_ENV" && "$PWD" != *"${VIRTUAL_ENV:h}"* ]]; then
+    deactivate
+    return  
+  fi
+
+  [[ -n "$VIRTUAL_ENV" ]] && return
+
+  local dir="$PWD"
+  while [[ "$dir" != "/" ]]; do
+    if [[ -f "$dir/.venv/bin/activate" ]]; then
+      source "$dir/.venv/bin/activate"
+      return
+    fi
+    dir="${dir:h}"
+  done
+}
+# list files after cd to a directory
+function listfiles_dir() {
+    ls
+}
+
+# Register the hooks
+add-zsh-hook chpwd auto_venv
+add-zsh-hook chpwd listfiles_dir
 
 # opencode
 export PATH=/home/yushi_61/.opencode/bin:$PATH
