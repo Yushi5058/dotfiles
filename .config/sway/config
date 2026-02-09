@@ -135,8 +135,17 @@ bindsym $mod+Ctrl+Shift+Print exec grim -g "$(slurp)" - | wl-copy && notify-send
 
 # Window rules
 # install copyq
-for_window [app_id="com.github.hluk.copyq"] floating enable
-for_window [app_id="com.github.hluk.copyq"] resize set 700 800
+for_window [app_id="com.github.hluk.copyq"] floating enable, resize set 800 500, move position center
+
+# floating terminal for some waybar modules
+for_window [app_id="floating_terminal"] {
+    floating enable
+    resize set 800 500
+    move position center
+    border pixel 2
+}
+# Big dashboard for btop
+for_window [app_id="btop_window"] floating enable, resize set 1300 900, move position center
 
 # Workspaces:
 #
