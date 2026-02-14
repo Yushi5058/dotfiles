@@ -13,7 +13,7 @@
         "bluetooth",
         "group/hardware", // <--- The new Group
         "disk",
-        "pulseaudio",
+        "wireplumber",
         "backlight",
         "battery",
         "clock"
@@ -71,7 +71,7 @@
         "tooltip-format-enumerate-connected-battery": " {device_alias} ({device_battery_percentage}%)",
         "on-click": "wezterm start --class floating_terminal -- bluetui"
     },
-    "pulseaudio": {
+    "wireplumber": {
         "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": {
