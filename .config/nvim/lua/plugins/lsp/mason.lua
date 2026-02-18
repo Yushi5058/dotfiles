@@ -94,4 +94,11 @@ return {
 			vim.diagnostic.config({ virtual_text = false }) -- Disable Neovim's default virtual text diagnostics
 		end,
 	},
+	{
+		"mfussenegger/nvim-jdtls",
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+		ft = { "java" }, -- Only load the plugin code when you open a Java file
+	},
 }
