@@ -100,5 +100,32 @@ return {
 			"williamboman/mason.nvim",
 		},
 		ft = { "java" }, -- Only load the plugin code when you open a Java file
+		config = function()
+			vim.lsp.enable("jdtls")
+			local jdtls = require("jdtls")
+
+			-- Helper function for shorter code
+			local map = vim.keymap.set
+
+			-- 1. Organize Imports
+			map("n", "<A-o>", jdtls.organize_imports, { desc = "Organize Imports" })
+
+			-- 2. Extract Variable
+			map("n", "crv", jdtls.extract_variable, { desc = "Extract Variable" })
+			map("v", "crv", function()
+				jdtls.extract_variable(true)
+			end, { desc = "Extract Variable (Visual)" })
+
+			-- 3. Extract Constant
+			map("n", "crc", jdtls.extract_constant, { desc = "Extract Constant" })
+			map("v", "crc", function()
+				jdtls.extract_constant(true)
+			end, { desc = "Extract Constant (Visual)" })
+
+			-- 4. Extract Method (Visual only)
+			map("v", "crm", function()
+				jdtls.extract_method(true)
+			end, { desc = "Extract Method" })
+		end,
 	},
 }
