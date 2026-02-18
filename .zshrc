@@ -7,6 +7,14 @@ alias home="cd ~"
 alias c="clear; fastfetch"
 alias ora-install='podman run -d --name __ORACLE_PASSWORD__11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v __ORACLE_PASSWORD___data:/u01/app/__ORACLE_PASSWORD__ docker.io/wnameless/__ORACLE_PASSWORD__-xe-11g-r2'
 alias ora-start='podman start __ORACLE_PASSWORD__11g'
+alias mssql-start='podman start sql1'
+alias mssql-stop='podman stop sql1'
+alias mssql-sql='podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=__MSSQL_PASSWORD__" \
+   -p 1433:1433 --name sql1 --hostname sql1 \
+   -d \
+   mcr.microsoft.com/mssql/server:2022-latest
+ddb874fa9af40e4fe401e0f494b85d5f3f54cda2448561783953e961a22b23a2
+'
 alias ora-stop='podman stop __ORACLE_PASSWORD__11g'
 alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOME=/u01/app/__ORACLE_PASSWORD__/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/__ORACLE_PASSWORD__"'
 alias lj="lazyjj"
