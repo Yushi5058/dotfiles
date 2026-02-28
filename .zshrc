@@ -13,8 +13,7 @@ alias mssql-sql='podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Systemadmin
    -p 1433:1433 --name sql1 --hostname sql1 \
    -d \
    mcr.microsoft.com/mssql/server:2022-latest
-ddb874fa9af40e4fe401e0f494b85d5f3f54cda2448561783953e961a22b23a2
-'
+ddb874fa9af40e4fe401e0f494b85d5f3f54cda2448561783953e961a22b23a2'
 alias ora-stop='podman stop oracle11g'
 alias ora-sql='podman exec -it oracle11g bash -c "export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/oracle"'
 alias lj="lazyjj"
