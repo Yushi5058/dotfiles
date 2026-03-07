@@ -3,7 +3,7 @@ text-color=#e0def4
 border-color=#56526e
 progress-color=over #3e8fb0
 font=Hack 20
-default-timeout=10000
+default-timeout=5000
 on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/complete.oga
 
 [urgency=high]
@@ -11,6 +11,7 @@ border-color=#eb6f92
 
 [app-name="poweralertd"]
 layer=overlay
+default-timeout=10000
 width=400
 padding=20
 margin=20
