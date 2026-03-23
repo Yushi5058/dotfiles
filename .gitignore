@@ -42,3 +42,4 @@ Session.vim
 # ignore tpm plugins
 !.config/tmux/plugins/tpm
 .config/tmux/plugins/*
+tmux/.config/tmux/plugins/
