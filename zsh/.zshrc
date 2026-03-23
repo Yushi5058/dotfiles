@@ -40,6 +40,21 @@ export EDITOR="nvim"
 # bun completions
 [ -s "/home/yushi_61/.bun/_bun" ] && source "/home/yushi_61/.bun/_bun"
 
+# Restow all modular dotfiles packages
+restow-all() {
+    echo "Restowing all packages in ~/dotfiles..."
+    cd ~/dotfiles || return
+    
+    # Loop through every directory and restow it
+    for dir in */; do
+        # ${dir%/} removes the trailing slash from the directory name
+        stow -R "${dir%/}" 
+    done
+    
+    cd - > /dev/null
+    echo "Done! Dotfiles are locked and loaded."
+}
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
