@@ -16,7 +16,8 @@ alias mssql-sql='podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=__MSSQL_PAS
 ddb874fa9af40e4fe401e0f494b85d5f3f54cda2448561783953e961a22b23a2'
 alias ora-stop='podman stop __ORACLE_PASSWORD__11g'
 alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOME=/u01/app/__ORACLE_PASSWORD__/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/__ORACLE_PASSWORD__"'
-alias lj="lazyjj"
+alias android-on="sudo systemctl start waydroid-container && waydroid show-full-ui"
+alias android-off="waydroid session stop && sudo waydroid container stop && sudo systemctl stop waydroid-container"
 # suffix aliases
 alias -s md="bat"
 alias -s py="$EDITOR"
@@ -205,5 +206,3 @@ if [ -d "$XDG_RUNTIME_DIR/app/com.discordapp.Discord" ]; then
     ln -sf $XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-0 $XDG_RUNTIME_DIR/discord-ipc-0
 fi
 
-# dynamic completions for jj
-source <(COMPLETE=zsh jj)
