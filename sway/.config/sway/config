@@ -282,8 +282,6 @@ bar {
 }
 
 # Top-level restart loop for Waybar
-exec_always sh -c "killall waybar; while true; do waybar; sleep 1; done"
-
-
+exec_always "pkill -x waybar; flock -n /tmp/waybar.lock sh -c 'while true; do waybar; sleep 1; done'"
 
 include /etc/sway/config.d/*

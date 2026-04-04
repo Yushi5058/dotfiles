@@ -191,7 +191,7 @@ add-zsh-hook chpwd listfiles_dir
 # opencode
 export PATH=/home/yushi_61/.opencode/bin:$PATH
 
-eval $(keychain --eval --agents ssh id_rsa)
+eval $(keychain --eval --agents ssh  id_ed25519)
 
 
 
