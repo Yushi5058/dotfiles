@@ -33,11 +33,13 @@ edit = [
     { run = '$EDITOR "$@"', block = true, for = "unix" },
     { run = "%EDITOR% %*", block = true, for = "windows" },
 ]
-okular = [{ run = 'okular "$@"', orphan = true, desc = "Open with Okular" }]
+pdf_opener = [
+    { run = 'zathura "$@"', block = false, desc = "Open with Zathura" },
+]
 
 
 [open]
 prepend_rules = [
-    { name = "*.pdf", use = "okular" },
-    { mime = "application/pdf", use = "okular" },
+    { name = "*.pdf", use = "pdf_opener" },
+    { mime = "application/pdf", use = "pdf_opener" },
 ]
