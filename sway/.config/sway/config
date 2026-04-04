@@ -133,9 +133,6 @@ bindsym $mod+Ctrl+Print exec grim - | wl-copy && notify-send "Screenshot copied 
 # Selection to Clipboard
 bindsym $mod+Ctrl+Shift+Print exec grim -g "$(slurp)" - | wl-copy && notify-send "Selection copied to clipboard"
 
-# Window rules
-# install copyq
-for_window [app_id="com.github.hluk.copyq"] floating enable, resize set 800 500, move position center
 
 # floating terminal for some waybar modules
 for_window [app_id="floating_terminal"] {
@@ -234,11 +231,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # execute apps on startup
-# install copyq
 # install wlsunset
 # install autotiling
 # install mako
 # install poweralertd
+# install cliphist
 # exec_always will launch the process everytime you reload sway
 exec copyq
 exec autotiling
@@ -246,6 +243,13 @@ exec mako
 exec wlsunset -l 33.5 -L -7.6 
 exec poweralertd 
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+
+# Start the daemon to watch the clipboard
+exec wl-paste --watch cliphist store
+
+# Bind a key to show the list (using rofi)
+bindsym $mod+c exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
 
 # Volume controls with wpctl (wireplumber)
 bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
@@ -272,7 +276,13 @@ client.background       #56526e
 
 
 # bar
-bar swaybar_command waybar
+# bar swaybar_command waybar
+bar {
+    # Specify other settings here if needed, but NOT the launch command
+}
+
+# Top-level restart loop for Waybar
+exec_always sh -c "killall waybar; while true; do waybar; sleep 1; done"
 
 
 
