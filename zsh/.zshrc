@@ -43,17 +43,7 @@ export EDITOR="nvim"
 
 # Restow all modular dotfiles packages
 restow-all() {
-    echo "Restowing all packages in ~/dotfiles..."
-    cd ~/dotfiles || return
-    
-    # Loop through every directory and restow it
-    for dir in */; do
-        # ${dir%/} removes the trailing slash from the directory name
-        stow -R "${dir%/}" 
-    done
-    
-    cd - > /dev/null
-    echo "Done! Dotfiles are locked and loaded."
+    bash ~/dotfiles/scripts/deploy.sh
 }
 
 # bun
@@ -201,8 +191,7 @@ add-zsh-hook chpwd listfiles_dir
 # opencode
 export PATH=/home/yushi_61/.opencode/bin:$PATH
 
-# Fix Discord Flatpak RPC for Neovim
-if [ -d "$XDG_RUNTIME_DIR/app/com.discordapp.Discord" ]; then
-    ln -sf $XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-0 $XDG_RUNTIME_DIR/discord-ipc-0
-fi
+eval $(keychain --eval --agents ssh id_rsa)
+
+
 
