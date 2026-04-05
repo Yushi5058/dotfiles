@@ -246,7 +246,8 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 
 # Start the daemon to watch the clipboard
-exec wl-paste --watch cliphist store
+exec wl-paste --type text --watch cliphist store 
+exec wl-paste --type image --watch cliphist store
 
 # Bind a key to show the list (using rofi)
 bindsym $mod+c exec cliphist list | rofi -dmenu | cliphist decode | wl-copy

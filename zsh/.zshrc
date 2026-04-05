@@ -19,6 +19,7 @@ alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOM
 alias android-on="sudo systemctl start waydroid-container && waydroid show-full-ui"
 alias android-off="waydroid session stop && sudo waydroid container stop && sudo systemctl stop waydroid-container"
 alias fix-audio="systemctl --user restart pipewire pipewire-pulse wireplumber && pkill vesktop"
+alias clip-fix='pkill wl-paste; rm -f ~/.cache/cliphist/db; wl-paste --type text --watch cliphist store &; wl-paste --type image --watch cliphist store &'
 # suffix aliases
 alias -s md="bat"
 alias -s py="$EDITOR"
