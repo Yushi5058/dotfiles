@@ -46,46 +46,53 @@ return {
 			{ "ga", vim.lsp.buf.code_action, desc = "Action", mode = { "n", "x" } },
 			{ "gn", vim.lsp.buf.rename, desc = "Rename" },
 		},
-		opts = {
-			ensure_installed = {
-				"bashls",
-				"clangd",
-				"cssls",
-				"emmet_language_server",
-				"djlsp",
-				"eslint",
-				"html",
-				"jsonls",
-				"marksman",
-				"postgres_lsp",
-				"pyright",
-				"phpactor",
-				"ruff",
-				"tailwindcss",
-				"ts_ls",
-				"twiggy_language_server",
-				"vue_ls",
-			},
-			handlers = {
-				function(server_name)
-					require("lspconfig")[server_name].setup({})
+		config = function()
+			-- 1. Setup Mason first
+			require("mason").setup()
+
+			-- 2. Import lspconfig to populate the server database
+			-- This prevents the "not a valid entry" errors
+			local lspconfig = require("lspconfig")
+
+			-- 3. Define custom configurations using the NEW native API
+			-- This replaces the old 'handlers' block
+			vim.lsp.config("eslint", {
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = false
 				end,
-				["eslint"] = function()
-					require("lspconfig").eslint.setup({
-						on_attach = function(client)
-							client.server_capabilities.documentFormattingProvider = false
-						end,
-					})
-				end,
-			},
-		},
+			})
+
+			-- 4. Setup mason-lspconfig with automatic_enable
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"bashls",
+					"clangd",
+					"cssls",
+					"emmet_language_server",
+					"djlsp",
+					"eslint",
+					"html",
+					"jsonls",
+					"marksman",
+					"postgres_lsp",
+					"pyright",
+					"phpactor",
+					"ruff",
+					"tailwindcss",
+					"ts_ls",
+					"twiggy_language_server",
+					"vue_ls",
+				},
+				-- This automatically calls vim.lsp.enable() for installed servers
+				automatic_enable = true,
+			})
+		end,
 	},
 
 	{
 		"mfussenegger/nvim-jdtls",
 		ft = { "java" },
 		keys = {
-			-- AZERTY Java Refactoring (c prefix)
 			{
 				"co",
 				function()
