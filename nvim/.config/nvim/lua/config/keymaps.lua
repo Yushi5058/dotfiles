@@ -1,54 +1,47 @@
--- keymaps
--- helper function
 local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
+	local options = { noremap = true, silent = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- disable space in normal mode for leader key
+-- Space is leader
 map({ "n", "v" }, "<space>", "<nop>")
 
--- Move line up/down
+-- Move blocks (Visual)
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
--- dealing with word wrap
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- Smooth vertical movement
+map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Sane behavior of searching
-map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+-- Search remains centered
+map({ "n", "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next result" })
+map({ "n", "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev result" })
 
--- escape search highlight / insert mode
-map("n", "jk", "<cmd>nohlsearch<cr>")
-map({ "i", "v" }, "jk", "<Esc>")
+-- Fast escape and clear highlights
+map("n", "jk", "<cmd>nohlsearch<cr>", { desc = "Clear search" })
+map({ "i", "v" }, "jk", "<Esc>", { desc = "Escape" })
 
--- Yank to the clipboard
-map({ "n", "v" }, "<leader>y", '"+y', { silent = true })
-map({ "n", "v" }, "<leader>Y", '"+Y', { silent = true })
+-- System clipboard (y/p)
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to system" })
+map({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system" })
+map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to void" })
 
--- Paste from the clipboard
-map({ "n", "v" }, "<leader>p", '"+p', { silent = true })
-map({ "n", "v" }, "<leader>P", '"+P', { silent = true })
+-- Splits
+map("n", "sv", "<cmd>vsplit<cr>", { desc = "Split vertical" })
+map("n", "sh", "<cmd>split<cr>", { desc = "Split horizontal" })
 
--- Delete line to the void register
-map({ "n", "v" }, "<leader>d", '"_d', { silent = true })
-
--- Keymaps for neovim splits
-map("n", "sv", "<cmd>vsplit<cr>")
-map("n", "sh", "<cmd>split<cr>")
-
--- navigate between splits
+-- Split navigation
 map("n", "<C-h>", "<C-w>h")
-map("n", "<C-l>", "<C-w>l")
-map("n", "<C-k>", "<C-w>k")
 map("n", "<C-j>", "<C-w>j")
--- resize splits
-map("n", "<A-h>", "10<C-w><", { noremap = true, silent = true })
-map("n", "<A-l>", "10<C-w>>", { noremap = true, silent = true })
-map("n", "<A-j>", "10<C-w>+", { noremap = true, silent = true })
-map("n", "<A-k>", "10<C-w>-", { noremap = true, silent = true })
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
+
+-- Resize
+map("n", "<C-Left>", "10<C-w><")
+map("n", "<C-Right>", "10<C-w>>")
+map("n", "<C-Up>", "10<C-w>+")
+map("n", "<C-Down>", "10<C-w>-")
