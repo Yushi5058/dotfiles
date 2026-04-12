@@ -4,7 +4,7 @@ alias ll="eza -A --icons -l"
 alias lt="eza --tree --icons -A"
 alias cat="bat"
 alias home="cd ~"
-alias c="clear; fastfetch"
+alias c="clear"
 alias ora-install='podman run -d --name __ORACLE_PASSWORD__11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v __ORACLE_PASSWORD___data:/u01/app/__ORACLE_PASSWORD__ docker.io/wnameless/__ORACLE_PASSWORD__-xe-11g-r2'
 alias ora-start='podman start __ORACLE_PASSWORD__11g'
 alias mssql-start='podman start sql1'
