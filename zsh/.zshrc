@@ -111,8 +111,6 @@ if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
     zle -N zle-keymap-select "";
 fi
 
-eval "$(starship init zsh)"
-
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
