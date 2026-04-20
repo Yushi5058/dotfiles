@@ -1,20 +1,15 @@
 local jdtls = require("jdtls")
 local home = os.getenv("HOME")
 
--- 1. Standard Mason Path for Arch Linux
--- This is faster and avoids the "nil value" method error
 local mason_path = home .. "/.local/share/nvim/mason/packages/jdtls"
 
--- 2. Verification: Check if the folder actually exists
 if vim.fn.isdirectory(mason_path) == 0 then
 	vim.notify("JDTLS not found in Mason. Run :MasonInstall jdtls", vim.log.levels.WARN)
 	return
 end
 
--- 3. Find the launcher jar (handles version updates automatically)
 local launcher_jar = vim.fn.glob(mason_path .. "/plugins/org.eclipse.equinox.launcher_*.jar", true, true)[1]
 
--- 4. Detect OS for the config directory
 local os_config = "config_linux"
 if vim.fn.has("mac") == 1 then
 	os_config = "config_mac"
@@ -25,8 +20,30 @@ end
 local config_dir = mason_path .. "/" .. os_config
 local lombok_path = mason_path .. "/lombok.jar"
 
--- 5. Workspace setup (Separate cache for each project)
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local project_root = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+if not project_root then
+	return
+end
+
+-- Check if jdtls already running for this project
+local project_name = vim.fn.fnamemodify(project_root, ":p:h:t")
+local instance_key = "jdtls_" .. project_name
+
+-- Check if we already have a client for this project
+local existing_client = nil
+local clients = vim.lsp.get_clients()
+for _, client in ipairs(clients) do
+	if client.name == "jdtls" and client.config.root_dir == project_root then
+		existing_client = client
+		break
+	end
+end
+
+if existing_client then
+	vim.lsp.buf_attach_client(0, existing_client.id)
+	return
+end
+
 local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 
 local config = {
@@ -51,13 +68,10 @@ local config = {
 		"-data",
 		workspace_dir,
 	},
-
-	root_dir = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
-
+	root_dir = project_root,
 	handlers = {
-		["$/progress"] = function() end, -- Silence the progress spam
+		["$/progress"] = function() end,
 	},
-
 	settings = {
 		java = {
 			signatureHelp = { enabled = true },
@@ -66,7 +80,6 @@ local config = {
 	},
 }
 
--- 6. Keymaps
 local map = vim.keymap.set
 map("n", "<A-o>", jdtls.organize_imports, { buffer = true, desc = "Organize Imports" })
 map("n", "crv", jdtls.extract_variable, { buffer = true, desc = "Extract Variable" })
@@ -82,5 +95,4 @@ map("v", "crm", function()
 end, { buffer = true, desc = "Extract Method" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = true, desc = "Rename Symbol" })
 
--- Start the server
 jdtls.start_or_attach(config)
