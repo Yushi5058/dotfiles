@@ -18,7 +18,7 @@ alias ora-stop='podman stop __ORACLE_PASSWORD__11g'
 alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOME=/u01/app/__ORACLE_PASSWORD__/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/__ORACLE_PASSWORD__"'
 alias android-on="sudo systemctl start waydroid-container && waydroid show-full-ui"
 alias android-off="waydroid session stop && sudo waydroid container stop && sudo systemctl stop waydroid-container"
-alias fix-audio="systemctl --user restart pipewire pipewire-pulse wireplumber && pkill vesktop"
+alias fix-audio="systemctl --user restart pipewire pipewire-pulse wireplumber"
 alias clip-fix='pkill wl-paste; rm -f ~/.cache/cliphist/db; wl-paste --type text --watch cliphist store &; wl-paste --type image --watch cliphist store &'
 # suffix aliases
 alias -s md="bat"
