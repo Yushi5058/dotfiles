@@ -93,7 +93,6 @@ return {
 					"ruff",
 					"tailwindcss",
 					"ts_ls",
-					"twiggy_language_server",
 					"vue_ls",
 				},
 				-- This automatically calls vim.lsp.enable() for installed servers
@@ -165,7 +164,6 @@ return {
 				"ruff",
 				"php-cs-fixer",
 			},
-			run_on_start = true,
 		},
 	},
 
