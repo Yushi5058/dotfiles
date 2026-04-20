@@ -3,12 +3,14 @@
 *.bak
 *.sqlite
 *.lz4
-# Ignore all sub-folders inside .librewolf (the heavy profile data)
+
+# neovim lazy lock
+nvim/.config/nvim/lazy-lock.json
+
+# librewolf profile data
 librewolf/.librewolf/*/
 librewolf/.librewolf/Profile Groups/
-
-# Ignore the .ini files 
 librewolf/.librewolf/*.ini
 
-# Ignore tmux plugins
+# tmux plugins - loaded via tpm
 tmux/.config/tmux/plugins/
