@@ -32,9 +32,7 @@ alias zcp='zmv -C'  # Copy with patterns
 alias zln='zmv -L'  # Link with patterns
 
 # Add local binaries to PATH
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.symfony5/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.symfony5/bin:$HOME/.cargo/bin:$PATH"
 
 # ~/.zshrc
 eval "$(starship init zsh)"
@@ -43,7 +41,7 @@ eval "$(starship init zsh)"
 export EDITOR="nvim"
 
 # bun completions
-[ -s "/home/yushi_61/.bun/_bun" ] && source "/home/yushi_61/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # Restow all modular dotfiles packages
 restow-all() {
@@ -191,7 +189,7 @@ add-zsh-hook chpwd auto_venv
 add-zsh-hook chpwd listfiles_dir
 
 # opencode
-export PATH=/home/yushi_61/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
 # keychain
 eval $(keychain -q --eval id_ed25519)
