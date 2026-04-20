@@ -62,6 +62,19 @@ return {
 				end,
 			})
 
+			vim.lsp.config("pyright", {
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							diagnosticMode = "workspace",
+							useLibraryCodeForTypes = true,
+							typeCheckingMode = "basic",
+						},
+					},
+				},
+			})
+
 			-- 4. Setup mason-lspconfig with automatic_enable
 			require("mason-lspconfig").setup({
 				ensure_installed = {
@@ -69,7 +82,7 @@ return {
 					"clangd",
 					"cssls",
 					"emmet_language_server",
-					"djlsp",
+					
 					"eslint",
 					"html",
 					"jsonls",
