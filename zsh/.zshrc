@@ -5,17 +5,19 @@ alias lt="eza --tree --icons -A"
 alias cat="bat"
 alias home="cd ~"
 alias c="clear"
-alias ora-install='podman run -d --name __ORACLE_PASSWORD__11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v __ORACLE_PASSWORD___data:/u01/app/__ORACLE_PASSWORD__ docker.io/wnameless/__ORACLE_PASSWORD__-xe-11g-r2'
-alias ora-start='podman start __ORACLE_PASSWORD__11g'
+alias ora-install='podman run -d --name oracle11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v oracle_data:/u01/app/oracle docker.io/wnameless/oracle-xe-11g-r2'
+alias ora-start='podman start oracle11g'
+alias ora-stop='podman stop oracle11g'
+ora-sql() {
+    read -s "?Enter Oracle password: " ora_pass && podman exec -it oracle11g bash -c "export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/$ora_pass"
+}
 alias mssql-start='podman start sql1'
 alias mssql-stop='podman stop sql1'
-alias mssql-sql='podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=__MSSQL_PASSWORD__" \
-   -p 1433:1433 --name sql1 --hostname sql1 \
-   -d \
-   mcr.microsoft.com/mssql/server:2022-latest
-ddb874fa9af40e4fe401e0f494b85d5f3f54cda2448561783953e961a22b23a2'
-alias ora-stop='podman stop __ORACLE_PASSWORD__11g'
-alias ora-sql='podman exec -it __ORACLE_PASSWORD__11g bash -c "export ORACLE_HOME=/u01/app/__ORACLE_PASSWORD__/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/__ORACLE_PASSWORD__"'
+mssql-sql() {
+    read -s "?Enter SA password: " sa_pass && podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_pass" \
+       -p 1433:1433 --name sql1 --hostname sql1 \
+       -d mcr.microsoft.com/mssql/server:2022-latest
+}
 alias android-on="sudo systemctl start waydroid-container && waydroid show-full-ui"
 alias android-off="waydroid session stop && sudo waydroid container stop && sudo systemctl stop waydroid-container"
 alias fix-audio="systemctl --user restart pipewire pipewire-pulse wireplumber"
