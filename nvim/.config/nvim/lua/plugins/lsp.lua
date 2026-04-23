@@ -82,7 +82,7 @@ return {
 					"clangd",
 					"cssls",
 					"emmet_language_server",
-					
+
 					"eslint",
 					"html",
 					"jsonls",
