@@ -237,7 +237,7 @@ bindsym $mod+r mode "resize"
 # install poweralertd
 # install cliphist
 # exec_always will launch the process everytime you reload sway
-exec copyq
+
 exec autotiling
 exec mako
 exec wlsunset -l 33.5 -L -7.6 
