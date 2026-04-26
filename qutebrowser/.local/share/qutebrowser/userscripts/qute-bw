@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Requires: rbw, fuzzel
+# Requires: bw (bitwarden CLI), fuzzel, jq
 
-SELECTION=$(rbw list | fuzzel --dmenu --prompt="Bitwarden: ")
+SELECTION=$(bw list items | jq -r '.[].name' | fuzzel --dmenu --prompt="Bitwarden: ")
 
 if [ -n "$SELECTION" ]; then
-    PASSWORD=$(rbw get "$SELECTION")
+    PASSWORD=$(bw get item "$SELECTION" | jq -r '.login.password')
     echo "insert-text $PASSWORD" >> "$QUTE_FIFO"
 fi
