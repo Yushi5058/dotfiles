@@ -18,8 +18,6 @@ selection-foreground = #232136
 window-padding-x = 10
 window-padding-y = 10
 
-# Performance
-threaded-rendering = true
 
 # Mouse
 copy-on-select = true
