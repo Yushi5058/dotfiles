@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # Requires: bw (bitwarden CLI), fuzzel, jq
 
+# Ensure we're unlocked
+if ! bw list items >/dev/null 2>&1; then
+    export BW_SESSION=$(bw unlock --raw)
+fi
+
 SELECTION=$(bw list items | jq -r '.[].name' | fuzzel --dmenu --prompt="Bitwarden: ")
 
 if [ -n "$SELECTION" ]; then
