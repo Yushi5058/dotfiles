@@ -202,7 +202,7 @@ bw-pass() {
         echo "Usage: bw-pass <name>"
         return 1
     fi
-    bw get item "$item" 2>/dev/null | jq -r '.login.password // empty'
+    bw get item "$item" 2>/dev/null | jq -r '"\(.login.username // "")\n\(.login.password // "")"'
 }
 
 
