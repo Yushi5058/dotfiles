@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm \
     go rust \
     bat eza fd ripgrep fzf \
     zsh starship \
-    foot \
+    ghostty \
     waybar mako sway swaylock swayidle \
     grim slurp wl-clipboard \
     brightnessctl playerctl \
@@ -52,7 +52,7 @@ yay -S --noconfirm \
 cd ~
 git clone https://github.com/Yushi5058/dotfiles.git
 cd dotfiles
-stow -v -t ~ bat btop foot fuzzel mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh
+stow -v -t ~ bat btop ghostty fuzzel mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh
 
 # Bitwarden CLI
 yay -S --noconfirm bitwarden
