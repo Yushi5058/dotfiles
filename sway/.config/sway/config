@@ -12,8 +12,8 @@ set $down j
 set $up k
 set $right l
 
-# install foot emulator
-set $term foot
+# install ghostty terminal
+set $term ghostty
 # install fuzzel
 set $menu fuzzel
 
