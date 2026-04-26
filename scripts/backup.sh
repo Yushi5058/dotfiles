@@ -1,42 +1,38 @@
 #!/bin/bash
 # Backup script for system migration
+# ⚠️ Run manually, don't commit sensitive data to git
 
-BACKUP_DIR="/media/backup"  # Change to your external drive/partition
+BACKUP_DIR="${1:-/media/backup}"  # Pass backup dir as arg
 
 echo "Starting backup to $BACKUP_DIR..."
-
 mkdir -p "$BACKUP_DIR"
 
 # Dotfiles
 echo "Backing up dotfiles..."
-cp -r ~/dotfiles "$BACKUP_DIR/" 2>/dev/null || echo "No dotfiles to backup"
+cp -r ~/dotfiles "$BACKUP_DIR/" 2>/dev/null || echo "No dotfiles"
 
 # Documents
 echo "Backing up documents..."
 cp -r ~/Documents "$BACKUP_DIR/" 2>/dev/null || echo "No Documents"
 
-# Downloads (optional - may be large)
-# cp -r ~/Downloads "$BACKUP_DIR/"
-
 # Pictures
 echo "Backing up pictures..."
 cp -r ~/Pictures "$BACKUP_DIR/" 2>/dev/null || echo "No Pictures"
 
-# Configs not in dotfiles
-echo "Backing up config files..."
-cp -r ~/.config/librewolf "$BACKUP_DIR/" 2>/dev/null
-cp -r ~/.cache/yay "$BACKUP_DIR/" 2>/dev/null
+# LibreWolf profile (non-sensitive: bookmarks, history, cookies)
+echo "Backing up LibreWolf profile..."
+cp -r ~/.librewolf "$BACKUP_DIR/librewolf" 2>/dev/null || echo "No LibreWolf"
 
-# SSH keys
-echo "Backing up SSH keys..."
-mkdir -p "$BACKUP_DIR/.ssh"
-cp -r ~/.ssh/* "$BACKUP_DIR/.ssh/" 2>/dev/null
-
-# Password store
-cp -r ~/.password-store "$BACKUP_DIR/" 2>/dev/null
-
-# Browser profiles
-cp -r ~/.librewolf "$BACKUP_DIR/" 2>/dev/null
+# Screenshots (if any)
+echo "Backing up screenshots..."
+cp -r ~/Screenshots "$BACKUP_DIR/" 2>/dev/null || echo "No Screenshots"
 
 echo "Backup complete!"
-du -sh "$BACKUP_DIR"
+echo "Size: $(du -sh "$BACKUP_DIR" 2>/dev/null)"
+
+echo ""
+echo "⚠️ MANUAL BACKUP NEEDED (not in this script):"
+echo "  - ~/.ssh/keys (keep private!)"
+echo "  - ~/.password-store (keep private!)"
+echo "  - Bitwarden vault (export from web vault as JSON)"
+echo "  - ~/Downloads (optional, may be large)"
