@@ -8,7 +8,7 @@ c.qt.args = [
     "disable-gpu",
 ]
 
-c.qt.process_model = "process-per-site"
+c.qt.chromium.process_model = "process-per-site"
 
 c.content.blocking.method = "adblock"
 c.content.autoplay = False
@@ -23,6 +23,5 @@ config.bind("xp", "set content.proxy http://127.0.0.1:8080/")
 config.bind("xP", "set content.proxy system")
 
 c.content.canvas_reading = False
-c.content.precedential_touch_events = False
-c.qt.workarounds.disable_accelerated_2d_canvas = True
+c.content.javascript.legacy_touch_events = False
 c.colors.webpage.darkmode.enabled = True
