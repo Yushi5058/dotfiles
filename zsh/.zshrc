@@ -195,4 +195,14 @@ export PATH=$HOME/.opencode/bin:$PATH
 # keychain
 eval $(keychain -q --eval id_ed25519)
 
+# bitwarden
+bw-pass() {
+    local item="$1"
+    if [ -z "$item" ]; then
+        echo "Usage: bw-pass <name>"
+        return 1
+    fi
+    bw get item "$item" 2>/dev/null | jq -r '.login.password // empty'
+}
+
 
