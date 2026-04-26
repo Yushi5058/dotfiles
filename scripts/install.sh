@@ -8,28 +8,24 @@ echo "Installing packages..."
 # Core development
 sudo pacman -S --noconfirm \
     git base-devel curl wget \
-    neovim python python-pip nodejs npm \
+    neovim python python-pip nodejs npm bun \
     go rust \
     bat eza fd ripgrep fzf \
     zsh starship \
     ghostty \
-    waybar mako sway swaylock swayidle \
+    waybar mako sway swaylock \
     grim slurp wl-clipboard \
     brightnessctl playerctl \
     wireplumber pipewire \
     wlsunset \
     autotiling \
     cliphist \
-    copyq \
     fuzzel \
     fastfetch \
     btop \
-    yazi \
-    zathura \
-    tmux \
-    ribosome \
-    nwg-look \
-    xdg-user-dirs
+    yazi azote zathura \
+    tmux thunar \
+    nwg-look
 
 # CTF tools
 sudo pacman -S --noconfirm \
@@ -37,24 +33,19 @@ sudo pacman -S --noconfirm \
     stegsolve radare2 \
     nmap netcat \
     hashcat john \
+    audacity sonic-visualizer \
     zsh \
     tmux
 
-# AUR packages (requires yay)
-yay -S --noconfirm \
+# AUR packages (requires paru)
+paru -S --noconfirm \
     librewolf \
     vesktop \
-    whatsie \
-    ghostty \
-    python-adblock
+    ghostty
 
 # Dotfiles
 cd ~
 git clone https://github.com/Yushi5058/dotfiles.git
 cd dotfiles
-stow -v -t ~ bat btop ghostty fuzzel mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh
 
-# Bitwarden CLI
-yay -S --noconfirm bitwarden
-
-echo "Done! Restart your system."
+echo "Done! Don't forget to use restow-all function."
