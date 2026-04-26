@@ -3,10 +3,8 @@
 # Font
 font-family = Maple Mono
 font-size = 16
-font-weight = 400
-font-features = zero
 
-# Theme - Rosé Pine Moon inspired
+# Theme - Rosé Pine Moon
 background = #232136
 foreground = #e0def4
 cursor-color = #c4a7e7
@@ -16,17 +14,11 @@ cursor-style = block
 selection-background = #3e8fb0
 selection-foreground = #232136
 
-# Scrollback
-scrollback = 10000
-
 # Window
 window-padding-x = 10
 window-padding-y = 10
-window-border-width = 0
-window-padding-color = background
 
 # Performance
-shell = /bin/zsh
 threaded-rendering = true
 
 # Mouse
