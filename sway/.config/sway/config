@@ -86,15 +86,12 @@ input type:touch {
     # Start your browser
     bindsym $mod+w exec qutebrowser
 
-# Web apps (Discord/WhatsApp) - scratchpad
+# Web apps (Discord/WhatsApp)
     exec --no-startup-id launch-webapp whatsapp https://web.whatsapp.com
     exec --no-startup-id launch-webapp discord https://discord.com/app
 
-    for_window [instance="qute-whatsapp"] move scratchpad, resize set 1200 800
-    for_window [instance="qute-discord"] move scratchpad, resize set 1200 800
-
-    bindsym $mod+Shift+w [instance="qute-whatsapp"] scratchpad show
-    bindsym $mod+Shift+d [instance="qute-discord"] scratchpad show
+    for_window [instance="qute-whatsapp"] resize set 1200 800
+    for_window [instance="qute-discord"] resize set 1200 800
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
