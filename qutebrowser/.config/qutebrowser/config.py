@@ -23,5 +23,4 @@ config.bind("xp", "set content.proxy http://127.0.0.1:8080/")
 config.bind("xP", "set content.proxy system")
 
 c.content.canvas_reading = False
-c.content.javascript.legacy_touch_events = False
 c.colors.webpage.darkmode.enabled = True
