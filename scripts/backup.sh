@@ -1,38 +1,23 @@
 #!/bin/bash
 # Backup script for system migration
-# ⚠️ Run manually, don't commit sensitive data to git
 
-BACKUP_DIR="${1:-/media/backup}"  # Pass backup dir as arg
+BACKUP_DIR="${1:-/media/backup}"
 
-echo "Starting backup to $BACKUP_DIR..."
+echo "Backing up to $BACKUP_DIR..."
 mkdir -p "$BACKUP_DIR"
 
-# Dotfiles
-echo "Backing up dotfiles..."
-cp -r ~/dotfiles "$BACKUP_DIR/" 2>/dev/null || echo "No dotfiles"
+# Dotfiles (GitHub, but backup anyway)
+cp -r ~/dotfiles "$BACKUP_DIR/" 2>/dev/null
 
 # Documents
-echo "Backing up documents..."
-cp -r ~/Documents "$BACKUP_DIR/" 2>/dev/null || echo "No Documents"
+cp -r ~/Documents "$BACKUP_DIR/" 2>/dev/null
 
-# Pictures
-echo "Backing up pictures..."
-cp -r ~/Pictures "$BACKUP_DIR/" 2>/dev/null || echo "No Pictures"
+# LibreWolf (bookmarks, history)
+cp -r ~/.librewolf "$BACKUP_DIR/librewolf" 2>/dev/null
 
-# LibreWolf profile (non-sensitive: bookmarks, history, cookies)
-echo "Backing up LibreWolf profile..."
-cp -r ~/.librewolf "$BACKUP_DIR/librewolf" 2>/dev/null || echo "No LibreWolf"
-
-# Screenshots (if any)
-echo "Backing up screenshots..."
-cp -r ~/Screenshots "$BACKUP_DIR/" 2>/dev/null || echo "No Screenshots"
-
-echo "Backup complete!"
-echo "Size: $(du -sh "$BACKUP_DIR" 2>/dev/null)"
+echo "Done! Size: $(du -sh "$BACKUP_DIR" 2>/dev/null)"
 
 echo ""
-echo "⚠️ MANUAL BACKUP NEEDED (not in this script):"
-echo "  - ~/.ssh/keys (keep private!)"
-echo "  - ~/.password-store (keep private!)"
-echo "  - Bitwarden vault (export from web vault as JSON)"
-echo "  - ~/Downloads (optional, may be large)"
+echo "Manual backup needed:"
+echo "  - ~/.ssh/keys"
+echo "  - Bitwarden (export from web vault)"
