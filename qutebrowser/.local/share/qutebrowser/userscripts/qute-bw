@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Requires: rbw, fuzzel
+
+SELECTION=$(rbw list | fuzzel --dmenu --prompt="Bitwarden: ")
+
+if [ -n "$SELECTION" ]; then
+    PASSWORD=$(rbw get "$SELECTION")
+    echo "insert-text $PASSWORD" >> "$QUTE_FIFO"
+fi

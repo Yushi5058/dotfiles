@@ -1,3 +1,4 @@
+[[ -f ~/.zshenv ]] && source ~/.zshenv
 # alias 
 alias ls="eza -A --icons"
 alias ll="eza -A --icons -l"
