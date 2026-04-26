@@ -87,8 +87,8 @@ input type:touch {
     bindsym $mod+w exec qutebrowser
 
 # Web apps (Discord/WhatsApp)
-    exec --no-startup-id launch-webapp whatsapp https://web.whatsapp.com
-    exec --no-startup-id launch-webapp discord https://discord.com/app
+    bindsym $mod+Shift+w exec launch-webapp whatsapp https://web.whatsapp.com
+    bindsym $mod+Shift+d exec launch-webapp discord https://discord.com/app
 
     for_window [instance="qute-whatsapp"] resize set 1200 800
     for_window [instance="qute-discord"] resize set 1200 800
