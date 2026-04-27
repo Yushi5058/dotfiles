@@ -1,68 +1,60 @@
 return {
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"williamboman/mason.nvim",
 		dependencies = {
-			{ "williamboman/mason.nvim" },
-			"neovim/nvim-lspconfig",
 			"nvim-mini/mini.extra",
-		},
-		keys = {
-			{
-				"gd",
-				function()
-					require("mini.extra").pickers.lsp({ scope = "definition" })
-				end,
-				desc = "Definition",
-			},
-			{
-				"gr",
-				function()
-					require("mini.extra").pickers.lsp({ scope = "references" })
-				end,
-				desc = "References",
-			},
-			{
-				"gi",
-				function()
-					require("mini.extra").pickers.lsp({ scope = "implementation" })
-				end,
-				desc = "Implementation",
-			},
-			{
-				"gt",
-				function()
-					require("mini.extra").pickers.lsp({ scope = "type_definition" })
-				end,
-				desc = "Type Definition",
-			},
-			{
-				"gs",
-				function()
-					require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-				end,
-				desc = "Symbols",
-			},
-
-			{ "ga", vim.lsp.buf.code_action, desc = "Action", mode = { "n", "x" } },
-			{ "gn", vim.lsp.buf.rename, desc = "Rename" },
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
-			-- 1. Setup Mason first
 			require("mason").setup()
 
-			-- 2. Import lspconfig to populate the server database
-			-- This prevents the "not a valid entry" errors
-			local lspconfig = require("lspconfig")
+			-- 1. Install all tools natively via mason-tool-installer
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					-- LSPs
+					"bash-language-server",
+					"clangd",
+					"css-lsp",
+					"emmet-language-server",
+					"eslint-lsp",
+					"html-lsp",
+					"json-lsp",
+					"marksman",
+					"sqlls",
+					"pyright",
+					"phpactor",
+					"ruff",
+					"tailwindcss-language-server",
+					"typescript-language-server",
+					"vue-language-server",
 
-			-- 3. Define custom configurations using the NEW native API
-			-- This replaces the old 'handlers' block
-			vim.lsp.config("eslint", {
+					-- Formatters & Linters
+					"prettierd",
+					"eslint_d",
+					"stylua",
+					"shfmt",
+					"php-cs-fixer",
+				},
+			})
+
+			-- 2. Define Custom Server Configurations (Neovim 0.12 API)
+
+			-- ESLINT
+			vim.lsp.config["eslint"] = {
+				cmd = { "vscode-eslint-language-server", "--stdio" },
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+				root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "package.json", ".git" },
 				on_attach = function(client)
 					client.server_capabilities.documentFormattingProvider = false
 				end,
-			})
+			}
+			vim.lsp.enable("eslint")
 
-			vim.lsp.config("pyright", {
+			-- PYRIGHT
+			vim.lsp.config["pyright"] = {
+				cmd = { "pyright-langserver", "--stdio" },
+				filetypes = { "python" },
+				root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
 				settings = {
 					python = {
 						analysis = {
@@ -73,31 +65,38 @@ return {
 						},
 					},
 				},
-			})
+			}
+			vim.lsp.enable("pyright")
 
-			-- 4. Setup mason-lspconfig with automatic_enable
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"bashls",
-					"clangd",
-					"cssls",
-					"emmet_language_server",
-
-					"eslint",
-					"html",
-					"jsonls",
-					"marksman",
-					"postgres_lsp",
-					"pyright",
-					"phpactor",
-					"ruff",
-					"tailwindcss",
-					"ts_ls",
-					"vue_ls",
+			-- 3. Enable Remaining Standard Servers Natively
+			local default_servers = {
+				bashls = { cmd = { "bash-language-server", "start" }, filetypes = { "sh" }, root_markers = { ".git" } },
+				clangd = {
+					cmd = { "clangd" },
+					filetypes = { "c", "cpp", "objc", "objcpp" },
+					root_markers = { "compile_commands.json", ".git" },
 				},
-				-- This automatically calls vim.lsp.enable() for installed servers
-				automatic_enable = true,
-			})
+				cssls = {
+					cmd = { "vscode-css-language-server", "--stdio" },
+					filetypes = { "css", "scss", "less" },
+					root_markers = { "package.json", ".git" },
+				},
+				html = {
+					cmd = { "vscode-html-language-server", "--stdio" },
+					filetypes = { "html" },
+					root_markers = { "package.json", ".git" },
+				},
+				ts_ls = {
+					cmd = { "typescript-language-server", "--stdio" },
+					filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+					root_markers = { "tsconfig.json", "package.json", ".git" },
+				},
+			}
+
+			for server, server_config in pairs(default_servers) do
+				vim.lsp.config[server] = server_config
+				vim.lsp.enable(server)
+			end
 		end,
 	},
 
@@ -149,20 +148,6 @@ return {
 				end,
 				mode = "v",
 				desc = "Extract Method",
-			},
-		},
-	},
-
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		opts = {
-			ensure_installed = {
-				"prettierd",
-				"eslint_d",
-				"stylua",
-				"shfmt",
-				"ruff",
-				"php-cs-fixer",
 			},
 		},
 	},
