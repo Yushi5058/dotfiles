@@ -46,7 +46,7 @@ local function client_supports_method(client, method, bufnr)
 	end
 	return client.server_capabilities[method] ~= nil
 end
-
+-- lsp highlight
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach-highlight", { clear = true }),
 	callback = function(event)
@@ -76,5 +76,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 		end
+	end,
+})
+-- Autocommand for LSP Keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+	callback = function(ev)
+		local map = function(keys, func, desc, mode)
+			mode = mode or "n"
+			vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = desc })
+		end
+
+		map("gd", function()
+			require("mini.extra").pickers.lsp({ scope = "definition" })
+		end, "Definition")
+		map("gr", function()
+			require("mini.extra").pickers.lsp({ scope = "references" })
+		end, "References")
+		map("gi", function()
+			require("mini.extra").pickers.lsp({ scope = "implementation" })
+		end, "Implementation")
+		map("gt", function()
+			require("mini.extra").pickers.lsp({ scope = "type_definition" })
+		end, "Type Definition")
+		map("gs", function()
+			require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+		end, "Symbols")
+
+		map("ga", vim.lsp.buf.code_action, "Action", { "n", "x" })
+		map("gn", vim.lsp.buf.rename, "Rename")
 	end,
 })
