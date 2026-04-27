@@ -25,7 +25,9 @@ sudo pacman -S --noconfirm \
     btop \
     yazi azote zathura \
     tmux thunar \
-    nwg-look
+    nwg-look \
+    bluetui impala \
+    dbeaver tree-sitter-cli
 
 # CTF tools
 sudo pacman -S --noconfirm \
@@ -35,13 +37,12 @@ sudo pacman -S --noconfirm \
     hashcat john \
     audacity sonic-visualizer \
     zsh \
-    tmux
+    tmux ghostty
 
 # AUR packages (requires paru)
 paru -S --noconfirm \
-    librewolf \
-    vesktop \
-    ghostty
+    librewolf-bin \
+    burpsuite
 
 # Dotfiles
 cd ~
