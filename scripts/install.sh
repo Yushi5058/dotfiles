@@ -35,7 +35,7 @@ sudo pacman -S --noconfirm \
 # CTF tools
 sudo pacman -S --noconfirm \
     pwntools binutils gdb ghidra binwalk foremost \
-    stegsolve radare2 \
+    radare2 \
     nmap openbsd-netcat \
     hashcat john \
     audacity sonic-visualiser \
@@ -49,6 +49,7 @@ sudo pacman -S --noconfirm \
 # AUR packages (requires paru)
 paru -S --noconfirm \
     librewolf-bin \
+    stegsolve \
     burpsuite \
     android-apktool-bin \
     bkcrack-bin \
