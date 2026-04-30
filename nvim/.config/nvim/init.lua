@@ -1,4 +1,4 @@
-require("config.lazy")
+require("config.options")   -- options first so timeoutlen etc. are set before plugins
+require("config.lazy")      -- bootstrap lazy + load plugins
 require("config.keymaps")
-require("config.options")
 require("config.autocmds")
