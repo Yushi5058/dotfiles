@@ -21,28 +21,15 @@ local config_dir = mason_path .. "/" .. os_config
 local lombok_path = mason_path .. "/lombok.jar"
 
 local project_root = jdtls.setup.find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+
 if not project_root then
-	return
+	-- Fallback to current directory for single files
+	project_root = vim.fn.getcwd()
 end
 
 -- Check if jdtls already running for this project
 local project_name = vim.fn.fnamemodify(project_root, ":p:h:t")
 local instance_key = "jdtls_" .. project_name
-
--- Check if we already have a client for this project
-local existing_client = nil
-local clients = vim.lsp.get_clients()
-for _, client in ipairs(clients) do
-	if client.name == "jdtls" and client.config.root_dir == project_root then
-		existing_client = client
-		break
-	end
-end
-
-if existing_client then
-	vim.lsp.buf_attach_client(0, existing_client.id)
-	return
-end
 
 local workspace_dir = home .. "/.cache/jdtls/workspace/" .. project_name
 
