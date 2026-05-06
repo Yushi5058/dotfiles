@@ -206,3 +206,5 @@ bw-pass() {
 }
 
 
+
+. "$HOME/.local/bin/env"
