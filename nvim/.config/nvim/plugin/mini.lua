@@ -2,6 +2,11 @@ require("lazyload").on_vim_enter(function()
   vim.pack.add({
     { src = "https://github.com/nvim-mini/mini.nvim" },
   })
+  vim.pack.add({
+    { src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
+  })
+
+  vim.cmd("colorscheme rose-pine-moon")
 
   require("mini.icons").setup()
   MiniIcons.mock_nvim_web_devicons()
@@ -26,6 +31,8 @@ require("lazyload").on_vim_enter(function()
   require("mini.cmdline").setup()
   require("mini.diff").setup()
   require("mini.git").setup()
+
+  require("mini.animate").setup()
 
   vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
 
