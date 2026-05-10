@@ -40,6 +40,5 @@ pdf_opener = [
 
 [open]
 prepend_rules = [
-    { name = "*.pdf", use = "pdf_opener" },
-    { mime = "application/pdf", use = "pdf_opener" },
+    { name = "*.pdf", mime = "application/pdf", use = "pdf_opener" },
 ]
