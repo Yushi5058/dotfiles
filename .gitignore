@@ -4,8 +4,9 @@
 *.sqlite
 *.lz4
 
-# neovim lazy lock
+# neovim
 nvim/.config/nvim/lazy-lock.json
+# nvim-pack-lock.json should be committed for cross-machine sync
 
 # librewolf profile data
 librewolf/.librewolf/*/
