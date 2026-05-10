@@ -1,8 +1,9 @@
-require("lazyload").on_vim_enter(function()
-  vim.pack.add({
-    { src = "https://github.com/stevearc/conform.nvim" },
-  })
+vim.pack.add({
+  { src = "https://github.com/stevearc/conform.nvim" },
+})
+vim.cmd("packadd conform.nvim")
 
+require("lazyload").on_vim_enter(function()
   require("conform").setup({
     formatters_by_ft = {
       lua = { "stylua" },
