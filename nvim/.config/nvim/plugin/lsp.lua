@@ -1,11 +1,13 @@
-require("lazyload").on_vim_enter(function()
-  vim.pack.add({
-    { src = "https://github.com/williamboman/mason.nvim" },
-  })
-  vim.pack.add({
-    { src = "https://github.com/neovim/nvim-lspconfig" },
-  })
+vim.pack.add({
+  { src = "https://github.com/williamboman/mason.nvim" },
+})
+vim.pack.add({
+  { src = "https://github.com/neovim/nvim-lspconfig" },
+})
+vim.cmd("packadd mason.nvim")
+vim.cmd("packadd nvim-lspconfig")
 
+require("lazyload").on_vim_enter(function()
   vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
   require("mason").setup()
 

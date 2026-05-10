@@ -1,8 +1,9 @@
-require("lazyload").on_vim_enter(function()
-  vim.pack.add({
-    { src = "https://github.com/folke/snacks.nvim" },
-  })
+vim.pack.add({
+  { src = "https://github.com/folke/snacks.nvim" },
+})
+vim.cmd("packadd snacks.nvim")
 
+require("lazyload").on_vim_enter(function()
   require("snacks").setup({
     picker = { enabled = true },
   })
