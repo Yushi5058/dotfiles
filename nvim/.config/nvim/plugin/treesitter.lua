@@ -1,8 +1,9 @@
-require("lazyload").on_vim_enter(function()
-  vim.pack.add({
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  })
+vim.pack.add({
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+})
 
+require("lazyload").on_vim_enter(function()
+  vim.cmd("packadd nvim-treesitter")
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
     sync_install = false,
