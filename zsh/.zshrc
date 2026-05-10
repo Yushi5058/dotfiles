@@ -195,16 +195,17 @@ export PATH=$HOME/.opencode/bin:$PATH
 # keychain
 eval $(keychain -q --eval id_ed25519)
 
-# bitwarden
-bw-pass() {
-    local item="$1"
-    if [ -z "$item" ]; then
-        echo "Usage: bw-pass <name>"
-        return 1
-    fi
-    bw get item "$item" 2>/dev/null | jq -r '"\(.login.username // "")\n\(.login.password // "")"'
-}
+
 
 
 
 . "$HOME/.local/bin/env"
+
+# pnpm
+export PNPM_HOME="/home/yushi_61/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
