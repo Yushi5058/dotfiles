@@ -66,9 +66,11 @@ input type:touchpad {
 
 input "2:14:ETPS/2_Elantech_TrackPoint" {
         events disabled
+        # events enabled
     }
 
 input type:touch {
+    # events enabled
     events disabled
 }
 #
