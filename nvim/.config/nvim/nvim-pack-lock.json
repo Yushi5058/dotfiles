@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "vim-wakatime": {
+      "rev": "24495fb7cc9613eaf0ce45540fb8d096a30d08e9",
+      "src": "https://github.com/wakatime/vim-wakatime"
+    }
+  }
+}
