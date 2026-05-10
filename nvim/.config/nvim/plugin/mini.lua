@@ -61,6 +61,5 @@ require("lazyload").on_vim_enter(function()
     { "<leader>fb", "<cmd>Pick buffers<cr>",    desc = "Buffers" },
     { "<leader>e", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, desc = "Explorer" },
     { "<leader>b", group = "database" },
-    { "<leader>S", group = "spectre/search" },
   })
 end)
