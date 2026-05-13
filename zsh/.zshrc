@@ -209,3 +209,5 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+# .zshrc
+# source <(tea completion zsh)
