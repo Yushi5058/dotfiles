@@ -5,7 +5,6 @@ $username\
 $directory\
 $git_branch\
 $git_status\
-$bun\
 $c\
 $cpp\
 $elixir\
@@ -73,11 +72,6 @@ style_user = "bg:overlay fg:iris"
 
 # --- Languages ---
 
-[bun]
-style = "bg:overlay fg:pine"
-format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
-disabled = false
-symbol = " "
 
 [c]
 style = "bg:overlay fg:pine"
