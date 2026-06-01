@@ -1,18 +1,24 @@
-# CachyOS Migration Notes
+# CachyOS DFIR Migration Guide
 
-## When to Migrate
-- Current root: 46.9GB / 60GB (78% full)
-- Consider migrating when root hits ~85%
+This guide covers migrating to a **ThinkPad X1 (16GB RAM)** running CachyOS,
+with a focus on DFIR (Digital Forensics & Incident Response) workflows.
 
-## Recommended Partition Layout (8GB RAM)
+DFIR-heavy tooling (Autopsy, Volatility, Sleuth Kit full suite, Wireshark, etc.)
+lives in a **Kali Linux VM** — the host stays lean, fast, and reproducible.
 
-| Partition | Size | Notes |
-|-----------|------|-------|
-| /boot/efi | 512MB | EFI System |
-| / | 80GB | Root (CachyOS + apps) |
-| /home | Rest (~100GB) | Files, CTF tools, projects |
+## Recommended Partition Layout (16GB RAM)
 
-> Skip swap, use zram (already configured in systemd/)
+ThinkPad X1 SSDs range from 256GB–1TB. Adjust accordingly.
+
+| Partition | Size    | Notes |
+|-----------|---------|-------|
+| /boot/efi | 512MB   | EFI System |
+| /         | 80GB    | Root (CachyOS + dev tools + daily apps) |
+| /home     | Rest    | Projects, disk images, memory dumps, VM disk images |
+
+> Skip swap — zram handles compression with 16GB RAM.
+> If you have a large SSD (>512GB), consider leaving unallocated space for
+> future dual-boot or dedicated forensic data partitions.
 
 ## Pre-Migration Backup
 
@@ -24,6 +30,7 @@
 5. **Password store**: `~/.password-store` (⚠️ Sensitive)
 6. **LibreWolf profile**: `~/.librewolf/` (Bookmarks, cookies, logins)
 7. **Bitwarden vault**: Export from web vault as JSON
+8. **Kali VM disk/images**: If migrating from an existing VM
 
 ### Commands
 ```bash
@@ -38,13 +45,14 @@ cp -r ~/.librewolf /media/backup/
 ### Do NOT Backup
 - `~/.cache/` (can be regenerated)
 - `~/Downloads/` (large, can redownload)
-- `~/.local/share/Steam/` (can redownload)
 
 ## Fresh Install Steps
 
 ### 1. Install CachyOS
 - Download from cachyos.org
 - Use recommended partition layout above
+- **Enable LUKS encryption** during install (DFIR work may involve handling
+  sensitive case data — encrypted at rest by default)
 
 ### 2. Clone Dotfiles
 ```bash
@@ -69,53 +77,178 @@ cp -r /media/backup/.librewolf ~/.librewolf
 - Bitwarden: `bw login yushi_61@proton.me` then `bw unlock`
 - SSH: Add keys back to `~/.ssh/`
 
-## Post-Install Checklist
-- [ ] Set up zram: `sudo systemctl enable --now systemd-zram-setup@zram0`
-- [ ] Configure LibreWolf with `librewolf.overrides.cfg`
-- [ ] Test waybar, sway, mako
-- [ ] Install AUR packages: `librewolf`, `ghostty`, `vesktop`
+### 6. Set Up Kali VM
+```bash
+# Using virt-manager / QEMU
+sudo pacman -S virt-manager qemu-desktop libvirt dnsmasq
+sudo systemctl enable --now libvirtd
 
-## ThinkPad X1 Notes
+# Create Kali VM with at least 8GB RAM + 64GB disk
+# Download ISO from kali.org
+virt-manager
+```
+
+## ThinkPad X1 (16GB) Notes
 
 ### Input Devices
 Run `swaymsg -t get_inputs` on first boot to identify new device IDs.
 The TrackPoint identifier will differ from the current Elantech one.
 
 Update `sway/.config/sway/config` with the correct IDs:
-- TrackPoint: likely `"TPPS/2 IBM TrackPoint"` or `"Synaptics TM3576-001"`
-- Touchpad: likely `"SYNA*"` or `"ELAN*"`
-- Touchscreen: only if your X1 model has one (most don't)
+- **TrackPoint**: likely `"TPPS/2 IBM TrackPoint"` or `"Synaptics TM3576-001"`
+- **Touchpad**: likely `"SYNA*"` or `"ELAN*"` — think about whether you want
+  palm detection (disable TrackPoint while typing) or both active
+- **Touchscreen**: most X1 models don't have one
+
+Suggested TrackPoint tuning for Sway:
+```
+input "TPPS/2 IBM TrackPoint" {
+    accel_profile custom
+    pointer_accel -0.4
+    scroll_method on_button_down
+    scroll_button 272   # middle mouse button
+}
+```
 
 ### Display Scaling
 X1 Carbon uses a 14" 16:10 panel. Common resolutions:
-- **1920x1200**: `output eDP-1 scale 1` (no scaling needed)
-- **2560x1600**: `output eDP-1 scale 1.25` or `1.5`
-- **3840x2400 (OLED)**: `output eDP-1 scale 2`
+
+| Resolution | Scaling | Notes |
+|------------|---------|-------|
+| 1920×1200  | `scale 1` | Sharp without scaling; good for terminal-heavy DFIR work |
+| 2560×1600  | `scale 1.25` or `1.5` | Crisp, more screen real estate |
+| 3840×2400  | `scale 2` | OLED — excellent for image analysis in forensics |
 
 Scaling affects Waybar, Fuzzel, Ghostty font sizes — adjust accordingly.
+For DFIR work (reading hex dumps, logs, timelines), **1920×1200 or 2560×1600**
+is often more practical than 4K (tiny text).
 
 ### Backlight
-Newer X1 models may use `intel_backlight` instead of `acpi_video0`.
-Verify with: `ls /sys/class/backlight/`
-The `brightnessctl` bindings should work either way.
+Newer X1 models use `intel_backlight`.
+Verify: `ls /sys/class/backlight/`
+`brightnessctl` bindings work either way.
 
 ### Audio
-ThinkPad X1 uses SOF (Sound Open Firmware).
-Ensure `sof-firmware` is installed for audio to work.
-Internal audio device name may change — update `wpctl` commands in Sway config if volume keys stop working.
+ThinkPad X1 uses SOF (Sound Open Firmware). The install script includes
+`sof-firmware`. If volume keys don't work after install, update the WirePlumber
+device name in `sway/.config/sway/config`.
 
 ### Battery
-Usually `BAT0`. Waybar battery module detects it automatically.
-If the X1 has >8GB RAM, update `zram-generator.conf`:
-- `zram-size = ram / 2` → `zram-size = ram / 3` for 16GB, or `ram / 4` for 32GB
+- Device: `BAT0`
+- Waybar module detects it automatically
+- With 16GB RAM, zram is plenty — set it conservatively:
 
-### General
-- **WiFi**: Intel WiFi works well with `iwlwifi` (in-kernel)
-- **Fingerprint**: Configurable with `fprintd` if desired
-- **Power profiles**: Use `power-profiles-daemon` or `tlp` for battery optimization
+```ini
+# systemd/.config/systemd/zram-generator.conf
+[zram0]
+zram-size = ram / 4
+compression-algorithm = zstd
+```
 
-## Optimizations for i5 7th Gen / 8GB RAM
-- Use zram for swap compression
-- LibreWolf: Limit processes to 2
-- Keep Discord/WhatsApp on phone
-- Use `zsh` with `starship` prompt
+### Power Management
+Enable battery-optimized profiles for the X1:
+```bash
+sudo systemctl enable --now power-profiles-daemon
+powerprofilesctl set power-saver   # on battery
+powerprofilesctl set performance   # plugged in (for DFIR processing)
+```
+
+### WiFi
+Intel WiFi (`iwlwifi`) works out of the box on all X1 models.
+
+### Fingerprint Reader
+ThinkPad X1 has a fingerprint reader. Set it up if desired:
+```bash
+fprintd-enroll
+# Then configure for sudo:
+sudo pam-auth-update --enable fprintd
+```
+
+### Thunderbolt / USB-C
+X1 uses USB-C/Thunderbolt for all external connections. Test your forensic
+write-blocker or USB device adapters. You may need `bolt` (Thunderbolt manager):
+```bash
+sudo pacman -S bolt
+```
+
+## DFIR-Focused Setup
+
+### Host Tools (on CachyOS)
+These live natively for quick analysis without spinning up the VM:
+
+```bash
+# File analysis
+sudo pacman -S xxd hexdump file tree
+
+# Disk/image mounting
+sudo pacman -S fuse2 fuse3 libewf afflib sleuthkit
+
+# Memory analysis light
+sudo pacman -S volatility3
+
+# Network
+sudo pacman -S nmap netcat-openbsd tcpdump
+
+# File carving / recovery (light)
+sudo pacman -S testdisk foremost
+
+# Metadata
+sudo pacman -S perl-image-exiftool
+
+# Hashing
+sudo pacman -S rhash xxhash
+
+# Archiving / compression forensics
+sudo pacman -S p7zip unrar unzip gzip bzip2 xz zstd
+
+# Log analysis
+sudo pacman -S lnav
+
+# Timeline / forensic file browsing
+# (use yazi / ncdu for exploring disk images)
+```
+
+### Kali VM Configuration
+All heavy DFIR tools belong here:
+
+```bash
+# Recommended Kali packages
+sudo apt install kali-tools-forensics kali-tools-reverse-engineering \
+    kali-tools-responder autopsys plaso dfir-okta
+```
+
+Give the VM:
+- **8GB RAM** (half your host)
+- **4+ CPU cores**
+- **64GB+ disk** (on a fast NVMe location)
+- **Bridged or host-only networking** depending on case needs
+
+### Storage Tips for DFIR
+- Keep case disk images on the host SSD for fast VM access
+- Use `qemu-img` with `qcow2` for the VM disk (compression, snapshots)
+- Create a dedicated `~/cases/` directory for case data
+- Consider an external NVMe enclosure for evidence drives
+
+### Sway Workspace Layout for DFIR
+Suggest re-mapping workspaces for forensic workflow:
+
+| Workspace | Purpose |
+|-----------|---------|
+| 1         | Terminal (shell, hex dump, CLI tools) |
+| 2         | Browser (research, threat intel) |
+| 3         | Kali VM (full screen) |
+| 4         | Notes / Obsidian (case notes) |
+| 5         | File manager / timeline viewer |
+
+## Post-Install Checklist
+- [ ] Update `zram-generator.conf` for 16GB (`ram / 4`)
+- [ ] Enable `power-profiles-daemon` and set up profiles
+- [ ] Configure TrackPoint / touchpad in Sway
+- [ ] Test display scaling (update Waybar font size if needed)
+- [ ] Verify brightness keys, volume keys, microphone mute
+- [ ] Set up `fprintd` if using fingerprint reader
+- [ ] Install virt-manager + libvirt and spin up Kali VM
+- [ ] Enable LUKS encryption (already set during install)
+- [ ] Configure `bolt` if using Thunderbolt devices
+- [ ] Import SSH keys and GPG keys
+- [ ] Test backup script: `./scripts/backup.sh`
