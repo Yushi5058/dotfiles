@@ -75,6 +75,45 @@ cp -r /media/backup/.librewolf ~/.librewolf
 - [ ] Test waybar, sway, mako
 - [ ] Install AUR packages: `librewolf`, `ghostty`, `vesktop`
 
+## ThinkPad X1 Notes
+
+### Input Devices
+Run `swaymsg -t get_inputs` on first boot to identify new device IDs.
+The TrackPoint identifier will differ from the current Elantech one.
+
+Update `sway/.config/sway/config` with the correct IDs:
+- TrackPoint: likely `"TPPS/2 IBM TrackPoint"` or `"Synaptics TM3576-001"`
+- Touchpad: likely `"SYNA*"` or `"ELAN*"`
+- Touchscreen: only if your X1 model has one (most don't)
+
+### Display Scaling
+X1 Carbon uses a 14" 16:10 panel. Common resolutions:
+- **1920x1200**: `output eDP-1 scale 1` (no scaling needed)
+- **2560x1600**: `output eDP-1 scale 1.25` or `1.5`
+- **3840x2400 (OLED)**: `output eDP-1 scale 2`
+
+Scaling affects Waybar, Fuzzel, Ghostty font sizes — adjust accordingly.
+
+### Backlight
+Newer X1 models may use `intel_backlight` instead of `acpi_video0`.
+Verify with: `ls /sys/class/backlight/`
+The `brightnessctl` bindings should work either way.
+
+### Audio
+ThinkPad X1 uses SOF (Sound Open Firmware).
+Ensure `sof-firmware` is installed for audio to work.
+Internal audio device name may change — update `wpctl` commands in Sway config if volume keys stop working.
+
+### Battery
+Usually `BAT0`. Waybar battery module detects it automatically.
+If the X1 has >8GB RAM, update `zram-generator.conf`:
+- `zram-size = ram / 2` → `zram-size = ram / 3` for 16GB, or `ram / 4` for 32GB
+
+### General
+- **WiFi**: Intel WiFi works well with `iwlwifi` (in-kernel)
+- **Fingerprint**: Configurable with `fprintd` if desired
+- **Power profiles**: Use `power-profiles-daemon` or `tlp` for battery optimization
+
 ## Optimizations for i5 7th Gen / 8GB RAM
 - Use zram for swap compression
 - LibreWolf: Limit processes to 2

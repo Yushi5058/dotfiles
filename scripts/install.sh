@@ -1,5 +1,5 @@
 #!/bin/bash
-# CachyOS install script for CTF/Development setup
+# CachyOS install script for Development setup
 
 set -e
 
@@ -32,29 +32,27 @@ sudo pacman -S --noconfirm \
     jless jq localsend ouch parallel \
     podman podman-compose ruff tldr tmate waydroid
 
-# CTF tools
+# ThinkPad X1 / Laptop support
 sudo pacman -S --noconfirm \
-    pwntools binutils gdb ghidra binwalk foremost \
-    radare2 \
-    nmap openbsd-netcat \
-    hashcat john \
-    audacity sonic-visualiser \
-    apk-tools checksec debtap \
-    fcrackzip upx hexedit socat \
-    jadx volatility3 ltrace strace \
-    perl-image-exiftool pwndbg \
-    sleuthkit testdisk sqlmap steghide \
-    wireshark-qt zbar icestorm-git iverilog
+    sof-firmware intel-ucode \
+    tlp power-profiles-daemon \
+    acpi acpid \
+    fprintd iio-sensor-proxy \
+    intel-media-driver libva-intel-driver \
+    vulkan-intel \
+    bluez bluez-utils \
+    pavucontrol \
+    man-db man-pages \
+    noto-fonts noto-fonts-emoji \
+    gnome-keyring libsecret \
+    xdg-desktop-portal xdg-desktop-portal-wlr \
+    unzip unrar p7zip \
+    exfatprogs ntfs-3g \
+    reflector
 
 # AUR packages (requires paru)
 paru -S --noconfirm \
     librewolf-bin \
-    stegsolve \
-    burpsuite \
-    android-apktool-bin \
-    bkcrack-bin \
-    cewl-git \
-    zsteg \
     zsh-antidote \
     vscodium-bin
 
