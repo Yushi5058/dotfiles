@@ -1,6 +1,6 @@
-# font
-# use nwg-look to control font-size
-# font pango:Hack Medium 20
+# Display manager: ly (install ly package, enable with: systemctl enable ly.service)
+# For cursor themes, list available: ls /usr/share/icons/
+# Font: use nwg-look to control font-size
 
 
 # variables
@@ -233,7 +233,6 @@ bindsym $mod+r mode "resize"
 # install poweralertd
 # install copyq
 # exec_always will launch the process everytime you reload sway
-# Cursor theme: install rose-pine-cursor from AUR
 
 exec autotiling
 exec mako
@@ -246,10 +245,8 @@ set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Rose-Pine'
     gsettings set $gnome-schema icon-theme 'Tela circle blue'
-    # install rose-pine-cursor from AUR
-    # find cursor theme name with: ls /usr/share/icons/
-    gsettings set $gnome-schema cursor-theme 'BreezeX-RoséPine'
-    # gsettings set $gnome-schema font-name 'Your font name'
+    gsettings set $gnome-schema cursor-theme 'BreezeX-RosePine-Linux'
+    gsettings set $gnome-schema font-name 'Ubuntu 11'
 }
 
 
