@@ -233,6 +233,7 @@ bindsym $mod+r mode "resize"
 # install poweralertd
 # install copyq
 # exec_always will launch the process everytime you reload sway
+# Cursor theme: install rose-pine-cursor from AUR
 
 exec autotiling
 exec mako
@@ -245,6 +246,8 @@ set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Rose-Pine'
     gsettings set $gnome-schema icon-theme 'Tela circle blue'
+    # install rose-pine-cursor from AUR
+    # find cursor theme name with: ls /usr/share/icons/
     gsettings set $gnome-schema cursor-theme 'BreezeX-RoséPine'
     # gsettings set $gnome-schema font-name 'Your font name'
 }
