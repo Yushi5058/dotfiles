@@ -58,7 +58,7 @@ cp -r ~/.librewolf /media/backup/
 ```bash
 git clone https://github.com/Yushi5058/dotfiles.git
 cd dotfiles
-stow -v -t ~ bat btop ghostty fuzzel mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh librewolf
+stow -v -t ~ bat btop discord fastfetch ghostty fuzzel mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh
 ```
 
 ### 3. Run Install Script
@@ -77,12 +77,17 @@ cp -r /media/backup/.librewolf ~/.librewolf
 - Bitwarden: `bw login yushi_61@proton.me` then `bw unlock`
 - SSH: Add keys back to `~/.ssh/`
 
-### 6. Set Up Kali VM
+### 6. Enable Services
 ```bash
-# Using virt-manager / QEMU
-sudo pacman -S virt-manager qemu-desktop libvirt dnsmasq
-sudo systemctl enable --now libvirtd
+# Display manager (replaces sddm)
+sudo systemctl enable --now ly
 
+# Virtualization (virt-manager already installed via install script)
+sudo systemctl enable --now libvirtd
+```
+
+### 7. Set Up Kali VM
+```bash
 # Create Kali VM with at least 8GB RAM + 64GB disk
 # Download ISO from kali.org
 virt-manager
@@ -247,8 +252,24 @@ Suggest re-mapping workspaces for forensic workflow:
 - [ ] Test display scaling (update Waybar font size if needed)
 - [ ] Verify brightness keys, volume keys, microphone mute
 - [ ] Set up `fprintd` if using fingerprint reader
-- [ ] Install virt-manager + libvirt and spin up Kali VM
+- [ ] Enable ly: `sudo systemctl enable --now ly`
+- [ ] Enable libvirtd: `sudo systemctl enable --now libvirtd`
+- [ ] Spin up Kali VM via virt-manager
 - [ ] Enable LUKS encryption (already set during install)
 - [ ] Configure `bolt` if using Thunderbolt devices
 - [ ] Import SSH keys and GPG keys
 - [ ] Test backup script: `./scripts/backup.sh`
+
+### Font & Cursor Reminders
+```bash
+# List available cursor themes
+ls /usr/share/icons/
+
+# Set cursor theme (in sway config exec_always block)
+gsettings set org.gnome.desktop.interface cursor-theme 'BreezeX-RosePine-Linux'
+
+# Set interface font
+gsettings set org.gnome.desktop.interface font-name 'Ubuntu 11'
+
+# Terminal font is set in ghostty config: font-family = Maple Mono
+```
