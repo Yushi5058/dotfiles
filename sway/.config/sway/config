@@ -68,7 +68,7 @@ input type:touchpad {
 # X1 Carbon (old): "2:14:ETPS/2_Elantech_TrackPoint"
 # X13 Yoga Gen 2:  "TPPS/2 IBM TrackPoint"
 input "TPPS/2 IBM TrackPoint" {
-        accel_profile custom
+        accel_profile adaptive
         pointer_accel -0.4
         scroll_method on_button_down
         scroll_button 272
@@ -247,12 +247,10 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 set $gnome-schema org.gnome.desktop.interface
 
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Rose-Pine'
-    gsettings set $gnome-schema icon-theme 'Tela circle blue'
-    gsettings set $gnome-schema cursor-theme 'BreezeX-RosePine-Linux'
-    gsettings set $gnome-schema font-name 'Ubuntu 11'
-}
+exec_always gsettings set $gnome-schema gtk-theme 'Rose-Pine'
+exec_always gsettings set $gnome-schema icon-theme 'Tela circle blue'
+exec_always gsettings set $gnome-schema cursor-theme 'BreezeX-RosePine-Linux'
+exec_always gsettings set $gnome-schema font-name 'Ubuntu 11'
 
 
 # Keybinding to open copyq

@@ -24,8 +24,11 @@ ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 
 ### Using the backup script
 ```bash
-# Mount USB drive
-sudo mkdir -p /mnt/usb && sudo mount /dev/sda /mnt/usb
+# Find your USB partition (usually /dev/sda1)
+lsblk
+
+# Mount it
+sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
 
 # Backup everything
 ./scripts/backup.sh /mnt/usb backup
@@ -57,7 +60,7 @@ sudo mkdir -p /mnt/usb && sudo mount /dev/sda /mnt/usb
 
 ### 2. Mount USB & Restore
 ```bash
-sudo mkdir -p /mnt/usb && sudo mount /dev/sda /mnt/usb
+sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
 ```
 
 ### 3. Clone Dotfiles
@@ -81,14 +84,12 @@ cd dotfiles
 ```
 
 ### 6. Enable Services
+Services (`ly`, `libvirtd`, `power-profiles-daemon`) are auto-enabled by the install script.
+This step is only needed if you skipped the install script or services failed to enable:
+
 ```bash
-# Display manager (replaces sddm)
-sudo systemctl enable --now ly
-
-# Virtualization (virt-manager already installed via install script)
+sudo systemctl enable --now ly@tty2
 sudo systemctl enable --now libvirtd
-
-# Power profiles
 sudo systemctl enable --now power-profiles-daemon
 ```
 
@@ -121,7 +122,7 @@ Suggested input config for the X13 Yoga:
 ```
 # TrackPoint — enable for scrolling
 input "TPPS/2 IBM TrackPoint" {
-    accel_profile custom
+    accel_profile adaptive
     pointer_accel -0.4
     scroll_method on_button_down
     scroll_button 272
@@ -149,8 +150,8 @@ input type:touch {
   - Usually `intel_backlight` — brightnessctl handles it fine
 - **Tablet mode**: The screen can fold 360°. Sway doesn't auto-detect this.
   If you want automatic rotation/disabling keyboard in tablet mode, see:
-  - `iio-sensor-proxy` (already in install script)
-  - `sway-auto-kb` or a custom udev rule
+   - `iio-sensor-proxy` (install with: `sudo pacman -S iio-sensor-proxy`)
+   - `sway-auto-kb` or a custom udev rule
 
 ### Yoga-Specific Features
 | Feature | Notes |
@@ -188,13 +189,6 @@ powerprofilesctl set performance   # plugged in
 - **WiFi**: Intel AX201 (WiFi 6, `iwlwifi`) — works out of the box
 - **Bluetooth**: Intel integrated, works with `bluez` + `blueman`
 
-### Fingerprint Reader
-X13 Yoga Gen 2 has a fingerprint reader (Synaptics). Set up with:
-```bash
-fprintd-enroll
-sudo pam-auth-update --enable fprintd
-```
-
 ### USB-C / Thunderbolt 4
 - 2× USB-C (Thunderbolt 4) + 2× USB-A (3.2)
 - HDMI 2.0 port
@@ -209,41 +203,6 @@ sudo pam-auth-update --enable fprintd
 - Layout: standard ISO/ANSI (verify yours)
 
 ## DFIR-Focused Setup
-
-### Host Tools (on CachyOS)
-These live natively for quick analysis without spinning up the VM:
-
-```bash
-# File analysis
-sudo pacman -S xxd hexdump file tree
-
-# Disk/image mounting
-sudo pacman -S fuse2 fuse3 libewf afflib sleuthkit
-
-# Memory analysis light
-sudo pacman -S volatility3
-
-# Network
-sudo pacman -S nmap netcat-openbsd tcpdump
-
-# File carving / recovery (light)
-sudo pacman -S testdisk foremost
-
-# Metadata
-sudo pacman -S perl-image-exiftool
-
-# Hashing
-sudo pacman -S rhash xxhash
-
-# Archiving / compression forensics
-sudo pacman -S p7zip unrar unzip gzip bzip2 xz zstd
-
-# Log analysis
-sudo pacman -S lnav
-
-# Timeline / forensic file browsing
-# (use yazi / ncdu for exploring disk images)
-```
 
 ### Kali VM Configuration
 All heavy DFIR tools belong here:
@@ -285,9 +244,8 @@ Suggest re-mapping workspaces for forensic workflow:
 - [ ] Verify brightness keys, volume keys, microphone mute
 - [ ] Test Wacom stylus — check with `xsetwacom list devices` or `libinput list-devices`
 - [ ] Test touchscreen — check with `libinput list-devices`
-- [ ] Set up `fprintd` if using fingerprint reader
-- [ ] Enable ly: `sudo systemctl enable --now ly`
-- [ ] Enable libvirtd: `sudo systemctl enable --now libvirtd`
+- [ ] Enable ly (already done by install.sh)
+- [ ] Enable libvirtd (already done by install.sh)
 - [ ] Spin up Kali VM via virt-manager
 - [ ] Enable LUKS encryption (already set during install)
 - [ ] Configure `bolt` if using Thunderbolt devices

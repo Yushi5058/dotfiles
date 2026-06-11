@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Define the dotfiles directory
-DOTFILES_DIR="$HOME/dotfiles"
+# Detect dotfiles root from script location (scripts/deploy.sh → parent dir)
+DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 # 1. Pre-flight check: Ensure stow is installed
 if ! command -v stow &>/dev/null; then

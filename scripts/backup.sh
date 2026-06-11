@@ -88,11 +88,11 @@ case "$MODE" in
         echo "[6/6] Package lists..."
         if [ -f "$BACKUP_DIR/pkglist.txt" ]; then
             echo "  pkglist.txt — install with:"
-            echo "  sudo pacman -S --needed --ask 32 - < $BACKUP_DIR/pkglist.txt"
+            echo "  sudo pacman -S --needed --noconfirm - < $BACKUP_DIR/pkglist.txt"
         fi
         if [ -f "$BACKUP_DIR/pkglist-aur.txt" ]; then
             echo "  pkglist-aur.txt — install with:"
-            echo "  paru -S --needed --skipreview - < $BACKUP_DIR/pkglist-aur.txt"
+            echo "  paru -S --needed --skipreview --noconfirm - < $BACKUP_DIR/pkglist-aur.txt"
         fi
 
         echo ""
