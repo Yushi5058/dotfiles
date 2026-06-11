@@ -1,81 +1,84 @@
-# CachyOS DFIR Migration Guide
+# CachyOS Migration Guide — ThinkPad X13 Yoga
 
-This guide covers migrating to a **ThinkPad X1 (16GB RAM)** running CachyOS,
-with a focus on DFIR (Digital Forensics & Incident Response) workflows.
+This guide covers migrating to a **ThinkPad X13 Yoga Gen 2 (i5-1145G7, 16GB RAM)**
+running CachyOS, with a focus on DFIR (Digital Forensics & Incident Response) workflows.
 
 DFIR-heavy tooling (Autopsy, Volatility, Sleuth Kit full suite, Wireshark, etc.)
 lives in a **Kali Linux VM** — the host stays lean, fast, and reproducible.
 
 ## Recommended Partition Layout (16GB RAM)
 
-ThinkPad X1 SSDs range from 256GB–1TB. Adjust accordingly.
+ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 
 | Partition | Size    | Notes |
 |-----------|---------|-------|
 | /boot/efi | 512MB   | EFI System |
 | /         | 80GB    | Root (CachyOS + dev tools + daily apps) |
-| /home     | Rest    | Projects, disk images, memory dumps, VM disk images |
+| /home     | ~160GB  | Projects, disk images, VMs |
 
 > Skip swap — zram handles compression with 16GB RAM.
-> If you have a large SSD (>512GB), consider leaving unallocated space for
+> If you upgrade the SSD, consider leaving unallocated space for
 > future dual-boot or dedicated forensic data partitions.
 
 ## Pre-Migration Backup
 
-### What to Backup Manually
-1. **Dotfiles**: Already in GitHub
-2. **Documents**: `~/Documents`
-3. **Pictures**: `~/Pictures`
-4. **SSH keys**: `~/.ssh/` (⚠️ Keep private, don't share)
-5. **Password store**: `~/.password-store` (⚠️ Sensitive)
-6. **LibreWolf profile**: `~/.librewolf/` (Bookmarks, cookies, logins)
-7. **Bitwarden vault**: Export from web vault as JSON
-8. **Kali VM disk/images**: If migrating from an existing VM
-
-### Commands
+### Using the backup script
 ```bash
-# Backup to external drive
-mkdir /media/backup
-cp -r ~/Documents /media/backup/
-cp -r ~/Pictures /media/backup/
-cp -r ~/.librewolf /media/backup/
-# Export Bitwarden: Web Vault → Settings → Export → JSON
+# Mount USB drive
+sudo mkdir -p /mnt/usb && sudo mount /dev/sda /mnt/usb
+
+# Backup everything
+./scripts/backup.sh /mnt/usb backup
 ```
 
-### Do NOT Backup
-- `~/.cache/` (can be regenerated)
-- `~/Downloads/` (large, can redownload)
+### What this backs up
+| Item | Path | Notes |
+|------|------|-------|
+| Dotfiles | `~/dotfiles` | Also on GitHub |
+| Documents | `~/Documents` | |
+| Pictures | `~/Pictures` | |
+| LibreWolf | `~/.librewolf` | Bookmarks, history, passwords |
+| SSH keys | `~/.ssh` | ⚠️ Sensitive |
+| GPG keys | `~/.gnupg` | ⚠️ Sensitive |
+| Passwords | `~/.password-store` | ⚠️ Sensitive |
+| Package list | | `pkglist.txt` + `pkglist-aur.txt` |
+
+### Manual only
+- **Bitwarden vault**: Export from web vault as JSON
+- **Kali VM disk/images**: If migrating from an existing VM
 
 ## Fresh Install Steps
 
 ### 1. Install CachyOS
 - Download from cachyos.org
 - Use recommended partition layout above
-- **Enable LUKS encryption** during install (DFIR work may involve handling
-  sensitive case data — encrypted at rest by default)
+- **Enable LUKS encryption** during install
+- When the installer asks about kernel variants, pick **linux-cachyos** (default)
 
-### 2. Clone Dotfiles
+### 2. Mount USB & Restore
+```bash
+sudo mkdir -p /mnt/usb && sudo mount /dev/sda /mnt/usb
+```
+
+### 3. Clone Dotfiles
 ```bash
 git clone https://github.com/Yushi5058/dotfiles.git
 cd dotfiles
-stow -v -t ~ bat btop discord fastfetch ghostty fuzzel mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh
+./scripts/backup.sh /mnt/usb restore
 ```
 
-### 3. Run Install Script
+### 4. Run Install Script
 ```bash
 cd dotfiles
 chmod +x scripts/install.sh
 ./scripts/install.sh
 ```
 
-### 4. Restore Browser Profile
+### 5. Deploy Dotfiles
 ```bash
-cp -r /media/backup/.librewolf ~/.librewolf
+cd dotfiles
+./scripts/deploy.sh
 ```
-
-### 5. Login
-- Bitwarden: `bw login yushi_61@proton.me` then `bw unlock`
-- SSH: Add keys back to `~/.ssh/`
 
 ### 6. Enable Services
 ```bash
@@ -84,6 +87,9 @@ sudo systemctl enable --now ly
 
 # Virtualization (virt-manager already installed via install script)
 sudo systemctl enable --now libvirtd
+
+# Power profiles
+sudo systemctl enable --now power-profiles-daemon
 ```
 
 ### 7. Set Up Kali VM
@@ -93,55 +99,76 @@ sudo systemctl enable --now libvirtd
 virt-manager
 ```
 
-## ThinkPad X1 (16GB) Notes
+## ThinkPad X13 Yoga Gen 2 (i5-1145G7, 16GB) Notes
+
+### CPU / iGPU
+- **Intel i5-1145G7** — Tiger Lake UP3, 4C/8T, up to 4.4 GHz
+- **iGPU**: Intel Iris Xe (96 EU) — drives the internal display
+- Install includes: `intel-media-driver`, `libva-intel-driver`, `vulkan-intel`
 
 ### Input Devices
-Run `swaymsg -t get_inputs` on first boot to identify new device IDs.
-The TrackPoint identifier will differ from the current Elantech one.
+Run `swaymsg -t get_inputs` on first boot to identify device IDs.
+Expected identifiers for the X13 Yoga Gen 2:
 
-Update `sway/.config/sway/config` with the correct IDs:
-- **TrackPoint**: likely `"TPPS/2 IBM TrackPoint"` or `"Synaptics TM3576-001"`
-- **Touchpad**: likely `"SYNA*"` or `"ELAN*"` — think about whether you want
-  palm detection (disable TrackPoint while typing) or both active
-- **Touchscreen**: most X1 models don't have one
+- **TrackPoint**: `"TPPS/2 IBM TrackPoint"` or similar
+- **Touchpad**: `"SYNA"` or `"ELAN"` prefix — X13 Yoga typically uses Synaptics
+- **Touchscreen**: `"Wacom"` or `"ELAN"` touchscreen — **X13 Yoga has one!**
+- **Stylus**: Wacom AES pen (stored in the garaged silo on the right side)
 
-Suggested TrackPoint tuning for Sway:
+Update `sway/.config/sway/config` with the correct IDs after install.
+
+Suggested input config for the X13 Yoga:
 ```
+# TrackPoint — enable for scrolling
 input "TPPS/2 IBM TrackPoint" {
     accel_profile custom
     pointer_accel -0.4
     scroll_method on_button_down
-    scroll_button 272   # middle mouse button
+    scroll_button 272
+}
+
+# Touchpad
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    pointer_accel 0.2
+}
+
+# Touchscreen — disabled by default to avoid accidental input
+input type:touch {
+    events disabled
 }
 ```
 
-### Display Scaling
-X1 Carbon uses a 14" 16:10 panel. Common resolutions:
+### Display
+- **13.3" 16:10 WUXGA (1920×1200)** touchscreen (also available as 2560×1600)
+- **Touch + digitizer**: Wacom AES, garaged stylus
+- **Scaling**: `scale 1` works well at 1920×1200, or `scale 1.25` at 2560×1600
+- **Backlight**: Verify with `ls /sys/class/backlight/`
+  - Usually `intel_backlight` — brightnessctl handles it fine
+- **Tablet mode**: The screen can fold 360°. Sway doesn't auto-detect this.
+  If you want automatic rotation/disabling keyboard in tablet mode, see:
+  - `iio-sensor-proxy` (already in install script)
+  - `sway-auto-kb` or a custom udev rule
 
-| Resolution | Scaling | Notes |
-|------------|---------|-------|
-| 1920×1200  | `scale 1` | Sharp without scaling; good for terminal-heavy DFIR work |
-| 2560×1600  | `scale 1.25` or `1.5` | Crisp, more screen real estate |
-| 3840×2400  | `scale 2` | OLED — excellent for image analysis in forensics |
-
-Scaling affects Waybar, Fuzzel, Ghostty font sizes — adjust accordingly.
-For DFIR work (reading hex dumps, logs, timelines), **1920×1200 or 2560×1600**
-is often more practical than 4K (tiny text).
-
-### Backlight
-Newer X1 models use `intel_backlight`.
-Verify: `ls /sys/class/backlight/`
-`brightnessctl` bindings work either way.
+### Yoga-Specific Features
+| Feature | Notes |
+|---------|-------|
+| 360° hinge | Screen folds flat for tent/tablet/stand modes |
+| Wacom AES stylus | Garaged on the right side. Uses Wacom drivers |
+| Touchscreen | `Wacom` or `ELAN` touch input |
+| Tablet mode switch | Detected via `iio-sensor-proxy` — you may want to bind it |
+| Privacy shutter | Physical ThinkShutter on the webcam |
 
 ### Audio
-ThinkPad X1 uses SOF (Sound Open Firmware). The install script includes
-`sof-firmware`. If volume keys don't work after install, update the WirePlumber
-device name in `sway/.config/sway/config`.
+Uses SOF (Sound Open Firmware). The install script includes `sof-firmware`.
+If volume keys don't work, update the WirePlumber device name.
 
 ### Battery
 - Device: `BAT0`
-- Waybar module detects it automatically
-- With 16GB RAM, zram is plenty — set it conservatively:
+- Waybar detects it automatically
+- With 16GB RAM, zram setting:
 
 ```ini
 # systemd/.config/systemd/zram-generator.conf
@@ -151,30 +178,35 @@ compression-algorithm = zstd
 ```
 
 ### Power Management
-Enable battery-optimized profiles for the X1:
 ```bash
 sudo systemctl enable --now power-profiles-daemon
 powerprofilesctl set power-saver   # on battery
-powerprofilesctl set performance   # plugged in (for DFIR processing)
+powerprofilesctl set performance   # plugged in
 ```
 
-### WiFi
-Intel WiFi (`iwlwifi`) works out of the box on all X1 models.
+### WiFi / Bluetooth
+- **WiFi**: Intel AX201 (WiFi 6, `iwlwifi`) — works out of the box
+- **Bluetooth**: Intel integrated, works with `bluez` + `blueman`
 
 ### Fingerprint Reader
-ThinkPad X1 has a fingerprint reader. Set it up if desired:
+X13 Yoga Gen 2 has a fingerprint reader (Synaptics). Set up with:
 ```bash
 fprintd-enroll
-# Then configure for sudo:
 sudo pam-auth-update --enable fprintd
 ```
 
-### Thunderbolt / USB-C
-X1 uses USB-C/Thunderbolt for all external connections. Test your forensic
-write-blocker or USB device adapters. You may need `bolt` (Thunderbolt manager):
-```bash
-sudo pacman -S bolt
-```
+### USB-C / Thunderbolt 4
+- 2× USB-C (Thunderbolt 4) + 2× USB-A (3.2)
+- HDMI 2.0 port
+- Headphone jack (3.5mm combo)
+- MicroSD card reader
+- Smart card reader (optional)
+- Drivers: `bolt` for Thunderbolt management (install with: `sudo pacman -S bolt`)
+
+### Keyboard
+- 6-row, backlit, spill-resistant
+- TrackPoint with 3 physical buttons above the touchpad
+- Layout: standard ISO/ANSI (verify yours)
 
 ## DFIR-Focused Setup
 
@@ -251,6 +283,8 @@ Suggest re-mapping workspaces for forensic workflow:
 - [ ] Configure TrackPoint / touchpad in Sway
 - [ ] Test display scaling (update Waybar font size if needed)
 - [ ] Verify brightness keys, volume keys, microphone mute
+- [ ] Test Wacom stylus — check with `xsetwacom list devices` or `libinput list-devices`
+- [ ] Test touchscreen — check with `libinput list-devices`
 - [ ] Set up `fprintd` if using fingerprint reader
 - [ ] Enable ly: `sudo systemctl enable --now ly`
 - [ ] Enable libvirtd: `sudo systemctl enable --now libvirtd`
@@ -258,7 +292,7 @@ Suggest re-mapping workspaces for forensic workflow:
 - [ ] Enable LUKS encryption (already set during install)
 - [ ] Configure `bolt` if using Thunderbolt devices
 - [ ] Import SSH keys and GPG keys
-- [ ] Test backup script: `./scripts/backup.sh`
+- [ ] Test backup: `./scripts/backup.sh /mnt/usb backup`
 
 ### Font & Cursor Reminders
 ```bash
