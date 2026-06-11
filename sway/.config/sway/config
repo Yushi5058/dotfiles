@@ -64,13 +64,18 @@ input type:touchpad {
     pointer_accel 0.2
 }
 
-input "2:14:ETPS/2_Elantech_TrackPoint" {
-        events disabled
-        # events enabled
+# TrackPoint — identify with: swaymsg -t get_inputs
+# X1 Carbon (old): "2:14:ETPS/2_Elantech_TrackPoint"
+# X13 Yoga Gen 2:  "TPPS/2 IBM TrackPoint"
+input "TPPS/2 IBM TrackPoint" {
+        accel_profile custom
+        pointer_accel -0.4
+        scroll_method on_button_down
+        scroll_button 272
     }
 
 input type:touch {
-    # events enabled
+    # events enabled (enable if you want touchscreen)
     events disabled
 }
 #

@@ -6,7 +6,7 @@ set -e
 echo "Installing packages..."
 
 # Core development & Daily use
-sudo pacman -S --noconfirm \
+sudo pacman -S --noconfirm --needed --ask 32 \
     git base-devel curl wget \
     neovim python python-pip nodejs npm \
     go rust zig \
@@ -26,7 +26,7 @@ sudo pacman -S --noconfirm \
     yazi azote zathura zathura-pdf-mupdf \
     tmux thunar \
     nwg-look \
-    bluetui impala \
+    bluetui \
     dbeaver tree-sitter-cli \
     atuin croc git-delta github-cli \
     jless jq lazygit localsend ouch parallel \
@@ -38,8 +38,8 @@ sudo pacman -S --noconfirm \
     qt5-wayland qt6-wayland qt5ct qt6ct kvantum kvantum-qt5 \
     udiskie
 
-# ThinkPad X1 / Laptop support
-sudo pacman -S --noconfirm \
+# ThinkPad / Laptop support (X13 Yoga, X1 Carbon, etc.)
+sudo pacman -S --noconfirm --needed --ask 32 \
     sof-firmware intel-ucode \
     tlp power-profiles-daemon \
     acpi acpid \
@@ -54,27 +54,29 @@ sudo pacman -S --noconfirm \
     xdg-desktop-portal xdg-desktop-portal-wlr \
     unzip unrar p7zip \
     exfatprogs ntfs-3g \
-    reflector
+    reflector \
+    iwd wireless_tools
 
 # Fonts
-sudo pacman -S --noconfirm \
+sudo pacman -S --noconfirm --needed --ask 32 \
     ttf-jetbrains-mono-nerd \
     ttf-ubuntu-font-family \
     ttf-font-awesome \
     woff2-font-awesome
 
 # Virtualization
-sudo pacman -S --noconfirm \
-    virt-manager libvirt
+sudo pacman -S --noconfirm --needed --ask 32 \
+    virt-manager libvirt qemu-desktop edk2-ovmf dnsmasq
 
 # AUR packages (requires paru)
-paru -S --noconfirm \
+paru -S --noconfirm --skipreview --removemake --needed \
     librewolf-bin \
     zsh-antidote \
     vscodium-bin \
     swaylock-effects-git \
     rose-pine-cursor \
-    maplemono-ttf
+    maplemono-ttf \
+    impala
 
 # Dotfiles
 cd ~
