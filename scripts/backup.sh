@@ -49,10 +49,13 @@ case "$MODE" in
         echo "  - ~/.password-store      (⚠️ sensitive)"
         echo "  - Package lists          (pkglist.txt, pkglist-aur.txt)"
         echo ""
-        echo "Manual steps on new laptop:"
+        echo "Restore options on new laptop:"
+        echo "  USB:    ./scripts/backup.sh /mnt/usb restore"
+        echo "  Net:    ./scripts/transfer.sh receive user@<old-laptop-ip>:/mnt/usb"
+        echo ""
+        echo "Then:"
         echo "  1. sudo ./scripts/install.sh"
-        echo "  2. ./scripts/backup.sh /mnt/usb restore"
-        echo "  3. ./scripts/deploy.sh"
+        echo "  2. deploy: ./scripts/deploy.sh"
         ;;
 
     restore)

@@ -58,9 +58,19 @@ sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
 - **Enable LUKS encryption** during install
 - When the installer asks about kernel variants, pick **linux-cachyos** (default)
 
-### 2. Mount USB & Restore
+### 2. Transfer files from old laptop
+
+**Option A — USB drive**
 ```bash
+# On this laptop: mount the USB
 sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
+```
+
+**Option B — Network (rsync over SSH)**
+```bash
+# On the old laptop: get its IP with `ip a`
+# Then on this laptop: pull files over the network
+./scripts/transfer.sh receive user@<old-laptop-ip>:/home/user
 ```
 
 ### 3. Clone Dotfiles
