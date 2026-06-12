@@ -111,7 +111,7 @@ install_aur "AUR: Sway extras" \
     autotiling nwg-look wl-clip-persist swaylock-effects-git tela-circle-icon-theme poweralertd
 
 install_aur "AUR: Apps" \
-    bluetui discord impala librewolf-bin tea-cli vscodium-bin
+    bluetui discord impala librewolf-bin tea vscodium-bin
 
 install_aur "AUR: Shell & fonts" \
     rose-pine-cursor maplemono-ttf
@@ -124,11 +124,11 @@ if [[ "$(getent passwd "$TARGET_USER" | cut -d: -f7)" != "$(which zsh)" ]]; then
 fi
 
 # Dotfiles — just pull latest if inside the repo, otherwise clone fresh
+TARGET_USER="${SUDO_USER:-$USER}"
 if git -C "$(dirname "$0")" rev-parse --git-dir &>/dev/null; then
-    git -C "$(dirname "$0")" pull
+    sudo -u "$TARGET_USER" git -C "$(dirname "$0")" pull
 else
-    cd ~
-    git clone https://codeberg.org/yushi_61/dotfiles.git ~/dotfiles
+    sudo -u "$TARGET_USER" git clone https://codeberg.org/yushi_61/dotfiles.git "/home/$TARGET_USER/dotfiles"
 fi
 
 # Enable services
