@@ -37,7 +37,8 @@ You're good to go!
 - **System**: ly, earlyoom, zram-generator, pipewire
 - **Virt**: virt-manager, libvirt, qemu-desktop
 - **Browser**: librewolf-bin (AUR)
-- **Exts**: uBlock Origin, SponsorBlock, Bitwarden, Auto Tab Discard, Unhook, Voyager, NextDNS, Firefox Color
+- **Exts**: uBlock Origin, SponsorBlock, Bitwarden, Auto Tab Discard, Unhook, Voyager, Firefox Color
+- **DNS**: NextDNS via systemd-resolved
 
 ### AUR
 - librewolf-bin, vscodium-bin, swaylock-effects-git, rose-pine-cursor, maplemono-ttf (Maple Mono)
@@ -63,4 +64,16 @@ sudo systemctl restart systemd-resolved
 sudo resolvectl flush-caches
 
 _Note:_ Things might be all over the place. So maybe is it insane in the end?
+
+### NextDNS Setup
+
+Configure NextDNS via systemd-resolved with your config URL:
+
+```bash
+# Replace <config-id> with your NextDNS config ID
+sudo resolvectl dns eth0 45.90.28.0 45.90.30.0
+sudo resolvectl domain eth0 ~.
+sudo resolvectl dnsoverhttps eth0 https://<config-id>.dns.nextdns.io
+sudo systemctl restart systemd-resolved
+```
 
