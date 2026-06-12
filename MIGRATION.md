@@ -30,13 +30,19 @@ ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 | GPG keys | `~/.gnupg` | `./scripts/migrate.sh` |
 | LibreWolf | `~/.config/librewolf/` | Copy manually (profile not in migrate.sh) |
 | Passwords | `~/.password-store` | Copy manually or use `migrate.sh` + add it |
-| Bitwarden vault | | Export from web vault as JSON |
 | Kali VM disk | | Copy VM image manually |
 | Package list | | `pacman -Qq > pkglist.txt` |
 
+### LibreWolf Extensions
+- **uBlock Origin** — ad/tracker blocking
+- **SponsorBlock** — skip sponsored segments on YouTube
+- **Bitwarden** — password manager
+- **Auto Tab Discard** — automatic tab suspension
+- **Unhook** — clean YouTube UI
+- **Voyager** — Lemmy client
+
 ### Manual only
 - **LibreWolf profile**: Lives in `~/.config/librewolf/` — copy it separately if needed
-- **Bitwarden vault**: Export from web vault as JSON
 - **Kali VM disk/images**: If migrating from an existing VM
 
 ## Fresh Install Steps
