@@ -16,7 +16,7 @@ configuration.
 
 ## Instructions
 _Clone the repo_ : 
-`$ git clone https://github.com/Yushi5058/dotfiles.git`
+`$ git clone https://codeberg.org/yushi_61/dotfiles.git`
 
 _Use restow-all zsh function_: 
 `$ restow-all`

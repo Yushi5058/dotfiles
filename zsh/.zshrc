@@ -32,6 +32,9 @@ alias -s html="open"
 alias zcp='zmv -C'  # Copy with patterns
 alias zln='zmv -L'  # Link with patterns
 
+# English date format (override Arabic system locale)
+export LC_TIME=en_US.UTF-8
+
 # Add local binaries to PATH
 export PATH="$HOME/.local/bin:$HOME/.symfony5/bin:$HOME/.cargo/bin:$PATH"
 
@@ -130,7 +133,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-. "$HOME/.atuin/bin/env"
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
 
@@ -199,7 +202,7 @@ eval $(keychain -q --eval id_ed25519)
 
 
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # pnpm
 export PNPM_HOME="/home/yushi_61/.local/share/pnpm"

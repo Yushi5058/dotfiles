@@ -58,9 +58,10 @@ install_pacman "Sway environment" \
 install_pacman "CLI tools" \
     bat eza fd ripgrep fzf \
     fastfetch btop \
+    keychain \
     atuin croc git-delta github-cli \
     jless jq lazygit ouch parallel \
-    tldr tmux zoxide
+    p7zip tldr tmux zoxide
 
 install_pacman "File managers & utilities" \
     yazi azote zathura zathura-pdf-mupdf thunar
@@ -110,7 +111,7 @@ install_aur "AUR: Sway extras" \
     autotiling nwg-look wl-clip-persist swaylock-effects-git tela-circle-icon-theme poweralertd
 
 install_aur "AUR: Apps" \
-    bluetui impala librewolf-bin vscodium-bin
+    bluetui discord impala librewolf-bin tea-cli vscodium-bin
 
 install_aur "AUR: Shell & fonts" \
     rose-pine-cursor maplemono-ttf
@@ -127,7 +128,7 @@ if git -C "$(dirname "$0")" rev-parse --git-dir &>/dev/null; then
     git -C "$(dirname "$0")" pull
 else
     cd ~
-    git clone https://github.com/Yushi5058/dotfiles.git ~/dotfiles
+    git clone https://codeberg.org/yushi_61/dotfiles.git ~/dotfiles
 fi
 
 # Enable services
