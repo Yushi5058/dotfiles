@@ -37,7 +37,7 @@ You're good to go!
 - **System**: ly, earlyoom, zram-generator, pipewire
 - **Virt**: virt-manager, libvirt, qemu-desktop
 - **Browser**: librewolf-bin (AUR)
-- **Exts**: uBlock Origin, SponsorBlock, Bitwarden, Auto Tab Discard, Unhook, Voyager
+- **Exts**: uBlock Origin, SponsorBlock, Bitwarden, Auto Tab Discard, Unhook, Voyager, NextDNS, Firefox Color
 
 ### AUR
 - librewolf-bin, vscodium-bin, swaylock-effects-git, rose-pine-cursor, maplemono-ttf (Maple Mono)
