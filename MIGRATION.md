@@ -20,33 +20,22 @@ ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 > If you upgrade the SSD, consider leaving unallocated space for
 > future dual-boot or dedicated forensic data partitions.
 
-## Pre-Migration Backup
+## Pre-Migration Checklist
 
-### Using the backup script
-```bash
-# Find your USB partition (usually /dev/sda1)
-lsblk
-
-# Mount it
-sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
-
-# Backup everything
-./scripts/backup.sh /mnt/usb backup
-```
-
-### What this backs up
-| Item | Path | Notes |
-|------|------|-------|
-| Dotfiles | `~/dotfiles` | Also on GitHub |
-| Documents | `~/Documents` | |
-| Pictures | `~/Pictures` | |
-| LibreWolf | `~/.librewolf` | Bookmarks, history, passwords |
-| SSH keys | `~/.ssh` | ⚠️ Sensitive |
-| GPG keys | `~/.gnupg` | ⚠️ Sensitive |
-| Passwords | `~/.password-store` | ⚠️ Sensitive |
-| Package list | | `pkglist.txt` + `pkglist-aur.txt` |
+| Item | Path | How to migrate |
+|------|------|----------------|
+| Dotfiles | `~/dotfiles` | Push to GitHub, pull on new laptop |
+| Documents | `~/Documents` | `./scripts/migrate.sh` (see below) |
+| SSH keys | `~/.ssh` | `./scripts/migrate.sh` |
+| GPG keys | `~/.gnupg` | `./scripts/migrate.sh` |
+| LibreWolf | `~/.config/librewolf/` | Copy manually (profile not in migrate.sh) |
+| Passwords | `~/.password-store` | Copy manually or use `migrate.sh` + add it |
+| Bitwarden vault | | Export from web vault as JSON |
+| Kali VM disk | | Copy VM image manually |
+| Package list | | `pacman -Qq > pkglist.txt` |
 
 ### Manual only
+- **LibreWolf profile**: Lives in `~/.config/librewolf/` — copy it separately if needed
 - **Bitwarden vault**: Export from web vault as JSON
 - **Kali VM disk/images**: If migrating from an existing VM
 
@@ -60,28 +49,40 @@ sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
 
 ### 2. Transfer files from old laptop
 
-**Option A — USB drive**
+**Option A — croc + 7z (recommended, encrypted)**
+```bash
+# 1. On the NEW laptop, make sure croc and p7zip are installed:
+sudo pacman -S croc p7zip
+
+# 2. On the OLD laptop, run the migration script:
+./scripts/migrate.sh
+# This packs Documents, .ssh, .gnupg into a 7z archive and sends them via croc.
+# It will show a "croc code" when ready.
+```
+
+**Option B — USB drive**
 ```bash
 # On this laptop: mount the USB
 sudo mkdir -p /mnt/usb && sudo mount /dev/sda1 /mnt/usb
+# Copy files manually
 ```
 
-**Option B — Network (rsync over SSH)**
+### 3. Receive files on the new laptop
+
+When the old laptop shows you the croc code, run this on the **new laptop**:
 ```bash
-# On the old laptop: get its IP with `ip a`
-# Then on this laptop: pull files over the network
-./scripts/transfer.sh receive user@<old-laptop-ip>:/home/user
+# Make sure you're in ~/ first
+cd ~
+
+# Replace <code> with the code from the old laptop
+croc <code> --yes --out - | 7z x -si -aoa
 ```
 
-### 3. Clone Dotfiles
-```bash
-git clone https://github.com/Yushi5058/dotfiles.git
-cd dotfiles
-./scripts/backup.sh /mnt/usb restore
-```
+This extracts `Documents/`, `.ssh/`, `.gnupg/` directly into your home directory.
 
-### 4. Run Install Script
+### 4. Clone Dotfiles & Install
 ```bash
+git clone https://codeberg.org/yushi_61/dotfiles.git
 cd dotfiles
 chmod +x scripts/install.sh
 ./scripts/install.sh
@@ -89,7 +90,7 @@ chmod +x scripts/install.sh
 
 ### 5. Deploy Dotfiles
 ```bash
-cd dotfiles
+cd ~/dotfiles
 ./scripts/deploy.sh
 ```
 
@@ -259,8 +260,8 @@ Suggest re-mapping workspaces for forensic workflow:
 - [ ] Spin up Kali VM via virt-manager
 - [ ] Enable LUKS encryption (already set during install)
 - [ ] Configure `bolt` if using Thunderbolt devices
-- [ ] Import SSH keys and GPG keys
-- [ ] Test backup: `./scripts/backup.sh /mnt/usb backup`
+- [ ] Verify SSH keys (`ssh -T git@github.com`)
+- [ ] Verify GPG keys (`gpg --list-secret-keys`)
 
 ### Font & Cursor Reminders
 ```bash
