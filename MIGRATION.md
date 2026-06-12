@@ -103,20 +103,19 @@ cd ~/dotfiles
 ```
 
 ### 6. Enable Services
-Services (`ly`, `libvirtd`, `power-profiles-daemon`) are auto-enabled by the install script.
+Services (`ly`, `power-profiles-daemon`) are auto-enabled by the install script.
 This step is only needed if you skipped the install script or services failed to enable:
 
 ```bash
 sudo systemctl enable --now ly@tty2
-sudo systemctl enable --now libvirtd
 sudo systemctl enable --now power-profiles-daemon
 ```
 
-### 7. Set Up Kali VM
+### 7. Set Up VMs (Kali/Windows)
 ```bash
 # Create Kali VM with at least 8GB RAM + 64GB disk
 # Download ISO from kali.org
-virt-manager
+VirtualBox
 ```
 
 ## ThinkPad X13 Yoga Gen 2 (i5-1145G7, 16GB) Notes
@@ -223,37 +222,102 @@ powerprofilesctl set performance   # plugged in
 
 ## DFIR-Focused Setup
 
-### VM Configuration (Kali / Windows)
-All heavy DFIR tools belong here:
+### Kali VM — Post-Install Setup
+
+
 
 ```bash
-# Recommended Kali packages
-sudo apt install kali-tools-forensics kali-tools-reverse-engineering \
-    kali-tools-responder autopsys plaso dfir-okta
+
+# Update & upgrade
+
+sudo apt update && sudo apt full-upgrade -y
+
+
+
+# Essential toolkits
+
+sudo apt install -y \
+
+    kali-linux-headless \
+
+    kali-tools-forensics \
+
+    kali-tools-reverse-engineering \
+
+    kali-tools-web \
+
+    kali-tools-password-recovery \
+
+    kali-tools-exploitation \
+
+    kali-tools-crypto-stego \
+
+    kali-tools-information-gathering \
+
+    kali-tools-vulnerability
+
+
+
+# Core CTF/cybersec tools
+
+sudo apt install -y \
+
+    burpsuite bloodhound impacket-scripts responder wireshark \
+
+    gdb pwntools ropper seclists gobuster ffuf \
+
+    jq exiftool steghide binwalk p7zip-full
+
+
+
+# Guest Additions for shared folders
+
+sudo mount /dev/cdrom /mnt
+
+sudo /mnt/VBoxLinuxAdditions.run
+
+sudo usermod -aG vboxsf kali
+
 ```
 
-Give the VM:
-- **8GB RAM** (half your host)
-- **4+ CPU cores**
-- **64GB+ disk** (on a fast NVMe location)
-- **Bridged or host-only networking** depending on case needs
 
-### Storage Tips for DFIR
-- Keep case disk images on the host SSD for fast VM access
-- Use `qemu-img` with `qcow2` for the VM disk (compression, snapshots)
-- Create a dedicated `~/cases/` directory for case data
-- Consider an external NVMe enclosure for evidence drives
 
-### Sway Workspace Layout for DFIR
-Suggest re-mapping workspaces for forensic workflow:
+#### Snapshot Workflow
 
-| Workspace | Purpose |
-|-----------|---------|
-| 1         | Terminal (shell, hex dump, CLI tools) |
-| 2         | Browser (research, threat intel) |
-| 3         | Kali VM (full screen) |
-| 4         | Notes / Obsidian (case notes) |
-| 5         | File manager / timeline viewer |
+
+
+```bash
+
+# From host terminal:
+
+VBoxManage snapshot kali-linux-2026.1-virtualbox-amd64 take "Clean Install"
+
+
+
+# Before each CTF/case:
+
+VBoxManage snapshot kali-linux-2026.1-virtualbox-amd64 take "Before CTF-xyz"
+
+
+
+# Revert to clean:
+
+VBoxManage snapshot kali-linux-2026.1-virtualbox-amd64 restore "Clean Install"
+
+```
+
+
+
+#### Mount shared folder
+
+
+
+```bash
+
+sudo mkdir -p /mnt/cases && sudo mount -t vboxsf cases /mnt/cases
+
+```
+
 
 ## Post-Install Checklist
 - [ ] Update `zram-generator.conf` for 16GB (`ram / 4`)
@@ -264,8 +328,7 @@ Suggest re-mapping workspaces for forensic workflow:
 - [ ] Test Wacom stylus — check with `xsetwacom list devices` or `libinput list-devices`
 - [ ] Test touchscreen — check with `libinput list-devices`
 - [ ] Enable ly (already done by install.sh)
-- [ ] Enable libvirtd (already done by install.sh)
-- [ ] Spin up Kali VM via virt-manager
+- [ ] Spin up Kali VM
 - [ ] Enable LUKS encryption (already set during install)
 - [ ] Configure `bolt` if using Thunderbolt devices
 - [ ] Verify SSH keys (`ssh -T git@github.com`)
