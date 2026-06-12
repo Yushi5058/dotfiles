@@ -20,9 +20,7 @@ colorMoved = default
 [user]
 name = Yushi
 email = yushi_61@proton.me
-signingkey = B00996246A9FB926
-[github]
-user = Yushi5058
+signingkey = 692531C3637A709D
 
 [help]
 autocorrect = 1
@@ -34,8 +32,12 @@ main-view = line-number:no,interval=5 id:yes date:default author:full commit-tit
 diff-highlight = true
 mouse = true
 
-[url "git@github.com:"]
-insteadOf = https://github.com/
+[url "git@codeberg.org:"]
+insteadOf = https://codeberg.org/
+
+[remote "codeberg"]
+pushurl = git@codeberg.org:Yushi_61/
+pushurl = git@github.com:Yushi5058/
 
 [init]
 defaultBranch = main
