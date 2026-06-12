@@ -40,6 +40,8 @@ ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 - **Auto Tab Discard** — automatic tab suspension
 - **Unhook** — clean YouTube UI
 - **Voyager** — Lemmy client
+- **NextDNS** — DNS-level blocking & analytics
+- **Firefox Color** — custom browser theme
 
 ### Manual only
 - **LibreWolf profile**: Lives in `~/.config/librewolf/` — copy it separately if needed
