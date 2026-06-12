@@ -30,7 +30,7 @@ ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 | GPG keys | `~/.gnupg` | `./scripts/migrate.sh` |
 | LibreWolf | `~/.config/librewolf/` | Copy manually (profile not in migrate.sh) |
 | Passwords | `~/.password-store` | Copy manually or use `migrate.sh` + add it |
-| Kali VM disk | | Copy VM image manually |
+| Kali / Windows VM disk | | Copy VM image manually |
 | Package list | | `pacman -Qq > pkglist.txt` |
 
 ### LibreWolf Extensions
@@ -43,7 +43,7 @@ ThinkPad X13 Yoga has a 256GB NVMe SSD. Adjust if you have a different size.
 
 ### Manual only
 - **LibreWolf profile**: Lives in `~/.config/librewolf/` — copy it separately if needed
-- **Kali VM disk/images**: If migrating from an existing VM
+- **Kali / Windows VM disk/images**: If migrating from an existing VM
 
 ## Fresh Install Steps
 
@@ -221,7 +221,7 @@ powerprofilesctl set performance   # plugged in
 
 ## DFIR-Focused Setup
 
-### Kali VM Configuration
+### VM Configuration (Kali / Windows)
 All heavy DFIR tools belong here:
 
 ```bash
