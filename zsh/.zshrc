@@ -214,3 +214,4 @@ esac
 
 # .zshrc
 # source <(tea completion zsh)
+export GPG_TTY=$(tty)
