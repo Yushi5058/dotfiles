@@ -239,15 +239,15 @@ bindsym $mod+r mode "resize"
 # install copyq
 # exec_always will launch the process everytime you reload sway
 
-exec_always autotiling
-exec_always mako
+exec_always ~/Documents/dotfiles/scripts/run-once.sh autotiling autotiling
+exec_always ~/Documents/dotfiles/scripts/run-once.sh mako mako
 
 # Transition to night at 19:00 (7 PM), transition to day at 07:00 (7 AM)
-exec_always wlsunset -S 07:00 -s 19:00 -T 5200 -t 3200
+exec_always ~/Documents/dotfiles/scripts/run-once.sh wlsunset wlsunset -S 07:00 -s 19:00 -T 5200 -t 3200
 
 
-exec_always poweralertd 
-exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec_always ~/Documents/dotfiles/scripts/run-once.sh poweralertd poweralertd
+exec_always ~/Documents/dotfiles/scripts/run-once.sh polkit-gnome-authentication-agent-1 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 set $gnome-schema org.gnome.desktop.interface
 
