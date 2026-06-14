@@ -33,7 +33,7 @@ for dir in */; do
 
         # -R: Restow (unlinks and relinks)
         # -v: Verbose (useful for debugging)
-        stow -R "$pkg"
+        stow -R -t "$HOME" "$pkg"
     fi
 done
 
