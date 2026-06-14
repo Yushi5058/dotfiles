@@ -36,7 +36,7 @@ workspace 9 output HDMI-A-2
 workspace 10 output HDMI-A-2
 
 # execute azote for wallpaper
-exec ~/.azotebg
+exec_always ~/.azotebg
 
 
 
@@ -239,11 +239,15 @@ bindsym $mod+r mode "resize"
 # install copyq
 # exec_always will launch the process everytime you reload sway
 
-exec autotiling
-exec mako
-exec wlsunset -l 33.5 -L -7.6 
-exec poweralertd 
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec_always autotiling
+exec_always mako
+
+# Transition to night at 19:00 (7 PM), transition to day at 07:00 (7 AM)
+exec_always wlsunset -S 07:00 -s 19:00 -T 5200 -t 3200
+
+
+exec_always poweralertd 
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 set $gnome-schema org.gnome.desktop.interface
 

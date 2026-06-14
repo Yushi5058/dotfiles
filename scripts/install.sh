@@ -53,7 +53,7 @@ install_pacman "Sway environment" \
     wlsunset cliphist fuzzel \
     wlr-randr xdg-desktop-portal-gtk \
     qt5-wayland qt6-wayland qt5ct qt6ct kvantum kvantum-qt5 \
-    udiskie copyq
+    udiskie copyq swaybg
 
 install_pacman "CLI tools" \
     bat eza fd ripgrep fzf \

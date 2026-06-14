@@ -49,7 +49,14 @@ export EDITOR="nvim"
 
 # Restow all modular dotfiles packages
 restow-all() {
-    bash ~/dotfiles/scripts/deploy.sh
+    local repo="${DOTFILES_DIR:-$HOME/Documents/dotfiles}"
+    [[ -d "$repo" ]] || repo="$HOME/dotfiles"
+    if [[ -f "$repo/scripts/deploy.sh" ]]; then
+        bash "$repo/scripts/deploy.sh"
+    else
+        echo "restow-all: dotfiles repo not found at \$DOTFILES_DIR, ~/Documents/dotfiles, or ~/dotfiles" >&2
+        return 1
+    fi
 }
 
 # bun
