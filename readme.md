@@ -60,3 +60,21 @@ nextdns status
 > sudo rm -f /etc/resolv.conf
 > sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 > ```
+
+### Impala TUI troubleshoot 
+```bash
+sudo nvim /etc/NetworkManager/conf.d/wifi_backend.conf
+```
+
+then add the following lines to the conf file:
+
+```ini
+[device]
+wifi.backend=iwd
+```
+
+then restart both services with systemd 
+
+```bash
+sudo systemctl restart iwd NetworkManager
+```
