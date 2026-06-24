@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Gemini Desktop
+Comment=A native Windows desktop app for Google Gemini
+Icon=/home/yushi61/AppImages/.icons/gemini_desktop.png
+TryExec=/home/yushi61/AppImages/gemini_desktop.appimage
+Exec=env DESKTOPINTEGRATION=1 /home/yushi61/AppImages/gemini_desktop.appimage --no-sandbox %U
+Terminal=false
+Categories=Utility;
+StartupWMClass=Gemini Desktop
+X-AppImage-Version=1.1.0
+X-AppImage-Name=Gemini Desktop

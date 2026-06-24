@@ -1,6 +1,9 @@
 # Background color
 color=#232136
 
+# Font 
+font="Ubuntu-M"
+
 # Layout text colors
 layout-bg-color=#00000000
 layout-border-color=#00000000
