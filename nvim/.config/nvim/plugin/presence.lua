@@ -4,5 +4,5 @@ vim.pack.add({
 
 require("lazyload").on_vim_enter(function()
   vim.cmd("packadd presence.nvim")
-  require("presence.nvim").setup({})
+  require("presence").setup({})
 end)
