@@ -52,6 +52,10 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
+    "presence.nvim": {
+      "rev": "87c857a56b7703f976d3a5ef15967d80508df6e6",
+      "src": "https://github.com/andweeb/presence.nvim"
+    },
     "rose-pine": {
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim"
