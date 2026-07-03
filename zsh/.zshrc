@@ -222,3 +222,7 @@ esac
 # .zshrc
 # source <(tea completion zsh)
 export GPG_TTY=$(tty)
+
+
+# Load Angular CLI autocompletion.
+source <(npx ng completion script)
