@@ -258,6 +258,7 @@ exec_always gsettings set $gnome-schema font-name 'Ubuntu 11'
 
 
 # Keybinding to open copyq
+exec_always copyq &
 bindsym $mod+c exec copyq show
 
 # make copyq a floating window
