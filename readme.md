@@ -52,6 +52,23 @@ chezmoi apply
 ### AUR
 `librewolf-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
 
+### LibreWolf Configuration
+
+All prefs are set via `dot_librewolf/librewolf.overrides.cfg` using `defaultPref()` (can be overridden in `about:config`).
+
+| Feature | Pref / Notes |
+|---------|-------------|
+| Vertical Tabs | `sidebar.verticalTabs = true`. Requires Firefox ≥ 136. Toggle sidebar with Ctrl+B. |
+| Session Restore | Restores previous tabs after restart or crash. Tabs load on click (`restore_on_demand`). |
+| Ctrl+Tab | Cycles tabs in most-recently-used order (`ctrlTab.recentlyUsedOrder`). |
+| Close warning | Warns when closing multiple tabs or quitting (`tabs.warnOnClose*`). |
+| Container Tabs | Disabled (`privacy.userContext.enabled = false`). |
+| Font | Ubuntu (serif/sans-serif) + Ubuntu Mono |
+| WebGL | Always enabled (`webgl.force-enabled`). |
+| Hardware Video | VA-API hardware decoding for Intel GPUs. |
+
+**Spell-check dictionaries** — install manually from addons.mozilla.org: [Arabic](https://addons.mozilla.org/search/?q=arabic+dictionary), [French](https://addons.mozilla.org/search/?q=french+dictionary), [German](https://addons.mozilla.org/search/?q=german+dictionary).
+
 ### LibreWolf Extensions
 | Extension | Purpose / Config |
 |-----------|---------|
