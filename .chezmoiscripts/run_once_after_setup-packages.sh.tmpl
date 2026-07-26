@@ -1,0 +1,108 @@
+#!/bin/bash
+# Install packages via pacman/paru (runs once after dotfiles are applied)
+# Requires sudo privileges
+
+if [ "$(id -u)" -eq 0 ]; then
+    echo "[-] This script should not be run as root"
+    exit 1
+fi
+
+FAILURES=""
+
+install_pacman() {
+    local group="$1"
+    shift
+    echo "[*] $group..."
+    if sudo pacman -S --noconfirm --needed "$@" 2>&1; then
+        echo "[+] $group - done"
+    else
+        echo "[-] $group - FAILED"
+        FAILURES="$FAILURES\n  - $group"
+    fi
+}
+
+install_aur() {
+    local group="$1"
+    shift
+    echo "[*] $group..."
+    local cmd=(paru -S --noconfirm --skipreview --removemake --needed "$@")
+    if "${cmd[@]}" 2>&1; then
+        echo "[+] $group - done"
+    else
+        echo "[-] $group - FAILED"
+        FAILURES="$FAILURES\n  - $group"
+    fi
+}
+
+# Ensure paru is available
+if ! command -v paru &>/dev/null; then
+    install_pacman "Installing paru" paru
+fi
+
+# Languages & build tools
+install_pacman "Languages & build tools" \
+    git base-devel curl wget \
+    neovim python python-pip nodejs npm \
+    go rust zig
+
+# Shell & terminal
+install_pacman "Shell & terminal" zsh starship ghostty
+
+# Sway environment
+install_pacman "Sway environment" \
+    waybar mako sway grim slurp wl-clipboard \
+    brightnessctl playerctl wireplumber pipewire pipewire-alsa \
+    pipewire-jack pipewire-pulse wlsunset cliphist fuzzel \
+    wlr-randr xdg-desktop-portal-gtk qt5-wayland qt6-wayland \
+    qt5ct qt6ct kvantum kvantum-qt5 udiskie copyq swaybg
+
+# CLI tools
+install_pacman "CLI tools" \
+    bat eza fd ripgrep fzf fastfetch btop keychain \
+    atuin croc git-delta github-cli jless jq lazygit ouch parallel \
+    p7zip tldr tmux zoxide
+
+# File managers & utilities
+install_pacman "File managers & utilities" yazi azote zathura zathura-pdf-mupdf thunar
+
+# Database & editors
+install_pacman "Database & editors" dbeaver tree-sitter-cli
+
+# Containers & networking
+install_pacman "Containers & networking" podman podman-compose waydroid localsend tmate
+
+# System tools
+install_pacman "System tools" earlyoom zram-generator ufw pacman-contrib polkit-gnome ly
+
+# Laptop / ThinkPad
+install_pacman "Laptop / ThinkPad" \
+    sof-firmware intel-ucode tlp power-profiles-daemon \
+    acpi acpid intel-media-driver libva-intel-driver \
+    vulkan-intel bluez bluez-utils blueman pavucontrol bolt
+
+install_pacman "Misc system" \
+    man-db man-pages noto-fonts noto-fonts-emoji noto-fonts-cjk \
+    gnome-keyring libsecret xdg-desktop-portal xdg-desktop-portal-wlr \
+    unzip unrar p7zip exfatprogs ntfs-3g reflector iwd wireless_tools
+
+install_pacman "Fonts" ttf-jetbrains-mono-nerd ttf-ubuntu-font-family ttf-font-awesome
+install_pacman "Virtualization" virt-manager libvirt qemu-desktop edk2-ovmf dnsmasq
+
+# AUR
+install_aur "AUR: Sway extras" \
+    autotiling nwg-look wl-clip-persist swaylock-effects-git tela-circle-icon-theme poweralertd
+install_aur "AUR: Apps" bluetui discord impala librewolf-bin tea vscodium-bin
+install_aur "AUR: Shell & fonts" rose-pine-cursor maplemono-ttf
+
+# Enable services
+echo "[*] Enabling services..."
+sudo systemctl enable --now ly@tty2 2>&1 || echo "[-] Failed to enable ly"
+sudo systemctl enable --now libvirtd 2>&1 || echo "[-] Failed to enable libvirtd"
+sudo systemctl enable --now power-profiles-daemon 2>&1 || echo "[-] Failed to enable power-profiles-daemon"
+
+if [ -n "$FAILURES" ]; then
+    echo "Some groups had failures:"
+    echo -e "$FAILURES"
+else
+    echo "[+] All packages installed successfully."
+fi

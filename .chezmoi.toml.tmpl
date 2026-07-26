@@ -1,0 +1,12 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $name := promptStringOnce . "name" "Full name" -}}
+{{- $gpgKey := promptStringOnce . "gpg_key" "GPG signing key ID" -}}
+{{- $primaryOutput := promptStringOnce . "primary_output" "Primary display (e.g. eDP-1)" -}}
+{{- $secondaryOutput := promptStringOnce . "secondary_output" "Secondary display (e.g. HDMI-A-2)" -}}
+
+[data]
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
+    gpg_key = {{ $gpgKey | quote }}
+    primary_output = {{ $primaryOutput | quote }}
+    secondary_output = {{ $secondaryOutput | quote }}

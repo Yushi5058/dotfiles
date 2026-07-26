@@ -18,9 +18,9 @@ conflictstyle = diff3
 colorMoved = default
 
 [user]
-name = Yushi
-email = yushi_61@proton.me
-signingkey = 692531C3637A709D
+name = {{ .name | quote }}
+email = {{ .email | quote }}
+signingkey = {{ .gpg_key | quote }}
 
 [help]
 autocorrect = 1

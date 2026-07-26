@@ -20,20 +20,22 @@ set $menu fuzzel
 
 
 # --- Output Assignments ---
+{{- $primary := .primary_output | default "eDP-1" }}
+{{- $secondary := .secondary_output | default "HDMI-A-2" }}
 
 # Force "Daily" workspaces to the Laptop
-workspace 1 output eDP-1
-workspace 2 output eDP-1
-workspace 3 output eDP-1
-workspace 4 output eDP-1
-workspace 5 output eDP-1
+workspace 1 output {{ $primary }}
+workspace 2 output {{ $primary }}
+workspace 3 output {{ $primary }}
+workspace 4 output {{ $primary }}
+workspace 5 output {{ $primary }}
 
 # Force "Media/Projector" workspaces to the HDMI output
-workspace 6 output HDMI-A-2
-workspace 7 output HDMI-A-2
-workspace 8 output HDMI-A-2
-workspace 9 output HDMI-A-2
-workspace 10 output HDMI-A-2
+workspace 6 output {{ $secondary }}
+workspace 7 output {{ $secondary }}
+workspace 8 output {{ $secondary }}
+workspace 9 output {{ $secondary }}
+workspace 10 output {{ $secondary }}
 
 # execute azote for wallpaper
 exec_always ~/.azotebg
@@ -239,15 +241,16 @@ bindsym $mod+r mode "resize"
 # install copyq
 # exec_always will launch the process everytime you reload sway
 
-exec_always ~/Documents/dotfiles/scripts/run-once.sh autotiling autotiling
-exec_always ~/Documents/dotfiles/scripts/run-once.sh mako mako
+{{- $scripts := joinPath .chezmoi.sourceDir "scripts" "run-once.sh" }}
+exec_always {{ $scripts }} autotiling autotiling
+exec_always {{ $scripts }} mako mako
 
 # Transition to night at 19:00 (7 PM), transition to day at 07:00 (7 AM)
-exec_always ~/Documents/dotfiles/scripts/run-once.sh wlsunset wlsunset -S 07:00 -s 19:00 -T 5200 -t 3200
+exec_always {{ $scripts }} wlsunset wlsunset -S 07:00 -s 19:00 -T 5200 -t 3200
 
 
-exec_always ~/Documents/dotfiles/scripts/run-once.sh poweralertd poweralertd
-exec_always ~/Documents/dotfiles/scripts/run-once.sh polkit-gnome-authentication-agent-1 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec_always {{ $scripts }} poweralertd poweralertd
+exec_always {{ $scripts }} polkit-gnome-authentication-agent-1 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 set $gnome-schema org.gnome.desktop.interface
 

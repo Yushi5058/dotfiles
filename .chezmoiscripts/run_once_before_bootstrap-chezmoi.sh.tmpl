@@ -1,0 +1,24 @@
+#!/bin/bash
+# Bootstrap chezmoi itself on a fresh system
+# This runs once before chezmoi apply
+# It ensures chezmoi is installed so the rest of the config can be applied
+
+if command -v chezmoi &>/dev/null; then
+    exit 0
+fi
+
+echo "[*] Installing chezmoi..."
+
+# Try package manager first, fall back to install script
+if command -v pacman &>/dev/null; then
+    sudo pacman -S --noconfirm chezmoi 2>/dev/null && exit 0
+fi
+if command -v brew &>/dev/null; then
+    brew install chezmoi 2>/dev/null && exit 0
+fi
+if command -v apt-get &>/dev/null; then
+    sudo apt-get update -qq && sudo apt-get install -y -qq chezmoi 2>/dev/null && exit 0
+fi
+
+# Last resort: official install script
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
