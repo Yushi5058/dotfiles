@@ -53,15 +53,15 @@ chezmoi apply
 `librewolf-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
 
 ### LibreWolf Extensions
-| Extension | Purpose |
+| Extension | Purpose / Config |
 |-----------|---------|
 | uBlock Origin | Ad blocker (config backed up via `ublock-backup.json`) |
 | SponsorBlock | Skip YouTube sponsors |
 | Bitwarden | Password manager |
-| Unhook | Clean YouTube UI |
+| Unhook | Redirect to subs ✓, Live chat ✗, Hide shorts ✓ |
 | Voyager | Gemini protocol browser |
 | Auto Tab Discard | Memory management |
-| Firefox Color | Browser theme customization |
+| Firefox Color | [Rosé Pine Moon theme](https://color.firefox.com/?theme=XQAAAAJeAQAAAAAAAABBqYhm849SCia48_6EGccwS-xMDPr6BEKkYVSt2yMiAsBLvzmxZf3j0v9IRknMzArcpsl645Ge7EzJvXkxnR-IdpUfjuoH0j2fU5z119YfdJkFCZr51wD39X1AG95aQjSf047Gsfg1eLa-yQmEuzaYNrnHf14SvHw9S9ScswXTOZbWwmf1JWZimp73kln7qUWzPieoSAtTvOMSnh-_0rQgIAgRFJJmsMtlxHeL_7_RO1PDjOCPnSpqZVvvdez9JEkZPIodlTKsU6P-62x-rt27JQGm6FBGeeFfDv9hn2AA) |
 
 ### Managed Configs
 `bat btop discord fastfetch fuzzel ghostty git librewolf mako nvim paru pipewire ripgrep starship sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh`
