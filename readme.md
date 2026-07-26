@@ -52,6 +52,17 @@ chezmoi apply
 ### AUR
 `librewolf-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
 
+### LibreWolf Extensions
+| Extension | Purpose |
+|-----------|---------|
+| uBlock Origin | Ad blocker (config backed up via `ublock-backup.json`) |
+| SponsorBlock | Skip YouTube sponsors |
+| Bitwarden | Password manager |
+| Unhook | Clean YouTube UI |
+| Voyager | Gemini protocol browser |
+| Auto Tab Discard | Memory management |
+| Firefox Color | Browser theme customization |
+
 ### Managed Configs
 `bat btop discord fastfetch fuzzel ghostty git librewolf mako nvim paru pipewire ripgrep starship sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh`
 
