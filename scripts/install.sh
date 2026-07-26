@@ -31,9 +31,11 @@ install_aur() {
     fi
 }
 
-# 1. Bootstrap: ensure paru is installed (available in CachyOS repos)
+# 1. Bootstrap: ensure paru and chezmoi are installed
 if ! command -v paru &>/dev/null; then
-    install_pacman "Installing paru" paru
+    install_pacman "Installing paru chezmoi" paru chezmoi
+else
+    install_pacman "Install chezmoi" chezmoi
 fi
 
 # Core development & Daily use
@@ -123,13 +125,18 @@ if [[ "$(getent passwd "$TARGET_USER" | cut -d: -f7)" != "$(which zsh)" ]]; then
     chsh -s "$(which zsh)" "$TARGET_USER"
 fi
 
-# Dotfiles — just pull latest if inside the repo, otherwise clone fresh
+# Dotfiles — clone or pull
 TARGET_USER="${SUDO_USER:-$USER}"
 if git -C "$(dirname "$0")" rev-parse --git-dir &>/dev/null; then
     sudo -u "$TARGET_USER" git -C "$(dirname "$0")" pull
 else
     sudo -u "$TARGET_USER" git clone https://codeberg.org/yushi_61/dotfiles.git "/home/$TARGET_USER/dotfiles"
 fi
+
+# Deploy dotfiles with chezmoi
+echo "[*] Deploying dotfiles with chezmoi..."
+sudo -u "$TARGET_USER" chezmoi init "/home/$TARGET_USER/dotfiles"
+sudo -u "$TARGET_USER" chezmoi apply
 
 # Enable services
 echo "[*] Enabling services..."
@@ -146,4 +153,4 @@ else
     echo "[+] All packages installed successfully."
 fi
 
-echo "Done! Run ./scripts/deploy.sh to stow all dotfiles."
+echo "Done! Dotfiles deployed with chezmoi."
