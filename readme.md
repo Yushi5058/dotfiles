@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles managed with **GNU Stow**.
+Personal dotfiles managed with **[chezmoi](https://www.chezmoi.io/)**.
 
 - **OS**: Linux (Arch)
 - **WM**: Sway
@@ -15,13 +15,14 @@ Personal dotfiles managed with **GNU Stow**.
 ```bash
 git clone https://codeberg.org/yushi_61/dotfiles.git
 cd dotfiles
-./scripts/install.sh   # packages, services, stow
+./scripts/install.sh   # packages, services, chezmoi init + apply
 ```
 
-Or just deploy dotfiles after cloning:
+Or deploy dotfiles manually:
 
 ```bash
-restow-all   # zsh alias for stow --restow */
+chezmoi init ~/dotfiles
+chezmoi apply
 ```
 
 ## Package Overview
@@ -44,8 +45,8 @@ restow-all   # zsh alias for stow --restow */
 ### AUR
 `librewolf-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
 
-### Stow Modules
-`bat btop discord fastfetch fuzzel ghostty git kvantum librewolf mako nvim pipewire ripgrep scripts starship stow sway swaylock systemd tmux vesktop vim waybar wireplumber yazi zathura zsh`
+### Managed Configs
+`bat btop discord fastfetch fuzzel ghostty git librewolf mako nvim paru pipewire ripgrep starship sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh`
 
 ## Fresh Install
 
@@ -87,6 +88,32 @@ systemctl enable --now ly@tty2 power-profiles-daemon
 - [ ] Verify SSH keys (`ssh -T git@github.com`)
 - [ ] Verify GPG keys (`gpg --list-secret-keys`)
 - [ ] Spin up Kali VM
+
+## Chezmoi Usage
+
+### Daily workflow
+```bash
+chezmoi add ~/.config/some/file        # Add a new file to management
+chezmoi edit ~/.config/some/file        # Edit a managed file
+chezmoi diff                            # Review pending changes
+chezmoi apply                           # Apply changes to $HOME
+chezmoi status                          # Check what's different
+chezmoi update                          # Pull & apply latest from remote
+```
+
+### Commit changes
+```bash
+chezmoi cd                              # Enter source directory
+git add . && git commit -m "message"    # Commit changes
+git push                                # Push to remote
+exit                                    # Return to shell
+```
+
+### One-liner on a new machine
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
+    https://codeberg.org/yushi_61/dotfiles.git
+```
 
 ## Hardware Notes — ThinkPad X13 Yoga Gen 2
 
