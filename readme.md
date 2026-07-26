@@ -12,14 +12,21 @@ Personal dotfiles managed with **[chezmoi](https://www.chezmoi.io/)**.
 
 ## Quick Start
 
+### New machine (full setup)
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
+    https://codeberg.org/yushi_61/dotfiles.git
+```
+This installs chezmoi, clones dotfiles, prompts for machine-specific values (email, displays, GPG key), applies configs, and installs all packages.
+
+### Existing machine (dotfiles only)
 ```bash
 git clone https://codeberg.org/yushi_61/dotfiles.git
 cd dotfiles
-./scripts/install.sh   # packages, services, chezmoi init + apply
+./scripts/install.sh   # installs chezmoi, clones, applies
 ```
 
-Or deploy dotfiles manually:
-
+Or manually:
 ```bash
 chezmoi init ~/dotfiles
 chezmoi apply
@@ -69,14 +76,20 @@ Transfer files from the old machine:
 croc <code> --yes --out - | 7z x -si -aoa
 ```
 
-Then clone dotfiles, run the install script, and enable services:
+Then bootstrap with chezmoi:
 
 ```bash
+# One-liner (recommended) — installs chezmoi, clones, applies
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
+    https://codeberg.org/yushi_61/dotfiles.git
+
+# Or clone first, then deploy
 git clone https://codeberg.org/yushi_61/dotfiles.git
 cd dotfiles
-chmod +x scripts/install.sh && ./scripts/install.sh
-systemctl enable --now ly@tty2 power-profiles-daemon
+./scripts/install.sh
 ```
+
+`chezmoi init` will prompt for your email, GPG key, and display names on first run. Package installation runs automatically as a `run_once_` script.
 
 ### Post-Install Checklist
 - [ ] Update `zram-generator.conf` for 16GB (`ram / 4`)
@@ -101,6 +114,17 @@ chezmoi status                          # Check what's different
 chezmoi update                          # Pull & apply latest from remote
 ```
 
+### Templated files
+Some files use chezmoi templates to handle machine-specific differences:
+
+| File | Variable | Prompt |
+|------|----------|--------|
+| `dot_gitconfig.tmpl` | `email`, `name`, `gpg_key` | Email, name, GPG key ID |
+| `dot_config/sway/config.tmpl` | `primary_output`, `secondary_output` | Primary/secondary display names |
+| `.chezmoi.toml.tmpl` | All of the above | Asked during `chezmoi init` |
+
+To change values on an existing machine, edit `~/.config/chezmoi/chezmoi.toml` and run `chezmoi apply`.
+
 ### Commit changes
 ```bash
 chezmoi cd                              # Enter source directory
@@ -109,11 +133,22 @@ git push                                # Push to remote
 exit                                    # Return to shell
 ```
 
-### One-liner on a new machine
+### Run scripts
+chezmoi runs scripts automatically during `apply`:
+
+| Script | When | What |
+|--------|------|------|
+| `.chezmoiscripts/run_once_before_bootstrap-chezmoi.sh.tmpl` | First apply | Installs chezmoi if missing |
+| `.chezmoiscripts/run_once_after_setup-packages.sh.tmpl` | First apply | Installs packages via pacman/paru |
+
+Scripts are `run_once_` — they execute only once and skip on subsequent `chezmoi apply` calls.
+
+### One-liner on a new machine (full setup)
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
     https://codeberg.org/yushi_61/dotfiles.git
 ```
+This clones the repo, prompts for template variables (email, displays, etc.), and applies all dotfiles. The `run_once_after_setup-packages.sh` script then installs all packages automatically.
 
 ## Hardware Notes — ThinkPad X13 Yoga Gen 2
 

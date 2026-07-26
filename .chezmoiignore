@@ -1,1 +1,4 @@
 scripts
+dot_config/yazi/plugins/*/README.md
+dot_config/yazi/plugins/*/LICENSE
+dot_config/nvim/nvim-pack-lock.json
