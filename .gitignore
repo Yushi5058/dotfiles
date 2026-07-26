@@ -1,11 +1,12 @@
 # neovim
 dot_config/nvim/lazy-lock.json
 
-# librewolf - only track config files, ignore profile data
-# Tracked: .keep (empty_dot_keep), librewolf.overrides.cfg, ublock-backup.json
-dot_librewolf/*/
-dot_librewolf/installs.ini
-dot_librewolf/profiles.ini
+# librewolf - only track config/backup files, ignore everything else
+# Tracked: empty_dot_keep, librewolf.overrides.cfg, ublock-backup.json
+dot_librewolf/*
+!dot_librewolf/empty_dot_keep
+!dot_librewolf/librewolf.overrides.cfg
+!dot_librewolf/ublock-backup.json
 
 # tmux plugins - loaded via tpm
 dot_config/tmux/plugins/
