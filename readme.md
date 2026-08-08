@@ -44,7 +44,9 @@ chezmoi apply
 | Editor | neovim |
 | Fonts | Maple Mono (AUR), Ubuntu, Font Awesome |
 | Dev | git, go, rust, zig, python, nodejs, lazygit, dbeaver |
-| System | ly, earlyoom, zram-generator, pipewire |
+| System | ly, earlyoom, zram-generator, pipewire, tlp, ufw |
+| Power | TLP (power-profiles-daemon masked — conflicts with TLP) |
+| Bluetooth | bluez, bluez-utils, blueman (bluetooth.service enabled) |
 | Virt | VirtualBox |
 | Browser | librewolf-bin (AUR) |
 | DNS | NextDNS CLI |
@@ -121,7 +123,9 @@ cd dotfiles
 
 ### Post-Install Checklist
 - [ ] Update `zram-generator.conf` for 16GB (`ram / 4`)
-- [ ] Enable `power-profiles-daemon` and set up profiles
+- [ ] Verify TLP active + `power-profiles-daemon` masked (`systemctl is-active tlp`)
+- [ ] Enable bluetooth if needed: `sudo systemctl enable --now bluetooth`
+- [ ] Verify `ufw` is active (`sudo ufw status`)
 - [ ] Configure TrackPoint / touchpad in Sway
 - [ ] Test display scaling (update Waybar font size if needed)
 - [ ] Verify brightness keys, volume keys, microphone mute
