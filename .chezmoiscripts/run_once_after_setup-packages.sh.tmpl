@@ -98,7 +98,10 @@ install_aur "AUR: Shell & fonts" rose-pine-cursor maplemono-ttf
 echo "[*] Enabling services..."
 sudo systemctl enable --now ly@tty2 2>&1 || echo "[-] Failed to enable ly"
 sudo systemctl enable --now libvirtd 2>&1 || echo "[-] Failed to enable libvirtd"
-sudo systemctl enable --now power-profiles-daemon 2>&1 || echo "[-] Failed to enable power-profiles-daemon"
+sudo systemctl enable --now ufw 2>&1 || echo "[-] Failed to enable ufw"
+sudo systemctl enable --now tlp 2>&1 || echo "[-] Failed to enable tlp"
+sudo systemctl mask --now power-profiles-daemon 2>&1 || echo "[-] Failed to mask power-profiles-daemon"
+sudo systemctl enable --now bluetooth 2>&1 || echo "[-] Failed to enable bluetooth"
 
 if [ -n "$FAILURES" ]; then
     echo "Some groups had failures:"
