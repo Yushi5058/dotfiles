@@ -47,7 +47,7 @@ chezmoi apply
 | System | ly, earlyoom, zram-generator, pipewire, tlp, ufw |
 | Power | TLP (power-profiles-daemon masked — conflicts with TLP) |
 | Bluetooth | bluez, bluez-utils, blueman (bluetooth.service enabled) |
-| Virt | VirtualBox |
+| Virt | virt-manager (libvirt/QEMU) |
 | Browser | librewolf-bin (AUR) |
 | DNS | NextDNS CLI |
 
@@ -56,7 +56,7 @@ chezmoi apply
 
 ### LibreWolf Configuration
 
-All prefs are set via `dot_librewolf/librewolf.overrides.cfg` using `defaultPref()` (can be overridden in `about:config`).
+All prefs are set via `dot_config/librewolf/librewolf/librewolf.overrides.cfg` using `defaultPref()` (can be overridden in `about:config`).
 
 | Feature | Pref / Notes |
 |---------|-------------|
@@ -175,6 +175,8 @@ chezmoi runs scripts automatically during `apply`:
 
 Scripts are `run_once_` — they execute only once and skip on subsequent `chezmoi apply` calls.
 
+> **Note**: `run_once_after_setup-packages.sh` needs an **interactive sudo** prompt (requires a TTY). If the first `chezmoi apply` is non-interactive it fails on the sudo step — just re-run `chezmoi apply` from a terminal.
+
 ### One-liner on a new machine (full setup)
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
@@ -224,7 +226,7 @@ input type:touch {
 
 ## DFIR Setup
 
-DFIR tooling lives in a **Kali Linux VM** (VirtualBox) — the host stays lean.
+DFIR tooling lives in a **Kali Linux VM** (libvirt/QEMU via virt-manager) — the host stays lean.
 
 ### Kali VM Setup
 ```bash
@@ -241,22 +243,22 @@ sudo apt install -y \
     gdb pwntools ropper seclists gobuster ffuf \
     jq exiftool steghide binwalk p7zip-full
 
-# Guest Additions
-sudo mount /dev/cdrom /mnt
-sudo /mnt/VBoxLinuxAdditions.run
-sudo usermod -aG vboxsf kali
+# SPICE guest tools (display, clipboard, shared folders)
+sudo apt install -y spice-vdagent
 ```
 
 ### Snapshot Workflow
 ```bash
-VBoxManage snapshot kali-vm take "Clean Install"
-VBoxManage snapshot kali-vm take "Before CTF-xyz"
-VBoxManage snapshot kali-vm restore "Clean Install"
+virsh snapshot-create-as kali-vm --name "Clean Install"
+virsh snapshot-create-as kali-vm --name "Before CTF-xyz"
+virsh snapshot-revert kali-vm --snapshotname "Clean Install"
 ```
 
-### Mount shared folder
+### Mount shared folder (libvirt)
 ```bash
-sudo mkdir -p /mnt/cases && sudo mount -t vboxsf cases /mnt/cases
+sudo mkdir -p /mnt/cases && sudo mount -t virtiofs cases /mnt/cases
+# The virtiofs filesystem must be attached in the VM's XML config:
+# virsh edit kali-vm → <filesystem type='mount' accessmode='passthrough'>
 ```
 
 ## Troubleshooting

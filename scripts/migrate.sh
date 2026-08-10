@@ -8,7 +8,7 @@
 set -e
 
 ARCHIVE="/tmp/migration-$(date +%Y%m%d-%H%M%S).7z"
-ITEMS="Documents .librewolf .ssh .gnupg"
+ITEMS="Documents .config/librewolf .ssh .gnupg"
 
 echo "=== Migration Packer ==="
 echo ""
@@ -52,5 +52,5 @@ echo "To verify, on the new laptop run in ~/:"
 echo ""
 echo "  croc <code> --yes --out - | 7z x -si -aoa"
 echo ""
-echo "This will extract Documents/, .librewolf/, .ssh/, .gnupg/"
+echo "This will extract Documents/, .config/librewolf/, .ssh/, .gnupg/"
 echo "into your home directory."

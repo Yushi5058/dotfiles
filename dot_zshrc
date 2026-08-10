@@ -15,9 +15,12 @@ ora-sql() {
 alias mssql-start='podman start sql1'
 alias mssql-stop='podman stop sql1'
 mssql-sql() {
-    read -s "?Enter SA password: " sa_pass && podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_pass" \
-       -p 1433:1433 --name sql1 --hostname sql1 \
-       -d mcr.microsoft.com/mssql/server:2022-latest
+    if ! podman ps -a --format '{{.Names}}' | grep -qx sql1; then
+        read -s "?Enter SA password: " sa_pass && podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_pass" \
+           -p 1433:1433 --name sql1 --hostname sql1 \
+           -d mcr.microsoft.com/mssql/server:2022-latest
+    fi
+    podman start sql1
 }
 alias android-on="sudo systemctl start waydroid-container && waydroid show-full-ui"
 alias android-off="waydroid session stop && sudo waydroid container stop && sudo systemctl stop waydroid-container"
@@ -45,7 +48,7 @@ eval "$(starship init zsh)"
 export EDITOR="nvim"
 
 
-# Restow all modular dotfiles packages
+# Deploy all dotfiles via chezmoi (formerly GNU stow "restow")
 restow-all() {
     local repo="${DOTFILES_DIR:-$HOME/Documents/dotfiles}"
     [[ -d "$repo" ]] || repo="$HOME/dotfiles"
@@ -207,7 +210,7 @@ eval $(keychain -q --eval id_ed25519)
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # pnpm
-export PNPM_HOME="/home/yushi_61/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;

@@ -10,7 +10,7 @@ fi
 
 echo "[*] Cloning dotfiles..."
 TARGET_USER="${SUDO_USER:-$USER}"
-REPO_DIR="/home/$TARGET_USER/dotfiles"
+REPO_DIR="/home/$TARGET_USER/Documents/dotfiles"
 
 if [ -d "$REPO_DIR/.git" ]; then
     sudo -u "$TARGET_USER" git -C "$REPO_DIR" pull
