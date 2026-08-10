@@ -2,11 +2,15 @@
 dot_config/nvim/lazy-lock.json
 
 # librewolf - only track config/backup files, ignore everything else
-# Tracked: empty_dot_keep, librewolf.overrides.cfg, ublock-backup.json
-dot_librewolf/*
-!dot_librewolf/empty_dot_keep
-!dot_librewolf/librewolf.overrides.cfg
-!dot_librewolf/ublock-backup.json
+# Tracked: librewolf.overrides.cfg, ublock-backup.json
+dot_config/librewolf/*
+!dot_config/librewolf/librewolf/
+dot_config/librewolf/librewolf/*
+!dot_config/librewolf/librewolf/librewolf.overrides.cfg
+!dot_config/librewolf/librewolf/ublock-backup.json
+
+# old librewolf home (retired Jul 2026) - keep local backup only
+dot_librewolf/
 
 # tmux plugins - loaded via tpm
 dot_config/tmux/plugins/
