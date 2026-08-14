@@ -77,7 +77,7 @@ All prefs are set via `dot_config/librewolf/librewolf/librewolf.overrides.cfg` u
 | uBlock Origin | Ad blocker (config backed up via `ublock-backup.json`) |
 | SponsorBlock | Skip YouTube sponsors |
 | Bitwarden | Password manager |
-| Unhook | Redirect to subs ✓, Live chat ✗, Hide shorts ✓ |
+| Unhook | Redirect to subs ✓, Live chat ✗, Hide playlist ✗, Hide shorts ✓ |
 | Voyager | Gemini protocol browser |
 | Auto Tab Discard | Memory management |
 | Firefox Color | [Rosé Pine Moon theme](https://color.firefox.com/?theme=XQAAAAJeAQAAAAAAAABBqYhm849SCia48_6EGccwS-xMDPr6BEKkYVSt2yMiAsBLvzmxZf3j0v9IRknMzArcpsl645Ge7EzJvXkxnR-IdpUfjuoH0j2fU5z119YfdJkFCZr51wD39X1AG95aQjSf047Gsfg1eLa-yQmEuzaYNrnHf14SvHw9S9ScswXTOZbWwmf1JWZimp73kln7qUWzPieoSAtTvOMSnh-_0rQgIAgRFJJmsMtlxHeL_7_RO1PDjOCPnSpqZVvvdez9JEkZPIodlTKsU6P-62x-rt27JQGm6FBGeeFfDv9hn2AA) |
