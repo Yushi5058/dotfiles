@@ -209,18 +209,9 @@ eval $(keychain -q --eval id_ed25519)
 
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
 
 # .zshrc
 # source <(tea completion zsh)
 export GPG_TTY=$(tty)
 
 
-# Load Angular CLI autocompletion.
-source <(npx ng completion script)
