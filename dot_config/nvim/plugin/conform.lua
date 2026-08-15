@@ -18,6 +18,7 @@ require("lazyload").on_vim_enter(function()
 			python = { "ruff_format", "ruff_fix" },
 			bash = { "shfmt" },
 			java = { "google-java-format" },
+			rust = { "rustfmt" },
 		},
 		format_on_save = {
 			timeout_ms = 1000,
