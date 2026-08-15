@@ -69,12 +69,6 @@ require("lazyload").on_vim_enter(function()
     root_markers = { "pyproject.toml", "ruff.toml", ".git" },
   })
 
-  vim.lsp.config("rust_analyzer", {
-    cmd = { "rust-analyzer" },
-    filetypes = { "rust" },
-    root_markers = { "Cargo.toml", "Cargo.lock", ".git" },
-  })
-
   vim.lsp.config("sqlls", {
     cmd = { "sql-language-server", "up", "--method", "stdio" },
     filetypes = { "sql" },
@@ -149,6 +143,5 @@ require("lazyload").on_vim_enter(function()
     "bashls", "clangd", "cssls", "html", "jsonls", "marksman",
     "pyright", "ruff", "sqlls", "tailwindcss", "ts_ls", "volar",
     "eslint", "twiggy_language_server", "phpactor", "emmet_language_server",
-    "rust_analyzer",
   })
 end)
