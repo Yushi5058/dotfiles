@@ -1,0 +1,6 @@
+[sftp.my_server]
+host = "192.168.1.100"
+port = 22
+user = "root"
+# Support for SSH certificates is now available:
+cert_file = "~/.ssh/id_ed25519-cert.pub"
