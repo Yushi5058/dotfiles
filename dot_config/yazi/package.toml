@@ -3,5 +3,10 @@ use = "lmnek/pandoc"
 rev = "fd2798b"
 hash = "5af4b06948bb7b825a243131eea2075c"
 
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "406ce6c"
+hash = "f5afc904d5106ee368c8aa2ded43bd74"
+
 [flavor]
 deps = []
