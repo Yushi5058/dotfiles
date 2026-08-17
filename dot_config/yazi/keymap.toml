@@ -22,7 +22,12 @@ desc = "Chmod on selected files"
 on = ["C"]
 run = "plugin ouch"
 desc = "Compress with ouch"
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["c", "p"]
 run = "plugin pandoc"
 desc = "Pandoc: Interactive Convert"
+
+[[mgr.prepend_keymap]]
+on = "~"
+run = "help"
+desc = "Open command palette help menu"
