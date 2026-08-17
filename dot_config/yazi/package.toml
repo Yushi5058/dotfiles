@@ -8,5 +8,30 @@ use = "ndtoan96/ouch"
 rev = "406ce6c"
 hash = "f5afc904d5106ee368c8aa2ded43bd74"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "3d25b67"
+hash = "7b625412411be411153886894d9acaf"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "3d25b67"
+hash = "46cbdc05596a3ecd730b288e28c7079d"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "3d25b67"
+hash = "5b1c276b75cae91cbbdbe7863f39a540"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "3d25b67"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "3d25b67"
+hash = "d6f7351ea25a43c9b5f4315fa1e23935"
+
 [flavor]
 deps = []
