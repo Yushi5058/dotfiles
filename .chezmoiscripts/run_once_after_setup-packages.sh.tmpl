@@ -94,6 +94,20 @@ install_aur "AUR: Sway extras" \
 install_aur "AUR: Apps" bluetui discord impala librewolf-bin tea vscodium-bin
 install_aur "AUR: Shell & fonts" rose-pine-cursor maplemono-ttf
 
+# Yazi plugins via package manager
+echo "[*] Yazi plugins..."
+if command -v yazi >/dev/null 2>&1 && command -v ya >/dev/null 2>&1; then
+    if ya pkg install 2>&1; then
+        echo "[+] Yazi plugins - done"
+    else
+        echo "[-] Yazi plugins - FAILED"
+        FAILURES="$FAILURES\n  - Yazi plugins"
+    fi
+else
+    echo "[-] yazi/ya not found - skipped"
+    FAILURES="$FAILURES\n  - Yazi plugins (yazi/ya missing)"
+fi
+
 # Enable services
 echo "[*] Enabling services..."
 sudo systemctl enable --now ly@tty2 2>&1 || echo "[-] Failed to enable ly"
