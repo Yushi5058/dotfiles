@@ -1,9 +1,12 @@
 return {
-  "echasnovski/mini.nvim",
+  "nvim-mini/mini.nvim",
+  version = "*",
   config = function()
     require("mini.icons").setup()
 
-    require("mini.pick").setup({ mappings = { move_down = "<C-j>", move_up = "<C-k>" } })
+    require("mini.pick").setup({ 
+        mappings = { move_down = "<C-j>", move_up = "<C-k>" } 
+    })
     require("mini.extra").setup()
     require("mini.surround").setup()
     require("mini.ai").setup({ n_lines = 500 })
@@ -24,8 +27,6 @@ return {
     require("mini.git").setup()
 
     require("mini.animate").setup()
-
-
     require("which-key").add({
       { "<leader>f", group = "find" },
       { "<leader>s", group = "snacks" },

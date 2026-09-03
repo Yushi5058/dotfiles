@@ -21,7 +21,7 @@ vim.opt.autoindent  = true
 vim.opt.smartindent = true
 vim.opt.breakindent = true
 
-vim.opt.ignorecase = false
+vim.opt.ignorecase = true
 vim.opt.smartcase  = true
 vim.opt.incsearch  = true
 vim.opt.hlsearch   = false
@@ -40,7 +40,7 @@ vim.opt.scrolloff  = 10
 vim.opt.splitright = true
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
-vim.opt.clipboard  = ""
+vim.opt.clipboard  = "unnamedplus"
 
 vim.opt.guicursor = {
 	"n-v-c:block",
