@@ -54,7 +54,7 @@ return {
       fuzzy = { implementation = "rust" },
     },
     config = function(_, opts)
-      require("blink.cmp").build():wait(60000)
+      require("blink.cmp").build()
     end,
   },
 }
