@@ -2,11 +2,9 @@ return {
   "echasnovski/mini.nvim",
   config = function()
     require("mini.icons").setup()
-    MiniIcons.mock_nvim_web_devicons()
 
     require("mini.pick").setup({ mappings = { move_down = "<C-j>", move_up = "<C-k>" } })
     require("mini.extra").setup()
-
     require("mini.surround").setup()
     require("mini.ai").setup({ n_lines = 500 })
     require("mini.pairs").setup()
@@ -62,7 +60,5 @@ return {
       { "<leader>e", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, desc = "Explorer" },
       { "<leader>b", group = "database" },
     })
-
-    vim.cmd("colorscheme rose-pine-moon")
   end,
 }

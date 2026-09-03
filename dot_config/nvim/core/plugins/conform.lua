@@ -1,12 +1,8 @@
-vim.pack.add({
-	{ src = "https://github.com/stevearc/conform.nvim" },
-})
-vim.cmd("packadd conform.nvim")
-
-require("lazyload").on_vim_enter(function()
-	require("conform").setup({
-		formatters_by_ft = {
-			lua = { "stylua" },
+return { 
+    "stevearc/conform.nvim",
+    opts = {
+        formatters_by_ft = {
+          	lua = { "stylua" },
 			javascript = { "prettierd", "eslint_d" },
 			typescript = { "prettierd", "eslint_d" },
 			javascriptreact = { "prettierd", "eslint_d" },
@@ -19,11 +15,12 @@ require("lazyload").on_vim_enter(function()
 			bash = { "shfmt" },
 			java = { "google-java-format" },
 			rust = { "rustfmt" },
-		},
-		format_on_save = {
-			timeout_ms = 1000,
-			lsp_format = "fallback",
-		},
-	})
-end)
+            -- add other languages when I would think of them
+        },
+        format_on_save = {
+            timeout_ms = 500,
+            lsp_format = "fallback"
+        }
+    },
+ }
 
