@@ -25,7 +25,6 @@ return {
 
     require("mini.animate").setup()
 
-    vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
 
     require("which-key").add({
       { "<leader>f", group = "find" },
