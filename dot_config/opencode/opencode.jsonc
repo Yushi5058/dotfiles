@@ -12,5 +12,7 @@
     "plan":   { "color": "#f6c177" },
     "general": { "color": "#9ccfd8" },
     "explore": { "color": "#3e8fb0" }
-  }
+  },
+
+  "plugin": ["opencode-discord-presence"]
 }
