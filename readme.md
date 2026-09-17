@@ -48,15 +48,15 @@ chezmoi apply
 | Power | TLP (power-profiles-daemon masked — conflicts with TLP) |
 | Bluetooth | bluez, bluez-utils, blueman (bluetooth.service enabled) |
 | Virt | virt-manager (libvirt/QEMU) |
-| Browser | librewolf-bin (AUR) |
+| Browser | floorp-bin (AUR) |
 | DNS | NextDNS CLI |
 
 ### AUR
-`librewolf-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
+`floorp-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
 
-### LibreWolf Configuration
+### Floorp Configuration
 
-All prefs are set via `dot_config/librewolf/librewolf/librewolf.overrides.cfg` using `defaultPref()` (can be overridden in `about:config`).
+All prefs are set via `dot_config/floorp/floorp/floorp.overrides.cfg` using `defaultPref()` / `pref()` (can be overridden in `about:config`).
 
 | Feature | Pref / Notes |
 |---------|-------------|
@@ -66,24 +66,24 @@ All prefs are set via `dot_config/librewolf/librewolf/librewolf.overrides.cfg` u
 | Close warning | Warns when closing multiple tabs or quitting (`tabs.warnOnClose*`). |
 | Container Tabs | Disabled (`privacy.userContext.enabled = false`). |
 | Font | Ubuntu (serif/sans-serif) + Ubuntu Mono |
-| WebGL | Always enabled (`webgl.force-enabled`). |
-| Hardware Video | VA-API hardware decoding for Intel GPUs. |
+| WebGL | Always enabled (`webgl.force-enabled`, `webgl.enable-webgl2`). |
+| Hardware Video | VA-API hardware decoding for Intel GPUs (AV1 forced off — Tiger Lake has no hw AV1). |
+| Telemetry | Disabled (`toolkit.telemetry.enabled = false`). |
 
 **Spell-check dictionaries** — install manually from addons.mozilla.org: [Arabic](https://addons.mozilla.org/search/?q=arabic+dictionary), [French](https://addons.mozilla.org/search/?q=french+dictionary), [German](https://addons.mozilla.org/search/?q=german+dictionary).
 
-### LibreWolf Extensions
+### Floorp Extensions
+
 | Extension | Purpose / Config |
 |-----------|---------|
-| uBlock Origin | Ad blocker (config backed up via `ublock-backup.json`) |
+| uBlock Origin | Ad blocker |
 | SponsorBlock | Skip YouTube sponsors |
 | Bitwarden | Password manager |
-| Unhook | Redirect to subs ✓, Live chat ✗, Hide playlist ✗, Hide shorts ✓ |
-| Voyager | Gemini protocol browser |
+| Unhook | YouTube cleanup |
 | Auto Tab Discard | Memory management |
-| Firefox Color | [Rosé Pine Moon theme](https://color.firefox.com/?theme=XQAAAAJeAQAAAAAAAABBqYhm849SCia48_6EGccwS-xMDPr6BEKkYVSt2yMiAsBLvzmxZf3j0v9IRknMzArcpsl645Ge7EzJvXkxnR-IdpUfjuoH0j2fU5z119YfdJkFCZr51wD39X1AG95aQjSf047Gsfg1eLa-yQmEuzaYNrnHf14SvHw9S9ScswXTOZbWwmf1JWZimp73kln7qUWzPieoSAtTvOMSnh-_0rQgIAgRFJJmsMtlxHeL_7_RO1PDjOCPnSpqZVvvdez9JEkZPIodlTKsU6P-62x-rt27JQGm6FBGeeFfDv9hn2AA) |
 
 ### Managed Configs
-`bat btop discord fastfetch fuzzel ghostty git librewolf mako nvim paru pipewire ripgrep starship sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh`
+`bat btop discord fastfetch fuzzel ghostty git floorp mako nvim paru pipewire ripgrep starship sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh`
 
 ## Fresh Install
 
