@@ -47,12 +47,12 @@ chezmoi apply
 | System | ly, earlyoom, zram-generator, pipewire, tlp, ufw |
 | Power | TLP (power-profiles-daemon masked — conflicts with TLP) |
 | Bluetooth | bluez, bluez-utils, blueman (bluetooth.service enabled) |
-| Virt | virt-manager (libvirt/QEMU) |
+| Virt | virtualbox, virtualbox-host-dkms, virtualbox-ext-oracle (AUR) |
 | Browser | floorp-bin (AUR) |
 | DNS | NextDNS CLI |
 
 ### AUR
-`floorp-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`
+`floorp-bin`, `vscodium-bin`, `swaylock-effects-git`, `rose-pine-cursor`, `maplemono-ttf`, `virtualbox-ext-oracle`
 
 ### Floorp Configuration
 
@@ -74,13 +74,17 @@ All prefs are set via `dot_config/floorp/floorp/floorp.overrides.cfg` using `def
 
 ### Floorp Extensions
 
+All extensions installed via Floorp's extension manager or manually from AMO. Configs stored in `extensions.json` / `storage.js` in profile.
+
 | Extension | Purpose / Config |
-|-----------|---------|
-| uBlock Origin | Ad blocker |
-| SponsorBlock | Skip YouTube sponsors |
-| Bitwarden | Password manager |
-| Unhook | YouTube cleanup |
-| Auto Tab Discard | Memory management |
+|-----------|------------------|
+| uBlock Origin | Ad/tracker blocker. Filters: EasyList, EasyPrivacy, Peter Lowe, uBlock filters, Annoyances. Custom: `||googletagmanager.com^`, `||google-analytics.com^`. No cosmetic filtering exceptions. |
+| SponsorBlock | Skip YouTube sponsors, intros, outros, interactions. Auto-skip enabled. Categories: sponsor, intro, outro, selfpromo, interaction, music_offtopic, preview. Keyboard: `→` skip, `←` back. |
+| Bitwarden | Password manager. Vault timeout: never (lock with system). Auto-fill on page load. URI matching: base domain. TOTP auto-copy. Biometric unlock if available. |
+| Unhook | YouTube cleanup. Hide: shorts, related videos, comments, live chat, playlists, shelf, "watch next", "more from", "people also watched". Force theater mode. Disable autoplay. |
+| Auto Tab Discard | Memory management. Discard after 10 min inactive. Whitelist: pinned tabs, tabs playing audio, tabs with form input, `*://mail.*`, `*://calendar.*`, `*://github.com/*`. Restore on click. |
+| Gemini Voyager | Google Gemini sidebar. Floating panel (Ctrl+Shift+Y). Auto-hide on blur. Theme: system. Context menu: "Send to Gemini". Streaming responses. |
+| Firefox Color | Browser theming. Theme: Rose Pine (from [rose-pine/firefox](https://github.com/rose-pine/firefox)). Colors: base `#191724`, surface `#1f1d2e`, overlay `#26233a`, muted `#6e6a86`, subtle `#908caa`, text `#e0def4`, love `#eb6f92`, gold `#f6c177`, rose `#ebbcba`, pine `#31748f`, foam `#9ccfd8`, iris `#c4a7e7`. Applied to toolbar, tabs, sidebar, new tab. |
 
 ### Managed Configs
 `bat btop discord fastfetch fuzzel ghostty git floorp mako nvim paru pipewire ripgrep starship sway swaylock systemd tmux vim waybar wireplumber yazi zathura zsh`
@@ -132,7 +136,9 @@ cd dotfiles
 - [ ] Test Wacom stylus / touchscreen
 - [ ] Verify SSH keys (`ssh -T git@github.com`)
 - [ ] Verify GPG keys (`gpg --list-secret-keys`)
-- [ ] Spin up Kali VM
+- [ ] Add user to `vboxusers` group: `sudo gpasswd -a $USER vboxusers` (re-login)
+- [ ] Spin up Kali VM (VirtualBox)
+- [ ] Spin up Windows 11 VM (VirtualBox)
 
 ## Chezmoi Usage
 
@@ -226,9 +232,9 @@ input type:touch {
 
 ## DFIR Setup
 
-DFIR tooling lives in a **Kali Linux VM** (libvirt/QEMU via virt-manager) — the host stays lean.
+DFIR tooling lives in a **Kali Linux VM** (VirtualBox) — the host stays lean. Windows 11 VM also runs in VirtualBox.
 
-### Kali VM Setup
+### Kali VM Setup (VirtualBox)
 ```bash
 sudo apt update && sudo apt full-upgrade -y
 sudo apt install -y \
@@ -243,22 +249,44 @@ sudo apt install -y \
     gdb pwntools ropper seclists gobuster ffuf \
     jq exiftool steghide binwalk p7zip-full
 
-# SPICE guest tools (display, clipboard, shared folders)
-sudo apt install -y spice-vdagent
+# VirtualBox Guest Additions (display, clipboard, shared folders, seamless mode)
+sudo apt install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
+sudo systemctl enable --now vboxservice
 ```
 
-### Snapshot Workflow
+### Windows 11 VM (VirtualBox)
 ```bash
-virsh snapshot-create-as kali-vm --name "Clean Install"
-virsh snapshot-create-as kali-vm --name "Before CTF-xyz"
-virsh snapshot-revert kali-vm --snapshotname "Clean Install"
+# On host: install VirtualBox + Extension Pack
+sudo pacman -S virtualbox virtualbox-host-dkms virtualbox-ext-oracle
+sudo gpasswd -a $USER vboxusers
+# Reboot or: newgrp vboxusers
+
+# Windows 11 ISO → new VM: 4 vCPU, 8GB RAM, 64GB+ VDI, EFI, TPM 2.0 enabled
+# Install VirtIO drivers for network/disk during Windows setup (from fedorapeople.org)
+# Install VirtualBox Guest Additions inside Windows for clipboard, shared folders, 3D accel
 ```
 
-### Mount shared folder (libvirt)
+### Snapshot Workflow (VirtualBox)
 ```bash
-sudo mkdir -p /mnt/cases && sudo mount -t virtiofs cases /mnt/cases
-# The virtiofs filesystem must be attached in the VM's XML config:
-# virsh edit kali-vm → <filesystem type='mount' accessmode='passthrough'>
+# Kali
+VBoxManage snapshot kali-vm take "Clean Install"
+VBoxManage snapshot kali-vm take "Before CTF-xyz"
+VBoxManage snapshot kali-vm restore "Clean Install"
+
+# Windows 11
+VBoxManage snapshot win11-vm take "Clean Install"
+VBoxManage snapshot win11-vm take "Before Engagement"
+VBoxManage snapshot win11-vm restore "Clean Install"
+```
+
+### Mount shared folder (VirtualBox)
+```bash
+# On host: VBoxManage sharedfolder add kali-vm --name cases --hostpath ~/Cases --automount
+# In Kali VM:
+sudo mkdir -p /mnt/cases
+sudo mount -t vboxsf cases /mnt/cases
+# Auto-mount at boot: add to /etc/fstab
+# cases  /mnt/cases  vboxsf  defaults,uid=1000,gid=1000  0  0
 ```
 
 ## Troubleshooting
