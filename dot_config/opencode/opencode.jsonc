@@ -7,6 +7,11 @@
   // love: #eb6f92  gold: #f6c177  rose: #ea9a97
   // pine: #3e8fb0  foam: #9ccfd8  iris: #c4a7e7
 
+  "plugin": [
+    "oh-my-openagent@latest",
+    "./plugins/caveman/plugin.js"
+  ],
+
   "agent": {
     "build":  { "color": "#eb6f92" },
     "plan":   { "color": "#f6c177" },
