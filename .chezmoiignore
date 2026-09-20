@@ -1,2 +1,8 @@
 scripts
 dot_config/nvim/nvim-pack-lock.json
+# opencode secrets + runtime — never commit
+dot_config/opencode/service.json
+dot_config/opencode/opencode.json
+dot_config/opencode/node_modules
+dot_config/opencode/package-lock.json
+dot_config/opencode/*.backup-*
