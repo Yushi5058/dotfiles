@@ -21,4 +21,5 @@ window-padding-y = 10
 
 
 # Mouse
-copy-on-select = true
+# copy to system clipboard too (not just PRIMARY selection) so Ctrl+V works
+copy-on-select = clipboard
