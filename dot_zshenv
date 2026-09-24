@@ -1,0 +1,7 @@
+# .zshenv — runs before .zshrc; set ZDOTDIR so zsh loads config from ~/.config/zsh
+
+# Cargo
+. "$HOME/.cargo/env"
+
+# Point zsh at modular config layout
+export ZDOTDIR="$HOME/.config/zsh"
