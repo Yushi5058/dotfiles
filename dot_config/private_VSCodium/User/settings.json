@@ -1,0 +1,9 @@
+{
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Rosé Pine Moon",
+    "workbench.iconTheme": "rose-pine-icons",
+    "[lua]": {
+        "editor.defaultFormatter": "JohnnyMorganz.stylua"
+    },
+    "git.autofetch": true
+}
