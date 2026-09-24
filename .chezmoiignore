@@ -6,3 +6,5 @@ dot_config/opencode/opencode.json
 dot_config/opencode/node_modules
 dot_config/opencode/package-lock.json
 dot_config/opencode/*.backup-*
+# zsh secrets — never commit
+dot_config/zsh/conf.d/99-secrets.zsh

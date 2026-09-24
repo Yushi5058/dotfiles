@@ -27,6 +27,18 @@ return {
     require("mini.git").setup()
 
     require("mini.animate").setup()
+    require("mini.map").setup({
+      integrations = { require("mini.map").gen_integration.builtin_search(), require("mini.map").gen_integration.diagnostic() },
+      symbols = { encode = require("mini.map").gen_encode_symbols.dot("4x2") },
+      window = { show_integration_count = false, width = 20, winblend = 25 },
+    })
+    vim.api.nvim_create_autocmd("BufReadPost", {
+      callback = function()
+        if vim.api.nvim_buf_line_count(0) > 200 then
+          require("mini.map").open()
+        end
+      end,
+    })
     require("which-key").add({
       { "<leader>f", group = "find" },
       { "<leader>s", group = "snacks" },
@@ -58,6 +70,8 @@ return {
       { "<leader>fh", "<cmd>Pick help<cr>",       desc = "Help" },
       { "<leader>fb", "<cmd>Pick buffers<cr>",    desc = "Buffers" },
       { "<leader>e", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, desc = "Explorer" },
+      { "<leader>mo", function() require("mini.map").toggle() end, desc = "Toggle minimap" },
+      { "<leader>mf", function() require("mini.map").toggle_focus() end, desc = "Focus minimap" },
       { "<leader>b", group = "database" },
     })
   end,
