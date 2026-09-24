@@ -17,3 +17,6 @@ dot_config/tmux/plugins/
 
 # chezmoi - ignore config file (machine-specific)
 .config/chezmoi/
+
+# zsh secrets - never commit
+dot_config/zsh/conf.d/99-secrets.zsh

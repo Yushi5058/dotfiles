@@ -1,0 +1,11 @@
+{
+  "FileSizeDisplay": "Megabytes",
+  "ParallelDownloadCount": 10,
+  "DownloadAddressFamilyPolicy": "PreferIPv4",
+  "ProgressBarStyle": "Blocks",
+  "ProgressBarWidth": 24,
+  "OutputMode": "singlepane",
+  "AppImageInstallPath": null,
+  "AutoConfirmCacheClean": false,
+  "AurUrl": "https://aur.archlinux.org"
+}

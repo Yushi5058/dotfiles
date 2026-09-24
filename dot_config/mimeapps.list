@@ -1,0 +1,17 @@
+[Default Applications]
+x-scheme-handler/slack=slack.desktop
+x-scheme-handler/http=userapp-Floorp-4WAGV3.desktop
+x-scheme-handler/https=userapp-Floorp-4WAGV3.desktop
+x-scheme-handler/chrome=userapp-Floorp-4WAGV3.desktop
+text/html=userapp-Floorp-4WAGV3.desktop
+application/x-extension-htm=userapp-Floorp-4WAGV3.desktop
+application/x-extension-html=userapp-Floorp-4WAGV3.desktop
+application/x-extension-shtml=userapp-Floorp-4WAGV3.desktop
+application/xhtml+xml=userapp-Floorp-4WAGV3.desktop
+application/x-extension-xhtml=userapp-Floorp-4WAGV3.desktop
+application/x-extension-xht=userapp-Floorp-4WAGV3.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Floorp-4WAGV3.desktop;
+x-scheme-handler/https=userapp-Floorp-4WAGV3.desktop;
+x-scheme-handler/chrome=userapp-Floorp-4WAGV3.desktop;
