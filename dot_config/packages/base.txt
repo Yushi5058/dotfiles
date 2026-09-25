@@ -1,9 +1,12 @@
+7zip
 acpi
 acpid
 atuin
+autotiling
 azote
 base-devel
 bat
+bluetui
 bluez
 bluez-utils
 blueman
@@ -15,6 +18,7 @@ copyq
 croc
 curl
 dbeaver
+discord
 dnsmasq
 earlyoom
 eza
@@ -30,6 +34,7 @@ github-cli
 gnome-keyring
 go
 grim
+impala
 intel-media-driver
 intel-ucode
 iwd
@@ -51,12 +56,11 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 npm
+nwg-look
 ntfs-3g
 ouch
-p7zip
 pacman-contrib
 parallel
-paru
 pavucontrol
 pipewire
 pipewire-alsa
@@ -81,11 +85,12 @@ sof-firmware
 starship
 sway
 swaybg
+tea
+tela-circle-icon-theme-all
 tldr
 tlp
 tmux
 tree-sitter-cli
-ttf-font-awesome
 ttf-jetbrains-mono-nerd
 ttf-ubuntu-font-family
 udiskie
@@ -101,7 +106,9 @@ wget
 wireless_tools
 wireplumber
 wl-clipboard
+wl-clip-persist
 wlr-randr
+woff2-font-awesome
 wlsunset
 xdg-desktop-portal
 xdg-desktop-portal-gtk

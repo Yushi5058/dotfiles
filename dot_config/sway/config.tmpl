@@ -21,7 +21,7 @@ set $menu fuzzel
 
 # --- Output Assignments ---
 {{- $primary := .primary_output | default "eDP-1" }}
-{{- $secondary := .secondary_output | default "HDMI-A-2" }}
+{{- $secondary := .secondary_output | default "HDMI-A-1" }}
 
 # Force "Daily" workspaces to the Laptop
 workspace 1 output {{ $primary }}
@@ -98,7 +98,7 @@ input type:touch {
     bindsym $mod+d exec $menu
 
     # Start your browser
-    bindsym $mod+w exec librewolf
+    bindsym $mod+w exec floorp
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

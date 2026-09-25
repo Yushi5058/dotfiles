@@ -8,3 +8,6 @@ dot_config/opencode/package-lock.json
 dot_config/opencode/*.backup-*
 # zsh secrets — never commit
 dot_config/zsh/conf.d/99-secrets.zsh
+
+# repo readme - not meant for home dir
+readme.md

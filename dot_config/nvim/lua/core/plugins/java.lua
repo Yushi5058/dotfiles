@@ -1,10 +1,4 @@
-return { "mfussenegger/nvim-jdtls",
-config = function()
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "java",
-    callback = function()
-      require("jdtls").start_or_attach({})
-    end,
-})
-end
-}
+-- jdtls is configured in ftplugin/java.lua (full start_or_attach with Mason check).
+-- Keeping an empty config here caused a second, broken jdtls client on FileType java.
+-- ftplugin/java.lua is the single source of truth for the Java LSP.
+return { "mfussenegger/nvim-jdtls" }
