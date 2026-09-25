@@ -1,16 +1,7 @@
-autotiling
-bluetui
-discord
 floorp-bin
-impala
-librewolf-bin
 maplemono-ttf
-nwg-look
 poweralertd
 rose-pine-cursor
 swaylock-effects-git
-tea
-tela-circle-icon-theme
 virtualbox-ext-oracle
 vscodium-bin
-wl-clip-persist

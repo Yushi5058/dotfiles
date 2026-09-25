@@ -1,7 +1,7 @@
 # 05-tools.zsh — Tool integrations (fzf, zoxide, atuin, keychain)
 
 # Shell integrations
-eval "$(fzf --zsh)"
+[[ -t 1 ]] && eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # Atuin

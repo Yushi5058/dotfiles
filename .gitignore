@@ -1,14 +1,6 @@
 # neovim
 dot_config/nvim/lazy-lock.json
 
-# librewolf - only track config/backup files, ignore everything else
-# Tracked: librewolf.overrides.cfg, ublock-backup.json
-dot_config/librewolf/*
-!dot_config/librewolf/librewolf/
-dot_config/librewolf/librewolf/*
-!dot_config/librewolf/librewolf/librewolf.overrides.cfg
-!dot_config/librewolf/librewolf/ublock-backup.json
-
 # old librewolf home (retired Jul 2026) - keep local backup only
 dot_librewolf/
 
@@ -20,3 +12,6 @@ dot_config/tmux/plugins/
 
 # zsh secrets - never commit
 dot_config/zsh/conf.d/99-secrets.zsh
+
+# zsh completion cache - machine specific
+**/.zcompdump
