@@ -15,3 +15,6 @@ dot_config/zsh/conf.d/99-secrets.zsh
 
 # zsh completion cache - machine specific
 **/.zcompdump
+
+# harness artifacts
+.omo/
