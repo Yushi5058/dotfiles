@@ -39,6 +39,7 @@ Installed via extension manager / AMO. State lives in `extensions.json` / `stora
 | Auto Tab Discard | Discard tabs after 10 min idle. Whitelist: pinned, audio, forms, `*://mail.*`, `*://calendar.*`, `*://github.com/*`. Restore on click. |
 | Gemini Voyager | Google Gemini sidebar panel (Ctrl+Shift+Y). Auto-hide on blur. Context menu "Send to Gemini". Streaming. |
 | Firefox Color | Theme: Rose Pine. base `#191724`, surface `#1f1d2e`, overlay `#26233a`, muted `#6e6a86`, subtle `#908caa`, text `#e0def4`, love `#eb6f92`, gold `#f6c177`, rose `#ebbcba`, pine `#31748f`, foam `#9ccfd8`, iris `#c4a7e7`. |
+| LanguageTool | Grammar & style checker. Inline suggestions in text fields. |
 
 ### Repo files
 
