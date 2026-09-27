@@ -2,7 +2,6 @@ binder_linux-dkms
 dwarfs
 gearlever
 maplemono-ttf
-nextdns-bin
 poweralertd
 python-desktop-entry-lib
 python-ftputil

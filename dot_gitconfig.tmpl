@@ -35,9 +35,11 @@ mouse = true
 [url "git@codeberg.org:"]
 insteadOf = https://codeberg.org/
 
-[remote "codeberg"]
-pushurl = git@codeberg.org:Yushi_61/
-pushurl = git@github.com:Yushi5058/
+[url "git@github.com:Yushi5058/"]
+insteadOf = gh:
+
+[url "git@codeberg.org:yushi_61/"]
+insteadOf = cb:
 
 [init]
 defaultBranch = main
@@ -59,6 +61,7 @@ gpgsign = true
     cam = commit -a -m
     ps = push
     psf = push --force-with-lease
+    mirror = "!git push codeberg main && git push github main"
     pl = pull
     rb = rebase
     lg = log --oneline --graph --decorate -20
