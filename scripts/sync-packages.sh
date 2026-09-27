@@ -4,6 +4,8 @@
 #   --update   paru -Syu first, then ensure all declared packages are installed
 # Reads:  dot_config/packages/base.txt   (pacman)
 #         dot_config/packages/aur.txt    (AUR via paru)
+# Idempotent: already-installed packages are skipped, no sudo prompt when complete.
+# the script is called from run_once_after_setup-packages.sh.tmpl on `chezmoi apply`.
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BASE_LIST="$REPO_DIR/dot_config/packages/base.txt"
@@ -31,6 +33,12 @@ if [[ "${1:-}" == "--update" ]]; then
     paru -Syu --noconfirm 2>&1 || fail "system update FAILED"
 fi
 
+# Snapshot of currently installed package names (exact match)
+declare -A HAVE
+for pkg in $(pacman -Qq); do
+    HAVE["$pkg"]=1
+done
+
 install_list() {
     local name="$1" file="$2" cmd="$3"
     if [[ ! -r "$file" ]]; then
@@ -38,17 +46,27 @@ install_list() {
         FAILURES="$FAILURES\n  - $name (list missing)"
         return
     fi
-    echo "[*] $name ($(wc -l < "$file") packages)..."
-    if $cmd < "$file" 2>&1; then
-        ok "$name done"
+    local total missing=()
+    total=$(wc -l < "$file")
+    while read -r pkg || [[ -n "$pkg" ]]; do
+        [[ -z "$pkg" ]] && continue
+        [[ -z "${HAVE[$pkg]+x}" ]] && missing+=("$pkg")
+    done < "$file"
+    if [[ ${#missing[@]} -eq 0 ]]; then
+        ok "$name: all $total packages already installed — skipped"
+        return
+    fi
+    echo "[*] $name: $total listed, ${#missing[@]} missing — installing..."
+    if $cmd "${missing[@]}" 2>&1; then
+        ok "$name done (${#missing[@]} installed)"
     else
         fail "$name FAILED"
         FAILURES="$FAILURES\n  - $name"
     fi
 }
 
-install_list "pacman (base)" "$BASE_LIST" "sudo pacman -S --noconfirm --needed -"
-install_list "AUR"           "$AUR_LIST"  "paru -S --noconfirm --skipreview --removemake --needed -"
+install_list "pacman (base)" "$BASE_LIST" "sudo pacman -S --noconfirm --needed"
+install_list "AUR"           "$AUR_LIST"  "paru -S --noconfirm --skipreview --removemake --needed"
 
 # Yazi plugins via package manager
 if command -v ya >/dev/null 2>&1; then
@@ -67,8 +85,15 @@ fi
 # Enable services
 echo "[*] Enabling services..."
 sudo systemctl enable --now ly@tty2 2>&1 || fail "enable ly"
-sudo systemctl enable --now vboxdrv 2>&1 || fail "enable vboxdrv"
-sudo systemctl enable --now vboxservice 2>&1 || fail "enable vboxservice"
+# vboxdrv/vboxservice units are absent in current Arch (module auto-loads via
+# virtualbox-host-dkms) -> gate on presence so sync still exits 0
+for svc in vboxdrv vboxservice; do
+    if systemctl list-unit-files --quiet "$svc.service"; then
+        sudo systemctl enable --now "$svc" 2>&1 || fail "enable $svc"
+    else
+        echo "[=] $svc.service not present — skipped (auto-loaded via DKMS)"
+    fi
+done
 sudo systemctl enable --now ufw 2>&1 || fail "enable ufw"
 sudo systemctl enable --now tlp 2>&1 || fail "enable tlp"
 sudo systemctl mask --now power-profiles-daemon 2>&1 || fail "mask power-profiles-daemon"
