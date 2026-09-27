@@ -11,3 +11,5 @@ dot_config/zsh/conf.d/99-secrets.zsh
 
 # repo readme - not meant for home dir
 readme.md
+
+.omo/
