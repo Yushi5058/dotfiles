@@ -1,7 +1,14 @@
-floorp-bin
+binder_linux-dkms
+dwarfs
+gearlever
 maplemono-ttf
+nextdns-bin
 poweralertd
+python-desktop-entry-lib
+python-ftputil
 rose-pine-cursor
-swaylock-effects-git
+rustdesk
+slack-desktop-wayland
 virtualbox-ext-oracle
 vscodium-bin
+waydroid-image-gapps

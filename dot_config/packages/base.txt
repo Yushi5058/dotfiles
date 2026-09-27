@@ -6,10 +6,10 @@ autotiling
 azote
 base-devel
 bat
+blueman
 bluetui
 bluez
 bluez-utils
-blueman
 bolt
 brightnessctl
 btop
@@ -21,10 +21,11 @@ dbeaver
 discord
 dnsmasq
 earlyoom
-eza
 exfatprogs
+eza
 fastfetch
 fd
+floorp-bin
 fuzzel
 fzf
 ghostty
@@ -56,8 +57,8 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 npm
-nwg-look
 ntfs-3g
+nwg-look
 ouch
 pacman-contrib
 parallel
@@ -73,10 +74,10 @@ polkit-gnome
 power-profiles-daemon
 python
 python-pip
-qt5-wayland
 qt5ct
-qt6-wayland
+qt5-wayland
 qt6ct
+qt6-wayland
 reflector
 ripgrep
 rust
@@ -85,6 +86,7 @@ sof-firmware
 starship
 sway
 swaybg
+swaylock-effects-git
 tea
 tela-circle-icon-theme-all
 tldr
@@ -108,8 +110,8 @@ wireplumber
 wl-clipboard
 wl-clip-persist
 wlr-randr
-woff2-font-awesome
 wlsunset
+woff2-font-awesome
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
