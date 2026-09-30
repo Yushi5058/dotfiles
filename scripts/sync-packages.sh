@@ -69,13 +69,21 @@ install_list "pacman (base)" "$BASE_LIST" "sudo pacman -S --noconfirm --needed"
 install_list "AUR"           "$AUR_LIST"  "paru -S --noconfirm --skipreview --removemake --needed"
 
 # Yazi plugins via package manager
+# Stale ~/.cache/yazi/packages cache (created by older ya) can fail current
+# ya's materialize() on monorepo LICENSE symlinks (ENAMETOOLONG). Purge+retry.
 if command -v ya >/dev/null 2>&1; then
     echo "[*] Yazi plugins..."
     if ya pkg install 2>&1; then
         ok "Yazi plugins done"
     else
-        fail "Yazi plugins FAILED"
-        FAILURES="$FAILURES\n  - Yazi plugins"
+        echo "[*] ya pkg install failed — purging stale cache ($HOME/.cache/yazi/packages) and retrying..."
+        rm -rf "$HOME/.cache/yazi/packages"
+        if ya pkg install 2>&1; then
+            ok "Yazi plugins done (after cache purge)"
+        else
+            fail "Yazi plugins FAILED"
+            FAILURES="$FAILURES\n  - Yazi plugins"
+        fi
     fi
 else
     echo "[-] yazi/ya not found — skipped"
