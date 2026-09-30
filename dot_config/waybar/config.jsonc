@@ -107,7 +107,7 @@
     "clock": {
         "interval": 1,
         "locale": "C",
-        "format": "󰥔 {:%H:%M}", // Seconds removed to save space
+        "format": "󰥔 {:%I:%M %p}", // AM/PM, seconds removed to save space
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
