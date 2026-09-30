@@ -9,7 +9,7 @@ Pushes reading progress from **Foliate** (desktop) and **Moon+ Reader** (Android
 1. **API key** — create at <https://hardcover.app/account/api> (`hc_pat_...`). Store in machine-local config (`~/.config/chezmoi/chezmoi.toml`, NOT in this repo):
 
    ```toml
-   [variables]
+   [data]
    hardcover_api_key = "hc_pat_..."
    ```
 
