@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""
+hardcover-sync — push reading progress from Foliate / Moon+ Reader to Hardcover.
+
+Pipeline:
+  1. (optional) calibredb refresh — re-imports metadata from files
+  2. detect latest reading progress (Foliate local, or MoonReader.db via syncthing)
+  3. resolve real book identity (calibre ISBN/title, else title+author)
+  4. match book on Hardcover (ISBN search, fallback title)
+  5. push progress (only forward; skips regressions)
+
+API key: env HARDCOVER_API_KEY overrides the chezmoi-templated default.
+Book identity comes from the calibre library — keep metadata there clean so
+matches are accurate. Run twice? prove no-op before trusting automation.
+
+Usage:
+  hardcover-sync.py [--dry-run] [--refresh-calibre]
+  hardcover-sync.py --book "Title" --fraction 0.42   # manual override
+"""
+
+import argparse
+import glob
+import json
+import os
+import sqlite3
+import subprocess
+import sys
+import urllib.request
+import urllib.error
+
+# ==================== CONFIGURATION ====================
+# Token from: https://hardcover.app/account/api  (Bearer hc_pat_...)
+HARDCOVER_API_KEY = os.environ.get("HARDCOVER_API_KEY") or "{{ if hasKey . "hardcover_api_key" }}{{ .hardcover_api_key }}{{ end }}"
+HARDCOVER_ENDPOINT = "https://api.hardcover.app/v1/graphql"
+
+# Calibre library (used for metadata refresh + identity lookup)
+CALIBRE_LIBRARY = os.environ.get("CALIBRE_LIBRARY", os.path.expanduser("~/Calibre Library"))
+
+# Foliate data dirs (native vs flatpak)
+FOLIATE_DIRS = [
+    os.path.expanduser("~/.local/share/com.github.johnfactotum.Foliate"),
+    os.path.expanduser("~/.var/app/com.github.johnfactotum.Foliate/data/com.github.johnfactotum.Foliate"),
+]
+
+# Moon+ Reader DB — sync from Android via syncthing; point MOONREADER_DB at it
+MOONREADER_DB = os.environ.get("MOONREADER_DB", os.path.expanduser("~/.MoonReader/MoonReader.db"))
+# ========================================================
+
+
+def gql(query: str, variables: dict = None) -> dict:
+    """Single GraphQL request (search ops must be called alone — API limit)."""
+    key = HARDCOVER_API_KEY.strip()
+    if not key or key.startswith("{" + "{") or key == "YOUR_HARDCOVER_BEARER_TOKEN_HERE":
+        sys.exit("[-] No Hardcover API key. Set HARDCOVER_API_KEY env var or the "
+                 "hardcover_api_key variable in ~/.config/chezmoi/chezmoi.toml.")
+    body = json.dumps({"query": query, "variables": variables or {}}).encode()
+    req = urllib.request.Request(
+        HARDCOVER_ENDPOINT, data=body, method="POST",
+        headers={
+            "content-type": "application/json",
+            "authorization": key if key.startswith("Bearer ") else f"Bearer {key}",
+            "User-Agent": "hardcover-sync/1.0",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            res = json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        sys.exit(f"[-] HTTP {e.code}: {e.read().decode()[:300]}")
+    if "errors" in res:
+        sys.exit(f"[-] GraphQL: {res['errors']}")
+    return res["data"]
+
+
+def calibredb(args) -> subprocess.CompletedProcess | None:
+    cmd = ["calibredb", "--library", CALIBRE_LIBRARY, *args]
+    try:
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    except FileNotFoundError:
+        return None  # calibre absent — caller falls back to title-only search
+    except subprocess.TimeoutExpired:
+        sys.exit("[-] calibredb timed out (large library?).")
+
+
+# ---------- reader adapters ----------
+
+def detect_moonreader() -> dict | None:
+    """Most recently updated book in MoonReader.db (synced from Android)."""
+    if not os.path.exists(MOONREADER_DB):
+        return None
+    conn = sqlite3.connect(f"file:{MOONREADER_DB}?mode=ro", uri=True)
+    cur = conn.cursor()
+    cols = [r[1] for r in cur.execute("PRAGMA table_info(book_info)")]
+    time_cols = [c for c in ("update_time", "last_time", "time", "add") if c in cols]
+    order = f" ORDER BY {time_cols[0]} DESC LIMIT 1" if time_cols else " LIMIT 1"
+    row = cur.execute(f"SELECT name, author, path, percent FROM book_info{order}").fetchone()
+    conn.close()
+    if not row:
+        return None
+    name, author, path, percent = row
+    fraction = float(percent or 0)
+    return {"title": name, "author": author, "file": path,
+            "fraction": min(max(fraction, 0.0), 1.0), "source": "moon+"}
+
+
+def detect_foliate() -> dict | None:
+    """Newest Foliate state file carrying a numeric progress field."""
+    best = None
+    for d in FOLIATE_DIRS:
+        if not os.path.isdir(d):
+            continue
+        for fp in glob.glob(os.path.join(d, "*.json")):
+            try:
+                with open(fp, encoding="utf-8") as f:
+                    data = json.load(f)
+            except Exception:
+                continue
+            if isinstance(data, dict):
+                fraction = data.get("progress")
+                if not isinstance(fraction, (int, float)):
+                    fraction = data.get("percent")
+                if not isinstance(fraction, (int, float)):
+                    continue
+                mtime = os.path.getmtime(fp)
+                if best is None or mtime > best["mtime"]:
+                    best = {"title": data.get("title"), "file": fp,
+                            "fraction": min(max(float(fraction), 0.0), 1.0),
+                            "mtime": mtime, "source": "foliate"}
+    return best
+
+
+# ---------- identity: calibre metadata first ----------
+
+def resolve_library_entry(hint: dict) -> dict | None:
+    """Find calibre entry by title or filename; returns {title, authors[], isbn}."""
+    fields = "isbn,authors,title"
+    for term in ({hint.get("title")} | {os.path.splitext(os.path.basename(hint.get("file", "")))[0]}):
+        if not term:
+            continue
+        p = calibredb(["list", "--for-machine", "--fields", fields,
+                       "--search", f'title:"{term}"'])
+        if p is None:
+            return None  # calibre unavailable — caller falls back to title search
+        if p.returncode == 0 and p.stdout.strip():
+            rows = json.loads(p.stdout)
+            if rows:
+                r = rows[0]
+                return {"title": r.get("title"), "authors": r.get("authors", []),
+                        "isbn": r.get("isbn", "")}
+    return None
+
+
+# ---------- Hardcover ----------
+
+def get_user_id() -> int:
+    return gql("query { me { id } }")["me"]["id"]
+
+
+def search_book(term: str) -> list:
+    data = gql("""query Search($q: String!) {
+      search(query: $q, query_type: "Book", per_page: 5, page: 1) {
+        results { id title author_names isbns }
+      }
+    }""", {"q": term})
+    return data.get("search", {}).get("results", [])
+
+
+def match_book(entry: dict, hint: dict) -> dict | None:
+    """Match calibre entry to a Hardcover book: ISBN first, then title+author."""
+    isbn = "".join(ch for ch in (entry or {}).get("isbn", "") if ch.isalnum())
+    if len(isbn) >= 10:
+        for r in search_book(isbn):
+            if any(isbn == "".join(c for c in i if c.isalnum()) for i in r.get("isbns", [])):
+                return r
+    title = (entry or hint or {}).get("title", "")
+    if not title:
+        return None
+    for r in search_book(title):
+        if r.get("author_names") and hint.get("author"):
+            if any(hint["author"].lower() in a.lower() for a in r["author_names"]):
+                return r
+        else:
+            return r
+    return None
+
+
+def user_book_for(user_id: int, book_id: int) -> dict | None:
+    data = gql("""query UB($uid: Int!, $bid: Int!) {
+      user_books(where: {user_id: {_eq: $uid}, book_id: {_eq: $bid}}, limit: 1) {
+        id status_id
+        user_book_reads(order_by: {id: desc}, limit: 1) { progress }
+      }
+    }""", {"uid": user_id, "bid": book_id})
+    ubs = data.get("user_books", [])
+    return ubs[0] if ubs else None
+
+
+def push_progress(user_book_id: int, fraction: float, dry: bool) -> None:
+    if dry:
+        print(f"[*] dry-run: would push {fraction:.0%} to user_book {user_book_id}")
+        return
+    gql("""mutation Upd($id: Int!, $p: Float!) {
+      insert_user_book_read(
+        objects: {user_book_id: $id, progress: $p}
+        on_conflict: {constraint: user_book_reads_pkey, update_columns: [progress]}
+      ) { affected_rows }
+    }""", {"id": user_book_id, "p": fraction})
+    print(f"[+] pushed {fraction:.0%} → user_book {user_book_id}")
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="sync reading progress to Hardcover")
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--refresh-calibre", action="store_true",
+                    help="run calibredb refresh before lookup (re-imports metadata)")
+    ap.add_argument("--book", help="manual title override")
+    ap.add_argument("--fraction", type=float, help="manual progress override (0-1)")
+    args = ap.parse_args()
+
+    if args.refresh_calibre:
+        print("[*] refreshing calibre metadata...")
+        p = calibredb(["refresh"])
+        if p is not None and p.returncode != 0:
+            print(f"[!] calibredb refresh warning: {p.stderr.strip()[:200]}")
+
+    if args.book and args.fraction is not None:
+        hint = {"title": args.book, "fraction": min(max(args.fraction, 0.0), 1.0), "source": "manual"}
+    else:
+        hint = detect_moonreader() or detect_foliate()
+        if not hint:
+            sys.exit("[-] no reading progress found (foliate data or MOONREADER_DB). "
+                     "Use --book/--fraction to force.")
+        print(f"[*] read on {hint['source']}: {hint.get('title')} @ {hint['fraction']:.0%}")
+
+    entry = resolve_library_entry(hint)
+    if entry:
+        print(f"[*] calibre: {entry['title']} by {', '.join(entry['authors'])} "
+              f"(isbn {entry['isbn'] or 'n/a'})")
+    else:
+        print("[!] no calibre match — falling back to title-only search on Hardcover")
+    book = match_book(entry, hint)
+    if not book:
+        sys.exit("[-] no Hardcover match. Fix metadata in calibre (ISBN/title) and retry.")
+    print(f"[*] Hardcover book: {book['title']} (id {book['id']})")
+
+    ub = user_book_for(get_user_id(), book["id"])
+    if not ub:
+        sys.exit("[-] book not in your Hardcover library. Add it (status: Currently Reading) "
+                 "on hardcover.app, then re-run.")
+    existing = (ub.get("user_book_reads") or [{}])[0].get("progress") or 0.0
+    if hint["fraction"] < existing - 0.001:
+        sys.exit(f"[-] regressing: local {hint['fraction']:.0%} < Hardcover {existing:.0%}. skipped.")
+    if hint["fraction"] <= existing + 0.0001:
+        print(f"[=] already up to date ({existing:.0%}). nothing to push.")
+        return
+    push_progress(ub["id"], hint["fraction"], args.dry_run)
+    if ub["status_id"] != 2:
+        print(f"[*] marking book as Currently Reading (was status {ub['status_id']})")
+        if not args.dry_run:
+            try:
+                gql("mutation SetSt($id: Int!) { update_user_book(where: {id: {_eq: $id}}, _set: {status_id: 2}) { affected_rows } }",
+                    {"id": ub["id"]})
+            except SystemExit as e:
+                print(f"[!] status update skipped (non-fatal): {e}")
+
+
+if __name__ == "__main__":
+    main()
