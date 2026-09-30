@@ -42,10 +42,10 @@ FOLIATE_DIRS = [
     os.path.expanduser("~/.var/app/com.github.johnfactotum.Foliate/data/com.github.johnfactotum.Foliate"),
 ]
 
-# Moon+ Reader cache — Syncthing the app's data dir (or Dropbox/WebDAV sync
-# folder) to the laptop lands per-book *.po files here. Each .po holds the
-# reading position, e.g. "...21@0#4826:11.1%". No MoonReader.db involved.
-MOONREADER_DIR = os.environ.get("MOONREADER_DIR", os.path.expanduser("~/Sync/moonreader"))
+# Moon+ Reader cache — Moon+ data dir is /sdcard/Books (Android); cache lives
+# at <data_dir>/.Moon+/Cache/*.po. Syncthing that folder to the laptop and
+# every .po carries a reading position, e.g. "...21@0#4826:11.1%".
+MOONREADER_DIR = os.environ.get("MOONREADER_DIR", os.path.expanduser("~/Sync/Books"))
 # ========================================================
 
 
