@@ -19,8 +19,8 @@ Pushes reading progress from **Foliate** (desktop) and **Moon+ Reader** (Android
 
 3. **Foliate** — auto-detected from `~/.local/share/com.github.johnfactotum.Foliate/` (native) or the flatpak data dir. No config needed.
 
-4. **Moon+ Reader (Android)** — progress lives in per-book `.po` cache files, not an accessible `MoonReader.db`. Get them onto the laptop:
-   - **Easy**: in Moon+ set a *custom data directory* on a Syncthing-synced folder (phone sends `*.po` files to laptop automatically). Point the script at it: `MOONREADER_DIR=~/Sync/moonreader`.
+4. **Moon+ Reader (Android)** — progress lives in per-book `.po` cache files, not an accessible `MoonReader.db`. Your data dir is `/sdcard/Books`; the cache is at `/sdcard/Books/.Moon+/Cache/*.po`. Get it onto the laptop:
+   - **Syncthing**: share the `/sdcard/Books` folder to the laptop (script default `MOONREADER_DIR=~/Sync/Books`, recursive scan finds `.po` files). That's the whole config — books AND progress sync together.
    - **Alt**: Moon+'s built-in sync (Dropbox/WebDAV/FTP) → laptop pulls the same `*.po` files.
    - The script picks the newest `*.po`, parses the trailing percent (e.g. `...21@0#4826:11.1%`), derives title from the filename (`Title - Author.epub.po`).
 
