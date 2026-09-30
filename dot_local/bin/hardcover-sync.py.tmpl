@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-hardcover-sync — push reading progress from Foliate / Moon+ Reader to Hardcover.
+hardcover-sync — push reading progress from Foliate to Hardcover.
 
 Pipeline:
   1. (optional) calibredb refresh — re-imports metadata from files
-  2. detect latest reading progress (Foliate local, or MoonReader.db via syncthing)
+  2. detect latest reading progress in Foliate
   3. resolve real book identity (calibre ISBN/title, else title+author)
   4. match book on Hardcover (ISBN search, fallback title)
   5. push progress (only forward; skips regressions)
@@ -22,7 +22,6 @@ import argparse
 import glob
 import json
 import os
-import sqlite3
 import subprocess
 import sys
 import urllib.request
@@ -36,14 +35,12 @@ HARDCOVER_ENDPOINT = "https://api.hardcover.app/v1/graphql"
 # Calibre library (used for metadata refresh + identity lookup)
 CALIBRE_LIBRARY = os.environ.get("CALIBRE_LIBRARY", os.path.expanduser("~/Calibre Library"))
 
-# Foliate data dirs (native vs flatpak)
+# Foliate data dirs (native vs flatpak). Book files sync via Syncthing; the
+# reader itself is Foliate-only — Moon+ Reader progress stays in its own DB.
 FOLIATE_DIRS = [
     os.path.expanduser("~/.local/share/com.github.johnfactotum.Foliate"),
     os.path.expanduser("~/.var/app/com.github.johnfactotum.Foliate/data/com.github.johnfactotum.Foliate"),
 ]
-
-# Moon+ Reader DB — sync from Android via syncthing; point MOONREADER_DB at it
-MOONREADER_DB = os.environ.get("MOONREADER_DB", os.path.expanduser("~/.MoonReader/MoonReader.db"))
 # ========================================================
 
 
@@ -83,25 +80,6 @@ def calibredb(args) -> subprocess.CompletedProcess | None:
 
 
 # ---------- reader adapters ----------
-
-def detect_moonreader() -> dict | None:
-    """Most recently updated book in MoonReader.db (synced from Android)."""
-    if not os.path.exists(MOONREADER_DB):
-        return None
-    conn = sqlite3.connect(f"file:{MOONREADER_DB}?mode=ro", uri=True)
-    cur = conn.cursor()
-    cols = [r[1] for r in cur.execute("PRAGMA table_info(book_info)")]
-    time_cols = [c for c in ("update_time", "last_time", "time", "add") if c in cols]
-    order = f" ORDER BY {time_cols[0]} DESC LIMIT 1" if time_cols else " LIMIT 1"
-    row = cur.execute(f"SELECT name, author, path, percent FROM book_info{order}").fetchone()
-    conn.close()
-    if not row:
-        return None
-    name, author, path, percent = row
-    fraction = float(percent or 0)
-    return {"title": name, "author": author, "file": path,
-            "fraction": min(max(fraction, 0.0), 1.0), "source": "moon+"}
-
 
 def detect_foliate() -> dict | None:
     """Newest Foliate state file carrying a numeric progress field."""
@@ -226,11 +204,10 @@ def main() -> None:
     if args.book and args.fraction is not None:
         hint = {"title": args.book, "fraction": min(max(args.fraction, 0.0), 1.0), "source": "manual"}
     else:
-        hint = detect_moonreader() or detect_foliate()
+        hint = detect_foliate()
         if not hint:
-            sys.exit("[-] no reading progress found (foliate data or MOONREADER_DB). "
-                     "Use --book/--fraction to force.")
-        print(f"[*] read on {hint['source']}: {hint.get('title')} @ {hint['fraction']:.0%}")
+            sys.exit("[-] no Foliate progress found. Use --book/--fraction to force.")
+        print(f"[*] read on foliate: {hint.get('title')} @ {hint['fraction']:.0%}")
 
     entry = resolve_library_entry(hint)
     if entry:
