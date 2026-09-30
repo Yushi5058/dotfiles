@@ -45,6 +45,7 @@ git push codeberg main    # → codeberg + github mirror
 | Shell | zsh + starship + zinit |
 | Terminal | ghostty, fuzzel, bat, btop, ripgrep, yazi, zathura |
 | Browser | floorp-bin |
+| Books | calibre, foliate (library synced via syncthing) |
 | Virt | virtualbox + host-dkms + ext-oracle (AUR) |
 | Other AUR | vscodium-bin, rustdesk, slack-desktop-wayland, gearlever |
 
