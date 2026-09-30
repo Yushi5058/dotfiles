@@ -1,0 +1,8 @@
+[Unit]
+Description=Sync reading progress from Foliate/Moon+ to Hardcover
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/hardcover-sync.py --refresh-calibre --quiet
+Nice=10

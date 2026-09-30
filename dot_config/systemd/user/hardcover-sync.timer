@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Hardcover reading-progress sync
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target
