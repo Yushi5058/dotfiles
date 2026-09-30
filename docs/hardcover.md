@@ -39,6 +39,18 @@ Behavior:
 - **auto-marks Currently Reading** if the book is in your library (status 2)
 - exits with clear message if the book isn't in your HardCover library (add it on the website, set status: Currently Reading)
 
-## Automate (optional)
+## Automation (systemd user timer)
 
-Systemd timer or cron weekly is enough. Or just run it ad hoc after reading sessions.
+Daily run with `--refresh-calibre` (metadata re-imported, then progress pushed),
+so Hardcover progress is populated every day:
+
+```bash
+systemctl --user enable --now hardcover-sync.timer
+systemctl --user list-timers hardcover-sync    # verify scheduled
+journalctl --user -u hardcover-sync.service    # last run log
+```
+
+Units: `~/.config/systemd/user/hardcover-sync.{service,timer}` — timer fires
+`*-*-* 00:00:00` (+0–10 min random delay), `Persistent=true` catches up missed
+runs. The service uses `--quiet`: no reading progress found → exit 0 (not a
+failed unit), so empty days are silent.

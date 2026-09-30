@@ -225,6 +225,8 @@ def main() -> None:
                     help="run calibredb refresh before lookup (re-imports metadata)")
     ap.add_argument("--book", help="manual title override")
     ap.add_argument("--fraction", type=float, help="manual progress override (0-1)")
+    ap.add_argument("--quiet", action="store_true",
+                    help="exit 0 when nothing to sync (for timers)")
     args = ap.parse_args()
 
     if args.refresh_calibre:
@@ -238,6 +240,8 @@ def main() -> None:
     else:
         hint = detect_moonreader() or detect_foliate()
         if not hint:
+            if args.quiet:
+                sys.exit(0)  # nothing to sync — not an error in a timer
             sys.exit("[-] no reading progress found (foliate data or MOONREADER_DIR). "
                      "Use --book/--fraction to force.")
         print(f"[*] read on {hint['source']}: {hint.get('title')} @ {hint['fraction']:.0%}")
