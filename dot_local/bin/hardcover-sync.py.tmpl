@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-hardcover-sync — push reading progress from Foliate to Hardcover.
+hardcover-sync — push reading progress from Foliate + Moon+ Reader to Hardcover.
 
 Pipeline:
   1. (optional) calibredb refresh — re-imports metadata from files
-  2. detect latest reading progress in Foliate
+  2. detect latest reading progress (Foliate local, or Moon+ .po cache via Syncthing)
   3. resolve real book identity (calibre ISBN/title, else title+author)
   4. match book on Hardcover (ISBN search, fallback title)
   5. push progress (only forward; skips regressions)
@@ -22,6 +22,7 @@ import argparse
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.request
@@ -35,12 +36,16 @@ HARDCOVER_ENDPOINT = "https://api.hardcover.app/v1/graphql"
 # Calibre library (used for metadata refresh + identity lookup)
 CALIBRE_LIBRARY = os.environ.get("CALIBRE_LIBRARY", os.path.expanduser("~/Calibre Library"))
 
-# Foliate data dirs (native vs flatpak). Book files sync via Syncthing; the
-# reader itself is Foliate-only — Moon+ Reader progress stays in its own DB.
+# Foliate data dirs (native vs flatpak)
 FOLIATE_DIRS = [
     os.path.expanduser("~/.local/share/com.github.johnfactotum.Foliate"),
     os.path.expanduser("~/.var/app/com.github.johnfactotum.Foliate/data/com.github.johnfactotum.Foliate"),
 ]
+
+# Moon+ Reader cache — Syncthing the app's data dir (or Dropbox/WebDAV sync
+# folder) to the laptop lands per-book *.po files here. Each .po holds the
+# reading position, e.g. "...21@0#4826:11.1%". No MoonReader.db involved.
+MOONREADER_DIR = os.environ.get("MOONREADER_DIR", os.path.expanduser("~/Sync/moonreader"))
 # ========================================================
 
 
@@ -80,6 +85,33 @@ def calibredb(args) -> subprocess.CompletedProcess | None:
 
 
 # ---------- reader adapters ----------
+
+def detect_moonreader() -> dict | None:
+    """Newest Moon+ *.po cache file (Syncthing-synced from Android)."""
+    best = None
+    if not os.path.isdir(MOONREADER_DIR):
+        return None
+    for fp in glob.glob(os.path.join(MOONREADER_DIR, "**", "*.po"), recursive=True):
+        try:
+            with open(fp, encoding="utf-8", errors="replace") as f:
+                content = f.read(1024)
+        except Exception:
+            continue
+        m = re.search(r"(\d+(?:\.\d+)?)%", content)
+        if not m:
+            continue
+        mtime = os.path.getmtime(fp)
+        if best is None or mtime > best["mtime"]:
+            base = os.path.basename(fp)
+            if base.endswith(".po"):
+                base = base[:-3]
+            stem = os.path.splitext(base)[0]          # "Title - Author"
+            title, _, author = stem.partition(" - ")
+            best = {"title": title.strip() or None, "author": author.strip() or None,
+                    "file": fp, "fraction": min(max(float(m.group(1)) / 100.0, 0.0), 1.0),
+                    "mtime": mtime, "source": "moon+"}
+    return best
+
 
 def detect_foliate() -> dict | None:
     """Newest Foliate state file carrying a numeric progress field."""
@@ -204,10 +236,11 @@ def main() -> None:
     if args.book and args.fraction is not None:
         hint = {"title": args.book, "fraction": min(max(args.fraction, 0.0), 1.0), "source": "manual"}
     else:
-        hint = detect_foliate()
+        hint = detect_moonreader() or detect_foliate()
         if not hint:
-            sys.exit("[-] no Foliate progress found. Use --book/--fraction to force.")
-        print(f"[*] read on foliate: {hint.get('title')} @ {hint['fraction']:.0%}")
+            sys.exit("[-] no reading progress found (foliate data or MOONREADER_DIR). "
+                     "Use --book/--fraction to force.")
+        print(f"[*] read on {hint['source']}: {hint.get('title')} @ {hint['fraction']:.0%}")
 
     entry = resolve_library_entry(hint)
     if entry:
