@@ -45,7 +45,7 @@ git push codeberg main    # → codeberg + github mirror
 | Shell | zsh + starship + zinit |
 | Terminal | ghostty, fuzzel, bat, btop, ripgrep, yazi, zathura |
 | Browser | floorp-bin |
-| Books | calibre, foliate (library synced via syncthing) |
+| Books | calibre, foliate, hardcover (reading progress sync) |
 | Virt | virtualbox + host-dkms + ext-oracle (AUR) |
 | Other AUR | vscodium-bin, rustdesk, slack-desktop-wayland, gearlever |
 
@@ -67,6 +67,7 @@ Templated files (`machine data: email, gpg key, displays`): `dot_gitconfig.tmpl`
 
 - [Fresh install](docs/fresh-install.md) — partitions, migration, bootstrap, checklist
 - [Hardware](docs/hardware.md) — ThinkPad X13 Yoga Gen 2, Sway input config
+- [Hardcover](docs/hardcover.md) — reading progress sync (Foliate / Moon+ → Hardcover)
 - [Floorp](docs/floorp.md) — prefs (profile `user.js`), extensions
 - [NextDNS](docs/nextdns.md) — systemd-resolved DoT, no CLI daemon
 - [DFIR](docs/dfir.md) — Kali / Windows 11 VMs, snapshots
