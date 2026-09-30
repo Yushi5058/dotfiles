@@ -2,7 +2,7 @@
 
 `dot_local/bin/hardcover-sync.py.tmpl` → `~/.local/bin/hardcover-sync.py`
 
-Pushes reading progress from **Foliate** (desktop) or **Moon+ Reader** (Android, via Syncthing) to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right HardCover edition.
+Pushes reading progress from **Foliate** to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition. Book files sync between devices via Syncthing; the reader is Foliate-only.
 
 ## Setup
 
@@ -17,9 +17,7 @@ Pushes reading progress from **Foliate** (desktop) or **Moon+ Reader** (Android,
 
 2. **Calibre library** — default `~/Calibre Library` (override: `CALIBRE_LIBRARY` env). Metadata drives the match, so keep ISBN/title clean.
 
-3. **Motion source** (one of):
-   - **Foliate** — auto-detected from `~/.local/share/com.github.johnfactotum.Foliate/` (native) or the flatpak data dir. No config needed.
-   - **Moon+ Reader** — export the app DB to a Syncthing-synced path, point `MOONREADER_DB` at it (e.g. `~/Sync/moonreader/MoonReader.db`).
+3. **Foliate** — auto-detected from `~/.local/share/com.github.johnfactotum.Foliate/` (native) or the flatpak data dir. No config needed.
 
 ## Usage
 
