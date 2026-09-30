@@ -2,7 +2,7 @@
 
 `dot_local/bin/hardcover-sync.py.tmpl` → `~/.local/bin/hardcover-sync.py`
 
-Pushes reading progress from **Foliate** to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition. Book files sync between devices via Syncthing; the reader is Foliate-only.
+Pushes reading progress from **Foliate** (desktop) and **Moon+ Reader** (Android, via Syncthing) to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition.
 
 ## Setup
 
@@ -18,6 +18,11 @@ Pushes reading progress from **Foliate** to [Hardcover](https://hardcover.app). 
 2. **Calibre library** — default `~/Calibre Library` (override: `CALIBRE_LIBRARY` env). Metadata drives the match, so keep ISBN/title clean.
 
 3. **Foliate** — auto-detected from `~/.local/share/com.github.johnfactotum.Foliate/` (native) or the flatpak data dir. No config needed.
+
+4. **Moon+ Reader (Android)** — progress lives in per-book `.po` cache files, not an accessible `MoonReader.db`. Get them onto the laptop:
+   - **Easy**: in Moon+ set a *custom data directory* on a Syncthing-synced folder (phone sends `*.po` files to laptop automatically). Point the script at it: `MOONREADER_DIR=~/Sync/moonreader`.
+   - **Alt**: Moon+'s built-in sync (Dropbox/WebDAV/FTP) → laptop pulls the same `*.po` files.
+   - The script picks the newest `*.po`, parses the trailing percent (e.g. `...21@0#4826:11.1%`), derives title from the filename (`Title - Author.epub.po`).
 
 ## Usage
 
