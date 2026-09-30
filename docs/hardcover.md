@@ -39,18 +39,26 @@ Behavior:
 - **auto-marks Currently Reading** if the book is in your library (status 2)
 - exits with clear message if the book isn't in your HardCover library (add it on the website, set status: Currently Reading)
 
-## Automation (systemd user timer)
+## Automation (systemd user timers — two-tier)
 
-Daily run with `--refresh-calibre` (metadata re-imported, then progress pushed),
-so Hardcover progress is populated every day:
+Progress pushed **every 10 min** (accurate through the day, like Readest); calibre
+metadata re-imported **daily**:
 
 ```bash
-systemctl --user enable --now hardcover-sync.timer
-systemctl --user list-timers hardcover-sync    # verify scheduled
-journalctl --user -u hardcover-sync.service    # last run log
+systemctl --user enable --now hardcover-sync.timer          # every 10 min
+systemctl --user enable --now hardcover-sync-refresh.timer  # daily + calibredb refresh
+systemctl --user list-timers 'hardcover-*'                  # verify scheduled
+journalctl --user -u hardcover-sync.service                 # last run log
 ```
 
-Units: `~/.config/systemd/user/hardcover-sync.{service,timer}` — timer fires
-`*-*-* 00:00:00` (+0–10 min random delay), `Persistent=true` catches up missed
-runs. The service uses `--quiet`: no reading progress found → exit 0 (not a
-failed unit), so empty days are silent.
+Units in `~/.config/systemd/user/`:
+
+| Unit | Schedule | Action |
+|---|---|---|
+| `hardcover-sync.service` + `.timer` | every 10 min | detect + push progress (forward-only) |
+| `hardcover-sync-refresh.service` + `.timer` | daily (+0–10 min) | `--refresh-calibre` then same push |
+
+Why two tiers: progress sync every 10 min is cheap (identity lookup only, no
+metadata rebuild). `calibredb refresh` is heavier — once a day is enough for
+new books. Both use `--quiet`: no reading progress found → exit 0 (never a
+failed unit on empty days). `Persistent=true` catches up missed runs.

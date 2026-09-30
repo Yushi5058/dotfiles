@@ -4,5 +4,5 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/hardcover-sync.py --refresh-calibre --quiet
+ExecStart=%h/.local/bin/hardcover-sync.py --quiet
 Nice=10
