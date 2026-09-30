@@ -13,6 +13,7 @@ bluez-utils
 bolt
 brightnessctl
 btop
+calibre
 cliphist
 copyq
 croc
@@ -26,6 +27,7 @@ eza
 fastfetch
 fd
 floorp-bin
+foliate
 fuzzel
 fzf
 ghostty
@@ -87,6 +89,7 @@ starship
 sway
 swaybg
 swaylock-effects-git
+syncthing
 tea
 tela-circle-icon-theme-all
 tldr
