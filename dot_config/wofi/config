@@ -1,0 +1,14 @@
+width=500
+height=400
+location=center
+show=drun
+prompt=>
+terminal=ghostty
+hide_scroll=true
+line_wrap=false
+allow_markup=true
+no_actions=true
+matching=fuzzy
+filter_rate=100
+insensitive=true
+drun-display-format={name}
