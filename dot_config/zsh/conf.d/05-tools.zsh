@@ -9,7 +9,7 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 
 # Keychain
-eval $(keychain -q --eval id_ed25519)
+eval $(keychain --quiet --agents ssh --eval id_ed25519 2>/dev/null || keychain -q --eval id_ed25519)
 
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
