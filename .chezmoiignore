@@ -12,4 +12,7 @@ dot_config/zsh/conf.d/99-secrets.zsh
 # repo readme - not meant for home dir
 readme.md
 
+# Qt writes this on every file dialog - volatile app state, not config
+.config/QtProject.conf
+
 .omo/
