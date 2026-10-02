@@ -1,0 +1,63 @@
+/* Rosé Pine Moon theme for wofi */
+* {
+  font-family: "Maple Mono", monospace;
+  font-size: 14px;
+}
+
+window {
+  background-color: #232136;
+  border: 3px solid #ea9a97;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+#input {
+  background-color: #2a273f;
+  border: 2px solid #ea9a97;
+  border-radius: 4px;
+  color: #e0def4;
+  padding: 6px 8px;
+  margin: 4px;
+}
+
+#input:focus {
+  border-color: #9ccfd8;
+}
+
+#inner-box {
+  margin: 4px;
+}
+
+#outer-box {
+  margin: 4px;
+}
+
+#scroll {
+  margin: 4px;
+}
+
+#text {
+  color: #e0def4;
+  padding: 4px 6px;
+}
+
+#entry {
+  border-radius: 4px;
+  padding: 2px;
+}
+
+#entry:selected {
+  background-color: #3e8fb0;
+}
+
+#entry:selected #text {
+  color: #232136;
+}
+
+#entry:selected #img {
+  margin-right: 4px;
+}
+
+#img {
+  margin-right: 4px;
+}
