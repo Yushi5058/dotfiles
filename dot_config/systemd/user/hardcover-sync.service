@@ -1,5 +1,5 @@
 [Unit]
-Description=Sync reading progress from Foliate/Moon+ to Hardcover
+Description=Sync reading progress from Moon+ to Hardcover
 After=network-online.target
 
 [Service]

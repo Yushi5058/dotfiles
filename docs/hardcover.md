@@ -2,7 +2,7 @@
 
 `dot_local/bin/hardcover-sync.py.tmpl` → `~/.local/bin/hardcover-sync.py`
 
-Pushes reading progress from **Foliate** (desktop) and **Moon+ Reader** (Android, via Syncthing) to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition.
+Pushes reading progress from **Moon+ Reader** (Android, synced to the laptop) to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition.
 
 ## Setup
 
@@ -17,12 +17,9 @@ Pushes reading progress from **Foliate** (desktop) and **Moon+ Reader** (Android
 
 2. **Calibre library** — default `~/Calibre Library` (override: `CALIBRE_LIBRARY` env). Metadata drives the match, so keep ISBN/title clean.
 
-3. **Foliate** — auto-detected from `~/.local/share/com.github.johnfactotum.Foliate/` (native) or the flatpak data dir. No config needed.
-
-4. **Moon+ Reader (Android)** — progress lives in per-book `.po` cache files, not an accessible `MoonReader.db`. Your data dir is `/sdcard/Books`; the cache is at `/sdcard/Books/.Moon+/Cache/*.po`. Get it onto the laptop:
-   - **Syncthing**: share the `/sdcard/Books` folder to the laptop (script default `MOONREADER_DIR=~/Sync/Books`, recursive scan finds `.po` files). That's the whole config — books AND progress sync together.
-   - **Alt**: Moon+'s built-in sync (Dropbox/WebDAV/FTP) → laptop pulls the same `*.po` files.
-   - The script picks the newest `*.po`, parses the trailing percent (e.g. `...21@0#4826:11.1%`), derives title from the filename (`Title - Author.epub.po`).
+3. **Moon+ Reader (Android)** — progress lives in per-book `.po` cache files, not an accessible `MoonReader.db`. Your data dir is `/sdcard/Books`; the cache is at `/sdcard/Books/.Moon+/Cache/*.po`. Get it onto the laptop:
+   - **File sync** (Syncthing, Syncthing/FUSE, rclone, or Moon+'s built-in sync): share the `/sdcard/Books` folder to the laptop (script default `MOONREADER_DIR=~/Sync/Books`, recursive scan finds `.po` files).
+   - The script picks the newest `.po`, parses the trailing percent (e.g. `...21@0#4826:11.1%`), derives title from the filename (`Title - Author.epub.po`).
 
 ## Usage
 

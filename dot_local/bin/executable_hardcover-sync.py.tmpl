@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-hardcover-sync — push reading progress from Foliate + Moon+ Reader to Hardcover.
+hardcover-sync — push reading progress from Moon+ Reader to Hardcover.
 
 Pipeline:
   1. (optional) calibredb refresh — re-imports metadata from files
-  2. detect latest reading progress (Foliate local, or Moon+ .po cache via Syncthing)
+  2. detect latest reading progress (Moon+ .po cache via sync)
   3. resolve real book identity (calibre ISBN/title, else title+author)
   4. match book on Hardcover (ISBN search, fallback title)
   5. push progress (only forward; skips regressions)
@@ -36,14 +36,8 @@ HARDCOVER_ENDPOINT = "https://api.hardcover.app/v1/graphql"
 # Calibre library (used for metadata refresh + identity lookup)
 CALIBRE_LIBRARY = os.environ.get("CALIBRE_LIBRARY", os.path.expanduser("~/Calibre Library"))
 
-# Foliate data dirs (native vs flatpak)
-FOLIATE_DIRS = [
-    os.path.expanduser("~/.local/share/com.github.johnfactotum.Foliate"),
-    os.path.expanduser("~/.var/app/com.github.johnfactotum.Foliate/data/com.github.johnfactotum.Foliate"),
-]
-
 # Moon+ Reader cache — Moon+ data dir is /sdcard/Books (Android); cache lives
-# at <data_dir>/.Moon+/Cache/*.po. Syncthing that folder to the laptop and
+# at <data_dir>/.Moon+/Cache/*.po. Sync that folder to the laptop and
 # every .po carries a reading position, e.g. "...21@0#4826:11.1%".
 MOONREADER_DIR = os.environ.get("MOONREADER_DIR", os.path.expanduser("~/Sync/Books"))
 # ========================================================
@@ -113,30 +107,7 @@ def detect_moonreader() -> dict | None:
     return best
 
 
-def detect_foliate() -> dict | None:
-    """Newest Foliate state file carrying a numeric progress field."""
-    best = None
-    for d in FOLIATE_DIRS:
-        if not os.path.isdir(d):
-            continue
-        for fp in glob.glob(os.path.join(d, "*.json")):
-            try:
-                with open(fp, encoding="utf-8") as f:
-                    data = json.load(f)
-            except Exception:
-                continue
-            if isinstance(data, dict):
-                fraction = data.get("progress")
-                if not isinstance(fraction, (int, float)):
-                    fraction = data.get("percent")
-                if not isinstance(fraction, (int, float)):
-                    continue
-                mtime = os.path.getmtime(fp)
-                if best is None or mtime > best["mtime"]:
-                    best = {"title": data.get("title"), "file": fp,
-                            "fraction": min(max(float(fraction), 0.0), 1.0),
-                            "mtime": mtime, "source": "foliate"}
-    return best
+
 
 
 # ---------- identity: calibre metadata first ----------
@@ -149,7 +120,7 @@ def resolve_library_entry(hint: dict) -> dict | None:
             continue
         p = calibredb(["list", "--for-machine", "--fields", fields,
                        "--search", f'title:"{term}"'])
-        if p is None:
+        if p is None or (p.returncode != 0 and not p.stdout.strip()):
             return None  # calibre unavailable — caller falls back to title search
         if p.returncode == 0 and p.stdout.strip():
             rows = json.loads(p.stdout)
@@ -238,11 +209,11 @@ def main() -> None:
     if args.book and args.fraction is not None:
         hint = {"title": args.book, "fraction": min(max(args.fraction, 0.0), 1.0), "source": "manual"}
     else:
-        hint = detect_moonreader() or detect_foliate()
+        hint = detect_moonreader()
         if not hint:
             if args.quiet:
                 sys.exit(0)  # nothing to sync — not an error in a timer
-            sys.exit("[-] no reading progress found (foliate data or MOONREADER_DIR). "
+            sys.exit("[-] no reading progress found (Moon+ .po files in MOONREADER_DIR). "
                      "Use --book/--fraction to force.")
         print(f"[*] read on {hint['source']}: {hint.get('title')} @ {hint['fraction']:.0%}")
 
