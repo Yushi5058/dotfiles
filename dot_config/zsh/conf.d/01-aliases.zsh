@@ -1,6 +1,6 @@
 # 01-aliases.zsh — Aliases
 
-alias ls="eza -A --icons"
+alias ls="eza -A --icons=auto"
 alias ll="eza -A --icons -l"
 alias lt="eza --tree --icons -A"
 alias cat="bat"
