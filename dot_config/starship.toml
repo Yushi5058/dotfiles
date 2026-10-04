@@ -112,7 +112,7 @@ disabled = false
 symbol = " "
 
 [nodejs]
-detect_extension = ["js"]
+detect_extensions = ["js"]
 style = "bg:overlay fg:pine"
 format = " [](fg:overlay)[ $symbol$version ]($style)[](fg:overlay)"
 disabled = false
