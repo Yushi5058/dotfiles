@@ -2,7 +2,7 @@
 
 `dot_local/bin/hardcover-sync.py.tmpl` → `~/.local/bin/hardcover-sync.py`
 
-Pushes reading progress from **Moon+ Reader** (Android, synced to the laptop) to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition.
+Pushes reading progress to [Hardcover](https://hardcover.app). Uses the **calibre library as the source of truth for book identity** (ISBN/title), so matches land on the right Hardcover edition. Works with Readest (books synced via calibre/`~/Documents/books` auto-import; progress source depends on reader export - currently configured for Moon+ `.po` cache).
 
 ## Setup
 
@@ -17,7 +17,7 @@ Pushes reading progress from **Moon+ Reader** (Android, synced to the laptop) to
 
 2. **Calibre library** — default `~/Calibre Library` (override: `CALIBRE_LIBRARY` env). Metadata drives the match, so keep ISBN/title clean.
 
-3. **Progress source** — currently configured to read Moon+ Reader `.po` cache files from `MOONREADER_DIR` (default `~/Sync/Books`). Recursively scans for newest `.po` and extracts progress. Adjust `MOONREADER_DIR` if your sync location differs. (MoonReader cache dirs were removed; Readest may need a different adapter in future.)
+3. **Progress source** — reads reading progress from Moon+ Reader `.po` cache files in `MOONREADER_DIR` (default `~/Sync/Books`, recursively). If using Readest, progress export path may differ - update `MOONREADER_DIR` or adapt the script accordingly. Books placed in `~/Documents/books` are auto-imported to calibre by `calibre-auto-add` (5-min timer).
 
 ## Usage
 

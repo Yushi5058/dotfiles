@@ -67,7 +67,7 @@ Templated files (`machine data: email, gpg key, displays`): `dot_gitconfig.tmpl`
 
 - [Fresh install](docs/fresh-install.md) — partitions, migration, bootstrap, checklist
 - [Hardware](docs/hardware.md) — ThinkPad X13 Yoga Gen 2, Sway input config
-- [Hardcover](docs/hardcover.md) — reading progress sync (Moon+ → Hardcover)
+- [Hardcover](docs/hardcover.md) — reading progress sync (Readest/cached progress → Hardcover)
 - [Floorp](docs/floorp.md) — prefs (profile `user.js`), extensions
 - [NextDNS](docs/nextdns.md) — systemd-resolved DoT, no CLI daemon
 - [DFIR](docs/dfir.md) — Kali / Windows 11 VMs, snapshots
