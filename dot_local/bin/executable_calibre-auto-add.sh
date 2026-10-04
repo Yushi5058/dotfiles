@@ -16,12 +16,9 @@ fi
 while IFS= read -r -d '' f; do
   mtime=$(stat -c %Y "$f" 2>/dev/null || echo 0)
   if (( mtime > last_ts )); then
-    case "$f" in
-      */.MoonReader/*|*/MoonReader/.MoonReader/*) continue ;;
-    esac
     calibredb --library "$LIB" add "$f" >/dev/null 2>&1 || true
   fi
-done < <(find "$WATCH_DIR" -name '*.epub' -not -path '*/.MoonReader/*' -print0)
+done < <(find "$WATCH_DIR" -name '*.epub' -print0)
 
-latest=$(find "$WATCH_DIR" -name '*.epub' -not -path '*/.MoonReader/*' -printf '%T@\\n' 2>/dev/null | sort -rn | head -1 | cut -d. -f1 || echo "$(date +%s)")
+latest=$(find "$WATCH_DIR" -name '*.epub' -printf '%T@\\n' 2>/dev/null | sort -rn | head -1 | cut -d. -f1 || echo "$(date +%s)")
 echo "${latest:-$(date +%s)}" > "$STATE"
