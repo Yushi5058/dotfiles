@@ -1,0 +1,10 @@
+[Unit]
+Description=Poll for new EPUBs in ~/Documents/books every 5 minutes
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=5m
+Persistent=true
+
+[Install]
+WantedBy=default.target
