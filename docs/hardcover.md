@@ -17,9 +17,7 @@ Pushes reading progress from **Moon+ Reader** (Android, synced to the laptop) to
 
 2. **Calibre library** — default `~/Calibre Library` (override: `CALIBRE_LIBRARY` env). Metadata drives the match, so keep ISBN/title clean.
 
-3. **Moon+ Reader (Android)** — progress lives in per-book `.po` cache files, not an accessible `MoonReader.db`. Your data dir is `/sdcard/Books`; the cache is at `/sdcard/Books/.Moon+/Cache/*.po`. Get it onto the laptop:
-   - **File sync** (Syncthing, Syncthing/FUSE, rclone, or Moon+'s built-in sync): share the `/sdcard/Books` folder to the laptop (script default `MOONREADER_DIR=~/Sync/Books`, recursive scan finds `.po` files).
-   - The script picks the newest `.po`, parses the trailing percent (e.g. `...21@0#4826:11.1%`), derives title from the filename (`Title - Author.epub.po`).
+3. **Progress source** — currently configured to read Moon+ Reader `.po` cache files from `MOONREADER_DIR` (default `~/Sync/Books`). Recursively scans for newest `.po` and extracts progress. Adjust `MOONREADER_DIR` if your sync location differs. (MoonReader cache dirs were removed; Readest may need a different adapter in future.)
 
 ## Usage
 
