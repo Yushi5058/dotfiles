@@ -1,0 +1,6 @@
+[Unit]
+Description=Calibre auto-fix metadata for books in ~/Documents/books
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/calibre-autofix-metadata.sh

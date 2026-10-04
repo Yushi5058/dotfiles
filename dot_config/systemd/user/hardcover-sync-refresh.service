@@ -1,8 +1,0 @@
-[Unit]
-Description=Daily Hardcover sync with calibre metadata refresh
-After=network-online.target
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/hardcover-sync.py --refresh-calibre --quiet
-Nice=10
