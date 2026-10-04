@@ -1,9 +1,0 @@
-[Unit]
-Description=Frequent Hardcover reading-progress sync
-
-[Timer]
-OnCalendar=*:0/10
-Persistent=true
-
-[Install]
-WantedBy=timers.target

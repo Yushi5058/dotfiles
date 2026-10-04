@@ -1,8 +1,0 @@
-[Unit]
-Description=Sync reading progress from Moon+ to Hardcover
-After=network-online.target
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/hardcover-sync.py --quiet
-Nice=10
