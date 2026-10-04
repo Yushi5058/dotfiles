@@ -1,0 +1,6 @@
+[Unit]
+Description=Auto-add new EPUBs from ~/Documents/books to Calibre
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/calibre-auto-add.sh
