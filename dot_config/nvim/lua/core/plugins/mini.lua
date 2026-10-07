@@ -1,124 +1,151 @@
 return {
-  "nvim-mini/mini.nvim",
-  version = "*",
-  config = function()
-    require("mini.icons").setup()
+	"nvim-mini/mini.nvim",
+	version = "*",
+	config = function()
+		require("mini.icons").setup()
 
-    require("mini.pick").setup({ 
-        mappings = { move_down = "<C-j>", move_up = "<C-k>" } 
-    })
-    require("mini.extra").setup()
-    require("mini.surround").setup()
-    require("mini.ai").setup({ n_lines = 500 })
-    require("mini.pairs").setup()
+		require("mini.pick").setup({
+			mappings = { move_down = "<C-j>", move_up = "<C-k>" },
+		})
+		require("mini.extra").setup()
+		require("mini.surround").setup()
+		require("mini.ai").setup({ n_lines = 500 })
+		require("mini.pairs").setup()
 
-    require("mini.indentscope").setup()
-    require("mini.statusline").setup({
-      use_icons = vim.g.have_nerd_font,
-      section_location = "%2l:%-2v",
-      content = {
-        active = function()
-          local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-          local git = MiniStatusline.section_git({ trunc_width = 75 })
-          local dotnet_status = ""
-          local dotnet_proj = ""
-          local ok, dotnet = pcall(require, "easy-dotnet")
-          if ok then
-            local st = dotnet.get_dotnet_status and dotnet.get_dotnet_status() or dotnet.status
-            if st and type(st) == "table" then
-              dotnet_status = st.status or st.state or ""
-            elseif type(st) == "string" then
-              dotnet_status = st
-            end
-            local proj = dotnet.get_active_project and dotnet.get_active_project()
-            if proj and proj.name then
-              dotnet_proj = proj.name
-            elseif proj and type(proj) == "string" then
-              dotnet_proj = proj
-            end
-          end
-          local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-          local filename = MiniStatusline.section_filename({ trunc_width = 140 })
-          local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-          local searchcount = MiniStatusline.section_searchcount({ trunc_width = 75 })
-          local location = MiniStatusline.section_location({ trunc_width = 75 })
+		require("mini.indentscope").setup()
+		require("mini.statusline").setup({
+			use_icons = vim.g.have_nerd_font,
+			section_location = "%2l:%-2v",
+			content = {
+				active = function()
+					local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+					local git = MiniStatusline.section_git({ trunc_width = 75 })
+					local dotnet_status = ""
+					local dotnet_proj = ""
+					local ok, dotnet = pcall(require, "easy-dotnet")
+					if ok then
+						local st = dotnet.get_dotnet_status and dotnet.get_dotnet_status() or dotnet.status
+						if st and type(st) == "table" then
+							dotnet_status = st.status or st.state or ""
+						elseif type(st) == "string" then
+							dotnet_status = st
+						end
+						local proj = dotnet.get_active_project and dotnet.get_active_project()
+						if proj and proj.name then
+							dotnet_proj = proj.name
+						elseif proj and type(proj) == "string" then
+							dotnet_proj = proj
+						end
+					end
+					local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+					local filename = MiniStatusline.section_filename({ trunc_width = 140 })
+					local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+					local searchcount = MiniStatusline.section_searchcount({ trunc_width = 75 })
+					local location = MiniStatusline.section_location({ trunc_width = 75 })
 
-          local dotnet_part = ""
-          if dotnet_proj ~= "" or dotnet_status ~= "" then
-            dotnet_part = "  " .. dotnet_proj
-            if dotnet_status ~= "" then
-              dotnet_part = dotnet_part .. " [" .. dotnet_status .. "]"
-            end
-          end
+					local dotnet_part = ""
+					if dotnet_proj ~= "" or dotnet_status ~= "" then
+						dotnet_part = "  " .. dotnet_proj
+						if dotnet_status ~= "" then
+							dotnet_part = dotnet_part .. " [" .. dotnet_status .. "]"
+						end
+					end
 
-          return MiniStatusline.combine_groups({
-            { hl = mode_hl, strings = { mode } },
-            { hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
-            "%<",
-            { hl = "MiniStatuslineFilename", strings = { filename } },
-            "%=",
-            { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-            { hl = "MiniStatuslineLocation", strings = { dotnet_part, location, searchcount } },
-          })
-        end,
-      },
-    })
+					return MiniStatusline.combine_groups({
+						{ hl = mode_hl, strings = { mode } },
+						{ hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
+						"%<",
+						{ hl = "MiniStatuslineFilename", strings = { filename } },
+						"%=",
+						{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+						{ hl = "MiniStatuslineLocation", strings = { dotnet_part, location, searchcount } },
+					})
+				end,
+			},
+		})
 
-    require("mini.notify").setup()
-    vim.notify = require("mini.notify").make_notify()
+		require("mini.notify").setup()
+		vim.notify = require("mini.notify").make_notify()
 
-    require("mini.files").setup()
-    require("mini.cmdline").setup()
-    require("mini.diff").setup()
-    require("mini.git").setup()
+		require("mini.files").setup()
+		require("mini.cmdline").setup()
+		require("mini.diff").setup()
+		require("mini.git").setup()
 
-    require("mini.animate").setup()
-    require("mini.map").setup({
-      integrations = { require("mini.map").gen_integration.builtin_search(), require("mini.map").gen_integration.diagnostic() },
-      symbols = { encode = require("mini.map").gen_encode_symbols.dot("4x2") },
-      window = { show_integration_count = false, width = 20, winblend = 25 },
-    })
-    vim.api.nvim_create_autocmd("BufReadPost", {
-      callback = function()
-        if vim.api.nvim_buf_line_count(0) > 200 then
-          require("mini.map").open()
-        end
-      end,
-    })
-    require("which-key").add({
-      { "<leader>f", group = "find" },
-      { "<leader>s", group = "snacks" },
-      { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps" },
-      { "<leader>y", '"+y', desc = "Yank → clipboard",  mode = { "n", "v" } },
-      { "<leader>p", '"+p', desc = "Paste ← clipboard", mode = { "n", "v" } },
-      { "<leader>d", '"_d', desc = "Delete → void",     mode = { "n", "v" } },
-      { "sv", "<cmd>vsplit<cr>", desc = "Split vertical" },
-      { "sh", "<cmd>split<cr>",  desc = "Split horizontal" },
-      { "<C-h>", "<C-w>h", desc = "Window ←" },
-      { "<C-j>", "<C-w>j", desc = "Window ↓" },
-      { "<C-k>", "<C-w>k", desc = "Window ↑" },
-      { "<C-l>", "<C-w>l", desc = "Window →" },
-      { "<C-Left>",  "10<C-w><", desc = "Resize ←" },
-      { "<C-Right>", "10<C-w>>", desc = "Resize →" },
-      { "<C-Up>",    "10<C-w>+", desc = "Resize ↑" },
-      { "<C-Down>",  "10<C-w>-", desc = "Resize ↓" },
-      { "jk", "<cmd>nohlsearch<cr>", desc = "Clear highlights", mode = "n" },
-      { "jk", "<Esc>",               desc = "Escape",           mode = { "i", "v" } },
-      { "n", "'Nn'[v:searchforward]", desc = "Next match", expr = true, mode = { "n", "x", "o" } },
-      { "N", "'nN'[v:searchforward]", desc = "Prev match", expr = true, mode = { "n", "x", "o" } },
-      { "J", ":m '>+1<CR>gv=gv", desc = "Move block ↓", mode = "v" },
-      { "K", ":m '<-2<CR>gv=gv", desc = "Move block ↑", mode = "v" },
-      { "k", "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Up",   mode = "n" },
-      { "j", "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Down", mode = "n" },
-      { "<leader>ff", "<cmd>Pick files<cr>",      desc = "Files" },
-      { "<leader>fg", "<cmd>Pick grep_live<cr>",  desc = "Grep" },
-      { "<leader>fd", "<cmd>Pick diagnostic<cr>", desc = "Diagnostics" },
-      { "<leader>fh", "<cmd>Pick help<cr>",       desc = "Help" },
-      { "<leader>fb", "<cmd>Pick buffers<cr>",    desc = "Buffers" },
-      { "<leader>e", function() require("mini.files").open(vim.api.nvim_buf_get_name(0)) end, desc = "Explorer" },
-      { "<leader>mo", function() require("mini.map").toggle() end, desc = "Toggle minimap" },
-      { "<leader>mf", function() require("mini.map").toggle_focus() end, desc = "Focus minimap" },
-      { "<leader>b", group = "database" },
-    })
-  end,
+		require("mini.animate").setup()
+		require("mini.map").setup({
+			integrations = {
+				require("mini.map").gen_integration.builtin_search(),
+				require("mini.map").gen_integration.diagnostic(),
+			},
+			symbols = { encode = require("mini.map").gen_encode_symbols.dot("4x2") },
+			window = { show_integration_count = false, width = 20, winblend = 25 },
+		})
+		vim.api.nvim_create_autocmd("BufReadPost", {
+			callback = function()
+				if vim.api.nvim_buf_line_count(0) > 200 then
+					require("mini.map").open()
+				end
+			end,
+		})
+		require("which-key").add({
+			{ "<leader>f", group = "find" },
+			{ "<leader>s", group = "snacks" },
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer keymaps",
+			},
+			{ "<leader>y", '"+y', desc = "Yank → clipboard", mode = { "n", "v" } },
+			{ "<leader>p", '"+p', desc = "Paste ← clipboard", mode = { "n", "v" } },
+			{ "<leader>d", '"_d', desc = "Delete → void", mode = { "n", "v" } },
+			{ "sv", "<cmd>vsplit<cr>", desc = "Split vertical" },
+			{ "sh", "<cmd>split<cr>", desc = "Split horizontal" },
+			{ "<C-h>", "<C-w>h", desc = "Window ←" },
+			{ "<C-j>", "<C-w>j", desc = "Window ↓" },
+			{ "<C-k>", "<C-w>k", desc = "Window ↑" },
+			{ "<C-l>", "<C-w>l", desc = "Window →" },
+			{ "<C-Left>", "10<C-w><", desc = "Resize ←" },
+			{ "<C-Right>", "10<C-w>>", desc = "Resize →" },
+			{ "<C-Up>", "10<C-w>+", desc = "Resize ↑" },
+			{ "<C-Down>", "10<C-w>-", desc = "Resize ↓" },
+			{ "jk", "<cmd>nohlsearch<cr>", desc = "Clear highlights", mode = "n" },
+			{ "jk", "<Esc>", desc = "Escape", mode = { "i", "v" } },
+			{ "n", "'Nn'[v:searchforward]", desc = "Next match", expr = true, mode = { "n", "x", "o" } },
+			{ "N", "'nN'[v:searchforward]", desc = "Prev match", expr = true, mode = { "n", "x", "o" } },
+			{ "J", ":m '>+1<CR>gv=gv", desc = "Move block ↓", mode = "v" },
+			{ "K", ":m '<-2<CR>gv=gv", desc = "Move block ↑", mode = "v" },
+			{ "k", "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Up", mode = "n" },
+			{ "j", "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Down", mode = "n" },
+			{ "<leader>ff", "<cmd>Pick files<cr>", desc = "Files" },
+			{ "<leader>fg", "<cmd>Pick grep_live<cr>", desc = "Grep" },
+			{ "<leader>fd", "<cmd>Pick diagnostic<cr>", desc = "Diagnostics" },
+			{ "<leader>fh", "<cmd>Pick help<cr>", desc = "Help" },
+			{ "<leader>fb", "<cmd>Pick buffers<cr>", desc = "Buffers" },
+			{
+				"<leader>e",
+				function()
+					require("mini.files").open(vim.api.nvim_buf_get_name(0))
+				end,
+				desc = "Explorer",
+			},
+			{
+				"<leader>mo",
+				function()
+					require("mini.map").toggle()
+				end,
+				desc = "Toggle minimap",
+			},
+			{
+				"<leader>mf",
+				function()
+					require("mini.map").toggle_focus()
+				end,
+				desc = "Focus minimap",
+			},
+			{ "<leader>b", group = "database" },
+		})
+	end,
 }
