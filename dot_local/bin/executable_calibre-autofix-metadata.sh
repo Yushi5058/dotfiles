@@ -8,19 +8,19 @@ STATE="${HOME}/.local/state/calibre-autofix/last_ts"
 mkdir -p "$(dirname "$STATE")"
 
 if [[ -f "$STATE" ]]; then
-  last_ts=$(cat "$STATE")
+	last_ts=$(cat "$STATE")
 else
-  last_ts=0
+	last_ts=0
 fi
 
 # Build set of book IDs that have at least one format under WATCH_DIR
 # We'll also collect file->hash to detect changes? simpler: track by mtime for new files
 # 1) Process new/modified files (by mtime > last_ts)
 while IFS= read -r -d '' f; do
-  mtime=$(stat -c %Y "$f" 2>/dev/null || echo 0)
-  if (( mtime > last_ts )); then
-    calibredb --library "$LIB" add --automerge=ignore "$f" >/dev/null 2>&1 || calibredb --library "$LIB" add "$f" >/dev/null 2>&1 || true
-  fi
+	mtime=$(stat -c %Y "$f" 2>/dev/null || echo 0)
+	if ((mtime > last_ts)); then
+		calibredb --library "$LIB" add --automerge=ignore "$f" >/dev/null 2>&1 || calibredb --library "$LIB" add "$f" >/dev/null 2>&1 || true
+	fi
 done < <(find "$WATCH_DIR" \( -name '*.epub' -o -name '*.pdf' \) -print0)
 
 # 2) Verify and autofix existing books whose formats are under WATCH_DIR
@@ -81,4 +81,4 @@ for b in books:
 " >/dev/null 2>&1 || true
 
 latest=$(find "$WATCH_DIR" \( -name '*.epub' -o -name '*.pdf' \) -printf '%T@\\n' 2>/dev/null | sort -rn | head -1 | cut -d. -f1 || echo "$(date +%s)")
-echo "${latest:-$(date +%s)}" > "$STATE"
+echo "${latest:-$(date +%s)}" >"$STATE"
