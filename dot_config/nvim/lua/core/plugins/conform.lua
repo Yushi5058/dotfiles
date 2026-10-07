@@ -15,6 +15,7 @@ return {
       bash = { "shfmt" },
       java = { "google-java-format" },
       rust = { "rustfmt" },
+      csharp = { "csharpier", "dotnet_format" },
     },
     format_on_save = {
       timeout_ms = 500,
