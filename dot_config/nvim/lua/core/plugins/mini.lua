@@ -16,6 +16,52 @@ return {
     require("mini.statusline").setup({
       use_icons = vim.g.have_nerd_font,
       section_location = "%2l:%-2v",
+      content = {
+        active = function()
+          local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+          local git = MiniStatusline.section_git({ trunc_width = 75 })
+          local dotnet_status = ""
+          local dotnet_proj = ""
+          local ok, dotnet = pcall(require, "easy-dotnet")
+          if ok then
+            local st = dotnet.get_dotnet_status and dotnet.get_dotnet_status() or dotnet.status
+            if st and type(st) == "table" then
+              dotnet_status = st.status or st.state or ""
+            elseif type(st) == "string" then
+              dotnet_status = st
+            end
+            local proj = dotnet.get_active_project and dotnet.get_active_project()
+            if proj and proj.name then
+              dotnet_proj = proj.name
+            elseif proj and type(proj) == "string" then
+              dotnet_proj = proj
+            end
+          end
+          local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+          local filename = MiniStatusline.section_filename({ trunc_width = 140 })
+          local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+          local searchcount = MiniStatusline.section_searchcount({ trunc_width = 75 })
+          local location = MiniStatusline.section_location({ trunc_width = 75 })
+
+          local dotnet_part = ""
+          if dotnet_proj ~= "" or dotnet_status ~= "" then
+            dotnet_part = "  " .. dotnet_proj
+            if dotnet_status ~= "" then
+              dotnet_part = dotnet_part .. " [" .. dotnet_status .. "]"
+            end
+          end
+
+          return MiniStatusline.combine_groups({
+            { hl = mode_hl, strings = { mode } },
+            { hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
+            "%<",
+            { hl = "MiniStatuslineFilename", strings = { filename } },
+            "%=",
+            { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+            { hl = "MiniStatuslineLocation", strings = { dotnet_part, location, searchcount } },
+          })
+        end,
+      },
     })
 
     require("mini.notify").setup()
