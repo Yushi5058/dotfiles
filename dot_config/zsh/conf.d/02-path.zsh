@@ -11,3 +11,8 @@ export PATH="$PATH:/home/yushi61/.dotnet/tools"
 
 # Default editor
 export EDITOR="nvim"
+
+# Android SDK 
+export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_SDK_ROOT=$ANDROID_HOME
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
