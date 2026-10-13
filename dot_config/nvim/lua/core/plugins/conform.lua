@@ -22,86 +22,15 @@ return {
 			lsp_format = "fallback",
 		},
 		formatters = {
-			stylua = {
-					return vim.fs.find({ "stylua.toml", ".stylua.toml" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
-			prettierd = {
-					return vim.fs.find({
-						".prettierrc",
-						".prettierrc.json",
-						".prettierrc.js",
-						".prettierrc.cjs",
-						".prettierrc.mjs",
-						"prettier.config.js",
-						"prettier.config.cjs",
-						"prettier.config.mjs",
-					}, { path = ctx.filename, upward = true, stop = vim.uv.os_homedir() })[1] ~= nil
-				end,
-			},
-			eslint_d = {
-					return vim.fs.find(
-						{ ".eslintrc", ".eslintrc.js", ".eslintrc.json", ".eslintrc.yaml", ".eslintrc.yml" },
-						{
-							path = ctx.filename,
-							upward = true,
-							stop = vim.uv.os_homedir(),
-						}
-					)[1] ~= nil
-				end,
-			},
-			php_cs_fixer = {
-					return vim.fs.find({ ".php-cs-fixer.php", ".php-cs-fixer.dist.php", "php-cs-fixer.php" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
-			ruff_format = {
-					return vim.fs.find({ "pyproject.toml", "ruff.toml", ".ruff.toml" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
-			ruff_fix = {
-					return vim.fs.find({ "pyproject.toml", "ruff.toml", ".ruff.toml" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
-			shfmt = {
-					return vim.fs.find({ ".shfmt", ".editorconfig" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
-			google_java_format = {
-					return vim.fs.find({ "pom.xml", "build.gradle", "build.gradle.kts" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
-			rustfmt = {
-					return vim.fs.find({ "rustfmt.toml", ".rustfmt.toml" }, {
-						path = ctx.filename,
-						upward = true,
-						stop = vim.uv.os_homedir(),
-					})[1] ~= nil
-				end,
-			},
+			stylua = {},
+			prettierd = {},
+			eslint_d = {},
+			php_cs_fixer = {},
+			ruff_format = {},
+			ruff_fix = {},
+			shfmt = {},
+			google_java_format = {},
+			rustfmt = {},
 		},
 	},
 }
