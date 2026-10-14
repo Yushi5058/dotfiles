@@ -8,6 +8,5 @@ python-ftputil
 rose-pine-cursor
 rustdesk
 slack-desktop-wayland
-virtualbox-ext-oracle
 vscodium-bin
 waydroid-image-gapps

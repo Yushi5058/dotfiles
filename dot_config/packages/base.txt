@@ -22,6 +22,7 @@ dbeaver
 discord
 dnsmasq
 earlyoom
+edk2-ovmf
 exfatprogs
 eza
 fastfetch
@@ -47,7 +48,9 @@ kvantum
 kvantum-qt5
 lazygit
 libsecret
+libtpms
 libva-intel-driver
+libvirt
 ly
 mako
 man-db
@@ -75,6 +78,7 @@ polkit-gnome
 power-profiles-daemon
 python
 python-pip
+qemu-full
 qt5ct
 qt5-wayland
 qt6ct
@@ -88,6 +92,7 @@ starship
 sway
 swaybg
 swaylock-effects-git
+swtpm
 tea
 tela-circle-icon-theme-all
 tldr
@@ -100,8 +105,9 @@ udiskie
 ufw
 unrar
 unzip
-virtualbox
-virtualbox-host-dkms
+virt-install
+virt-manager
+virt-viewer
 vulkan-intel
 waybar
 waydroid

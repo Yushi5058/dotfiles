@@ -46,7 +46,7 @@ git push codeberg main    # → codeberg + github mirror
 | Terminal | ghostty, fuzzel, bat, btop, ripgrep, yazi, zathura |
 | Browser | floorp-bin |
 | Books | calibre (auto-add + metadata autofix), hardcover (managed via Readest) |
-| Virt | virtualbox + host-dkms + ext-oracle (AUR) |
+| Virt | qemu-full + virt-manager + libvirt + swtpm (KVM) — `kali-vbox` (DFIR) + `win11` (malware lab); VMware Workstation (coursework) |
 | Other AUR | vscodium-bin, rustdesk, slack-desktop-wayland, gearlever |
 
 Full lists: `dot_config/packages/base.txt` (pacman) and `aur.txt` (AUR). DNS = NextDNS via systemd-resolved DoT (no extra package, see [NextDNS docs](docs/nextdns.md)).
@@ -70,4 +70,4 @@ Templated files (`machine data: email, gpg key, displays`): `dot_gitconfig.tmpl`
 - [Hardcover](docs/hardcover.md) — Readest ↔ Hardcover integration (handled via Readest API key)
 - [Floorp](docs/floorp.md) — prefs (profile `user.js`), extensions
 - [NextDNS](docs/nextdns.md) — systemd-resolved DoT, no CLI daemon
-- [DFIR](docs/dfir.md) — Kali / Windows 11 VMs, snapshots
+- [DFIR](docs/dfir.md) — Kali / Windows 11 VMs on QEMU/KVM, snapshots
