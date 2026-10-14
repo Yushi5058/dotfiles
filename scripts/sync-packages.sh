@@ -93,15 +93,12 @@ fi
 # Enable services
 echo "[*] Enabling services..."
 sudo systemctl enable --now ly@tty2 2>&1 || fail "enable ly"
-# vboxdrv/vboxservice units are absent in current Arch (module auto-loads via
-# virtualbox-host-dkms) -> gate on presence so sync still exits 0
-for svc in vboxdrv vboxservice; do
-    if systemctl list-unit-files --quiet "$svc.service"; then
-        sudo systemctl enable --now "$svc" 2>&1 || fail "enable $svc"
-    else
-        echo "[=] $svc.service not present — skipped (auto-loaded via DKMS)"
-    fi
-done
+# libvirt daemon (QEMU/KVM). Socket-activated; enable so defined VMs autostart.
+if systemctl list-unit-files --quiet libvirtd.service; then
+    sudo systemctl enable --now libvirtd 2>&1 || fail "enable libvirtd"
+else
+    echo "[=] libvirtd.service not present — skipped"
+fi
 sudo systemctl enable --now ufw 2>&1 || fail "enable ufw"
 sudo systemctl enable --now tlp 2>&1 || fail "enable tlp"
 sudo systemctl mask --now power-profiles-daemon 2>&1 || fail "mask power-profiles-daemon"
