@@ -7,6 +7,10 @@
   // love: #eb6f92  gold: #f6c177  rose: #ea9a97
   // pine: #3e8fb0  foam: #9ccfd8  iris: #c4a7e7
 
+  // OpenCode V2 local plugins (checkout + build, not npm packages)
+  // Discord Rich Presence, V2-compatible fork: github.com/Yushi5058/opencode-discord-presence
+  "plugins": ["/home/yushi61/.local/share/opencode-discord-presence"],
+
   "agent": {
     "build":  { "color": "#eb6f92" },
     "plan":   { "color": "#f6c177" },
