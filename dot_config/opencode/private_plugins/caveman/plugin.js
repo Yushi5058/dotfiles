@@ -22,15 +22,21 @@
 // state only: flag writes, slash-command parsing, natural-language
 // activation, and per-turn reinforcement.
 //
-// Hook mapping (opencode >= 1.15.x):
-//   - event (event.type === 'session.created'): session-init flag write,
-//     re-fires per session rather than once per plugin-process load
-//   - chat.message: intercept user prompts for mode changes
-//   - experimental.chat.system.transform: inject reinforcement per-turn
+// Hook mapping (opencode V2 plugin API, >= 2.0.x):
+//   - event.subscribe({ signal }): session-init flag write on every
+//     'session.created' event rather than once per plugin-process load
+//   - session.hook('prompt'): intercept user prompts for mode changes
+//   - session.hook('context'): inject reinforcement per-turn into event.system
+//
+// V2 note: V1 plugin implementations do not run in V2. The V1 keys this file
+// used to return (`event`, `chat.message`, `experimental.chat.system.transform`)
+// are unreachable in V2; hooks must be registered from `setup(ctx)` on the domain
+// that owns the operation. See:
+// https://opencode.ai/v2/docs/build/plugins/migrate-v1
 //
 // Note: opencode does NOT support 'session.created' or 'tui.prompt.append'
-// as named plugin-hook keys. 'session.created' is an event *type* dispatched
-// through the single `event` handler; the old direct-key handlers were
+// as named plugin-hook keys. 'session.created' is an event *type* delivered
+// through the single event stream; the old direct-key handlers were
 // silently ignored. See:
 // https://github.com/JuliusBrussee/caveman/issues/418
 // https://github.com/JuliusBrussee/caveman/issues/421
@@ -132,52 +138,62 @@ function handleSessionCreated() {
   safeWriteFlag(flagPath, mode);
 }
 
-export const CavemanPlugin = async (_ctx) => {
-  // Assert the flag at plugin load as well: in one-shot `opencode run` the
-  // first session.created publishes before plugin event dispatch is wired,
-  // so the event handler alone misses it. The factory-time write covers that
-  // race; the event handler re-asserts on every later session in long-lived
-  // TUI processes.
-  handleSessionCreated();
+export const CavemanPlugin = {
+  id: 'caveman',
 
-  return {
-  // opencode dispatches session/lifecycle events through a single `event`
-  // handler keyed on event.type; the older direct top-level
-  // 'session.created' key is silently ignored. Routing session-init through
-  // here means the flag is rewritten on every new session, not just once when
-  // the plugin module loads. See https://opencode.ai/docs/plugins#events.
-  event: async ({ event } = {}) => {
-    if (event && event.type === 'session.created') handleSessionCreated();
-  },
+  async setup(ctx) {
+    // Assert the flag at plugin load as well: in one-shot `opencode run` the
+    // first session.created publishes before plugin event dispatch is wired,
+    // so the event handler alone misses it. The setup-time write covers that
+    // race; the event handler re-asserts on every later session in long-lived
+    // TUI processes.
+    handleSessionCreated();
 
-  // Intercept user messages to detect /caveman commands and natural-language
-  // mode toggles. opencode fires chat.message with (input, output) where
-  // output.parts is the array of message parts; text parts carry .text.
-  // Return value is ignored — state changes happen via the flag file.
-  // expandedTpl: opencode replaces a typed slash command with its command
-  // file's prose before this hook sees it. unwrapQuotes: the non-interactive
-  // `run` path delivers the message wrapped in literal quote characters.
-  'chat.message': async (_input, output) => {
-    if (!output || !output.parts) return;
-    for (const part of output.parts) {
-      if (part && part.type === 'text' && part.text) {
-        const change = parseModeChange(part.text, { getDefaultMode, expandedTpl: true, unwrapQuotes: true });
-        if (change) applyModeChange(change);
+    // V2 delivers lifecycle events through an async subscription instead of a
+    // returned `event` hook. The subscription is torn down by the cleanup
+    // function returned from setup.
+    const controller = new AbortController();
+
+    void (async () => {
+      try {
+        for await (const event of ctx.event.subscribe({ signal: controller.signal })) {
+          if (event && event.type === 'session.created') handleSessionCreated();
+        }
+      } catch (error) {
+        // A closed stream during unload is expected; anything else is left to
+        // the host's plugin diagnostics rather than crashing the plugin.
+        if (controller.signal.aborted) return;
+        throw error;
       }
-    }
-  },
+    })();
 
-  // Inject the reinforcement line into the system prompt when caveman is
-  // active. opencode calls this before every LLM request and expects the hook
-  // to mutate output.system (a string[]); the return value is discarded.
-  'experimental.chat.system.transform': async (_input, output) => {
-    if (!output || !Array.isArray(output.system)) return;
-    const active = readFlag(flagPath);
-    if (active && !INDEPENDENT_MODES.has(active)) {
-      output.system.push(reinforcementLine(active));
-    }
+    // Intercept user messages to detect /caveman commands and natural-language
+    // mode toggles. V2 runs this once per admission, before attachments and
+    // skill resolution; event.prompt.text is the user's text. State changes
+    // happen via the flag file, so the hook mutates nothing.
+    // expandedTpl: opencode replaces a typed slash command with its command
+    // file's prose before this hook sees it. unwrapQuotes: the non-interactive
+    // `run` path delivers the message wrapped in literal quote characters.
+    await ctx.session.hook('prompt', (event) => {
+      const text = event && event.prompt && event.prompt.text;
+      if (typeof text !== 'string' || !text) return;
+      const change = parseModeChange(text, { getDefaultMode, expandedTpl: true, unwrapQuotes: true });
+      if (change) applyModeChange(change);
+    });
+
+    // Inject the reinforcement line into the system prompt when caveman is
+    // active. V2 runs this before each agent model request and expects the hook
+    // to mutate event.system, an array of text parts.
+    await ctx.session.hook('context', (event) => {
+      if (!event || !Array.isArray(event.system)) return;
+      const active = readFlag(flagPath);
+      if (active && !INDEPENDENT_MODES.has(active)) {
+        event.system.push({ type: 'text', text: reinforcementLine(active) });
+      }
+    });
+
+    return () => controller.abort();
   },
-  };
 };
 
 export default CavemanPlugin;
