@@ -88,6 +88,15 @@ input type:touch {
 #
 # Basics:
 #
+    # VMware Workstation (XWayland) receives every unbound key, so a bare
+    # Super press leaks into the guest and opens the GNOME overview.
+    # Binding Super alone to nop makes Sway consume the press/release:
+    # $mod+<key> bindings still work, the guest never sees the modifier.
+    bindsym --no-warn Super_L nop
+    bindsym --no-warn --release Super_L nop
+    bindsym --no-warn Super_R nop
+    bindsym --no-warn --release Super_R nop
+
     # Start a terminal
     bindsym $mod+Return exec $term
 
