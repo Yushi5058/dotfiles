@@ -8,12 +8,16 @@ alias dots="chezmoi update"
 alias home="cd ~"
 alias c="clear"
 
-# Oracle
-alias ora-install='podman run -d --name oracle11g -p 1521:1521 -p 8080:8080 --shm-size=2g --privileged -v oracle_data:/u01/app/oracle docker.io/wnameless/oracle-xe-11g-r2'
-alias ora-start='podman start oracle11g'
-alias ora-stop='podman stop oracle11g'
-ora-sql() {
-    read -s "?Enter Oracle password: " ora_pass && podman exec -it oracle11g bash -c "export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe; export PATH=\$ORACLE_HOME/bin:\$PATH; export ORACLE_SID=XE; sqlplus system/$ora_pass"
+# --- Oracle 12c Podman Config ---
+# Image: Oracle Database 21.3.0 Enterprise Edition (12c media unavailable)
+alias sqlplus='podman exec -it oracle21c sqlplus "$@"'
+alias rman='podman exec -it oracle21c rman "$@"'
+alias oracle-start='podman start oracle21c'
+alias oracle-stop='podman stop oracle21c'
+alias oracle-logs='podman logs -f oracle21c'
+oracle-status() {
+    podman ps --filter name=oracle21c --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+    podman exec oracle21c lsnrctl status 2>/dev/null || true
 }
 
 # MSSQL
