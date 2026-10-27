@@ -42,6 +42,9 @@ alias -s py="$EDITOR"
 alias -s json="jless"
 alias -s html="xdg-open"
 
+# pnpm
+alias pnpx='pnpm dlx'
+
 # zmv helpers
 alias zcp='zmv -C'
 alias zln='zmv -L'
