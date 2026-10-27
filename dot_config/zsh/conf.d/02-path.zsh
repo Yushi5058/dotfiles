@@ -3,10 +3,9 @@
 export PATH="$HOME/.local/bin:$HOME/.symfony5/bin:$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 
-# npm global installs (omo, gemini-cli, tokscale, prettierd, ...)
-# Appended, not prepended: keeps $HOME/.opencode/bin's opencode ahead of the
-# npm-global one.
-export PATH="$PATH:$HOME/.npm-global/bin"
+# pnpm global installs
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
 
 # rg config path
 export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
