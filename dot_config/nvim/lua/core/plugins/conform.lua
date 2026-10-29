@@ -29,7 +29,6 @@ return {
 			ruff_format = {},
 			ruff_fix = {},
 			shfmt = {},
-			google_java_format = {},
 			rustfmt = {},
 		},
 	},
