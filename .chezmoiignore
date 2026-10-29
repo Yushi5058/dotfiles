@@ -15,4 +15,10 @@ readme.md
 # Qt writes this on every file dialog - volatile app state, not config
 .config/QtProject.conf
 
+# CopyQ rewrites its full settings on every change/exit - managing it fights
+# the app and applying would wipe live clipboard config. Unmanaged on purpose.
+.config/copyq/copyq.conf
+# ...and it rewrites window geometry/dock state on every move/resize.
+.config/copyq/copyq_geometry.ini
+
 .omo/
