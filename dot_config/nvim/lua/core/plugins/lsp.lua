@@ -14,8 +14,13 @@ return {
 				"css-lsp",
 				"emmet-language-server",
 				"eslint-lsp",
+				"google-java-format",
 				"html-lsp",
+				"java-debug-adapter",
+				"java-test",
+				"jdtls",
 				"json-lsp",
+				"lemminx",
 				"lua-language-server",
 				"marksman",
 				"omnisharp",
@@ -26,6 +31,7 @@ return {
 				"tailwindcss-language-server",
 				"twiggy-language-server",
 				"typescript-language-server",
+				"vscode-spring-boot-tools",
 				"vue-language-server",
 			}
 
@@ -104,6 +110,12 @@ return {
 				cmd = { "marksman", "server" },
 				filetypes = { "markdown" },
 				root_markers = { ".marksman.toml", ".git" },
+			})
+
+			vim.lsp.config("lemminx", {
+				cmd = { "lemminx" },
+				filetypes = { "xml", "xsd", "xsl", "xslt" },
+				root_markers = { "pom.xml", "web.xml", "build.gradle", ".git" },
 			})
 
 			vim.lsp.config("pyright", {
@@ -234,6 +246,7 @@ return {
 				"cssls",
 				"html",
 				"jsonls",
+				"lemminx",
 				"lua_ls",
 				"marksman",
 				"omnisharp",

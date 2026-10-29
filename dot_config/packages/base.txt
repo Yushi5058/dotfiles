@@ -36,11 +36,13 @@ git-delta
 github-cli
 gnome-keyring
 go
+gradle
 grim
 impala
 intel-media-driver
 intel-ucode
 iwd
+jdk17-openjdk
 jless
 jq
 keychain
@@ -55,6 +57,7 @@ ly
 mako
 man-db
 man-pages
+maven
 neovim
 nodejs
 noto-fonts
