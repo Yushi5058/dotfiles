@@ -14,8 +14,8 @@ set $right l
 
 # install ghostty terminal
 set $term ghostty
-# install fuzzel
-set $menu 'wofi --show drun --prompt ">"'
+# app launcher (fuzzel: fzf matching + launch-count cache)
+set $menu 'fuzzel'
 
 
 
@@ -105,6 +105,8 @@ input type:touch {
 
     # Start your launcher
     bindsym $mod+d exec $menu
+    # Fallback launcher (wofi) if fuzzel ever regresses/segfaults again
+    bindsym $mod+Shift+d exec 'wofi --show drun --prompt ">"'
 
     # Start your browser
     bindsym $mod+w exec floorp

@@ -4,6 +4,7 @@ Personal dotfiles managed with **[chezmoi](https://www.chezmoi.io/)**.
 
 - **OS**: Arch Linux (CachyOS)
 - **WM**: Sway · **DM**: ly · **Editor**: Neovim · **Terminal**: Ghostty
+- **Launcher**: fuzzel (`$mod+d`, fzf matching) · wofi fallback (`$mod+Shift+d`)
 - **Font**: Ubuntu (UI) / Maple Mono (terminal) · **Cursor**: Rose Pine
 - **Browser**: Floorp · **DNS**: NextDNS (systemd-resolved DoT)
 
@@ -39,11 +40,11 @@ git push codeberg main    # → codeberg + github mirror
 
 | Category | Packages |
 |----------|----------|
-| WM | sway, waybar, mako, swaylock-effects-git |
+| WM | sway, waybar, mako, swaylock-effects-git, fuzzel (launcher) + wofi (fallback) |
 | System | ly, earlyoom, zram-generator, pipewire, tlp, ufw, bluez/blueman |
 | Dev | git, go, rust, zig, python, nodejs, lazygit, neovim, dbeaver |
 | Shell | zsh + starship + zinit |
-| Terminal | ghostty, fuzzel, bat, btop, ripgrep, yazi, zathura |
+| Terminal | ghostty, bat, btop, ripgrep, yazi, zathura |
 | Browser | floorp-bin |
 | Books | calibre (auto-add + metadata autofix), hardcover (managed via Readest) |
 | Virt | qemu-full + virt-manager + libvirt + swtpm (KVM) — `kali-vbox` (DFIR) + `win11` (malware lab); VMware Workstation (coursework) |
