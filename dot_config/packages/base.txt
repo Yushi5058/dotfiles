@@ -122,6 +122,7 @@ wl-clip-persist
 wlr-randr
 wlsunset
 woff2-font-awesome
+wofi
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
