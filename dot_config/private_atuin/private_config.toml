@@ -128,6 +128,21 @@
 #   "^innocuous-cmd .*--secret=.+",
 # ]
 
+## Atuin keeps its own database, so zsh's HISTORY_IGNORE does not apply here.
+## Rust regex syntax; `(?i)` makes the key names case-insensitive.
+history_filter = [
+  '(?i)password\s*[=:]',
+  '(?i)passwd\s*[=:]',
+  '(?i)token\s*[=:]',
+  '(?i)secret\s*[=:]',
+  '(?i)api[_-]?key\s*[=:]',
+  '(?i)bearer\s+',
+  '(?i)private[_-]?key',
+  '--password',
+  '--token',
+  '--secret',
+]
+
 ## prevent commands run with cwd matching any of these regexes from being written
 ## to history. Note that these regular expressions are unanchored, i.e. if they don't
 ## start with ^ or end with $, they'll match anywhere in CWD.

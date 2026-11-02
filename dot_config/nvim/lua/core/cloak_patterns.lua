@@ -311,6 +311,22 @@ function M.redact_line(line, patterns)
 	return table.concat(parts)
 end
 
+-- Redacted text for a 1-based inclusive line range of `buf_id`, joined with
+-- newlines so it can go straight into a register. Used by the `<leader>cy`
+-- clipboard mapping: a cloaked line still yanks its real value otherwise.
+function M.redact_lines(buf_id, first, last)
+	local lines = vim.api.nvim_buf_get_lines(buf_id, first - 1, last, false)
+	local patterns = M.patterns_for(vim.api.nvim_buf_get_name(buf_id))
+	if not patterns then
+		return table.concat(lines, "\n")
+	end
+	local out = {}
+	for i, line in ipairs(lines) do
+		out[i] = M.redact_line(line, patterns)
+	end
+	return table.concat(out, "\n")
+end
+
 function M.cloak_buffer(buf_id, patterns)
 	vim.api.nvim_buf_clear_namespace(buf_id, ns, 0, -1)
 	local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
