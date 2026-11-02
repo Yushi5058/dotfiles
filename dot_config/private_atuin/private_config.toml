@@ -29,7 +29,9 @@
 # timezone = "local"
 
 ## enable or disable automatic sync
-# auto_sync = true
+## Off so shell history never leaves the machine on its own. Run `atuin sync`
+## manually when you want it, after checking `history_filter` caught everything.
+auto_sync = false
 
 ## enable or disable automatic update checks
 # update_check = true

@@ -221,6 +221,11 @@ M.patterns = {
 	{ file_pattern = key_files, cloak_pattern = { { "^(..*)$", replace = "" } } },
 }
 
+-- Floats (LSP hover, signature help, diagnostics) are not files, so there is no
+-- path to match. Use the config-level set: token shapes plus secret-looking
+-- keys. A false positive only costs a few stars.
+M.float_patterns = with_tokens(value_patterns)
+
 local ns = vim.api.nvim_create_namespace("cloak")
 
 -- Last matching entry wins, mirroring the autocmd order created by setup().
@@ -258,9 +263,12 @@ function M.spans(line, patterns)
 	while pos <= #line do
 		local first, last, chosen, has_capture
 		for _, inner in ipairs(patterns) do
-			local f, l, cap = line:find(inner[1], pos)
+			-- cloak.setup() normalizes string entries to tables, but
+			-- `M.float_patterns` is built from the locals and stays mixed.
+			local pat = type(inner) == "string" and { inner } or inner
+			local f, l, cap = line:find(pat[1], pos)
 			if f and (not first or f < first or (f == first and l > last)) then
-				first, last, chosen, has_capture = f, l, inner, cap ~= nil
+				first, last, chosen, has_capture = f, l, pat, cap ~= nil
 			end
 		end
 		if not first then
@@ -339,6 +347,58 @@ function M.cloak_buffer(buf_id, patterns)
 			})
 		end
 	end
+end
+
+-- Cloak a floating window's buffer. Hover/signature/diagnostic floats are
+-- `nofile` scratch buffers with no path, so `M.float_patterns` is used.
+function M.cloak_floating(win_id)
+	win_id = win_id or vim.api.nvim_get_current_win()
+	if not vim.api.nvim_win_is_valid(win_id) then
+		return
+	end
+	if vim.api.nvim_win_get_config(win_id).relative == "" then
+		return
+	end
+	M.cloak_buffer(vim.api.nvim_win_get_buf(win_id), M.float_patterns)
+end
+
+-- LSP sets the float buffer contents before opening the window, and an existing
+-- hover float can be updated in place (`_update_win`) without a BufWinEnter, so
+-- wrap the one function every LSP float goes through.
+function M.patch_lsp_floats()
+	if M._lsp_floats_patched then
+		return
+	end
+	M._lsp_floats_patched = true
+
+	local open = vim.lsp.util.open_floating_preview
+	vim.lsp.util.open_floating_preview = function(contents, syntax, opts)
+		local buf_id, win_id = open(contents, syntax, opts)
+		if win_id and vim.api.nvim_win_is_valid(win_id) then
+			M.cloak_floating(win_id)
+		end
+		return buf_id, win_id
+	end
+end
+
+-- Cover floats not created through the LSP helper (diagnostic plugins, custom
+-- UI). WinEnter is too late for unfocused floats, so use BufWinEnter and look up
+-- the window displaying the buffer.
+function M.watch_floats()
+	local group = vim.api.nvim_create_augroup("CloakFloats", { clear = true })
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
+		group = group,
+		callback = function(args)
+			if args.event == "BufWinEnter" then
+				local win_id = vim.fn.bufwinid(args.buf)
+				if win_id ~= -1 then
+					M.cloak_floating(win_id)
+				end
+			else
+				M.cloak_floating()
+			end
+		end,
+	})
 end
 
 -- mini.pick items are `path\0lnum\0col\0text` strings; redact the text part.

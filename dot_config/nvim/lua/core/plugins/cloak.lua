@@ -44,6 +44,12 @@ return {
 			vim.notify("Cloak: copied redacted text", vim.log.levels.INFO)
 		end, { desc = "Cloak: copy redacted to clipboard" })
 
+		-- LSP hover/signature help and diagnostics floats are not file buffers,
+		-- so cloak.nvim's file-pattern autocmds never touch them. Cloak them with
+		-- the generic token + secret-key set instead.
+		cloak_patterns.patch_lsp_floats()
+		cloak_patterns.watch_floats()
+
 		-- mini.pick: redact grep/diagnostic result lines and cloak the preview
 		-- buffer. mini.pick may not be on the runtimepath yet while lazy loads
 		-- specs, so patch after startup and again on first picker start.
