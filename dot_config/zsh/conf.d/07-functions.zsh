@@ -21,3 +21,10 @@ EOF
 
 # Enable zmv
 autoload -Uz zmv
+
+# List the *names* of exported variables without their values. Use this instead
+# of `env`/`printenv` when a stream is live: `99-secrets.zsh` exports secrets
+# into every pane, so `env` would print them all.
+envnames() {
+    typeset +x | sort
+}

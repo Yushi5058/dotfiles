@@ -26,6 +26,24 @@ return {
 		vim.keymap.set("n", "<leader>cc", "<cmd>CloakToggle<cr>", { desc = "Cloak: toggle" })
 		vim.keymap.set("n", "<leader>cp", "<cmd>CloakPreviewLine<cr>", { desc = "Cloak: preview line" })
 
+		-- `<leader>cy` copies the line/selection to the clipboard with the same
+		-- redaction applied, so pasting a config into chat never carries the
+		-- real value. Plain yanks stay untouched.
+		vim.keymap.set({ "n", "x" }, "<leader>cy", function()
+			local first, last
+			if vim.fn.mode():match("^[vV\22]") then
+				first, last = vim.fn.line("v"), vim.fn.line(".")
+				if first > last then
+					first, last = last, first
+				end
+			else
+				first, last = vim.fn.line("."), vim.fn.line(".")
+			end
+			local text = cloak_patterns.redact_lines(vim.api.nvim_get_current_buf(), first, last)
+			vim.fn.setreg("+", text)
+			vim.notify("Cloak: copied redacted text", vim.log.levels.INFO)
+		end, { desc = "Cloak: copy redacted to clipboard" })
+
 		-- mini.pick: redact grep/diagnostic result lines and cloak the preview
 		-- buffer. mini.pick may not be on the runtimepath yet while lazy loads
 		-- specs, so patch after startup and again on first picker start.
