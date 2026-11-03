@@ -47,6 +47,11 @@ Local Obscuro build masks emails, phone numbers, tokens, IPs, password fields
 and `data-sensitive` elements during screen shares. Build and load steps:
 [Obscuro](obscuro.md).
 
+Installed as an unsigned sideload (not from AMO):
+`~/.floorp/<profile>/extensions/obscuro@yushi61.local.xpi`, with
+`xpinstall.signatures.required=false` and `extensions.autoDisableScopes=0` in
+the profile's `user.js`.
+
 ### Repo files
 
 - `dot_config/floorp/floorp/floorp.overrides.cfg` — **reference only** (inert; kept for history).

@@ -47,6 +47,14 @@ The build fails unless `dist/` contains `manifest.json`, `config.json`,
 
 ## Load in Floorp
 
+Floorp profiles live in `~/.floorp/<profile>/` (not `~/.mozilla/firefox`).
+Find the active one in `about:support` → **Profile Directory**, or read
+`~/.floorp/profiles.ini`: the `[Install…]` section's `Default=` wins over the
+`[Profile…]` `Default=1`. This machine uses
+`~/.floorp/7r0gw7l8.default-default/`.
+
+### Temporary add-on (quick test)
+
 1. Serve the test page:
 
    ```bash
@@ -62,12 +70,102 @@ The build fails unless `dist/` contains `manifest.json`, `config.json`,
 
 5. Click the Obscuro toolbar icon to switch **Enabled / Blur / Scramble**.
 
-Temporary add-ons disappear when Floorp closes. Load again after every restart.
-If Floorp asks for host access, allow **Access your data for all websites**.
+Temporary add-ons disappear when Floorp closes. Use this for development, or
+the permanent install below for daily use.
 
-For a permanent install, sign the XPI through AMO or set
-`xpinstall.signatures.required=false` in a developer build. The unsigned
-`obscuro-firefox.xpi` produced by `--package` is for inspection / signing.
+### Permanent install (unsigned local XPI)
+
+Floorp 159 loads an unsigned XPI from the profile's `extensions/` directory once
+signature enforcement is disabled. Both prefs are required: with only
+`xpinstall.signatures.required=false` the add-on is still sideloaded as
+`userDisabled`.
+
+1. Build the XPI:
+
+   ```bash
+   cd ~/.local/share/chezmoi
+   ./scripts/setup-obscuro.sh --skip-install --package
+   # -> ~/src/obscuro/obscuro-firefox.xpi
+   ```
+
+2. Add these two prefs to the active profile's `user.js` (create it if missing):
+
+   ```js
+   // ~/.floorp/<profile>/user.js
+   user_pref("xpinstall.signatures.required", false);
+   user_pref("extensions.autoDisableScopes", 0);
+   ```
+
+   `user.js` is reapplied on every start, so Floorp cannot silently reset them.
+   `about:config` edits persist in `prefs.js` but are easier to lose.
+
+3. Copy the XPI into the profile, named after the Gecko id:
+
+   ```bash
+   PROFILE="$HOME/.floorp/7r0gw7l8.default-default"
+   mkdir -p "$PROFILE/extensions"
+   cp ~/src/obscuro/obscuro-firefox.xpi \
+      "$PROFILE/extensions/obscuro@yushi61.local.xpi"
+   ```
+
+4. Quit Floorp completely and start it again. Sideloaded XPIs are only scanned
+   at startup:
+
+   ```bash
+   pkill -x floorp; sleep 2; floorp >/dev/null 2>&1 &
+   ```
+
+5. Open `about:addons` → **Obscuro** should be listed and enabled. If it shows
+   as disabled, click **Enable** once (a stale `userDisabled` flag from an
+   earlier failed load can persist).
+
+6. Grant host access if prompted: **Access your data for all websites**. Without
+   it the content script never runs on normal pages.
+
+7. Verify with the test page from the temporary steps, then toggle
+   **Enabled / Blur / Scramble** from the toolbar popup.
+
+What a good profile looks like in `extensions.json` after the restart:
+
+```json
+{"id":"obscuro@yushi61.local","version":"1.1.0","active":true,
+ "userDisabled":false,"appDisabled":false,"location":"app-profile",
+ "signedState":0}
+```
+
+`signedState: 0` is expected — the XPI is unsigned.
+
+### Updating or removing
+
+```bash
+# update: rebuild, overwrite the XPI, restart Floorp
+./scripts/setup-obscuro.sh --skip-install --package
+cp ~/src/obscuro/obscuro-firefox.xpi \
+   "$HOME/.floorp/7r0gw7l8.default-default/extensions/obscuro@yushi61.local.xpi"
+pkill -x floorp; sleep 2; floorp >/dev/null 2>&1 &
+
+# remove: delete the XPI (and optionally the two prefs), restart Floorp
+rm "$HOME/.floorp/7r0gw7l8.default-default/extensions/obscuro@yushi61.local.xpi"
+```
+
+Rules are stored in `chrome.storage.sync`, so a rebuild does **not** replace an
+existing config. Use the popup's **Reset** or **Import** action to load the new
+`config.json` after an update.
+
+### Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| Add-on missing from `about:addons` | XPI must be at `<profile>/extensions/obscuro@yushi61.local.xpi` with `manifest.json` at the zip root. Rebuild with `--package`, then fully restart Floorp. |
+| Listed but disabled / `active:false` | Check both prefs in `user.js`; click **Enable** in `about:addons`; confirm `about:debugging#/runtime/this-firefox` shows no load error. |
+| Listed, enabled, nothing masked | Host access not granted, or the page was already open. Grant **Access your data for all websites** and reload the tab. |
+| Toolbar icon missing | `about:addons` → Obscuro → **Pin to toolbar**. |
+| Rule changes ignored | `chrome.storage.sync` already has a config. Popup → **Reset** or **Import** `dist/config.json`. |
+| Works after temporary load, gone after restart | Expected for `about:debugging`; use the permanent XPI install. |
+
+Signing through AMO (`web-ext sign` with API keys) is the alternative if you do
+not want to disable signature checks. The unsigned XPI from `--package` cannot
+be installed through the normal **Install Add-on From File** dialog.
 
 ### Headless smoke test
 
@@ -148,6 +246,11 @@ warnings        0
 Local smoke test: `web-ext run --firefox /usr/sbin/floorp --args=--headless`
 installed `obscuro@yushi61.local` as a temporary add-on and loaded
 `http://127.0.0.1:8123/test_obscuro.html` (HTTP 200).
+
+Permanent sideload checked in a throwaway profile with Floorp 159: with both
+`xpinstall.signatures.required=false` and `extensions.autoDisableScopes=0` the
+XPI came up `active:true`, `location:app-profile`, `signedState:0`. With no
+prefs, or with only the signature pref, it stayed `userDisabled:true`.
 
 ## Notes
 
