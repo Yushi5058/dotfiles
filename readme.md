@@ -70,5 +70,6 @@ Templated files (`machine data: email, gpg key, displays`): `dot_gitconfig.tmpl`
 - [Hardware](docs/hardware.md) — ThinkPad X13 Yoga Gen 2, Sway input config
 - [Hardcover](docs/hardcover.md) — Readest ↔ Hardcover integration (handled via Readest API key)
 - [Floorp](docs/floorp.md) — prefs (profile `user.js`), extensions
+- [Obscuro](docs/obscuro.md) — local screen-share masking extension (build, rules, test page)
 - [NextDNS](docs/nextdns.md) — systemd-resolved DoT, no CLI daemon
 - [DFIR](docs/dfir.md) — Kali / Windows 11 VMs on QEMU/KVM, snapshots

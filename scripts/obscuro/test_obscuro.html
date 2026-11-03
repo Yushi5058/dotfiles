@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Obscuro test page</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111318;
+      --panel: #1a1e26;
+      --border: #2b3140;
+      --text: #e6e9ef;
+      --muted: #9aa4b2;
+      --accent: #7cc4ff;
+      --warn: #ffd166;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem 4rem;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    main { max-width: 980px; margin: 0 auto; }
+
+    h1 { margin: 0 0 .25rem; font-size: 1.9rem; }
+    h2 { margin: 0 0 .75rem; font-size: 1.15rem; }
+    p.lead { margin: 0 0 2rem; color: var(--muted); }
+
+    section {
+      margin: 0 0 1rem;
+      padding: 1.15rem 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .sample { margin: 0; }
+    .sample dt { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+    .sample dd { margin: .15rem 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    label { display: block; margin: .6rem 0 .2rem; color: var(--muted); font-size: .85rem; }
+    input, textarea {
+      width: 100%;
+      padding: .55rem .65rem;
+      color: var(--text);
+      background: #0e1116;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+    }
+    textarea { min-height: 4.5rem; resize: vertical; }
+
+    .badge {
+      display: inline-block;
+      margin-left: .4rem;
+      padding: .05rem .4rem;
+      color: var(--bg);
+      background: var(--warn);
+      border-radius: 999px;
+      font-size: .7rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+
+    .note { color: var(--muted); font-size: .9rem; }
+    .safe { color: #9ee6a8; }
+    code { color: var(--accent); }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Obscuro test page</h1>
+  <p class="lead">
+    Mock data for checking that the extension blurs or scrambles matches.
+    Serve this file over HTTP, then load <code>dist/manifest.json</code> in Floorp.
+  </p>
+
+  <section>
+    <h2>Email addresses</h2>
+    <div class="grid">
+      <dl class="sample"><dt>Plain email</dt><dd>alice@example.com</dd></dl>
+      <dl class="sample"><dt>Plus tag + country domain</dt><dd>bob.smith+test@corp.co.ma</dd></dl>
+      <dl class="sample"><dt>Inside a sentence</dt><dd>Contact carol@example.org before Friday.</dd></dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>Moroccan and international phone numbers</h2>
+    <div class="grid">
+      <dl class="sample"><dt>Local, compact</dt><dd>0612345678</dd></dl>
+      <dl class="sample"><dt>Local, dashed</dt><dd>06-12-34-56-78</dd></dl>
+      <dl class="sample"><dt>International, spaced</dt><dd>+212 6 12 34 56 78</dd></dl>
+      <dl class="sample"><dt>International, compact</dt><dd>+212612345678</dd></dl>
+      <dl class="sample"><dt>E.164 France</dt><dd>+33612345678</dd></dl>
+      <dl class="sample"><dt>E.164 US</dt><dd>+14155552671</dd></dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>Authentication tokens</h2>
+    <div class="grid">
+      <dl class="sample"><dt>GitHub token</dt><dd>ghp_1234567890abcdefghijklmnopqrstuvwxyz</dd></dl>
+      <dl class="sample"><dt>Stripe live key</dt><dd>sk_live_1234567890abcdefghijkl</dd></dl>
+      <dl class="sample"><dt>Bearer token</dt><dd>Bearer eyJhbGciOiJIUzI1NiJ9.fake_payload.fake_signature</dd></dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>IP addresses</h2>
+    <div class="grid">
+      <dl class="sample"><dt>Private 10/8</dt><dd>10.0.0.42</dd></dl>
+      <dl class="sample"><dt>Private 192.168/16</dt><dd>192.168.1.10</dd></dl>
+      <dl class="sample"><dt>Private 172.16/12</dt><dd>172.16.5.9</dd></dl>
+      <dl class="sample"><dt>Private 172.31 edge</dt><dd>172.31.255.254</dd></dl>
+      <dl class="sample"><dt>Public IPv4</dt><dd>8.8.8.8</dd></dl>
+      <dl class="sample"><dt>IPv6</dt><dd>2001:db8::1</dd></dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dummy login form <span class="badge">type=password</span></h2>
+    <form autocomplete="off" onsubmit="return false">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" value="alice@example.com" autocomplete="username">
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" value="correct-horse-battery-staple" autocomplete="current-password">
+
+      <label for="api-key">API key input <span class="badge">data-sensitive</span></label>
+      <input id="api-key" name="api_key" type="text" value="sk_live_1234567890abcdefghijkl" data-sensitive="true">
+    </form>
+  </section>
+
+  <section>
+    <h2>Selector-based masking</h2>
+    <dl class="sample"><dt>.credit-card</dt><dd><span class="credit-card">4111 1111 1111 1111</span></dd></dl>
+    <dl class="sample"><dt>.ssn</dt><dd><span class="ssn">123-45-6789</span></dd></dl>
+    <dl class="sample"><dt>data-sensitive="true"</dt><dd><span data-sensitive="true">IBAN MA64 0000 0000 0000 0000 0000 000</span></dd></dl>
+    <dl class="sample"><dt>textarea data-sensitive</dt><dd><textarea data-sensitive="true">Recovery code: 4F2A-9C11-7B3D</textarea></dd></dl>
+  </section>
+
+  <section>
+    <h2>Ignore rules</h2>
+    <p class="note">
+      These should stay readable because they are in <code>ignore.regex</code>:
+      <span class="safe">support@mycompany.com</span> and
+      <span class="safe">demo42@example.com</span>.
+    </p>
+    <p class="note">This line has no sensitive data and should stay untouched.</p>
+  </section>
+</main>
+</body>
+</html>

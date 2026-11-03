@@ -41,6 +41,12 @@ Installed via extension manager / AMO. State lives in `extensions.json` / `stora
 | Firefox Color | Theme: Rose Pine. base `#191724`, surface `#1f1d2e`, overlay `#26233a`, muted `#6e6a86`, subtle `#908caa`, text `#e0def4`, love `#eb6f92`, gold `#f6c177`, rose `#ebbcba`, pine `#31748f`, foam `#9ccfd8`, iris `#c4a7e7`. |
 | LanguageTool | Grammar & style checker. Inline suggestions in text fields. |
 
+### Screen-share masking
+
+Local Obscuro build masks emails, phone numbers, tokens, IPs, password fields
+and `data-sensitive` elements during screen shares. Build and load steps:
+[Obscuro](obscuro.md).
+
 ### Repo files
 
 - `dot_config/floorp/floorp/floorp.overrides.cfg` — **reference only** (inert; kept for history).
