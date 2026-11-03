@@ -11,10 +11,6 @@ eval "$(atuin init zsh)"
 # Keychain
 eval "$(keychain add --eval ~/.ssh/id_ed25519)"
 
-
-# opencode
-export PATH=$HOME/.opencode/bin:$PATH
-
 # GPG
 export GPG_TTY=$(tty)
 
