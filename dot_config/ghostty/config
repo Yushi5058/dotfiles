@@ -21,5 +21,6 @@ window-padding-y = 10
 
 
 # Mouse
-# copy to system clipboard too (not just PRIMARY selection) so Ctrl+V works
-copy-on-select = clipboard
+# Selection fills only the Linux PRIMARY buffer (middle-click paste). The system
+# clipboard (Ctrl+Shift+C / Ctrl+Shift+V) changes only on an explicit copy.
+copy-on-select = primary
