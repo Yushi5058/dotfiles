@@ -3,10 +3,6 @@
 export PATH="$HOME/.local/bin:$HOME/.symfony5/bin:$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 
-# pnpm global installs
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 # rg config path
 export RIPGREP_CONFIG_PATH="$HOME/.config/.ripgreprc"
 
@@ -20,3 +16,9 @@ export EDITOR="nvim"
 export ANDROID_HOME=$HOME/Android/Sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
+
+# pnpm — global shims (pnpm, pnx, pn) live in $PNPM_HOME/bin
+export PNPM_HOME="$HOME/.local/share/pnpm"
+typeset -U path
+path=("$PNPM_HOME/bin" $path)
+export PATH
