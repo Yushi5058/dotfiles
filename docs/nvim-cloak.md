@@ -39,6 +39,18 @@ Slack, OpenAI/Anthropic, Stripe, Google, npm, PyPI, Hugging Face, Groq, xAI,
 Perplexity, Replicate, Supabase, Shopify, Doppler, Linear, SendGrid, JWT,
 Telegram, Bearer and Discord webhook tokens.
 
+## External changes
+
+Edits made inside Neovim are re-cloaked by the plugin's `TextChanged` and
+`TextChangedI` autocmds. Files can also change on disk without a buffer edit:
+AI agents, formatters, `git checkout`, and other editors write the file
+directly. `cloak_patterns.watch_files()` attaches a libuv `fs_event` watcher to
+every loaded buffer that matches a cloak pattern. When the file changes it
+debounces the event, reloads the buffer with `:checktime` if there are no
+unsaved edits, and re-cloaks the new contents. Atomic saves (write to a
+temporary file, then rename) re-arm the watcher on the new inode. Watchers are
+removed on `BufUnload`, `BufDelete`, and `BufWipeout`.
+
 ## Performance
 
 Upstream `cloak.nvim` rescans every pattern at every byte position and calls
