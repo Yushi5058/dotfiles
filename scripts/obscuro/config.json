@@ -1,67 +1,90 @@
 {
-  "version": "2",
-  "selectors": [
-    "[data-sensitive='true']",
-    "input[type='password']",
-    "input[autocomplete='current-password']",
-    "input[autocomplete='new-password']",
-    ".ssn",
-    ".credit-card",
-    ".blur",
-    ".hide"
-  ],
-  "regex": [
-    {
-      "pattern": "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+",
-      "flags": "gi"
-    },
-    {
-      "pattern": "(?<!\\d)(\\+?212|0)([ \\-_/]*)(\\d[ \\-_/]*){9}(?![ \\-_/]*\\d)",
-      "flags": "g"
-    },
-    {
-      "pattern": "(?<!\\w)\\+[1-9]\\d{6,14}(?!\\w)",
-      "flags": "g"
-    },
-    {
-      "pattern": "\\bgh[pousr]_[A-Za-z0-9]{20,255}\\b",
-      "flags": "g"
-    },
-    {
-      "pattern": "\\bsk_live_[A-Za-z0-9]{16,}\\b",
-      "flags": "g"
-    },
-    {
-      "pattern": "\\bBearer\\s+[A-Za-z0-9._~+/-]{8,}=*",
-      "flags": "gi"
-    },
-    {
-      "pattern": "\\b(?:10(?:\\.\\d{1,3}){3}|192\\.168(?:\\.\\d{1,3}){2}|172\\.(?:1[6-9]|2\\d|3[01])(?:\\.\\d{1,3}){2})\\b",
-      "flags": "g"
-    },
-    {
-      "pattern": "\\b(?:(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})\\.){3}(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})\\b",
-      "flags": "g"
-    },
-    {
-      "pattern": "\\b(?:(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,7}:|(?:[A-Fa-f0-9]{1,4}:){1,6}:[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,5}(?::[A-Fa-f0-9]{1,4}){1,2}|(?:[A-Fa-f0-9]{1,4}:){1,4}(?::[A-Fa-f0-9]{1,4}){1,3}|(?:[A-Fa-f0-9]{1,4}:){1,3}(?::[A-Fa-f0-9]{1,4}){1,4}|(?:[A-Fa-f0-9]{1,4}:){1,2}(?::[A-Fa-f0-9]{1,4}){1,5}|[A-Fa-f0-9]{1,4}:(?:(?::[A-Fa-f0-9]{1,4}){1,6})|:(?:(?::[A-Fa-f0-9]{1,4}){1,7}|:)|(?:[A-Fa-f0-9]{1,4}:){6}(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})(?:\\.(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})){3})\\b",
-      "flags": "gi"
-    }
-  ],
-  "ignore": {
+    "version": "2",
     "selectors": [
-      ".public-data",
-      "#marketing-section *"
+        "[data-sensitive='true']",
+        "input[type='password']",
+        "input[autocomplete='current-password']",
+        "input[autocomplete='new-password']",
+        ".ssn",
+        ".credit-card",
+        ".blur",
+        ".hide",
+        "[autocomplete='name']",
+        "[autocomplete='given-name']",
+        "[autocomplete='family-name']",
+        ".username",
+        ".user-name",
+        ".author-name",
+        ".profile-name",
+        ".display-name",
+        "[data-testid*='user-name']",
+        "[data-testid*='profile-name']",
+        "button[aria-label*='Google Account']",
+        "a[aria-label*='Google Account']",
+        "button[aria-label*='Compte Google']",
+        "a[aria-label*='Compte Google']",
+        "a[href*='accounts.google.com']"
     ],
     "regex": [
-      {
-        "pattern": "support@mycompany\\.com",
-        "flags": "i"
-      },
-      {
-        "pattern": "demo[0-9]+@example\\.com",
-        "flags": "i"
-      }
-    ]
-  }
+        {
+            "pattern": "\\bechakroun01\\b",
+            "flags": "gi"
+        },
+        {
+            "pattern": "\\b(?:Elias(?:\\s+Chakroun)?|Chakroun)\\b",
+            "flags": "gi"
+        },
+        {
+            "pattern": "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+",
+            "flags": "gi"
+        },
+        {
+            "pattern": "(?<!\\d)(\\+?212|0)([ \\-_/]*)(\\d[ \\-_/]*){9}(?![ \\-_/]*\\d)",
+            "flags": "g"
+        },
+        {
+            "pattern": "(?<!\\w)\\+[1-9]\\d{6,14}(?!\\w)",
+            "flags": "g"
+        },
+        {
+            "pattern": "\\bgh[pousr]_[A-Za-z0-9]{20,255}\\b",
+            "flags": "g"
+        },
+        {
+            "pattern": "\\bsk_live_[A-Za-z0-9]{16,}\\b",
+            "flags": "g"
+        },
+        {
+            "pattern": "\\bBearer\\s+[A-Za-z0-9._~+/-]{8,}=*",
+            "flags": "gi"
+        },
+        {
+            "pattern": "\\b(?:10(?:\\.\\d{1,3}){3}|192\\.168(?:\\.\\d{1,3}){2}|172\\.(?:1[6-9]|2\\d|3[01])(?:\\.\\d{1,3}){2})\\b",
+            "flags": "g"
+        },
+        {
+            "pattern": "\\b(?:(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})\\.){3}(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})\\b",
+            "flags": "g"
+        },
+        {
+            "pattern": "\\b(?:(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,7}:|(?:[A-Fa-f0-9]{1,4}:){1,6}:[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,5}(?::[A-Fa-f0-9]{1,4}){1,2}|(?:[A-Fa-f0-9]{1,4}:){1,4}(?::[A-Fa-f0-9]{1,4}){1,3}|(?:[A-Fa-f0-9]{1,4}:){1,3}(?::[A-Fa-f0-9]{1,4}){1,4}|(?:[A-Fa-f0-9]{1,4}:){1,2}(?::[A-Fa-f0-9]{1,4}){1,5}|[A-Fa-f0-9]{1,4}:(?:(?::[A-Fa-f0-9]{1,4}){1,6})|:(?:(?::[A-Fa-f0-9]{1,4}){1,7}|:)|(?:[A-Fa-f0-9]{1,4}:){6}(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})(?:\\.(?:25[0-5]|2[0-4]\\d|1?\\d{1,2})){3})\\b",
+            "flags": "gi"
+        }
+    ],
+    "ignore": {
+        "selectors": [
+            ".public-data",
+            "#marketing-section *"
+        ],
+        "regex": [
+            {
+                "pattern": "support@mycompany\\.com",
+                "flags": "i"
+            },
+            {
+                "pattern": "demo[0-9]+@example\\.com",
+                "flags": "i"
+            }
+        ]
+    }
 }
