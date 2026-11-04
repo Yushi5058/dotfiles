@@ -109,35 +109,7 @@ function opencodeConfigDir() {
   return path.join(os.homedir(), '.config', 'opencode');
 }
 
-// Runtime state must NOT live under the config directory. opencode watches its
-// whole config directory recursively and reloads config (and plugins) on any
-// write inside it — not just config files. Writing the caveman flag there on
-// every setup/session.created/mode change made opencode reload the plugin,
-// whose setup wrote the flag again: a watcher-driven reload loop. opencode's
-// state dir ($XDG_STATE_HOME/opencode, else ~/.local/state/opencode) is not
-// watched, so the flag can change freely.
-function opencodeStateDir() {
-  if (process.env.XDG_STATE_HOME) {
-    return path.join(process.env.XDG_STATE_HOME, 'opencode');
-  }
-  return path.join(os.homedir(), '.local', 'state', 'opencode');
-}
-
-const legacyFlagPath = path.join(opencodeConfigDir(), '.caveman-active');
-const flagPath = path.join(opencodeStateDir(), '.caveman-active');
-
-// Older plugin builds stored the flag in the watched config dir. Delete it
-// once so it can no longer trigger opencode's config watcher. The value is
-// intentionally not carried over: every session re-seeds the flag from
-// getDefaultMode(), so the legacy value would be overwritten immediately.
-// Best-effort: a failed cleanup only means one stale file in the config dir.
-function removeLegacyFlag() {
-  try {
-    if (existsSync(legacyFlagPath)) unlinkSync(legacyFlagPath);
-  } catch (e) {
-    // Silent fail — legacy cleanup is best-effort
-  }
-}
+const flagPath = path.join(opencodeConfigDir(), '.caveman-active');
 
 function reinforcementLine(mode) {
   return 'CAVEMAN MODE ACTIVE (' + mode + ') — session ruleset applies.';
@@ -170,10 +142,6 @@ export const CavemanPlugin = {
   id: 'caveman',
 
   async setup(ctx) {
-    // Delete any flag left in the watched config directory by older builds
-    // before asserting the current mode.
-    removeLegacyFlag();
-
     // Assert the flag at plugin load as well: in one-shot `opencode run` the
     // first session.created publishes before plugin event dispatch is wired,
     // so the event handler alone misses it. The setup-time write covers that
