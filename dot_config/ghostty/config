@@ -21,6 +21,7 @@ window-padding-y = 10
 
 
 # Mouse
-# Every selection fills the system clipboard as well as PRIMARY, so Ctrl+V
-# works right after selecting text. Explicit copy (Ctrl+Shift+C) still works.
-copy-on-select = clipboard
+# Every selection fills both the system clipboard and PRIMARY, so Ctrl+V works
+# right after selecting text and middle-click still pastes. Explicit copy
+# (Ctrl+Shift+C) still works.
+copy-on-select = both
