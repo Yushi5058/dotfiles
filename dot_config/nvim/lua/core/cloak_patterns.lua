@@ -543,6 +543,142 @@ function M.watch_floats()
 	})
 end
 
+-- Re-cloak a file buffer using the pattern entry that matches its path. The
+-- plugin's own autocmds cover edits made in Neovim; this is also called after
+-- an external write reloads the buffer.
+function M.recloak_file_buffer(buf_id)
+	if not vim.api.nvim_buf_is_valid(buf_id) then
+		return
+	end
+	local cloak = require("cloak")
+	if not cloak.opts.enabled then
+		return
+	end
+	local patterns = M.patterns_for(vim.api.nvim_buf_get_name(buf_id))
+	if not patterns then
+		return
+	end
+	local skip_line = nil
+	if vim.api.nvim_get_current_buf() == buf_id then
+		skip_line = cloak.opts.uncloaked_line_num
+	end
+	M.cloak_buffer(buf_id, patterns, skip_line)
+end
+
+local file_watchers = {}
+local uv = vim.uv or vim.loop
+
+local function stop_file_watcher(buf_id)
+	local watcher = file_watchers[buf_id]
+	if not watcher then
+		return
+	end
+	file_watchers[buf_id] = nil
+	if watcher.timer then
+		watcher.timer:stop()
+		watcher.timer:close()
+	end
+	if watcher.handle then
+		watcher.handle:stop()
+		watcher.handle:close()
+	end
+end
+
+local function start_file_watcher(buf_id)
+	if not uv or not vim.api.nvim_buf_is_valid(buf_id) or not vim.api.nvim_buf_is_loaded(buf_id) then
+		return
+	end
+	local path = vim.api.nvim_buf_get_name(buf_id)
+	if path == "" or vim.fn.filereadable(path) == 0 or not M.patterns_for(path) then
+		stop_file_watcher(buf_id)
+		return
+	end
+	stop_file_watcher(buf_id)
+
+	local handle = uv.new_fs_event()
+	if not handle then
+		return
+	end
+	local watcher = { handle = handle }
+	local started = handle:start(path, {}, function(err, _, events)
+		if err or file_watchers[buf_id] ~= watcher then
+			return
+		end
+		-- Coalesce the burst of events an editor produces for one save.
+		if watcher.timer then
+			watcher.timer:stop()
+		else
+			watcher.timer = uv.new_timer()
+			if not watcher.timer then
+				return
+			end
+		end
+		watcher.timer:start(120, 0, function()
+			watcher.timer:stop()
+			vim.schedule(function()
+				if file_watchers[buf_id] ~= watcher then
+					return
+				end
+				if not vim.api.nvim_buf_is_valid(buf_id) then
+					stop_file_watcher(buf_id)
+					return
+				end
+				-- Reload when the file changed on disk and the buffer is clean,
+				-- then cloak the new contents. A modified buffer keeps its text
+				-- and is re-cloaked in place.
+				if not vim.bo[buf_id].modified then
+					pcall(vim.api.nvim_buf_call, buf_id, function()
+						vim.cmd("silent checktime")
+					end)
+				end
+				M.recloak_file_buffer(buf_id)
+				-- Atomic saves replace the inode, so re-arm the watcher.
+				if events and events.rename then
+					start_file_watcher(buf_id)
+				end
+			end)
+		end)
+	end)
+	if not started then
+		handle:close()
+		return
+	end
+	file_watchers[buf_id] = watcher
+end
+
+-- Reapply cloaking when a file changes on disk (AI agents, formatters, git).
+-- cloak.nvim only listens for buffer edits, so an external write could reload
+-- a file without its secrets being masked again.
+function M.watch_files()
+	if not uv then
+		return
+	end
+	local group = vim.api.nvim_create_augroup("CloakFiles", { clear = true })
+	vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "BufFilePost" }, {
+		group = group,
+		callback = function(args)
+			start_file_watcher(args.buf)
+		end,
+	})
+	-- A checktime reload fires FileChangedShellPost but not BufEnter, so the
+	-- plugin's own autocmd would not cloak the reloaded contents.
+	vim.api.nvim_create_autocmd("FileChangedShellPost", {
+		group = group,
+		callback = function(args)
+			M.recloak_file_buffer(args.buf)
+		end,
+	})
+	vim.api.nvim_create_autocmd({ "BufUnload", "BufDelete", "BufWipeout" }, {
+		group = group,
+		callback = function(args)
+			stop_file_watcher(args.buf)
+		end,
+	})
+	for _, buf_id in ipairs(vim.api.nvim_list_bufs()) do
+		start_file_watcher(buf_id)
+	end
+end
+
 -- mini.pick items are `path\0lnum\0col\0text` strings; redact the text part.
 function M.redact_item(item)
 	if type(item) ~= "string" then

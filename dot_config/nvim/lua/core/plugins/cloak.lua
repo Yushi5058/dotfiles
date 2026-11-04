@@ -61,6 +61,10 @@ return {
 		-- the generic token + secret-key set instead.
 		cloak_patterns.patch_lsp_floats()
 		cloak_patterns.watch_floats()
+		-- External writers (AI agents, formatters, git) change the file without
+		-- firing a buffer-edit event, so watch the file on disk and re-cloak
+		-- after Neovim reloads it.
+		cloak_patterns.watch_files()
 
 		-- mini.pick: redact grep/diagnostic result lines and cloak the preview
 		-- buffer. mini.pick may not be on the runtimepath yet while lazy loads
