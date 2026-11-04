@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Rebuild scripts/obscuro/obscuro-custom.xpi whenever the PII rule file changes.
+#
+# Chezmoi re-runs this script only when the hash below changes, so editing
+# scripts/obscuro/config.json is enough: the next `chezmoi apply` rebuilds and
+# repackages the extension. Commit the updated XPI afterwards.
+set -euo pipefail
+
+# config.json hash (chezmoi uses this to detect changes):
+# {{ include "scripts/obscuro/config.json" | sha256sum }}
+
+SOURCE_DIR="{{ .chezmoi.sourceDir }}"
+cd "$SOURCE_DIR"
+
+if [[ ! -e scripts/obscuro/src/.git ]]; then
+  echo "obscuro: initialising submodule"
+  git submodule update --init --recursive scripts/obscuro/src
+fi
+
+if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
+  echo "obscuro: node/npm not found, skipping XPI rebuild" >&2
+  exit 0
+fi
+
+echo "obscuro: config.json changed, rebuilding obscuro-custom.xpi"
+./scripts/obscuro/update.sh --no-pull
+echo "obscuro: rebuilt $SOURCE_DIR/scripts/obscuro/obscuro-custom.xpi"
+echo "obscuro: commit the XPI (and the submodule pointer if it moved)"
