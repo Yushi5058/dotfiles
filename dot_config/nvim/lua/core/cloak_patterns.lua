@@ -9,15 +9,19 @@
 --      so entries matching the same file do NOT stack - the last matching
 --      entry wins. Generic entries therefore go first, specific ones last.
 --   2. Patterns are Lua patterns: no alternation, no {n,m}, no (?i). Key names
---      are generated in both lower and UPPER case instead.
+--      are matched after normalization instead of generating every spelling.
 local M = {}
 
--- Key names whose value must never be visible: `key = value`, `key: value`
--- and the JSON `"key": "value"` form.
+-- Key names whose value must never be visible. Matching is done on the
+-- normalized name (lowercase, separators removed), so `api_key`, `API_KEY`,
+-- `apiKey`, `ApiKey` and `X-Api-Key` all resolve to `apikey`. A suffix match
+-- additionally catches prefixed names such as `my_token` or `csrf_token`.
 local secret_keys = {
 	"password",
 	"passwd",
 	"passphrase",
+	"passcode",
+	"pwd",
 	"secret",
 	"client_secret",
 	"api_key",
@@ -38,25 +42,83 @@ local secret_keys = {
 	"session_token",
 	"sas_token",
 	"token",
-	"_authtoken", -- .npmrc / .pypirc, matched before the generic token
+	"_authtoken", -- .npmrc / .pypirc
+	"credential",
 	"credentials",
 	"connection_string",
 	"database_url",
 	"db_password",
 	"root_password",
+	"cookie",
+	"jwt",
+	"salt",
+	"nonce",
+	"bearer",
+	"webhook",
+	"webhook_url",
 	"dsn",
+	"authorization", -- Authorization: Bearer/Basic ...
 }
 
-local function key_value_patterns(keys)
-	local out = {}
-	for _, key in ipairs(keys) do
-		for _, name in ipairs({ key, key:upper() }) do
-			out[#out + 1] = { "(" .. name .. "%s*[:=]%s*).+", replace = "%1" }
-			out[#out + 1] = { '("' .. name .. '"%s*:%s*).+', replace = "%1" }
+local secret_key_set = {}
+for _, key in ipairs(secret_keys) do
+	secret_key_set[key:lower():gsub("[^%w]", "")] = true
+end
+
+local secret_suffixes = {
+	"password",
+	"passwd",
+	"passphrase",
+	"passcode",
+	"pwd",
+	"secret",
+	"token",
+	"apikey",
+	"accesskey",
+	"privatekey",
+	"secretkey",
+	"credential",
+	"credentials",
+	"cookie",
+	"jwt",
+	"salt",
+	"nonce",
+	"webhook",
+	"dsn",
+	"signature",
+}
+
+local function is_secret_key(name)
+	local norm = name:lower():gsub("[^%w]", "")
+	if norm == "" then
+		return false
+	end
+	if secret_key_set[norm] then
+		return true
+	end
+	local singular = norm:sub(-1) == "s" and norm:sub(1, -2) or norm
+	local undecorated = norm:gsub("%d+$", "")
+	local undecorated_singular = undecorated:sub(-1) == "s" and undecorated:sub(1, -2) or undecorated
+	for _, suffix in ipairs(secret_suffixes) do
+		if
+			norm:sub(-#suffix) == suffix
+			or singular:sub(-#suffix) == suffix
+			or undecorated:sub(-#suffix) == suffix
+			or undecorated_singular:sub(-#suffix) == suffix
+		then
+			return true
 		end
 	end
-	return out
+	return false
 end
+
+-- One pattern for `key = value` / `key: value` and one for JSON `"key": value`.
+-- The key is validated with `is_secret_key`, so `count = 0` stays readable
+-- while `TOKEN = "..."` is hidden even when the value has no token prefix.
+local key_patterns = {
+	{ "([%w_%-]+)(%s*[:=]%s*)", secret_keys = true, to_eol = true },
+	{ '"(.-)"(%s*:%s*)', secret_keys = true, to_eol = true },
+}
 
 -- Tokens with a recognisable prefix - safe to cloak in any file, since a false
 -- positive only costs a few stars.
@@ -73,6 +135,15 @@ local token_patterns = {
 	"AIza[%w_%-]+", -- Google API key
 	"npm_[%w]+", -- npm token
 	"pypi%-[%w_%-]+", -- PyPI token
+	"hf_[%w]+", -- Hugging Face token
+	"gsk_[%w]+", -- Groq API key
+	"xai%-[%w]+", -- xAI API key
+	"pplx%-[%w]+", -- Perplexity API key
+	"r8_[%w]+", -- Replicate API token
+	"sbp_[%w]+", -- Supabase access token
+	"shpat_[%w]+", -- Shopify admin API token
+	"dop_v1_[%w]+", -- Doppler token
+	"lin_api_[%w]+", -- Linear API key
 	"SG%.[%w_%-]+%.[%w_%-]+", -- SendGrid key
 	"eyJ[%w_%-]+%.[%w_%-]+%.[%w_%-]+", -- JWT
 	"%d+:AA[%w_%-]+", -- Telegram bot token
@@ -81,19 +152,29 @@ local token_patterns = {
 	{ "(discord%.com/api/webhooks/%d+/)[%w_%-]+", replace = "%1" }, -- Discord webhook token
 }
 
--- `key: value` style, plus credentials embedded in URLs.
-local value_patterns = key_value_patterns(secret_keys)
-vim.list_extend(value_patterns, {
+-- cloak.nvim keeps the first character of a capture-less match visible. An
+-- empty replacement hides the whole token instead, so a pasted `ghp_...` does
+-- not leak its first character. (A leading capture such as `(%s*)` would work
+-- too, but it makes the matcher retry at every byte position, which is ~10x
+-- slower on large buffers.)
+for i, pattern in ipairs(token_patterns) do
+	if type(pattern) == "string" then
+		token_patterns[i] = { pattern, replace = "" }
+	end
+end
+
+-- `key: value` style is handled by `key_patterns`; these cover credentials
+-- embedded in URLs and other shapes that are not a key/value pair.
+local value_patterns = {
 	-- postgres://user:PASSWORD@host/db -> keeps scheme, user and '@'
-	{ "(://[^:%s/]+:)([^@%s]+)(@)", replace = "%1%3" },
-	{ "([Pp]assword%s+).+", replace = "%1" }, -- .netrc style
-	{ "([Aa]uthorization%s*:%s*).+", replace = "%1" },
-	{ "([Pp]rivate%-?[Kk]ey%s*[:=]%s*).+", replace = "%1" },
+	{ "(://[^:%s/]+:)([^%s/]+)(@)", replace = "%1%3" },
+	{ "([Pp]assword%s+)([^=:].*)", replace = "%1" }, -- .netrc style
 	-- Azure SAS token: ...?sv=...&sig=SECRET
 	{ "([Ss]ig=)[%w%%%+/=]+", replace = "%1" },
 	-- AWS presigned URL: ...&X-Amz-Signature=SECRET
 	{ "([Xx]%-[Aa]mz%-[Ss]ignature=)[%w]+", replace = "%1" },
-})
+}
+vim.list_extend(value_patterns, key_patterns)
 
 -- Anything with a token shape gets cloaked even in source code and docs, so a
 -- key pasted into a comment cannot leak.
@@ -164,11 +245,15 @@ local shell_files = {
 	".profile",
 }
 
--- Source code and docs: token patterns only. Config extensions are
--- deliberately absent here so the specific entries below win.
+-- Source code and docs: token shapes plus secret-key assignments and
+-- credentials embedded in URLs. Generic keys (`count = 0`) stay readable
+-- because only the names in `secret_keys` are matched; a pasted token under
+-- `TOKEN`/`API_KEY`/`password` is hidden even without a recognisable prefix.
 local code_files = {
 	"*.lua",
 	"*.py",
+	"*.pyi",
+	"*.ipynb",
 	"*.js",
 	"*.mjs",
 	"*.cjs",
@@ -194,6 +279,7 @@ local code_files = {
 	"*.sql",
 	"*.md",
 	"*.txt",
+	"*.log",
 	"*.rst",
 	"*.adoc",
 	"*.tex",
@@ -202,6 +288,32 @@ local code_files = {
 	"*.scss",
 	"*.nix",
 	"*.mk",
+	"*.http",
+	"*.rest",
+	"*.hurl",
+	"*.dart",
+	"*.scala",
+	"*.gradle",
+	"*.groovy",
+	"*.proto",
+	"*.graphql",
+	"*.gql",
+	"*.r",
+	"*.R",
+	"*.jl",
+	"*.ex",
+	"*.exs",
+	"*.erl",
+	"*.hrl",
+	"*.hs",
+	"*.clj",
+	"*.cljs",
+	"*.cljc",
+	"*.edn",
+	"*.zig",
+	"*.swift",
+	"*.m",
+	"*.mm",
 	"Makefile",
 	"dockerfile",
 	"Dockerfile",
@@ -209,8 +321,8 @@ local code_files = {
 
 -- Ordered: generic first, specific last (last matching entry wins).
 M.patterns = {
-	-- 1. generic: token shapes in code and prose
-	{ file_pattern = code_files, cloak_pattern = token_patterns },
+	-- 1. code and prose: token shapes plus secret-key assignments
+	{ file_pattern = code_files, cloak_pattern = with_tokens(value_patterns) },
 	-- 2. shell: only secret-looking keys, so `count=0` stays readable
 	{ file_pattern = shell_files, cloak_pattern = with_tokens(value_patterns) },
 	-- 3. config / credentials: any secret-looking key
@@ -218,7 +330,7 @@ M.patterns = {
 	-- 4. env files: blanket, every value after `=`
 	{ file_pattern = env_files, cloak_pattern = with_tokens({ { "=.+" } }) },
 	-- 5. private keys / certs / vpn profiles: hide the whole file
-	{ file_pattern = key_files, cloak_pattern = { { "^(..*)$", replace = "" } } },
+	{ file_pattern = key_files, cloak_pattern = { { "^(.*)$", replace = "" } } },
 }
 
 -- Floats (LSP hover, signature help, diagnostics) are not files, so there is no
@@ -258,52 +370,78 @@ end
 -- part only, plus the replacement text: cloak keeps the first character of a
 -- capture-less match visible, and a `replace` prefix is kept as-is, so the
 -- stars are placed where the secret actually was.
+local function find_entry(line, entry, pos)
+	local start = pos
+	while true do
+		local first, last, capture = line:find(entry[1], start)
+		if not first then
+			return nil
+		end
+		if not entry.secret_keys or is_secret_key(capture or "") then
+			return first, last, capture
+		end
+		-- Not a secret key: resume after the separator so the same key is not
+		-- matched again character by character.
+		start = last + 1
+	end
+end
+
 function M.spans(line, patterns)
 	local out, pos = {}, 1
 	while pos <= #line do
-		local first, last, chosen, has_capture
+		local first, last, chosen
 		for _, inner in ipairs(patterns) do
 			-- cloak.setup() normalizes string entries to tables, but
 			-- `M.float_patterns` is built from the locals and stays mixed.
 			local pat = type(inner) == "string" and { inner } or inner
-			local f, l, cap = line:find(pat[1], pos)
+			local f, l = find_entry(line, pat, pos)
 			if f and (not first or f < first or (f == first and l > last)) then
-				first, last, chosen, has_capture = f, l, pat, cap ~= nil
+				first, last, chosen = f, l, pat
 			end
 		end
 		if not first then
 			break
 		end
-		local whole = line:sub(first, last)
-		local prefix
-		if has_capture and chosen.replace then
-			prefix = whole:gsub(chosen[1], chosen.replace, 1)
+		if chosen.to_eol then
+			-- The pattern ends at the separator; hide everything after it.
+			local hidden_start = last + 1
+			local hidden = vim.fn.strchars(line:sub(hidden_start))
+			if hidden > 0 then
+				out[#out + 1] = { first = hidden_start, last = #line, text = string.rep("*", hidden) }
+			end
+			pos = #line + 1
 		else
-			prefix = whole:sub(1, 1)
+			local whole = line:sub(first, last)
+			local prefix
+			if chosen.replace ~= nil then
+				prefix = whole:gsub(chosen[1], chosen.replace, 1)
+			else
+				prefix = whole:sub(1, 1)
+			end
+			-- Longest common prefix/suffix between the match and its visible
+			-- form leaves exactly the hidden bytes (`%1%3` reorders, so this
+			-- can be in the middle of the match).
+			local common_prefix = 0
+			local max_prefix = math.min(#whole, #prefix)
+			while common_prefix < max_prefix and whole:byte(common_prefix + 1) == prefix:byte(common_prefix + 1) do
+				common_prefix = common_prefix + 1
+			end
+			local common_suffix = 0
+			local max_suffix = math.min(#whole - common_prefix, #prefix - common_prefix)
+			while
+				common_suffix < max_suffix
+				and whole:byte(#whole - common_suffix) == prefix:byte(#prefix - common_suffix)
+			do
+				common_suffix = common_suffix + 1
+			end
+			local hidden_start = first + common_prefix
+			local hidden_last = last - common_suffix
+			local hidden = vim.fn.strchars(line:sub(hidden_start, hidden_last))
+			if hidden > 0 then
+				out[#out + 1] = { first = hidden_start, last = hidden_last, text = string.rep("*", hidden) }
+			end
+			pos = last + 1
 		end
-		-- Longest common prefix/suffix between the match and its visible form
-		-- leaves exactly the hidden bytes (`%1%3` reorders, so this can be in
-		-- the middle of the match).
-		local common_prefix = 0
-		local max_prefix = math.min(#whole, #prefix)
-		while common_prefix < max_prefix and whole:byte(common_prefix + 1) == prefix:byte(common_prefix + 1) do
-			common_prefix = common_prefix + 1
-		end
-		local common_suffix = 0
-		local max_suffix = math.min(#whole - common_prefix, #prefix - common_prefix)
-		while
-			common_suffix < max_suffix
-			and whole:byte(#whole - common_suffix) == prefix:byte(#prefix - common_suffix)
-		do
-			common_suffix = common_suffix + 1
-		end
-		local hidden_start = first + common_prefix
-		local hidden_last = last - common_suffix
-		local hidden = vim.fn.strchars(line:sub(hidden_start, hidden_last))
-		if hidden > 0 then
-			out[#out + 1] = { first = hidden_start, last = hidden_last, text = string.rep("*", hidden) }
-		end
-		pos = last + 1
 	end
 	return out
 end
@@ -324,10 +462,9 @@ end
 -- clipboard mapping: a cloaked line still yanks its real value otherwise.
 function M.redact_lines(buf_id, first, last)
 	local lines = vim.api.nvim_buf_get_lines(buf_id, first - 1, last, false)
-	local patterns = M.patterns_for(vim.api.nvim_buf_get_name(buf_id))
-	if not patterns then
-		return table.concat(lines, "\n")
-	end
+	-- Unnamed scratch buffers have no path, so no file pattern can match; fall
+	-- back to the generic set instead of copying the raw line.
+	local patterns = M.patterns_for(vim.api.nvim_buf_get_name(buf_id)) or M.float_patterns
 	local out = {}
 	for i, line in ipairs(lines) do
 		out[i] = M.redact_line(line, patterns)
@@ -335,18 +472,23 @@ function M.redact_lines(buf_id, first, last)
 	return table.concat(out, "\n")
 end
 
-function M.cloak_buffer(buf_id, patterns)
+function M.cloak_buffer(buf_id, patterns, skip_line)
 	vim.api.nvim_buf_clear_namespace(buf_id, ns, 0, -1)
 	local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
+	local found = false
 	for row, line in ipairs(lines) do
-		for _, span in ipairs(M.spans(line, patterns)) do
-			vim.api.nvim_buf_set_extmark(buf_id, ns, row - 1, span.first - 1, {
-				hl_mode = "combine",
-				virt_text = { { span.text, require("cloak").opts.highlight_group } },
-				virt_text_pos = "overlay",
-			})
+		if row ~= skip_line then
+			for _, span in ipairs(M.spans(line, patterns)) do
+				found = true
+				vim.api.nvim_buf_set_extmark(buf_id, ns, row - 1, span.first - 1, {
+					hl_mode = "combine",
+					virt_text = { { span.text, require("cloak").opts.highlight_group } },
+					virt_text_pos = "overlay",
+				})
+			end
 		end
 	end
+	return found
 end
 
 -- Cloak a floating window's buffer. Hover/signature/diagnostic floats are
@@ -410,10 +552,7 @@ function M.redact_item(item)
 	if not head then
 		return item
 	end
-	local patterns = M.patterns_for(head:match("^([^%z]*)%z"))
-	if not patterns then
-		return item
-	end
+	local patterns = M.patterns_for(head:match("^([^%z]*)%z")) or M.float_patterns
 	return head .. M.redact_line(text, patterns)
 end
 
