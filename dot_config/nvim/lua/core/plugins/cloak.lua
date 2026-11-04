@@ -21,6 +21,18 @@ return {
 			patterns = cloak_patterns.patterns,
 		})
 
+		-- cloak.nvim rescans every pattern at every byte position and calls
+		-- vim.fn helpers inside that loop. With a broad secret-key set that is
+		-- ~1 s on a 2000-line file, so reuse the shared pure-Lua scanner.
+		local cloak = require("cloak")
+		cloak.cloak = function(pattern)
+			cloak.uncloak()
+			local buf = vim.api.nvim_get_current_buf()
+			if cloak_patterns.cloak_buffer(buf, pattern.cloak_pattern, cloak.opts.uncloaked_line_num) then
+				vim.opt_local.wrap = false
+			end
+		end
+
 		-- Streaming helpers: `<leader>cc` hides/unhides everything, `<leader>cp`
 		-- temporarily reveals the line under the cursor (re-cloaked on move).
 		vim.keymap.set("n", "<leader>cc", "<cmd>CloakToggle<cr>", { desc = "Cloak: toggle" })
