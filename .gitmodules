@@ -1,4 +1,4 @@
 [submodule "scripts/obscuro/src"]
 	path = scripts/obscuro/src
 	url = git@github.com:Yushi5058/obscuro.git
-	branch = shadow-dom-support
+	branch = main
