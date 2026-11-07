@@ -8,10 +8,12 @@ alias dots="chezmoi update"
 alias home="cd ~"
 alias c="clear"
 
-# --- Oracle 12c Podman Config ---
-# Image: Oracle Database 21.3.0 Enterprise Edition (12c media unavailable)
-alias sqlplus='podman exec -it oracle21c sqlplus "$@"'
-alias rman='podman exec -it oracle21c rman "$@"'
+# --- Oracle 21c Podman Config ---
+# Image: Oracle Database 21.3.0 Enterprise Edition
+# ORACLE_SID is required for local SYSDBA/bequeath connections.
+alias sqlplus='podman exec -it oracle21c env ORACLE_SID=ORCLCDB sqlplus "$@"'
+alias rman='podman exec -it oracle21c env ORACLE_SID=ORCLCDB rman "$@"'
+alias sqlsys='podman exec -it oracle21c env ORACLE_SID=ORCLCDB sqlplus / as sysdba'
 alias oracle-start='podman start oracle21c'
 alias oracle-stop='podman stop oracle21c'
 alias oracle-logs='podman logs -f oracle21c'
