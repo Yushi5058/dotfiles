@@ -7,7 +7,6 @@ nordzy-cursors
 poweralertd
 python-desktop-entry-lib
 python-ftputil
-rose-pine-cursor
 rustdesk
 slack-desktop-wayland
 vscodium-bin
