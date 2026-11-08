@@ -1,12 +1,12 @@
-background-color=#393552
-text-color=#e0def4
-border-color=#56526e
-progress-color=over #3e8fb0
+background-color=#2e3440
+text-color=#eceff4
+border-color=#4c566a
+progress-color=over #88c0d0
 font=Hack 20
 default-timeout=5000
 on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/complete.oga
 
 [urgency=high]
-border-color=#eb6f92
+border-color=#bf616a
 
 

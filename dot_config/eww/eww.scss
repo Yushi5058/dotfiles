@@ -1,0 +1,53 @@
+/* Nord / Blue Blizzard palette */
+$base:    #2e3440;
+$surface: #3b4252;
+$overlay: #434c5e;
+$muted:   #4c566a;
+$text:    #eceff4;
+$frost:   #88c0d0;
+$iris:    #81a1c1;
+$pine:    #8fbcbb;
+$love:    #bf616a;
+$gold:    #ebcb8b;
+$aurora:  #b48ead;
+
+* {
+  font-family: "Hack Nerd Font", monospace;
+  font-size: 14px;
+  color: $text;
+}
+
+window#bar {
+  background-color: $base;
+}
+
+.bar {
+  padding: 0 12px;
+}
+
+.workspaces button {
+  background: transparent;
+  color: $text;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.workspaces button.focused {
+  color: $frost;
+  background-color: $surface;
+  font-weight: 700;
+}
+
+.workspaces button.urgent {
+  background-color: $love;
+  color: $base;
+}
+
+.clock {
+  color: $frost;
+  font-weight: 600;
+}
+
+.system label {
+  color: $iris;
+}
