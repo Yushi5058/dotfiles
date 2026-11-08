@@ -38,14 +38,13 @@ Installed via extension manager / AMO. State lives in `extensions.json` / `stora
 | Unhook | YouTube cleanup. Hide: shorts, related, comments, live chat, playlists, shelf, "watch next", "more from", "people also watched". Force theater mode, disable autoplay. |
 | Auto Tab Discard | Discard tabs after 10 min idle. Whitelist: pinned, audio, forms, `*://mail.*`, `*://calendar.*`, `*://github.com/*`. Restore on click. |
 | Gemini Voyager | Google Gemini sidebar panel (Ctrl+Shift+Y). Auto-hide on blur. Context menu "Send to Gemini". Streaming. |
-| Firefox Color | Theme: Rose Pine. base `#191724`, surface `#1f1d2e`, overlay `#26233a`, muted `#6e6a86`, subtle `#908caa`, text `#e0def4`, love `#eb6f92`, gold `#f6c177`, rose `#ebbcba`, pine `#31748f`, foam `#9ccfd8`, iris `#c4a7e7`. |
+| Obscuro | Local screen-share masking (unsigned sideload). Masks emails, phones, tokens, IPs, password fields, `data-sensitive`. Build: `scripts/obscuro/update.sh`. |
 | LanguageTool | Grammar & style checker. Inline suggestions in text fields. |
 
 ### Screen-share masking
 
 Local Obscuro build masks emails, phone numbers, tokens, IPs, password fields
-and `data-sensitive` elements during screen shares. Build and load steps:
-[Obscuro](obscuro.md).
+and `data-sensitive` elements during screen shares. Build and load steps are documented below.
 
 Installed as an unsigned sideload (not from AMO):
 `~/.floorp/<profile>/extensions/obscuro-custom@yushi61.local.xpi`, with

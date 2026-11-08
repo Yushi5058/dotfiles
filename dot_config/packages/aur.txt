@@ -8,6 +8,4 @@ poweralertd
 python-desktop-entry-lib
 python-ftputil
 rustdesk
-slack-desktop-wayland
-vscodium-bin
 waydroid-image-gapps

@@ -13,7 +13,6 @@ bluez-utils
 bolt
 brightnessctl
 btop
-calibre
 cliphist
 copyq
 croc

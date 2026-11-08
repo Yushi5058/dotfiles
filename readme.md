@@ -43,13 +43,12 @@ git push codeberg main    # → codeberg + github mirror
 |----------|----------|
 | WM | sway, eww, mako, swaylock, fuzzel (launcher) + wofi (fallback) |
 | System | ly, earlyoom, zram-generator, pipewire, tlp, ufw, bluez/blueman |
-| Dev | git, go, rust, zig, python, nodejs, lazygit, neovim, dbeaver |
+| Dev | git, go, rust, zig, python, nodejs, lazygit, neovim (Antigravity IDE fallback), dbeaver |
 | Shell | zsh + starship + zinit |
 | Terminal | ghostty, bat, btop, ripgrep, yazi, zathura |
 | Browser | floorp-bin |
-| Books | calibre (auto-add + metadata autofix), hardcover (managed via Readest) |
 | Virt | qemu-full + virt-manager + libvirt + swtpm (KVM) — `kali-vbox` (DFIR) + `win11` (malware lab); VMware Workstation (coursework) |
-| Other AUR | vscodium-bin, rustdesk, slack-desktop-wayland, gearlever |
+| Other AUR | rustdesk, gearlever |
 
 Full lists: `dot_config/packages/base.txt` (pacman) and `aur.txt` (AUR). DNS = NextDNS via systemd-resolved DoT (no extra package, see [NextDNS docs](docs/nextdns.md)).
 
@@ -68,11 +67,5 @@ Templated files (`machine data: email, gpg key, displays`): `dot_gitconfig.tmpl`
 ## Documentation
 
 - [Fresh install](docs/fresh-install.md) — partitions, migration, bootstrap, checklist
-- [Hardware](docs/hardware.md) — ThinkPad X13 Yoga Gen 2, Sway input config
-- [Hardcover](docs/hardcover.md) — Readest ↔ Hardcover integration (handled via Readest API key)
 - [Floorp](docs/floorp.md) — prefs (profile `user.js`), extensions
-- [Obscuro](docs/obscuro.md) — local screen-share masking extension (build, rules, test page)
 - [NextDNS](docs/nextdns.md) — systemd-resolved DoT, no CLI daemon
-- [DFIR](docs/dfir.md) — Kali / Windows 11 VMs on QEMU/KVM, snapshots
-- [Neovim cloak](docs/nvim-cloak.md) — secret redaction patterns, coverage, limits
-- [Nord / Blue Blizzard](docs/nord.md) — theme components (GTK, icons, cursor, tmux, Firefox/Floorp)
