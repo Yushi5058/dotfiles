@@ -64,9 +64,8 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 ntfs-3g
-pnpm
 nordic-theme-git
-nwg-lookouch
+nwg-look
 pacman-contrib
 parallel
 pavucontrol
@@ -75,6 +74,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 playerctl
+pnpm
 podman
 podman-compose
 polkit-gnome
