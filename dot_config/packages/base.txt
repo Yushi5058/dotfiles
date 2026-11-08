@@ -66,6 +66,7 @@ noto-fonts-emoji
 ntfs-3g
 nordic-theme-git
 nwg-look
+ouch
 pacman-contrib
 parallel
 pavucontrol
