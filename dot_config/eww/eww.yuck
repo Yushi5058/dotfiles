@@ -6,8 +6,23 @@
 (defpoll workspaces :interval "1s"
   "swaymsg -t get_workspaces | jq -c '[.[] | {num: .num, focused: .focused, urgent: .urgent}]'")
 
+(defpoll cpu :interval "5s"
+  "top -bn1 | awk -F'[, ]+' '/Cpu\\(s\\)/ {print int(100 - $8)}'")
+
+(defpoll memory :interval "5s"
+  "free | awk '/Mem:/ {printf \"%.0f\", $3/$2*100}'")
+
+(defpoll disk :interval "30s"
+  "df / | awk 'NR==2 {gsub(\"%\",\"\"); print $5}'")
+
+(defpoll network :interval "5s"
+  "nmcli -t -f active,ssid dev wifi 2>/dev/null | awk -F: '$1==\"yes\"{print $2; found=1} END{if(!found) print \"eth\"}'")
+
 (defpoll volume :interval "2s"
   "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"%.0f\", $2 * 100}'")
+
+(defpoll brightness :interval "5s"
+  "brightnessctl -m | awk -F, '{print $4}' | tr -d '%'")
 
 (defpoll battery :interval "30s"
   "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo 100")
@@ -37,6 +52,11 @@
         (label :text "${ws.num}")))))
 
 (defwidget system []
-  (box :class "system" :orientation "h" :space-evenly false :halign "end" :spacing 12
-    (label :text " ${volume}%")
-    (label :text " ${battery}%")))
+  (box :class "system" :orientation "h" :space-evenly false :halign "end" :spacing 10
+    (label :text "󰈀 ${network}" :class "network")
+    (label :text " ${cpu}%" :class "cpu")
+    (label :text " ${memory}%" :class "memory")
+    (label :text " ${disk}%" :class "disk")
+    (label :text " ${volume}%" :class "volume")
+    (label :text "󰃠 ${brightness}%" :class "brightness")
+    (label :text " ${battery}%" :class "battery")))
