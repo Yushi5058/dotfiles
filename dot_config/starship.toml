@@ -18,7 +18,7 @@ $php\
 $rust\
 $python\
 $zig\n
-[󱞪](fg:frost) \
+[❯](fg:frost) \
 """
 
 palette = "nord"
@@ -66,11 +66,7 @@ behind = '[⇣\(${count}\)](bg:overlay fg:rose)'
 
 
 [username]
-disabled = false
-format = "[](fg:overlay)[ 󰧱 $user ]($style)[](fg:overlay) "
-show_always = true
-style_root = "bg:overlay fg:frost"
-style_user = "bg:overlay fg:frost"
+disabled = true
 
 # --- Languages ---
 
