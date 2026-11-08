@@ -3,6 +3,7 @@ dwarfs
 eww-git
 gearlever
 maplemono-ttf
+nordzy-cursors
 poweralertd
 python-desktop-entry-lib
 python-ftputil

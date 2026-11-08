@@ -266,8 +266,8 @@ exec_always {{ $scripts }} polkit-gnome-authentication-agent-1 /usr/lib/polkit-g
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always gsettings set $gnome-schema gtk-theme 'Nordic'
-exec_always gsettings set $gnome-schema icon-theme 'Tela circle blue'
-exec_always gsettings set $gnome-schema cursor-theme 'Breeze'
+exec_always gsettings set $gnome-schema icon-theme 'Tela-circle-nord'
+exec_always gsettings set $gnome-schema cursor-theme 'Nordzy-cursors'
 exec_always gsettings set $gnome-schema font-name 'Ubuntu 11'
 
 
