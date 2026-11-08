@@ -1,20 +1,20 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  // Rosé Pine Moon palette
-  // base: #232136  surface: #2a273f  overlay: #393552
-  // muted: #6e6a86  subtle: #908caa  text: #e0def4
-  // love: #eb6f92  gold: #f6c177  rose: #ea9a97
-  // pine: #3e8fb0  foam: #9ccfd8  iris: #c4a7e7
+  // Nord palette
+  // base: #2e3440  surface: #3b4252  overlay: #434c5e
+  // muted: #4c566a  text: #d8dee9
+  // love: #bf616a  gold: #ebcb8b  rose: #d08770
+  // pine: #8fbcbb  foam: #88c0d0  iris: #b48ead
 
   // OpenCode V2 plugins (npm packages are fetched by opencode on demand)
   // Discord Rich Presence, V2-compatible fork: github.com/Yushi5058/opencode-discord-presence
   "plugins": ["@yushi_61/opencode-discord-presence"],
 
   "agent": {
-    "build":  { "color": "#eb6f92" },
-    "plan":   { "color": "#f6c177" },
-    "general": { "color": "#9ccfd8" },
-    "explore": { "color": "#3e8fb0" }
+    "build":  { "color": "#bf616a" },
+    "plan":   { "color": "#ebcb8b" },
+    "general": { "color": "#88c0d0" },
+    "explore": { "color": "#8fbcbb" }
   }
 }
