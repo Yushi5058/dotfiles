@@ -41,11 +41,9 @@ cd dotfiles
 - [ ] Enable bluetooth: `sudo systemctl enable --now bluetooth`
 - [ ] Verify `ufw` active (`sudo ufw status`)
 - [ ] Configure TrackPoint / touchpad in Sway
-- [ ] Test display scaling (Waybar font size)
+- [ ] Test display scaling (eww bar font size)
 - [ ] Verify brightness/volume/mic keys
 - [ ] Test Wacom stylus / touchscreen
 - [ ] Verify SSH keys (`ssh -T git@github.com`)
 - [ ] Verify GPG keys (`gpg --list-secret-keys`)
-- [ ] `sudo gpasswd -a $USER vboxusers` (re-login)
 - [ ] Add NextDNS resolvers (see [docs/nextdns.md](nextdns.md))
-- [ ] Spin up Kali + Windows 11 VMs (see [docs/dfir.md](dfir.md))

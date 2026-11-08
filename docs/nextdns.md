@@ -8,16 +8,16 @@ DNS protection via **systemd-resolved** with NextDNS over TLS. No `nextdns` CLI/
 
 ```ini
 [Resolve]
-DNS=REDACTED_IP.dns.nextdns.io
-DNS=REDACTED_IP.dns.nextdns.io
-DNS=REDACTED_IP.dns.nextdns.io
-DNS=REDACTED_IP.dns.nextdns.io
+DNS=45.90.28.*#2f49ca.dns.nextdns.io
+DNS=2a07:a8c0::*#2f49ca.dns.nextdns.io
+DNS=45.90.30.*#2f49ca.dns.nextdns.io
+DNS=2a07:a8c1::*#2f49ca.dns.nextdns.io
 DNSOverTLS=yes
 ```
 
 - Config ID: `2f49ca`
-- IPv4: `45.90.28.0` / `45.90.30.0`
-- IPv6: `2a07:a8c0::` / `2a07:a8c1::`
+- IPv4: `45.90.28.*` / `45.90.30.*`
+- IPv6: `2a07:a8c0::*` / `2a07:a8c1::*`
 - Fallback: Quad9 (`9.9.9.9`) via systemd's built-in fallback list
 
 ## How it works
@@ -29,7 +29,7 @@ DNSOverTLS=yes
 Verify:
 
 ```bash
-resolvectl status                     # Current DNS Server: REDACTED_IP.dns.nextdns.io
+resolvectl status                     # Current DNS Server: 45.90.28.*#2f49ca.dns.nextdns.io
 resolvectl query example.com
 ```
 
