@@ -15,7 +15,7 @@ selection-background = #5e81ac
 selection-foreground = #eceff4
 
 # Window
-background-opacity = 0.65
+background-opacity = 0.95
 window-padding-x = 10
 window-padding-y = 10
 
