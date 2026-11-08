@@ -2,16 +2,16 @@
  * Rosé Pine Moon — Compact Edition
  */
 
-@define-color base            #232136;
-@define-color surface         #2a273f;
-@define-color overlay         #393552;
-@define-color text            #e0def4;
-@define-color love            #eb6f92;
-@define-color gold            #f6c177;
-@define-color pine            #3e8fb0;
-@define-color foam            #9ccfd8;
-@define-color iris            #c4a7e7;
-@define-color rose            #ea9a97;
+@define-color base            #2e3440;
+@define-color surface         #3b4252;
+@define-color overlay         #434c5e;
+@define-color text            #d8dee9;
+@define-color love            #bf616a;
+@define-color gold            #ebcb8b;
+@define-color pine            #8fbcbb;
+@define-color foam            #88c0d0;
+@define-color iris            #b48ead;
+@define-color rose            #d08770;
 
 /* === Global === */
 * {
