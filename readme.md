@@ -4,8 +4,9 @@ Personal dotfiles managed with **[chezmoi](https://www.chezmoi.io/)**.
 
 - **OS**: Arch Linux (CachyOS)
 - **WM**: Sway · **DM**: ly · **Editor**: Neovim · **Terminal**: Ghostty
+- **Bar**: eww (Nord palette, seconds in clock)
 - **Launcher**: fuzzel (`$mod+d`, fzf matching) · wofi fallback (`$mod+Shift+d`)
-- **Font**: Ubuntu (UI) / Maple Mono (terminal) · **Cursor**: Rose Pine
+- **Font**: Ubuntu (UI) / Maple Mono (terminal) · **Cursor**: Nordzy · **Theme**: Nord
 - **Browser**: Floorp · **DNS**: NextDNS (systemd-resolved DoT)
 
 ## Quick Start
@@ -40,7 +41,7 @@ git push codeberg main    # → codeberg + github mirror
 
 | Category | Packages |
 |----------|----------|
-| WM | sway, waybar, mako, swaylock-effects-git, fuzzel (launcher) + wofi (fallback) |
+| WM | sway, eww, mako, swaylock, fuzzel (launcher) + wofi (fallback) |
 | System | ly, earlyoom, zram-generator, pipewire, tlp, ufw, bluez/blueman |
 | Dev | git, go, rust, zig, python, nodejs, lazygit, neovim, dbeaver |
 | Shell | zsh + starship + zinit |
