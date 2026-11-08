@@ -64,6 +64,6 @@
     (label :text " ${memory}%" :class "memory")
     (label :text " ${disk}%" :class "disk")
     (label :text {volume == "muted" ? "" : " ${volume}%"} :class "volume")
-    (label :text {bluetooth == "connected" ? "" : bluetooth == "on" ? "󰂯" : "󰂲"} :class "bluetooth")
+    (label :text {bluetooth == "connected" ? "" : bluetooth == "on" ? "BT" : "󰂲"} :class "bluetooth")
     (label :text "󰃠 ${brightness}%" :class "brightness")
     (label :text {battery_status == "Charging" ? " ${battery}%" : " ${battery}%"} :class "battery")))
