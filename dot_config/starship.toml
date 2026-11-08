@@ -21,16 +21,16 @@ $zig\n
 [󱞪](fg:iris) \
 """
 
-palette = "rose-pine-moon"
+palette = "nord"
 
-[palettes.rose-pine-moon]
-overlay = '#393552'
-love = '#eb6f92'
-gold = '#f6c177'
-rose = '#ea9a97'
-pine = '#3e8fb0'
-foam = '#9ccfd8'
-iris = '#c4a7e7'
+[palettes.nord]
+overlay = '#3b4252'
+love = '#bf616a'
+gold = '#ebcb8b'
+rose = '#d08770'
+pine = '#88c0d0'
+foam = '#8fbcbb'
+iris = '#b48ead'
 
 [directory]
 format = "[](fg:overlay)[ $path ]($style)[](fg:overlay) "

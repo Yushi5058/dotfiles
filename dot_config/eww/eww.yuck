@@ -1,0 +1,42 @@
+;; Eww bar — minimal, Nord/Blue Blizzard palette
+
+(defpoll time :interval "1s"
+  "date '+%a %d %b  %H:%M:%S'")
+
+(defpoll workspaces :interval "1s"
+  "swaymsg -t get_workspaces | jq -c '[.[] | {num: .num, focused: .focused, urgent: .urgent}]'")
+
+(defpoll volume :interval "2s"
+  "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"%.0f\", $2 * 100}'")
+
+(defpoll battery :interval "30s"
+  "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo 100")
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0%" :y "0%" :width "100%" :height "34px" :anchor "top center")
+  :stacking "fg"
+  :reserve (struts :distance "34px" :side "top")
+  :exclusive true
+  (bar))
+
+(defwidget bar []
+  (centerbox :orientation "h" :class "bar"
+    (workspaces)
+    (clock)
+    (system)))
+
+(defwidget clock []
+  (label :text time :class "clock"))
+
+(defwidget workspaces []
+  (box :class "workspaces" :orientation "h" :space-evenly false :halign "start" :spacing 2
+    (for ws in workspaces
+      (button :class {ws.focused ? "ws focused" : ws.urgent ? "ws urgent" : "ws"}
+              :onclick "swaymsg workspace ${ws.num}"
+        (label :text "${ws.num}")))))
+
+(defwidget system []
+  (box :class "system" :orientation "h" :space-evenly false :halign "end" :spacing 12
+    (label :text " ${volume}%")
+    (label :text " ${battery}%")))

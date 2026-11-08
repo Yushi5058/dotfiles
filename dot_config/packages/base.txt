@@ -65,8 +65,8 @@ noto-fonts-cjk
 noto-fonts-emoji
 ntfs-3g
 pnpm
-nwg-look
-ouch
+nordic-theme-git
+nwg-lookouch
 pacman-contrib
 parallel
 pavucontrol
@@ -112,7 +112,6 @@ virt-install
 virt-manager
 virt-viewer
 vulkan-intel
-waybar
 waydroid
 wget
 wireless_tools
