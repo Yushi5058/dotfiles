@@ -23,15 +23,15 @@ oracle-status() {
 }
 
 # MSSQL
-alias mssql-start='podman start sql1'
-alias mssql-stop='podman stop sql1'
+alias mssql-start='podman start mssql-scolarite'
+alias mssql-stop='podman stop mssql-scolarite'
 mssql-sql() {
-    if ! podman ps -a --format '{{.Names}}' | grep -qx sql1; then
+    if ! podman ps -a --format '{{.Names}}' | grep -qx mssql-scolarite; then
         read -s "?Enter SA password: " sa_pass && podman run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=$sa_pass" \
-           -p 1433:1433 --name sql1 --hostname sql1 \
+           -p 1433:1433 --name mssql-scolarite --hostname mssql-scolarite \
            -d mcr.microsoft.com/mssql/server:2022-latest
     fi
-    podman start sql1
+    podman start mssql-scolarite
 }
 
 # Android/Waydroid
