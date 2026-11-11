@@ -41,6 +41,25 @@ Edit `DNS=` lines in `/etc/systemd/resolved.conf`, then:
 sudo systemctl restart systemd-resolved
 ```
 
+
+## Wi-Fi backend (NetworkManager + iwd)
+
+Impala TUI requires NetworkManager to use `iwd` as the Wi-Fi backend:
+
+`/etc/NetworkManager/conf.d/wifi_backend.conf`:
+
+```ini
+[device]
+wifi.backend=iwd
+```
+
+Managed via chezmoi (`dot_etc/NetworkManager/conf.d/wifi_backend.conf`, applied with
+`sudo chezmoi apply`). Restart NetworkManager after changes:
+
+```bash
+sudo systemctl restart NetworkManager
+```
+
 ## Notes
 
 - NextDNS hostname (`#2f49ca.dns.nextdns.io`) is required for the TLS Server Name Indication (SNI) — without it DoT can't select the right NextDNS config.

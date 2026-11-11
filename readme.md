@@ -68,4 +68,4 @@ Templated files (`machine data: email, gpg key, displays`): `dot_gitconfig.tmpl`
 
 - [Fresh install](docs/fresh-install.md) — partitions, migration, bootstrap, checklist
 - [Floorp](docs/floorp.md) — prefs (profile `user.js`), extensions
-- [NextDNS](docs/nextdns.md) — systemd-resolved DoT, no CLI daemon
+- [Network](docs/network.md) — NextDNS DoT + NetworkManager/iwd backend for impala
