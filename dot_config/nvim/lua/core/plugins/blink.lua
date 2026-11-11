@@ -64,6 +64,7 @@ return {
 			fuzzy = { implementation = "rust" },
 		},
 		config = function(_, opts)
+			require("blink.cmp").setup(opts)
 			require("blink.cmp").build()
 		end,
 	},
