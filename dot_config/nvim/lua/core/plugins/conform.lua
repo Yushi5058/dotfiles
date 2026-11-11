@@ -10,6 +10,8 @@ return {
 			vue = { "prettierd", "eslint_d" },
 			html = { "prettierd" },
 			css = { "prettierd" },
+			json = { "prettierd" },
+			jsonc = { "prettierd" },
 			php = { "php_cs_fixer" },
 			python = { "ruff_format", "ruff_fix" },
 			bash = { "shfmt" },
