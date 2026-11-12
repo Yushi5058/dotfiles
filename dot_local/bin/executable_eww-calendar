@@ -1,0 +1,3 @@
+#!/bin/sh
+today=$(date +%e | tr -d ' ')
+cal | sed "s/\\<$today\\>/<span color='#88c0d0'><b>&<\/b><\/span>/"
