@@ -61,10 +61,10 @@
   "bluetoothctl show 2>/dev/null | grep -q 'Powered: yes' && (bluetoothctl devices Connected 2>/dev/null | grep -q . && echo connected || echo on) || echo off")
 
 (defpoll bluetooth_battery :interval "10s"
-  "bluetoothctl devices Connected 2>/dev/null | head -1 | awk '{print $2}' | xargs -r -I{} bluetoothctl info {} 2>/dev/null | awk -F'[()]' '/Battery Percentage/ {print $2}'")
+  "bluetoothctl devices Connected 2>/dev/null | head -1 | awk '{print $2}' | xargs -r -I{} bluetoothctl info {} 2>/dev/null | awk -F'[()]' '/Battery Percentage/ {print $2+0}'")
 
 (defpoll bluetooth_tooltip :interval "10s"
-  "bluetoothctl devices Connected 2>/dev/null | head -1 | awk '{print $2}' | xargs -r -I{} bluetoothctl info {} 2>/dev/null | grep -E 'Name:|Battery Percentage:' | paste -sd'\\n' -")
+  "bluetoothctl devices Connected 2>/dev/null | head -1 | awk '{print $2}' | xargs -r -I{} bluetoothctl info {} 2>/dev/null | awk -F: '/Name:|Battery Percentage:/ {gsub(/^ +/,\"\",$2); if ($1 ~ /Battery/) {split($2,a,\"(\"); gsub(/[^0-9]/,\"\",a[2]); printf \"%s: %s%%\", $1, a[2]} else printf \"%s: %s\", $1, $2}'")
 
 (defwindow bar
   :monitor 0
@@ -99,4 +99,4 @@
     (label :text {volume == "muted" ? "" : " ${volume}%"} :tooltip "Volume: ${volume}%" :class "volume")
     (label :text {bluetooth == "connected" ? " ${bluetooth_battery}%" : bluetooth == "on" ? "BT" : "󰂲"} :tooltip "${bluetooth_tooltip}" :class "bluetooth")
     (label :text "󰃠 ${brightness}%" :class "brightness")
-    (label :text {battery_status == "Charging" ? " ${battery}%" : " ${battery}%"} :tooltip "Battery: ${battery}%\\n${battery_time}" :class "battery")))
+    (label :text {battery_status == "Charging" ? " ${battery}%" : " ${battery}%"} :tooltip "Battery: ${battery}% | Time left: ${battery_time}" :class "battery")))
