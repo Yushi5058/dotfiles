@@ -6,8 +6,8 @@
 (defpoll calendar :interval "3600s"
   "eww-calendar")
 
-(defpoll workspaces :interval "1s"
-  "swaymsg -t get_workspaces | jq -c '[.[] | {num: .num, focused: .focused, urgent: .urgent}]'")
+(defpoll workspaces :interval "1s" :initial "[]"
+  "swaymsg -t get_workspaces 2>/dev/null | jq -c '[.[] | {num: .num, focused: .focused, urgent: .urgent}]' 2>/dev/null || echo '[]'")
 
 (defpoll cpu :interval "5s"
   "top -bn1 | awk -F'[, ]+' '/Cpu\\(s\\)/ {print int(100 - $8)}'")
@@ -84,7 +84,7 @@
     (system)))
 
 (defwidget clock []
-  (label :text time :tooltip "${calendar}" :tooltip-markup true :class "clock"))
+  (label :text time :tooltip (label :text "${calendar}" :markup true) :class "clock"))
 
 (defwidget workspaces []
   (box :class "workspaces" :orientation "h" :space-evenly false :halign "start" :spacing 2
