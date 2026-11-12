@@ -9,20 +9,38 @@
 (defpoll cpu :interval "5s"
   "top -bn1 | awk -F'[, ]+' '/Cpu\\(s\\)/ {print int(100 - $8)}'")
 
+(defpoll cpu_tooltip :interval "30s"
+  "printf 'CPU: %s\\nCores: %s' \"$(grep -m1 'model name' /proc/cpuinfo | cut -d: -f2 | xargs)\" \"$(nproc)\"")
+
 (defpoll memory :interval "5s"
   "free | awk '/Mem:/ {printf \"%.0f\", $3/$2*100}'")
+
+(defpoll memory_tooltip :interval "5s"
+  "free -m | awk '/Mem:/ {printf \"Used: %s MB\\nTotal: %s MB\", $3, $2}'")
 
 (defpoll disk :interval "30s"
   "df / | awk 'NR==2 {gsub(\"%\",\"\"); print $5}'")
 
-(defpoll network :interval "5s"
-  "nmcli -t -f active,ssid dev wifi 2>/dev/null | awk -F: '$1==\"yes\"{print $2; found=1} END{if(!found) print \"eth\"}'")
+(defpoll disk_tooltip :interval "30s"
+  "df -h / | awk 'NR==2 {printf \"Used: %s\\nTotal: %s\", $3, $2}'")
+
+(defpoll network_ssid :interval "5s"
+  "iwgetid -r 2>/dev/null || echo eth")
+
+(defpoll network_signal :interval "5s"
+  "nmcli -t -f active,signal dev wifi 2>/dev/null | awk -F: '$1==\"yes\"{print $2}'")
+
+(defpoll network_ip :interval "10s"
+  "ip -4 addr show $(ip route get 1.1.1.1 | awk '{for(i=1;i<=NF;i++) if($i==\"dev\") print $(i+1)}') | awk '/inet /{print $2}' | head -1")
+
+(defpoll network_iface :interval "10s"
+  "ip route get 1.1.1.1 | awk '{for(i=1;i<=NF;i++) if($i==\"dev\") print $(i+1)}'")
+
+(defpoll network_tooltip :interval "10s"
+  "printf 'SSID: %s\\nSignal: %s%%\\nIP: %s\\nIface: %s' \"$(iwgetid -r 2>/dev/null || echo eth)\" \"$(nmcli -t -f active,signal dev wifi 2>/dev/null | awk -F: '$1==\"yes\"{print $2}')\" \"$(ip -4 addr show $(ip route get 1.1.1.1 | awk '{for(i=1;i<=NF;i++) if($i==\"dev\") print $(i+1)}') | awk '/inet /{print $2}' | head -1)\" \"$(ip route get 1.1.1.1 | awk '{for(i=1;i<=NF;i++) if($i==\"dev\") print $(i+1)}')\"")
 
 (defpoll volume :interval "2s"
   "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{v=int($2*100); if ($0 ~ /MUTED/) print \"muted\"; else print v}'")
-
-(defpoll bluetooth :interval "5s"
-  "bluetoothctl show 2>/dev/null | grep -q 'Powered: yes' && (bluetoothctl devices Connected 2>/dev/null | grep -q . && echo connected || echo on) || echo off")
 
 (defpoll brightness :interval "5s"
   "brightnessctl -m | awk -F, '{print $4}' | tr -d '%'")
@@ -32,6 +50,21 @@
 
 (defpoll battery_status :interval "5s"
   "cat /sys/class/power_supply/BAT0/status 2>/dev/null || echo Unknown")
+
+(defpoll battery_time :interval "30s"
+  "upower -i /org/freedesktop/UPower/devices/battery_BAT0 2>/dev/null | awk -F: '/time to (empty|full)/{gsub(/ /,\"\",$2); print $2}'")
+
+(defpoll battery_tooltip :interval "30s"
+  "upower -i /org/freedesktop/UPower/devices/battery_BAT0 2>/dev/null | awk -F: '/state:|time to (empty|full):|percentage:/{gsub(/^ +/,\"\",$2); print $1 \":\" $2}' | paste -sd'\\n' -")
+
+(defpoll bluetooth :interval "5s"
+  "bluetoothctl show 2>/dev/null | grep -q 'Powered: yes' && (bluetoothctl devices Connected 2>/dev/null | grep -q . && echo connected || echo on) || echo off")
+
+(defpoll bluetooth_battery :interval "10s"
+  "bluetoothctl devices Connected 2>/dev/null | head -1 | awk '{print $2}' | xargs -r -I{} bluetoothctl info {} 2>/dev/null | awk -F'[()]' '/Battery Percentage/ {print $2}'")
+
+(defpoll bluetooth_tooltip :interval "10s"
+  "bluetoothctl devices Connected 2>/dev/null | head -1 | awk '{print $2}' | xargs -r -I{} bluetoothctl info {} 2>/dev/null | grep -E 'Name:|Battery Percentage:' | paste -sd'\\n' -")
 
 (defwindow bar
   :monitor 0
@@ -59,11 +92,11 @@
 
 (defwidget system []
   (box :class "system" :orientation "h" :space-evenly false :halign "end" :spacing 10
-    (label :text "󰈀 ${network}" :class "network")
-    (label :text " ${cpu}%" :class "cpu")
-    (label :text " ${memory}%" :class "memory")
-    (label :text " ${disk}%" :class "disk")
-    (label :text {volume == "muted" ? "" : " ${volume}%"} :class "volume")
-    (label :text {bluetooth == "connected" ? "" : bluetooth == "on" ? "BT" : "󰂲"} :class "bluetooth")
+    (label :text " ${network_signal}%" :tooltip "${network_tooltip}" :class "network")
+    (label :text " ${cpu}%" :tooltip "${cpu_tooltip}" :class "cpu")
+    (label :text " ${memory}%" :tooltip "${memory_tooltip}" :class "memory")
+    (label :text " ${disk}%" :tooltip "${disk_tooltip}" :class "disk")
+    (label :text {volume == "muted" ? "" : " ${volume}%"} :tooltip "Volume: ${volume}%" :class "volume")
+    (label :text {bluetooth == "connected" ? " ${bluetooth_battery}%" : bluetooth == "on" ? "BT" : "󰂲"} :tooltip "${bluetooth_tooltip}" :class "bluetooth")
     (label :text "󰃠 ${brightness}%" :class "brightness")
-    (label :text {battery_status == "Charging" ? " ${battery}%" : " ${battery}%"} :class "battery")))
+    (label :text {battery_status == "Charging" ? " ${battery}%" : " ${battery}%"} :tooltip "Battery: ${battery}%\\n${battery_time}" :class "battery")))
