@@ -3,6 +3,9 @@
 (defpoll time :interval "1s"
   "date '+%a %d %b  %H:%M:%S'")
 
+(defpoll calendar :interval "3600s"
+  "cal")
+
 (defpoll workspaces :interval "1s"
   "swaymsg -t get_workspaces | jq -c '[.[] | {num: .num, focused: .focused, urgent: .urgent}]'")
 
@@ -81,7 +84,7 @@
     (system)))
 
 (defwidget clock []
-  (label :text time :class "clock"))
+  (label :text time :tooltip "${calendar}" :class "clock"))
 
 (defwidget workspaces []
   (box :class "workspaces" :orientation "h" :space-evenly false :halign "start" :spacing 2
