@@ -4,7 +4,7 @@
   "date '+%a %d %b  %H:%M:%S'")
 
 (defpoll calendar :interval "3600s"
-  "cal")
+  "eww-calendar")
 
 (defpoll workspaces :interval "1s" :initial "[]"
   "swaymsg -t get_workspaces 2>/dev/null | jq -c '[.[] | {num: .num, focused: .focused, urgent: .urgent}]' 2>/dev/null || echo '[]'")
