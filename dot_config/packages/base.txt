@@ -88,6 +88,7 @@ qt6ct
 qt6-wayland
 reflector
 ripgrep
+rlwrap
 rust
 slurp
 sof-firmware

@@ -11,9 +11,9 @@ alias c="clear"
 # --- Oracle 21c Podman Config ---
 # Image: Oracle Database 21.3.0 Enterprise Edition
 # ORACLE_SID is required for local SYSDBA/bequeath connections.
-alias oracle-sql='podman exec -i oracle21c env ORACLE_SID=ORCLCDB sqlplus "$@"'
-alias oracle-rman='podman exec -i oracle21c env ORACLE_SID=ORCLCDB rman "$@"'
-alias oracle-sys='rlwrap podman exec -i oracle21c env ORACLE_SID=ORCLCDB sqlplus / as sysdba'
+alias oracle-sql='podman exec -i -e TERM=xterm oracle21c env ORACLE_SID=ORCLCDB sqlplus "$@"'
+alias oracle-rman='podman exec -i -e TERM=xterm oracle21c env ORACLE_SID=ORCLCDB rman "$@"'
+alias oracle-sys='rlwrap podman exec -i -e TERM=xterm oracle21c env ORACLE_SID=ORCLCDB sqlplus / as sysdba'
 alias oracle-start='podman start oracle21c'
 alias oracle-stop='podman stop oracle21c'
 alias oracle-logs='podman logs -f oracle21c'
